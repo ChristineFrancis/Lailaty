@@ -1,7 +1,7 @@
 name: lailaty
 description: "Lailaty App."
 
-publish_to: 'none' 
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -9,22 +9,17 @@ environment:
   sdk: ^3.5.3
 
 dependencies:
+  cupertino_icons: ^1.0.8
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
 
-
-  cupertino_icons: ^1.0.8
-
 dev_dependencies:
+
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^4.0.0
-
-
-
 flutter:
 
-  
   uses-material-design: true
-
