@@ -1,4 +1,5 @@
-import 'package:lailaty/features/authentication/domain/entities/user.dart';
+
+import 'package:lailaty/common%20features/authentication/domain/entities/user.dart';
 
 class UserModel extends User {
   const UserModel({

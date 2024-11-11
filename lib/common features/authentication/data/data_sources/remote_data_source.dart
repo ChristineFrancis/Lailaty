@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:lailaty/features/authentication/data/models/verification_model.dart';
-import 'package:lailaty/features/authentication/domain/entities/user.dart';
+import 'package:lailaty/common%20features/authentication/data/models/verification_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:lailaty/common%20features/authentication/domain/entities/user.dart';
 
 abstract class RemoteDataSource {
   Future<Unit> addUser(User user);
