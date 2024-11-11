@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:lailaty/common%20features/authentication/domain/entities/verification_code.dart';
+import 'package:lailaty/common%20features/authentication/domain/repositories/verification_repository.dart';
 import 'package:lailaty/core/error_manager/failures.dart';
-import 'package:lailaty/features/authentication/domain/entities/verification_code.dart';
-import 'package:lailaty/features/authentication/domain/repositories/verification_repository.dart';
 
 class GetVerificationCodeUsecase {
   final VerificationRepository repository;
