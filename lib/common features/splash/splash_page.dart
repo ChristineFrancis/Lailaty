@@ -33,7 +33,6 @@ void initState() {
         pageBuilder: (context, animation, secondaryAnimation) => MyHomePage(title: 'Flutter Demo Home Page'),
         transitionDuration: Duration(milliseconds: 800), // Animation duration
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          //final tween = Tween<Offset>(begin: Offset(0, 1), end: Offset.zero);
           return FadeTransition(
             opacity: animation,
         child: child,
