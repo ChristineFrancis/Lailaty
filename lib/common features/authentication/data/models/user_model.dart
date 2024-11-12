@@ -1,4 +1,3 @@
-
 import 'package:lailaty/common%20features/authentication/domain/entities/user.dart';
 
 class UserModel extends User {
@@ -12,7 +11,8 @@ class UserModel extends User {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-        id: json['id'], // TODO: this May cause a crash
+        // TODO: this May cause a crash
+        id: json['id'],
         phoneNumber: json['phoneNumber'],
         password: json["password"],
         firstName: json["firstName"],
