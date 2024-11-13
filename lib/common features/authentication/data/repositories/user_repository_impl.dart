@@ -17,10 +17,11 @@ class UserRepositoryImpl extends UserRepository {
   @override
   Future<Either<Failure, Unit>> addUser(User user) async {
     final UserModel userModel = UserModel(
+      email: user.email,
       phoneNumber: user.phoneNumber,
       password: user.password,
       firstName: user.firstName,
-      lastName: user.lastName,
+      lastName: user.lastName, 
     );
 
     if (await networkConnection.isConnected) {

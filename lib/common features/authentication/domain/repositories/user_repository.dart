@@ -3,5 +3,6 @@ import 'package:lailaty/common%20features/authentication/domain/entities/user.da
 import 'package:lailaty/core/error_manager/failures.dart';
 
 abstract class UserRepository {
+  Future<Either<Failure, Unit>> verifyCode(String email, String code);
   Future<Either<Failure, Unit>> addUser(User user);
 }

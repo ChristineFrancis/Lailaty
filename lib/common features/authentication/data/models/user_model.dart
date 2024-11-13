@@ -2,7 +2,7 @@ import 'package:lailaty/common%20features/authentication/domain/entities/user.da
 
 class UserModel extends User {
   const UserModel({
-    super.id,
+    required super.email,
     required super.phoneNumber,
     required super.password,
     required super.firstName,
@@ -12,7 +12,7 @@ class UserModel extends User {
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
         // TODO: this May cause a crash
-        id: json['id'],
+        email: json['email'],
         phoneNumber: json['phoneNumber'],
         password: json["password"],
         firstName: json["firstName"],
@@ -21,7 +21,7 @@ class UserModel extends User {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'email': email,
       'phoneNumber': phoneNumber,
       'password': password,
       'firstName': firstName,
