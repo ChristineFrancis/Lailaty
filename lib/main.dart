@@ -16,18 +16,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: false,
       ),
-      home:  SplashPage(),
+      home: SplashPage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
 
   final String title;
 
@@ -86,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            //SvgPicture.asset('assets/ليلتي كاملة.svg'), 
+            //SvgPicture.asset('assets/ليلتي كاملة.svg'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
