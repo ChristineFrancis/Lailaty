@@ -1,10 +1,10 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:lailaty/common%20features/authentication/data/models/user_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:lailaty/core/error_manager/exception.dart';
 
 abstract class RemoteDataSource {
+  Future<Unit> verifyCode(String email, String code);
   Future<Unit> addUser(UserModel userModel);
 }
 
@@ -31,5 +31,11 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     } else {
       throw ServerException();
     }
+  }
+  
+  @override
+  Future<Unit> verifyCode(String email, String code) {
+    // TODO: implement verifyCode
+    throw UnimplementedError();
   }
 }

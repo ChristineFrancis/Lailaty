@@ -35,4 +35,18 @@ class UserRepositoryImpl extends UserRepository {
       return Left(OfflineFailure());
     }
   }
+  
+  @override
+  Future<Either<Failure, Unit>> verifyCode(String email, String code) async{
+    if (await networkConnection.isConnected) {
+      try {
+        await remoteDataSource.verifyCode(email, code);
+        return Right(unit);
+      } on ServerException {
+        return left(ServerFailure());
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
 }
