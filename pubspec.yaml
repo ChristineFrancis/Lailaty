@@ -31,3 +31,9 @@ flutter:
   assets:
     - assets/images/
     # - images/a_dot_ham.jpeg
+
+  fonts:
+    - family: Segeo
+      fonts:
+        - asset: assets/fonts/segoeuithis.ttf
+
