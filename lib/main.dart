@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
      // locale: const Locale('ar'), 
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        
+        fontFamily: "Segeo",
       ),
       home:  SplashPage(),
       // localizationsDelegates: [

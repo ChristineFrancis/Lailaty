@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:lailaty/common%20features/authentication/data/models/verification_model.dart';
+import 'package:lailaty/common%20features/authentication/data/models/user_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:lailaty/common%20features/authentication/domain/entities/user.dart';
+import 'package:lailaty/core/error_manager/exception.dart';
 
 abstract class RemoteDataSource {
-  Future<Unit> addUser(User user);
-  Future<List<VerificationModel>> getVerificationCode();
+  Future<Unit> verifyCode(String email, String code);
+  Future<Unit> addUser(UserModel userModel);
 }
 
 const BASE_URL = ""; // TODO: add the URL
@@ -14,16 +14,28 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   final http.Client client;
 
   RemoteDataSourceImpl({required this.client});
-  
+
   @override
-  Future<Unit> addUser(User user) {
-    // TODO: implement addUser
-    throw UnimplementedError();
+  Future<Unit> addUser(UserModel userModel) async {
+    final body = {
+      "phoneNumber": userModel.phoneNumber,
+      "password": userModel.password,
+      "firstName": userModel.firstName,
+      "lastName": userModel.lastName,
+    };
+
+    final response = await client.post(Uri.parse(BASE_URL + "/users/"),
+        body: body); // TODO: manage the extension
+    if (response.statusCode == 201) {
+      return Future.value(unit);
+    } else {
+      throw ServerException();
+    }
   }
   
   @override
-  Future<List<VerificationModel>> getVerificationCode() {
-    // TODO: implement getVerificationCode
+  Future<Unit> verifyCode(String email, String code) {
+    // TODO: implement verifyCode
     throw UnimplementedError();
   }
 }
