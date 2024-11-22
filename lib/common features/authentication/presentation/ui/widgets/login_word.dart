@@ -5,9 +5,25 @@ class LoginWord extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-              'تسجيل الدخول',
-              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 35),
-            );
+    return 
+    Text(
+  'تسجيل الدخول',
+  style: TextStyle(
+    fontWeight: FontWeight.w900,
+    fontSize: 35,
+    shadows: [
+      Shadow(
+        offset: Offset(0.9, 0.9),
+        blurRadius: 0.5,
+        color: Colors.black.withOpacity(0.5),
+      ),
+    ],
+  ),
+);
+
+    // const Text(
+    //           'تسجيل الدخول',
+    //           style: TextStyle(fontWeight: FontWeight.w900, fontSize: 35),
+    //         );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/login_with_google_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';
@@ -23,7 +24,7 @@ class LocationPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/45, ),
           child: Column(
             children: [
-             Spacer(flex: 3,),
+             Spacer(flex: 1,),
               LoginWord(),
               Spacer(flex: 3,),
               LayoutBuilder(
@@ -56,7 +57,7 @@ class LocationPage extends StatelessWidget {
                 padding:  EdgeInsets.symmetric(horizontal: MediaQuery.sizeOf(context).width/20),
                 child: Text('هل تود السماح لتطبيق ليلتي بتتبع موقعك',
                 textAlign: TextAlign.center,
-                style: const TextStyle(color:Colors.black, fontWeight: FontWeight.w600 , fontSize: 25,)),
+                style: const TextStyle( fontWeight: FontWeight.w600 , fontSize: 23,)),
               ),
               //SizedBox(height: 20,),
               //Spacer(flex: 1,),
@@ -69,9 +70,9 @@ class LocationPage extends StatelessWidget {
             padding:  EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/7, ),
             child: CustomButton(textButton: 'السماح', 
             onTap: () {
-        //       Navigator.of(context).push(
-        // PageRouteBuilder(
-        //   pageBuilder: (context, animation, secondaryAnimation) => NotificationPage(),));
+              Navigator.of(context).push(
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => LoginWithGooglePage(),));
             },),
           ),
           TextButton(child: Text('ليس الان',

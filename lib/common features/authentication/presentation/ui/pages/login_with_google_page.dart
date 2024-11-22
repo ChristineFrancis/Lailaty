@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/notification_page.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/choose_city_page/choose_city_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
-class ChooseCityPage extends StatelessWidget {
-  const ChooseCityPage({super.key});
+class LoginWithGooglePage extends StatelessWidget {
+  const LoginWithGooglePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Directionality(
+    return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: ColorManager.grey,
-          leading: IconButton(onPressed: () {Navigator.of(context).pop();}, 
-          icon: Icon(Icons.arrow_back ,color: ColorManager.yellow, )),),
+            backgroundColor: ColorManager.grey,
+            leading: IconButton(onPressed: () {Navigator.of(context).pop();}, 
+            icon: Icon(Icons.arrow_back ,color: ColorManager.yellow, )),),
         backgroundColor: ColorManager.grey,
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/45, ),
@@ -43,8 +41,9 @@ class ChooseCityPage extends StatelessWidget {
                           height: imageHeight, // Match the height of the image
                           color: ColorManager.yellow,
                         ),
+                        SizedBox(width: 6,),
                         SvgPicture.asset(
-                          ImageAssetManager.city,
+                          ImageAssetManager.loginAmico,
                           width: imageHeight, // Set the width of the image
                         ),
                       ],
@@ -52,26 +51,31 @@ class ChooseCityPage extends StatelessWidget {
                   );
                 },
               ),
-              Spacer(flex: 2,),
-              Text('اختر مدينتك',
-              style: const TextStyle(color:Colors.black, fontWeight: FontWeight.w600 , fontSize: 27,)),
-              SizedBox(height: 20,),
+              Spacer(flex: 3,),
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: MediaQuery.sizeOf(context).width/20),
+                child: Text('سجل دخولك باستخدام Google لتسجيل بريدك الالكتروني و اسمك',
+                textAlign: TextAlign.center,
+                style: const TextStyle( fontWeight: FontWeight.w600 , fontSize: 23,)),
+              ),
+              //SizedBox(height: 20,),
               //Spacer(flex: 1,),
-              CityDropdown(cities: ['القاهرة' , 'دمشق'],),
+              
               //CityDropdown(),
           
       
-          Spacer(flex: 4,),
+          Spacer(flex: 3,),
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/7, ),
-            child: CustomButton(textButton: 'التالي', 
+            padding:  EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/9, ),
+            child: CustomButton(textButton: 'التسجيل عن طريق Google', isLarge: false,
             onTap: () {
-              Navigator.of(context).push(
-        PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => NotificationPage(),));
+        //       Navigator.of(context).push(
+        // PageRouteBuilder(
+        //   pageBuilder: (context, animation, secondaryAnimation) => NotificationPage(),));
             },),
           ),
-          Spacer(flex: 2,),
+          
+          Spacer(flex: 3,),
           
           
               

@@ -4,7 +4,8 @@ import 'package:lailaty/core/resources/color_manager.dart';
 class CustomButton extends StatelessWidget {
   final String textButton;
   final Function() onTap;
-  const CustomButton({super.key, required this.textButton, required this.onTap});
+  final isLarge;
+   CustomButton({super.key, required this.textButton, required this.onTap , this.isLarge=true} );
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class CustomButton extends StatelessWidget {
         onPressed:onTap ,
         child: Center(
          child: Text(textButton , 
-          style: const TextStyle(color:Colors.black, fontWeight: FontWeight.bold , fontSize: 24,),),),
+          style:TextStyle(color:Colors.black, fontWeight: FontWeight.bold , fontSize:isLarge? 24 : 18, ),),),
                 ),
     );
   }

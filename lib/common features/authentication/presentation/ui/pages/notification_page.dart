@@ -24,7 +24,7 @@ class NotificationPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/45, ),
           child: Column(
             children: [
-             Spacer(flex: 3,),
+             Spacer(flex: 1,),
               LoginWord(),
               Spacer(flex: 3,),
               LayoutBuilder(
@@ -56,7 +56,7 @@ class NotificationPage extends StatelessWidget {
                 padding:  EdgeInsets.symmetric(horizontal: MediaQuery.sizeOf(context).width/20),
                 child: Text('هل تود السماح لتطبيق ليلتي بارسال الاشعارات',
                 textAlign: TextAlign.center,
-                style: const TextStyle(color:Colors.black, fontWeight: FontWeight.w600 , fontSize: 25,)),
+                style: const TextStyle( fontWeight: FontWeight.w600 , fontSize: 23,)),
               ),
               //SizedBox(height: 20,),
               //Spacer(flex: 1,),
