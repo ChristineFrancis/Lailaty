@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:lailaty/core/resources/asset_manager.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/privacy_and_age_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:flutter/services.dart';
-import 'package:lailaty/main.dart'; 
-
 class SplashPage extends StatefulWidget {
    SplashPage({super.key});
 
@@ -14,15 +12,6 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage>with SingleTickerProviderStateMixin {
   @override
-  // void initState() {
-  //   super.initState();
-  //   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  //   Future.delayed(Duration(seconds: 5), () {
-  //     Navigator.of(context).pushAndRemoveUntil(
-  //           MaterialPageRoute(builder: (_) => MyHomePage(title: 'Flutter Demo Home Page'),),
-  //            (route)=>false);
-  //   },);
-  // }
   @override
 void initState() {
   super.initState();
@@ -30,8 +19,8 @@ void initState() {
   Future.delayed(Duration(seconds:2), () {
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => MyHomePage(title: 'Flutter Demo Home Page'),
-        transitionDuration: Duration(milliseconds: 800), // Animation duration
+        pageBuilder: (context, animation, secondaryAnimation) => PrivacyAndAgePage(),
+        transitionDuration: Duration(milliseconds: 800), 
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(
             opacity: animation,
@@ -49,26 +38,12 @@ void initState() {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorManager.grey,
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: 
-              [
-                SvgPicture.asset(ImageAssetManager.lettersLY),
-                SizedBox(width: 3,),
-                SvgPicture.asset(ImageAssetManager.lailaty),
-              ],
-            ),
-            SizedBox(height: 3,),
-            SvgPicture.asset(ImageAssetManager.lailatyArabic),
-          ],
-        ),
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        backgroundColor: ColorManager.grey,
+        body: LailatyArabicAndEnglish(),
+        
       ),
     );
   }
