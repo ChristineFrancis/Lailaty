@@ -1,84 +1,95 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lailaty/common%20features/authentication/presentation/widgets/custom%20widgets/custom_elevation_button.dart';
+import 'package:lailaty/common%20features/authentication/presentation/widgets/verification_code_page.dart/countdown_timer.dart';
+import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
 class VerificationCodePage extends StatelessWidget {
+  const VerificationCodePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: ColorManager.grey,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 40), // Adjust for top padding
+            const SizedBox(height: 50),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/lettersLY.png', height: 40), // First image
-                Image.asset('assets/lailaty.png', height: 40), // Second image
+                SvgPicture.asset(
+                  ImageAssetManager.lettersLY,
+                ),
+                SizedBox(width: 7),
+                SvgPicture.asset(
+                  ImageAssetManager.lailaty,
+                ),
               ],
             ),
             const SizedBox(height: 16),
-            Image.asset('assets/lailatyArabic.png', height: 50), // Third image
+            SvgPicture.asset(
+              ImageAssetManager.lailatyArabic,
+            ),
             const SizedBox(height: 40),
             const Text(
               'تفقد بريدك الإلكتروني',
               style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
+                  color: Colors.black,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                   fontFamily: "Segeo"),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
             const Text(
               'ارسلنا رمز تحقق الى بريدك الإلكتروني',
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
               ),
               textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 70),
+            SizedBox(
+              width: 250,
+              child: TextFormField(
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontSize: 32), // Adjust font size to cover more space
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 5), // Make the field thinner
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: '5  5  5  5  5  5',
+                  hintStyle: const TextStyle(
+                      fontSize: 32,
+                      color: Colors.grey), // Hint covers entire field
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        color: Colors.black, width: 7), // Thicker border
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.black, width: 3),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.black, width: 3),
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 30),
-            TextField(
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 24),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: '5 5 5 5 5 5',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Icons.timer, color: Colors.yellow),
-                const SizedBox(width: 8),
-                const Text(
-                  '1:30',
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-              ],
-            ),
+            const CountdownTimer(),
             const Spacer(),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.yellow,
-                foregroundColor: Colors.black,
-                minimumSize: const Size(double.infinity, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: const Text('تحقق', style: TextStyle(fontSize: 18)),
-            ),
+            CustomElevatedButton(text: "تحقق", onPressed: () {}),
             const SizedBox(height: 20),
           ],
         ),
