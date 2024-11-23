@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lailaty/common%20features/splash/splash_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/user_info_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,12 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     // locale: const Locale('ar'), 
+      // locale: const Locale('ar'),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        
         fontFamily: "Segeo",
       ),
-      home: SplashPage(),
+      home: UserInfoPage(),
     );
   }
 }
@@ -99,4 +99,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
