@@ -52,7 +52,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
                     value: value,
                     strokeWidth: 4,
                     valueColor: const AlwaysStoppedAnimation<Color>(
-                        ColorManager.yallow),
+                        ColorManager.yellow),
                   ),
                 ),
                 Text(

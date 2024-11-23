@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lailaty/common%20features/authentication/presentation/pages/user_info_page.dart';
-import 'package:lailaty/common%20features/authentication/presentation/pages/verification_code_page.dart';
 import 'package:lailaty/common%20features/splash/splash_page.dart';
 
 void main() {
@@ -15,14 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+     // locale: const Locale('ar'), 
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
         fontFamily: "Segeo",
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: false,
       ),
-      home: UserInfoPage(),
+      home: SplashPage(),
     );
   }
 }
@@ -103,3 +99,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
