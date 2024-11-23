@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lailaty/common%20features/authentication/presentation/pages/user_info_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/pages/verification_code_page.dart';
 import 'package:lailaty/common%20features/splash/splash_page.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: false,
       ),
-      home: VerificationCodePage(),
+      home: UserInfoPage(),
     );
   }
 }
