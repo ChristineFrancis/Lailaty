@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/user_info_page.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/test_page.dart';
 
 void main() {
   runApp(const MyApp());
