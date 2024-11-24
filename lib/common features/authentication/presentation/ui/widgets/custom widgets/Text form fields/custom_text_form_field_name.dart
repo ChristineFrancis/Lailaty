@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFormFieldPassword extends StatelessWidget {
+class CustomTextFormFieldName extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
 
-  const CustomTextFormFieldPassword(
+  const CustomTextFormFieldName(
       {super.key, required this.controller, required this.hintText});
 
   @override
@@ -14,24 +14,21 @@ class CustomTextFormFieldPassword extends StatelessWidget {
     double fieldWidth = screenWidth * 0.8;
     double fieldheight = screenHeight * 0.05;
     double fontSize = screenWidth * 0.07;
-
     return SizedBox(
       width: fieldWidth,
       height: fieldheight,
       child: TextFormField(
-        obscureText: true,
         controller: controller,
-        keyboardType: TextInputType.visiblePassword,
-        textAlign: TextAlign.center,
-        style: TextStyle(height: screenHeight * 0.001, fontSize: fontSize),
+        textAlign: TextAlign.end,
+        style:
+            TextStyle(height: screenHeight * 0.001, fontSize: fontSize * 0.8),
         decoration: InputDecoration(
-          /*contentPadding: const EdgeInsets.symmetric(
-                      vertical: 5), // Make the field thinner*/
+          contentPadding: EdgeInsets.symmetric(horizontal: 20),
           filled: true,
           fillColor: Colors.white,
           hintText: hintText,
           hintStyle: TextStyle(
-              fontSize: fontSize,
+              fontSize: fontSize * 0.8,
               color: Colors.grey), // Hint covers entire field
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

@@ -16,9 +16,9 @@ class CustomTextFormFieldWithPrefix extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    double fieldWidth = screenWidth * 0.8; 
-    double fieldheight = screenHeight * 0.05; 
-    double fontSize = screenWidth * 0.07; 
+    double fieldWidth = screenWidth * 0.8;
+    double fieldheight = screenHeight * 0.05;
+    double fontSize = screenWidth * 0.07;
 
     return SizedBox(
       width: fieldWidth,
@@ -28,8 +28,8 @@ class CustomTextFormFieldWithPrefix extends StatelessWidget {
         keyboardType: TextInputType.phone,
         textAlign: TextAlign.start,
         style: TextStyle(
-          height: screenHeight*0.001,
-          fontSize: fontSize*0.8,
+          height: screenHeight * 0.001,
+          fontSize: fontSize,
         ),
         decoration: InputDecoration(
           prefixIcon: Padding(

@@ -4,8 +4,11 @@ class ImageAssetManager {
   static String lettersLY = "$rootImage/LY.svg";
   static String lailaty = "$rootImage/laylaty.svg";
   static String loginAmico = "$rootImage/Login-amico.svg";
-  static String privacyLock="$rootImage/Privacy policy-bro.svg";
-  static String city="$rootImage/المدينة.svg";
-  static String notifications="$rootImage/notifications.svg";
-  static String location="$rootImage/location1.svg";
- }
+  static String privacyLock = "$rootImage/Privacy policy-bro.svg";
+  static String city = "$rootImage/المدينة.svg";
+  static String notifications = "$rootImage/notifications.svg";
+  static String location = "$rootImage/location1.svg";
+  static String passengerPic = "$rootImage/راكب.svg";
+  static String captainPic = "$rootImage/كابتن.svg";
+  static String carPic = "$rootImage/سيارة.svg";
+}

@@ -21,6 +21,7 @@ class CustomTextFormFieldCenterHint extends StatelessWidget {
                 controller: controller,
                 textAlign: TextAlign.center,
                 style:  TextStyle(
+                    height: screenHeight*0.001,
                     fontSize: fontSize*0.8), 
                 decoration: InputDecoration(
                   /*contentPadding: const EdgeInsets.symmetric(
