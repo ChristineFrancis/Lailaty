@@ -69,9 +69,6 @@ class LoginWithGooglePage extends StatelessWidget {
             padding:  EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/9, ),
             child: CustomButton(textButton: 'التسجيل عن طريق Google', isLarge: false,
             onTap: () {
-        //       Navigator.of(context).push(
-        // PageRouteBuilder(
-        //   pageBuilder: (context, animation, secondaryAnimation) => NotificationPage(),));
             },),
           ),
           

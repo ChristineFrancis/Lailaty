@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/common%20features/authentication/presentation/pages/verification_code_page.dart';
 import 'package:lailaty/common%20features/splash/splash_page.dart';
 
 void main() {

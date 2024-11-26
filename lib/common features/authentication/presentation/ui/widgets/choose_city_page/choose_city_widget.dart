@@ -72,7 +72,6 @@ class _CityDropdownState extends State<CityDropdown> {
                 },
                 items: widget.cities.map<DropdownMenuItem<String>>((String city) {
                   return DropdownMenuItem<String>(
-                    
                     value: city,
                     child: Text(
                       city,
@@ -89,77 +88,3 @@ class _CityDropdownState extends State<CityDropdown> {
   }
 }
 
-// import 'package:flutter/material.dart';
-
-// class CityDropdown extends StatefulWidget {
-//   @override
-//   _CityDropdownState createState() => _CityDropdownState();
-// }
-
-// class _CityDropdownState extends State<CityDropdown> {
-//   // Selected city
-//   String selectedCity = 'مصر'; // Default selection
-
-//   // List of cities
-//   final List<Map<String, String>> cities = [
-//     {'name': 'مصر', 'flag': '🇪🇬'},
-//     {'name': 'السعودية', 'flag': '🇸🇦'},
-//     {'name': 'الإمارات', 'flag': '🇦🇪'},
-//     {'name': 'الكويت', 'flag': '🇰🇼'},
-//   ];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Directionality(
-//       textDirection: TextDirection.rtl, // To make it RTL for Arabic
-//       child: Container(
-//         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-//         decoration: BoxDecoration(
-//           border: Border.all(color: Colors.grey),
-//           borderRadius: BorderRadius.circular(8.0),
-//           color: Colors.white,
-//         ),
-//         child: DropdownButtonHideUnderline(
-//           child: DropdownButton<String>(
-//             value: selectedCity,
-//             icon: const Icon(Icons.arrow_drop_down),
-//             onChanged: (String? newValue) {
-//               setState(() {
-//                 selectedCity = newValue!;
-//               });
-//             },
-//             items: cities.map<DropdownMenuItem<String>>((Map<String, String> city) {
-//               return DropdownMenuItem<String>(
-//                 value: city['name'],
-//                 child: Row(
-//                   children: [
-//                     Text(
-//                       city['flag']!,
-//                       style: const TextStyle(fontSize: 18),
-//                     ),
-//                     const SizedBox(width: 8),
-//                     Text(
-//                       city['name']!,
-//                       style: const TextStyle(fontSize: 16),
-//                     ),
-//                   ],
-//                 ),
-//               );
-//             }).toList(),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// void main() {
-//   runApp(MaterialApp(
-//     home: Scaffold(
-//       appBar: AppBar(title: Text('City Selector')),
-//       body: Center(
-//         child: CityDropdown(),
-//       ),
-//     ),
-//   ));
-// }
