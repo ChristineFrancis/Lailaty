@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/common%20features/authentication/presentation/pages/verification_code_page.dart';
 import 'package:lailaty/common%20features/splash/splash_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/user_info_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,28 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     // locale: const Locale('ar'), 
+      // locale: const Locale('ar'),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: "Segeo",
       ),
-      home:  SplashPage(),
-      // localizationsDelegates: [
-      //  GlobalMaterialLocalizations.delegate,
-      //  GlobalWidgetsLocalizations.delegate,
-      //  GlobalCupertinoLocalizations.delegate,
-      // ],
-      // supportedLocales: const [
-      //   Locale('ar'), // Arabic locale
-      // ],
-
-      // builder: (context, child) {
-      //   return Directionality(
-      //     textDirection: TextDirection.rtl, // Set global RTL direction
-      //     child: child!,
-      //   );
-      // },
-    
+      home: UserInfoPage(),
     );
   }
 }
