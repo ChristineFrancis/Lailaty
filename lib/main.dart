@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/start_your_journey_page15.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/user_info_page.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Segeo",
       ),
-      home: UserInfoPage(),
+      home: StartYourJourneyPage15(),
     );
   }
 }

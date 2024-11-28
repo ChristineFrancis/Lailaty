@@ -11,4 +11,8 @@ class ImageAssetManager {
   static String passengerPic = "$rootImage/راكب.svg";
   static String captainPic = "$rootImage/كابتن.svg";
   static String carPic = "$rootImage/سيارة.svg";
+  static String weddingCarPic = "$rootImage/زفاف .svg";
+  static String drivingEduCarPic = "$rootImage/تعليم قيادة.svg";
+  static String rideCarPic = "$rootImage/ride سيارة.svg";
+  static String motorcyclePic = "$rootImage/دراجة.svg";
 }

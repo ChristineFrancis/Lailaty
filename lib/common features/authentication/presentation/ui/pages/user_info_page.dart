@@ -1,3 +1,6 @@
+// TODO: disable text form fields when its not their turns
+// TODO: resizeToAvoidBottomInset: false,
+// TODO: make the page responsive
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -6,9 +9,9 @@ import 'package:lailaty/common%20features/authentication/presentation/ui/widgets
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_password.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_elevation_button.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_with_prefix.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_text_widget.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/logo_with_laylaty.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/user_info_page/detect_gender_widget.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/user_info_page/detect_gender_widget.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
@@ -21,11 +24,13 @@ class UserInfoPage extends StatefulWidget {
 
 class _UserInfoPageState extends State<UserInfoPage> {
   int _clickCount = 0;
+  bool showCar = false;
+  bool male = true;
 
-  final _formKey0 = GlobalKey<FormState>();
-  final _formKey1 = GlobalKey<FormState>();
-  final _formKey2 = GlobalKey<FormState>();
-  //final _formKey3 = GlobalKey<FormState>();
+  final _formKeyMobile = GlobalKey<FormState>();
+  final _formKeyPassword = GlobalKey<FormState>();
+  final _formKeyName = GlobalKey<FormState>();
+
   final TextEditingController _mobileNumberController = TextEditingController();
   final TextEditingController _mobileNumberValidatorController =
       TextEditingController();
@@ -34,10 +39,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
       TextEditingController();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
-  bool male = true;
+
   // to validate mobile number
   bool validateAndReturnCNT0() {
-    if (_formKey0.currentState!.validate() &&
+    if (_formKeyMobile.currentState!.validate() &&
         _mobileNumberController.text == _mobileNumberValidatorController.text) {
       return true;
     } else {
@@ -47,7 +52,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
   // to validate password
   bool validateAndReturnCNT1() {
-    if (_formKey1.currentState!.validate() &&
+    if (_formKeyPassword.currentState!.validate() &&
         _passwordController.text == _passwordValidatorController.text) {
       return true;
     } else {
@@ -57,15 +62,12 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
   // to validate names
   bool validateAndReturnCNT2() {
-    if (_formKey2.currentState!.validate()) {
+    if (_formKeyName.currentState!.validate()) {
       return true;
     } else {
       return false;
     }
   }
-
-  // for car animation
-  bool showCar = false;
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +140,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   LogoWithLaylaty(),
                   const SizedBox(height: 30),
                   if (_clickCount < 3)
-                    CustomTextWidget(text: 'تسجيل الدخول', fontSize: 36),
+                    CustomTextWidget(
+                        text: 'تسجيل الدخول',
+                        fontSize: 36,
+                        color: Colors.black),
                   Stack(
                     children: [
                       //!click count ==0
@@ -148,17 +153,20 @@ class _UserInfoPageState extends State<UserInfoPage> {
                         duration: Duration(seconds: 1),
                         child: Center(
                           child: Form(
-                            key: _formKey0,
+                            key: _formKeyMobile,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 const SizedBox(height: 40),
                                 CustomTextWidget(
-                                    text: 'ادخل رقمك', fontSize: 28),
+                                    text: 'ادخل رقمك',
+                                    fontSize: 28,
+                                    color: Colors.black),
                                 const SizedBox(height: 20),
                                 CustomTextWidget(
                                     text: "ادخل رقم الهاتف الفعال كمحفظة مالية",
-                                    fontSize: 18),
+                                    fontSize: 18,
+                                    color: Colors.black),
                                 const SizedBox(height: 30),
                                 CustomTextFormFieldWithPrefix(
                                     controller: _mobileNumberController,
@@ -167,7 +175,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                 const SizedBox(height: 40),
                                 CustomTextWidget(
                                     text: "ادخل رقم الهاتف مرة اخرى للتأكيد",
-                                    fontSize: 18),
+                                    fontSize: 18,
+                                    color: Colors.black),
                                 const SizedBox(height: 30),
                                 CustomTextFormFieldWithPrefix(
                                     controller:
@@ -186,19 +195,22 @@ class _UserInfoPageState extends State<UserInfoPage> {
                         opacity: _clickCount == 1 ? 1.0 : 0.0,
                         duration: Duration(seconds: 1),
                         child: Form(
-                          key: _formKey1,
+                          key: _formKeyPassword,
                           child: Center(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 const SizedBox(height: 40),
                                 CustomTextWidget(
-                                    text: 'إنشاء كلمة مرور', fontSize: 28),
+                                    text: 'إنشاء كلمة مرور',
+                                    fontSize: 28,
+                                    color: Colors.black),
                                 const SizedBox(height: 30),
                                 CustomTextWidget(
                                     text:
                                         '                               ادخل كلمة المرور',
-                                    fontSize: 18),
+                                    fontSize: 18,
+                                    color: Colors.black),
                                 const SizedBox(height: 20),
                                 CustomTextFormFieldPassword(
                                     controller: _passwordController,
@@ -207,7 +219,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                 CustomTextWidget(
                                     text:
                                         "       ادخل كلمة المرور مرة اخرى للتأكيد",
-                                    fontSize: 18),
+                                    fontSize: 18,
+                                    color: Colors.black),
                                 const SizedBox(height: 20),
                                 CustomTextFormFieldPassword(
                                     controller: _passwordValidatorController,
@@ -224,18 +237,21 @@ class _UserInfoPageState extends State<UserInfoPage> {
                         opacity: _clickCount == 2 ? 1.0 : 0.0,
                         duration: Duration(seconds: 1),
                         child: Form(
-                          key: _formKey2,
+                          key: _formKeyName,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               const SizedBox(height: 20),
                               CustomTextWidget(
-                                  text: 'المعلومات الشخصية', fontSize: 28),
+                                  text: 'المعلومات الشخصية',
+                                  fontSize: 28,
+                                  color: Colors.black),
                               const SizedBox(height: 30),
                               CustomTextWidget(
                                   text:
                                       '                             :الاسم الاول',
-                                  fontSize: 22),
+                                  fontSize: 22,
+                                  color: Colors.black),
                               const SizedBox(height: 15),
                               CustomTextFormFieldName(
                                   controller: _firstNameController,
@@ -245,7 +261,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                               CustomTextWidget(
                                   text:
                                       '                             :الاسم الاخير',
-                                  fontSize: 22),
+                                  fontSize: 22,
+                                  color: Colors.black),
                               const SizedBox(height: 15),
                               CustomTextFormFieldName(
                                   controller: _lastNameController,
@@ -268,7 +285,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
                         child: Column(
                           children: [
                             SizedBox(height: 120),
-                            CustomTextWidget(text: "هل انت", fontSize: 36),
+                            CustomTextWidget(
+                                text: "هل انت",
+                                fontSize: 36,
+                                color: Colors.black),
                             SizedBox(height: 100),
                             Stack(
                               alignment: Alignment.center,
@@ -323,7 +343,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                           }
                         }
                       });
-                    })),
+                    }, textColor: Colors.black,buttonColor: ColorManager.yellow,)),
           ),
         ],
       ),

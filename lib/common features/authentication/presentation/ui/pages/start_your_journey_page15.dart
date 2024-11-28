@@ -1,0 +1,106 @@
+import 'package:flutter/material.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_elevation_button.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_arial_text';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/start_your_journey_page15/choose_service_card.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/start_your_journey_page15/start_your_journey_appbar.dart';
+import 'package:lailaty/core/resources/asset_manager.dart';
+import 'package:lailaty/core/resources/color_manager.dart';
+
+class StartYourJourneyPage15 extends StatelessWidget {
+  const StartYourJourneyPage15({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return Scaffold(
+      backgroundColor: ColorManager.lightGrey,
+      appBar: StartYourJourneyAppbar(),
+
+      //!body
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: GridView(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 15,
+                    crossAxisSpacing: 10),
+                children: [
+                  ChooseServiceCard(
+                      onTap: () {},
+                      svgPictureName: ImageAssetManager.drivingEduCarPic,
+                      containerColor: ColorManager.grey,
+                      firstText: 'تعليم قيادة',
+                      firstTextColor: ColorManager.yellow,
+                      secondText:
+                          'ابدأ تعلم القيادة الآن\n مع كابتن ليلتي في امان و راحة'),
+                  ChooseServiceCard(
+                      onTap: () {},
+                      svgPictureName: ImageAssetManager.weddingCarPic,
+                      containerColor: ColorManager.grey,
+                      firstText: 'زفاف-رجال أعمال',
+                      firstTextColor: ColorManager.yellow,
+                      secondText:
+                          "جميع انواع السيارات ذات الرفاهية\n مناسبة لحفلات الزفاف و جميع المناسبات و مشاوير رجال الاعمال"),
+                  ChooseServiceCard(
+                      svgPictureName: ImageAssetManager.motorcyclePic,
+                      containerColor: ColorManager.yellow,
+                      firstText: 'Ride',
+                      firstTextColor: ColorManager.grey,
+                      secondText: 'دراجة نارية\nتتسع لراكب واحد بشكل مريح',
+                      onTap: () {}),
+                  ChooseServiceCard(
+                      svgPictureName: ImageAssetManager.rideCarPic,
+                      containerColor: ColorManager.yellow,
+                      firstText: 'Ride',
+                      firstTextColor: ColorManager.grey,
+                      secondText:
+                          'اعرض السعر المناسب لك\nو اختر الشريك السائق بنفسك\nبأقل سعر وفي امان وراحة',
+                      onTap: () {}),
+                  ChooseServiceCard(
+                      svgPictureName: ImageAssetManager.rideCarPic,
+                      containerColor: ColorManager.grey,
+                      firstText: 'سفر',
+                      firstTextColor: ColorManager.yellow,
+                      secondText:
+                          'التنقل بين المدن\nاعرض السعر المناسب لك\nو اختر الشريك السائق بنفسك\nبأقل سعر وفي امان وراحة',
+                      onTap: () {}),
+                  ChooseServiceCard(
+                      svgPictureName: ImageAssetManager.rideCarPic,
+                      containerColor: ColorManager.grey,
+                      firstText: 'على مودك',
+                      firstTextColor: ColorManager.yellow,
+                      secondText:
+                          'اختر الشريك السائق واذهب\nلأي مكان في أي وقت على مودك\nفي أماكن للتنزه او للتسوق\nاكثر راحة و اكثر امان\nلمدة ساعة او اكثر',
+                      onTap: () {}),
+                ],
+              ),
+            ),
+            SizedBox(height: 15),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.055,
+              child: CustomElevatedButton(
+                  text: 'التالي',
+                  onPressed: () {},
+                  textColor: ColorManager.yellow,
+                  buttonColor: ColorManager.grey),
+            ),
+            SizedBox(height: 10),
+            InkWell(
+              onTap: () {},
+              child: CustomArialText(
+                  text: 'التبديل الى وضع السائق',
+                  fontSize: 24,
+                  color: Colors.black),
+            ),
+            SizedBox(height: 15),
+          ],
+        ),
+      ),
+    );
+  }
+}
