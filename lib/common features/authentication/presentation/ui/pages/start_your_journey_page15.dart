@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_elevation_button.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_arial_text';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/start_your_journey_page15/car_selection_dialog.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/start_your_journey_page15/choose_service_card.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/start_your_journey_page15/start_your_journey_appbar.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
@@ -11,12 +12,11 @@ class StartYourJourneyPage15 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: ColorManager.lightGrey,
+      backgroundColor: ColorManager.grey100,
       appBar: StartYourJourneyAppbar(),
-
-      //!body
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -26,12 +26,20 @@ class StartYourJourneyPage15 extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 15,
-                    crossAxisSpacing: 10),
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 15,
+                  crossAxisSpacing: 10,
+                  mainAxisExtent: screenHeight * screenHeight * 0.0003,
+                ),
                 children: [
                   ChooseServiceCard(
-                      onTap: () {},
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => CarSelectionDialog());
+                      },
                       svgPictureName: ImageAssetManager.drivingEduCarPic,
                       containerColor: ColorManager.grey,
                       firstText: 'تعليم قيادة',
@@ -39,6 +47,8 @@ class StartYourJourneyPage15 extends StatelessWidget {
                       secondText:
                           'ابدأ تعلم القيادة الآن\n مع كابتن ليلتي في امان و راحة'),
                   ChooseServiceCard(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
                       onTap: () {},
                       svgPictureName: ImageAssetManager.weddingCarPic,
                       containerColor: ColorManager.grey,
@@ -47,6 +57,8 @@ class StartYourJourneyPage15 extends StatelessWidget {
                       secondText:
                           "جميع انواع السيارات ذات الرفاهية\n مناسبة لحفلات الزفاف و جميع المناسبات و مشاوير رجال الاعمال"),
                   ChooseServiceCard(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
                       svgPictureName: ImageAssetManager.motorcyclePic,
                       containerColor: ColorManager.yellow,
                       firstText: 'Ride',
@@ -54,6 +66,8 @@ class StartYourJourneyPage15 extends StatelessWidget {
                       secondText: 'دراجة نارية\nتتسع لراكب واحد بشكل مريح',
                       onTap: () {}),
                   ChooseServiceCard(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
                       svgPictureName: ImageAssetManager.rideCarPic,
                       containerColor: ColorManager.yellow,
                       firstText: 'Ride',
@@ -62,6 +76,8 @@ class StartYourJourneyPage15 extends StatelessWidget {
                           'اعرض السعر المناسب لك\nو اختر الشريك السائق بنفسك\nبأقل سعر وفي امان وراحة',
                       onTap: () {}),
                   ChooseServiceCard(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
                       svgPictureName: ImageAssetManager.rideCarPic,
                       containerColor: ColorManager.grey,
                       firstText: 'سفر',
@@ -70,6 +86,8 @@ class StartYourJourneyPage15 extends StatelessWidget {
                           'التنقل بين المدن\nاعرض السعر المناسب لك\nو اختر الشريك السائق بنفسك\nبأقل سعر وفي امان وراحة',
                       onTap: () {}),
                   ChooseServiceCard(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
                       svgPictureName: ImageAssetManager.rideCarPic,
                       containerColor: ColorManager.grey,
                       firstText: 'على مودك',

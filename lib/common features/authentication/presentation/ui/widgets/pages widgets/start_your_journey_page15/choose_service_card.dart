@@ -9,9 +9,13 @@ class ChooseServiceCard extends StatelessWidget {
   final Color firstTextColor;
   final String secondText;
   final void Function()? onTap;
+  final double screenHeight;
+  final double screenWidth;
 
   const ChooseServiceCard({
     super.key,
+    required this.screenHeight,
+    required this.screenWidth,
     required this.svgPictureName,
     required this.containerColor,
     required this.firstText,
@@ -32,19 +36,14 @@ class ChooseServiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-
     return InkWell(
       onTap: onTap,
       child: Material(
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(12),
-        elevation: 5, // Shadow effect
+        elevation: 5,
         shadowColor: Colors.grey.withOpacity(0.4),
         child: Container(
-          height: screenHeight * 0.225,
-          width: screenWidth * 0.455,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topRight,
@@ -60,37 +59,40 @@ class ChooseServiceCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           padding: EdgeInsets.symmetric(
-            vertical: screenHeight * 0.005,
-            horizontal: screenWidth * 0.01,
+            vertical: screenHeight * 0.008,
+            horizontal: screenWidth * 0.005,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                height: screenHeight * 0.1,
+                height: screenHeight * screenWidth * 0.00015,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      height: screenHeight * 0.056,
-                      width: screenWidth * 0.18,
+                      height: screenHeight * screenWidth * 0.00007,
+                      width: screenWidth * screenHeight * 0.0002,
                       child: SvgPicture.asset(svgPictureName),
                     ),
-                    CustomTextWidget(
-                      text: firstText,
-                      fontSize: screenWidth * 0.04,
-                      color: firstTextColor,
+                    SizedBox(
+                      //height: screenHeight * 0.03,
+                      child: CustomTextWidget(
+                        text: firstText,
+                        fontSize: 22,
+                        color: firstTextColor,
+                      ),
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: screenHeight * 0.15,
+                height: screenHeight * screenWidth * 0.00032,
                 child: Center(
                   child: CustomTextWidget(
                     text: secondText,
-                    fontSize: screenWidth * 0.025,
+                    fontSize: 13,
                     color: Colors.black,
                   ),
                 ),
