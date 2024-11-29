@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/start_your_journey_page15.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/user_info_page.dart';
+import 'package:lailaty/common%20features/splash/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,20 +15,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(430, 932),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (_ , child) {
-        return MaterialApp(
-          // locale: const Locale('ar'),
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            fontFamily: "Segeo",
-          ),
-          home: StartYourJourneyPage15(),
-        );
-      }
-    );
+        designSize: const Size(430, 932),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (_, child) {
+          return MaterialApp(
+            // locale: const Locale('ar'),
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              fontFamily: "Segeo",
+            ),
+            home: SplashPage(),
+          );
+        });
   }
 }
-
