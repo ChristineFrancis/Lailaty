@@ -72,9 +72,7 @@ class ChooseCityPage extends StatelessWidget {
             },),
           ),
           Spacer(flex: 2,),
-          
-          
-              
+             
             ],
           ),
         ),
