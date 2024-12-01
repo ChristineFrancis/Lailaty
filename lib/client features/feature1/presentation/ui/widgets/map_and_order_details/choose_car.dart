@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/pages/map_and_order_details_page.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_text_widget.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
 class CarSelection extends StatefulWidget {
@@ -54,7 +54,7 @@ class _CarSelectionState extends State<CarSelection> {
                       SizedBox(height: 8), // Space between icon and text
                       CustomTextWidget(
                         text: widget.carsType[index].name,
-                        fontSize:widget.carsType[index].islargeText? 13 : 17 ,
+                        fontSize:widget.carsType[index].islargeText? 13 : 17 ,color: Colors.black
                         //color: selectedIndex == index ? Colors.black : Colors.grey, // Text color
                       ),
                     ],

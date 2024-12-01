@@ -9,7 +9,6 @@ import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_a
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/widget_after_select_station.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/widget_after_write_direction.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_name.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';

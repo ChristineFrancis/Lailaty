@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_text_widget.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 
 class ButtonLikeTextField extends StatelessWidget {
   final String text;
@@ -22,7 +22,7 @@ class ButtonLikeTextField extends StatelessWidget {
         child: Row(
          mainAxisAlignment: MainAxisAlignment.spaceAround,
          children: [
-          CustomTextWidget(text:text ,fontSize: textSize), 
+          CustomTextWidget(text:text ,fontSize: textSize , color: Colors.black), 
            suffixWidget                  
                      ],
           ),

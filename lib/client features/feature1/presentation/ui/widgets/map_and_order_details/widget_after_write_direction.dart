@@ -6,7 +6,7 @@ import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_a
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/current_and_next_location_word.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/pay_search_driver_choices.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/text_field_with_Arabic_prefix.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_text_widget.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
@@ -79,7 +79,7 @@ class _WidgetAfterWriteDirectionState extends State<WidgetAfterWriteDirection> {
              Row(
               children: [
                 SvgPicture.asset(ImageAssetManager.automaticAcceptanceIcon),
-                CustomTextWidget(text: 'قبول تلقائي لعرض بقيمة EGP 90', fontSize: 14),
+                CustomTextWidget(text: 'قبول تلقائي لعرض بقيمة EGP 90', fontSize: 14, color: Colors.black,),
                Switch(
                  value: switchValue, 
                  onChanged: (value) {
@@ -120,7 +120,7 @@ class _WidgetAfterWriteDirectionState extends State<WidgetAfterWriteDirection> {
                 Icon(Icons.error_outline , color:ColorManager.grey ,),
                 SizedBox(width:3 ,),
                 Center(
-                 child: CustomTextWidget(text:'السعر الموصى به 90 EGP\nوقت السفر: 11 دقيقة' , fontSize: 11,)),
+                 child: CustomTextWidget(text:'السعر الموصى به 90 EGP\nوقت السفر: 11 دقيقة' , fontSize: 11,color: Colors.black)),
               ],
             ),
           ],
