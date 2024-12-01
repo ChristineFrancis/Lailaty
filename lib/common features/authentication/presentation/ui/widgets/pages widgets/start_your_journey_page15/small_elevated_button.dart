@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 
-class CustomElevatedButton extends StatelessWidget {
+class SmallElevatedButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final Color textColor;
   final Color buttonColor;
   final double fontSize;
 
-  const CustomElevatedButton({
+  const SmallElevatedButton({
     super.key,
     required this.text,
     required this.onPressed,
@@ -19,26 +19,24 @@ class CustomElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get screen width and calculate button width as a percentage
     final screenWidth = MediaQuery.of(context).size.width;
-    final buttonWidth = screenWidth * 0.7; // 80% of screen width
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return SizedBox(
-      height: 40, // Fixed height for the button
-      width: buttonWidth, // Responsive width
+      height: screenHeight * 0.032, 
+      width: screenWidth * 0.16, 
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
+          padding: EdgeInsets.all(1),
           backgroundColor: buttonColor,
           foregroundColor: textColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(8),
           ),
         ),
-        child: Text(
-          text,
-          style:  TextStyle(fontSize: fontSize.sp, fontWeight: FontWeight.bold),
-        ),
+        child:
+            CustomTextWidget(text: text, fontSize: fontSize, color: textColor),
       ),
     );
   }

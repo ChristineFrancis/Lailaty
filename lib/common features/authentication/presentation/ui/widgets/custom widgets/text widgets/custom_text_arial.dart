@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomArialText extends StatelessWidget {
+class CustomTextArial extends StatelessWidget {
   final String text;
   final double fontSize;
   final Color color;
 
-  const CustomArialText({
+  const CustomTextArial({
     super.key,
     required this.text,
     required this.fontSize,
@@ -14,15 +15,13 @@ class CustomArialText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    //double screenWidth = MediaQuery.of(context).size.width;
 
     return Text(
       text,
       style: TextStyle(
         color: color,
-        fontSize: screenWidth *
-            fontSize *
-            0.0027, // Font size relative to screen width
+        fontSize: fontSize.sp, // Font size relative to screen width
         fontWeight: FontWeight.bold,
         fontFamily: "Arial",
       ),
