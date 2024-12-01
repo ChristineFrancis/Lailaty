@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_text_widget.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
 class CustomButton extends StatelessWidget {
@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.all( Radius.circular(10))) ,
         onPressed:onTap ,
         child: Center(
-         child: CustomTextWidget(text: textButton , fontSize: textSize,)),
+         child: CustomTextWidget(text: textButton , fontSize: textSize,color: Colors.black)),
                 ),
     );
   }

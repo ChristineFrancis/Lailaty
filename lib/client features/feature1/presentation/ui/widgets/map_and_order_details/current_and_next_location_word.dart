@@ -1,8 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_text_widget.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
@@ -26,7 +25,7 @@ class CurrentAndNextLocationWord extends StatelessWidget {
       CustomTextWidget(text:
       location==null? 
       isCurrentLocation?'الموقع الحالي' :'الموقع التالي' 
-      : location!,fontSize: 20),],
+      : location!,fontSize: 20 , color: Colors.black),],
                             );
   }
 }

@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_text_widget.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
 class TextFieldWithArabicPrefix extends StatelessWidget {
@@ -52,7 +52,7 @@ class TextFieldWithArabicPrefix extends StatelessWidget {
                   ),
                   Positioned(
                     right: 15, // Padding to position the constant word
-                    child:  CustomTextWidget(text:PrefixText ,fontSize: 20), 
+                    child:  CustomTextWidget(text:PrefixText ,fontSize: 20 , color: Colors.black), 
                   ),
        ],),);
   }
