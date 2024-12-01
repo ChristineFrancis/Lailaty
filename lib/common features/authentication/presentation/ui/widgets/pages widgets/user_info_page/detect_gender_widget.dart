@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_text_widget.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 
 class DetectGenderWidget extends StatefulWidget {
   final ValueChanged<bool> onGenderSelected;
@@ -37,11 +37,11 @@ class _DetectGenderWidgetState extends State<DetectGenderWidget> {
             items: [
               DropdownMenuItem<bool>(
                 value: true,
-                child: CustomTextWidget(text: 'ذكر', fontSize: 14),
+                child: CustomTextWidget(text: 'ذكر', fontSize: 14, color: Colors.black),
               ),
               DropdownMenuItem<bool>(
                   value: false,
-                  child: CustomTextWidget(text: 'انثى', fontSize: 14)),
+                  child: CustomTextWidget(text: 'انثى', fontSize: 14, color: Colors.black)),
             ],
             onChanged: (value) {
               setState(() {
@@ -51,7 +51,7 @@ class _DetectGenderWidgetState extends State<DetectGenderWidget> {
             },
           ),
         ),
-        CustomTextWidget(text: ":النوع", fontSize: 18)
+        CustomTextWidget(text: ":النوع", fontSize: 18, color: Colors.black)
       ],
     );
   }

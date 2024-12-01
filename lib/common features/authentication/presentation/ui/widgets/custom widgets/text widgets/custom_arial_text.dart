@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-class CustomTextWidget extends StatelessWidget {
+class CustomArialText extends StatelessWidget {
   final String text;
-  final double fontSize; // Font size as a multiplier of screen width
+  final double fontSize;
+  final Color color;
 
-  const CustomTextWidget({
+  const CustomArialText({
     super.key,
     required this.text,
     required this.fontSize,
+    required this.color,
   });
 
   @override
@@ -17,10 +19,12 @@ class CustomTextWidget extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        color: Colors.black,
-        fontSize: screenWidth * fontSize * 0.0027, // Font size relative to screen width
+        color: color,
+        fontSize: screenWidth *
+            fontSize *
+            0.0027, // Font size relative to screen width
         fontWeight: FontWeight.bold,
-        fontFamily: "Segeo",
+        fontFamily: "Arial",
       ),
       textAlign: TextAlign.center, // Optional alignment
     );

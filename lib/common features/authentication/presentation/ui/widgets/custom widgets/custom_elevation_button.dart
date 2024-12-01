@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/resources/color_manager.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
+  final Color textColor;
+  final Color buttonColor;
 
   const CustomElevatedButton({
     super.key,
     required this.text,
-    required this.onPressed,
+    required this.onPressed, required this.textColor, required this.buttonColor,
   });
 
   @override
@@ -23,8 +24,8 @@ class CustomElevatedButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: ColorManager.yellow,
-          foregroundColor: Colors.black,
+          backgroundColor: buttonColor,
+          foregroundColor: textColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

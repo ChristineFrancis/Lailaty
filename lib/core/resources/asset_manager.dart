@@ -32,4 +32,8 @@ class ImageAssetManager {
 static String yallowCircleIcon = "$rootImage/yallow.svg";
 
 
+  static String weddingCarPic = "$rootImage/زفاف .svg";
+  static String drivingEduCarPic = "$rootImage/تعليم قيادة.svg";
+  static String rideCarPic = "$rootImage/ride سيارة.svg";
+  static String motorcyclePic = "$rootImage/دراجة.svg";
 }
