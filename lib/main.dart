@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/pages/map_and_order_details_page.dart';
 import 'package:lailaty/common%20features/splash/splash_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/user_info_page.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Segeo",
       ),
-      home: UserInfoPage(),
+      home: MapAndOrderDetails(),
     );
   }
 }
