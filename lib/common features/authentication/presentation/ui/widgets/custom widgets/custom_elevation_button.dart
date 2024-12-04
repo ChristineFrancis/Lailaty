@@ -19,13 +19,13 @@ class CustomElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get screen width and calculate button width as a percentage
+    final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-    final buttonWidth = screenWidth * 0.7; // 80% of screen width
+    final buttonWidth = screenWidth * 0.7;
 
     return SizedBox(
-      height: 40, // Fixed height for the button
-      width: buttonWidth, // Responsive width
+      height: screenHeight * 0.05, 
+      width: buttonWidth, 
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
@@ -37,7 +37,7 @@ class CustomElevatedButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style:  TextStyle(fontSize: fontSize.sp, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: fontSize.sp, fontWeight: FontWeight.bold),
         ),
       ),
     );

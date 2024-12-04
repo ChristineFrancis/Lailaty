@@ -29,6 +29,7 @@ class ChooseCarCard extends StatelessWidget {
       elevation: 5,
       shadowColor: Colors.grey.withOpacity(0.4),
       child: Container(
+        width: screenWidth * 0.4,
         decoration: BoxDecoration(
           color: ColorManager.grey,
           borderRadius: BorderRadius.circular(12),
@@ -53,7 +54,7 @@ class ChooseCarCard extends StatelessWidget {
             CustomTextWidget(
                 text: price, fontSize: 20, color: ColorManager.yellow),
             SizedBox(
-              height: screenHeight * 0.042,
+              height: screenHeight * 0.032,
               width: screenWidth * 0.16,
               child: SmallElevatedButton(
                 text: 'اختر سيارتك',

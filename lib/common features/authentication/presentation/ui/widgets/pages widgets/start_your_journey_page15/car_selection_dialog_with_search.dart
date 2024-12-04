@@ -144,5 +144,6 @@ Widget _filterCars(BuildContext context) {
               fontSize: 16,
               color: ColorManager.yellow),
         ),
+        // TODO: add search field
       ));
 }

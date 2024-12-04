@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/core/resources/color_manager.dart';
 
 class CustomTextFormFieldName extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
-
-  const CustomTextFormFieldName(
-      {super.key, required this.controller, required this.hintText});
+  // Widget? prefixWidget;
+  // Widget? suffixWidget;
+  
+   CustomTextFormFieldName(
+      {super.key, required this.controller, required this.hintText , 
+      //this.prefixWidget , this.suffixWidget
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +32,13 @@ class CustomTextFormFieldName extends StatelessWidget {
           filled: true,
           fillColor: Colors.white,
           hintText: hintText,
+          // prefix: prefixWidget ?? Container(),
+          // suffixIcon: suffixWidget?? Container() ,
+          // suffix:suffixWidget?? Container() ,
           hintStyle: TextStyle(
+             height: 1.2,
               fontSize: fontSize * 0.8,
-              color: Colors.grey), // Hint covers entire field
+              color: ColorManager.grey), // Hint covers entire field
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(

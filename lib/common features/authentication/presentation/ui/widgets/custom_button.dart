@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
 class CustomButton extends StatelessWidget {
   final String textButton;
   final Function() onTap;
-  final isLarge;
-   CustomButton({super.key, required this.textButton, required this.onTap , this.isLarge=true} );
+  final double textSize;
+   CustomButton({super.key, required this.textButton, required this.onTap , this.textSize=24} );
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,7 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.all( Radius.circular(10))) ,
         onPressed:onTap ,
         child: Center(
-         child: Text(textButton , 
-          style:TextStyle(color:Colors.black, fontWeight: FontWeight.bold , fontSize:isLarge? 24 : 18, ),),),
+         child: CustomTextWidget(text: textButton , fontSize: textSize,color: Colors.black)),
                 ),
     );
   }

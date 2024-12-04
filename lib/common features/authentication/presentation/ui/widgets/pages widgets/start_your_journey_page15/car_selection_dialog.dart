@@ -5,7 +5,6 @@ import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
 class CarSelectionDialog extends StatelessWidget {
-
   const CarSelectionDialog({super.key});
 
   @override
@@ -16,7 +15,10 @@ class CarSelectionDialog extends StatelessWidget {
       backgroundColor: ColorManager.grey200,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       insetPadding: EdgeInsets.only(
-          left: 12, right: 12, top: screenHeight * 0.08, bottom: 12),
+          left: 12,
+          right: 12,
+          top: screenHeight * 0.08,
+          bottom: screenHeight * 0.08),
       title: Expanded(
         child: Container(
           height: screenHeight * 0.04,
