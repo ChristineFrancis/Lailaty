@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/choose_city_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
@@ -53,8 +54,8 @@ class PrivacyAndAgePage extends StatelessWidget {
     textAlign: TextAlign.right, // Ensure text aligns properly in RTL
     text: TextSpan(
       text: 'عمري 18 او اكثر و أوافق على شروط الخصوصية والاستخدام ',
-      style: const TextStyle(
-        fontSize: 18,
+      style:  TextStyle(
+        fontSize: 18.sp,
         color: Colors.black,
         fontWeight: FontWeight.w600,
       ),
@@ -62,7 +63,7 @@ class PrivacyAndAgePage extends StatelessWidget {
         TextSpan(
           text: 'الخاصة بتطبيق ليلتي',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 18.sp,
             color: ColorManager.yellow,
             fontWeight: FontWeight.w600,
           ),
@@ -75,12 +76,12 @@ class PrivacyAndAgePage extends StatelessWidget {
         Spacer(flex: 2,),
         Padding(
           padding:  EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/7, ),
-          child: CustomButton(textButton: 'التالي', 
+          child: CustomButton(textButton: 'التالي', textSize: 27,fontWeight: FontWeight.w900,
           onTap: () {
             Navigator.of(context).push(
       PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) => ChooseCityPage(),));
-          },),
+          }, ),
         ),
         Spacer(flex: 2,),
         

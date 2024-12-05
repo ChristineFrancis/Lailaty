@@ -6,14 +6,19 @@ import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_a
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/current_and_next_location_word.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/pay_search_driver_choices.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/text_field_with_Arabic_prefix.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_name.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
-
-class RideCarWidget extends StatelessWidget {
+/////////////////20
+class RideMotorWidget extends StatelessWidget {
   final double sizeOfGreySection;
   final List <CarType> carsType;
-  const RideCarWidget({super.key, required this.sizeOfGreySection, required this.carsType});
+ final TextEditingController startingLocationController=TextEditingController();
+ final TextEditingController destinationLocationController=TextEditingController();
+ final TextEditingController notesController=TextEditingController();
+
+   RideMotorWidget({super.key, required this.sizeOfGreySection, required this.carsType});
 
   @override
   Widget build(BuildContext context) {
@@ -39,19 +44,25 @@ class RideCarWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/7, ),
             child: Column(
             children: [
-             CurrentAndNextLocationWord(isCurrentLocation: true,),
-             SizedBox(height: sizeOfGreySection/27),
-             TextFieldWithArabicPrefix(hintText: 'lorem ipsum' ,PrefixText:'الى' ,),
-             SizedBox(height: sizeOfGreySection/27),
-             ButtonLikeTextField(text:'اقترح السعر المناسب' ,textSize: 20, 
+            Directionality(
+            textDirection: TextDirection.rtl,
+              child: CustomTextFormFieldName(hintText:'من', controller:startingLocationController ,hintTextColor: Colors.black,isArabic: true,textAlign: TextAlign.start)),
+            //TextFieldWithArabicPrefix(hintText: '' ,PrefixText:'من' ,),
+             SizedBox(height: sizeOfGreySection/28),
+             Directionality(
+            textDirection: TextDirection.rtl,
+              child: CustomTextFormFieldName(hintText:'الى', controller:destinationLocationController,hintTextColor: Colors.black,isArabic: true,textAlign: TextAlign.start)),
+             //TextFieldWithArabicPrefix(hintText: '' ,PrefixText:'الى' ,),
+             SizedBox(height: sizeOfGreySection/28),
+             ButtonLikeTextField(text:'اقترح السعر المناسب' ,textSize: 22, fontWeight: FontWeight.w400,
              suffixWidget:Icon(Icons.edit_outlined),
              // width: widthOfScreen*0.7,
              onPressed: () {},),
-             SizedBox(height: sizeOfGreySection/25),
+             SizedBox(height: sizeOfGreySection/26),
                   ],
               ),
           ),
-        PayAndySearchDriverAndChoices(),
+        PayAndySearchDriverAndChoices(notesController: notesController,),
          SizedBox(height: sizeOfGreySection/28),
                       ],
                     ),

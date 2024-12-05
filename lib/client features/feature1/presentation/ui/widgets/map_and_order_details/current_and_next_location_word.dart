@@ -25,7 +25,7 @@ class CurrentAndNextLocationWord extends StatelessWidget {
       CustomTextWidget(text:
       location==null? 
       isCurrentLocation?'الموقع الحالي' :'الموقع التالي' 
-      : location!,fontSize: 20 , color: Colors.black),],
+      : location!,fontSize: 23 , color: Colors.black , fontWeight:FontWeight.w600 ,),],
                             );
   }
 }

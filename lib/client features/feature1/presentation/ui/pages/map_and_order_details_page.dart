@@ -3,10 +3,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/button_like_text_field.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/choose_car.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/current_and_next_location_word.dart';
-import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/ride_car_widget.dart';
-import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/ride_motor_widget.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/sections/ride_car_select_other_stations_widget.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/sections/ride_car_widget.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/sections/ride_motor_widget.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/text_field_with_Arabic_prefix.dart';
-import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/widget_after_select_station.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/sections/travel_widget.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/sections/travel_widget_after.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/sections/wedding_and_business_men_widget.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/sections/wedding_buisiness_men_after_select_car_startLocation_destinationLocation_widget.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/sections/ride_car_after.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/widget_after_write_direction.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_name.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
@@ -47,10 +52,30 @@ class MapAndOrderDetails extends StatelessWidget {
               height: MediaQuery.sizeOf(context).height/2-30,
               color: Colors.white,
             ),
+
+            //26
+            //TravelWidgetAfter(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.9, carsType: carsType),
+
+            //24 _ 25
+            //TravelWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.9, carsType: carsType),
+
+            //23
+           //WeddingBuisinessMenAfterSelectCarStartlocationDestinationlocationWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.8,carsType: carsType),
+
+           //21
+           /// WeddingAndBusinessMenWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.8,carsType: carsType),
+           
+           //20
             RideMotorWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height/2 +40,carsType: carsType,),
-            //WidgetAfterSelectStations(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.6 ,carsType: carsType ),
-            //WidgetAfterWriteDirection(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.6 ,carsType: carsType )
-            //RideCarWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height/2 +40,carsType: carsType,)
+
+           //19
+           // RideCarAfterWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.6 ,carsType: carsType ),
+           
+           //18
+           // RideCarSelectOtherStations(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.6 ,carsType: carsType),
+
+           //17
+           // RideCarWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height/2 +40,carsType: carsType,)
         
           ],
         ),

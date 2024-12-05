@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/notification_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/choose_city_page/choose_city_widget.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';
@@ -53,8 +54,9 @@ class ChooseCityPage extends StatelessWidget {
                 },
               ),
               Spacer(flex: 2,),
-              Text('اختر مدينتك',
-              style: const TextStyle(color:Colors.black, fontWeight: FontWeight.w600 , fontSize: 27,)),
+              CustomTextWidget(text: 'اختر مدينتك',fontSize: 35,color:Colors.black ,),
+              // Text('اختر مدينتك',
+              // style: const TextStyle(color:Colors.black, fontWeight: FontWeight.w600 , fontSize: 27,)),
               SizedBox(height: 20,),
               //Spacer(flex: 1,),
               CityDropdown(cities: ['القاهرة' , 'دمشق'],),
@@ -64,12 +66,12 @@ class ChooseCityPage extends StatelessWidget {
           Spacer(flex: 4,),
           Padding(
             padding:  EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/7, ),
-            child: CustomButton(textButton: 'التالي', 
+            child:CustomButton(textButton: 'التالي', textSize: 27,fontWeight: FontWeight.w900,
             onTap: () {
               Navigator.of(context).push(
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) => NotificationPage(),));
-            },),
+            }, ),
           ),
           Spacer(flex: 2,),
              

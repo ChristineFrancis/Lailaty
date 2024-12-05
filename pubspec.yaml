@@ -38,4 +38,5 @@ flutter:
     - family: Segeo
       fonts:
         - asset: assets/fonts/segoeuithis.ttf
+          weight: 900
 

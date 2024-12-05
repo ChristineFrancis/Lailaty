@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: "Segeo",
             ),
-            home: SplashPage(),
+            home: MapAndOrderDetails(),
           );
         });
   }

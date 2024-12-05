@@ -5,12 +5,14 @@ class CustomTextWidget extends StatelessWidget {
   final String text;
   final double fontSize;
   final Color color;
+  FontWeight? fontWeight;
 
-  const CustomTextWidget({
+   CustomTextWidget({
     super.key,
     required this.text,
     required this.fontSize,
     required this.color,
+    this.fontWeight
   });
 
   @override
@@ -22,8 +24,8 @@ class CustomTextWidget extends StatelessWidget {
       style: TextStyle(
         color: color,
         fontSize: fontSize.sp, // Font size relative to screen width
-        fontWeight: FontWeight.bold,
-        fontFamily: "Segeo",
+        fontWeight:fontWeight ?? FontWeight.bold,
+        //fontFamily: "Segeo",
       ),
       textAlign: TextAlign.center, // Optional alignment
     );

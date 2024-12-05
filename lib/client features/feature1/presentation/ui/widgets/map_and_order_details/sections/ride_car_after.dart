@@ -7,28 +7,28 @@ import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_a
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/pay_search_driver_choices.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/text_field_with_Arabic_prefix.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
+
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
-
-class WidgetAfterWriteDirection extends StatefulWidget {
+/////////19
+class RideCarAfterWidget extends StatefulWidget {
    final double sizeOfGreySection;
   final List <CarType> carsType;
   final TextEditingController notesController=TextEditingController();
   
-   WidgetAfterWriteDirection({super.key, required this.sizeOfGreySection, required this.carsType});
+   RideCarAfterWidget({super.key, required this.sizeOfGreySection, required this.carsType});
 
   @override
-  State<WidgetAfterWriteDirection> createState() => _WidgetAfterWriteDirectionState();
+  State<RideCarAfterWidget> createState() => _RideCarAfterWidgetState();
 }
 
-class _WidgetAfterWriteDirectionState extends State<WidgetAfterWriteDirection> {
+class _RideCarAfterWidgetState extends State<RideCarAfterWidget> {
   bool switchValue=false;
 
   @override
   Widget build(BuildContext context) {
     final widthOfScreen=MediaQuery.sizeOf(context).width;
-    final heightOfScreen=MediaQuery.sizeOf(context).height;
    return Container(
          margin: EdgeInsets.only(top:MediaQuery.sizeOf(context).height*0.3 , bottom: 0),
          decoration: BoxDecoration(
@@ -50,17 +50,17 @@ class _WidgetAfterWriteDirectionState extends State<WidgetAfterWriteDirection> {
             padding: EdgeInsets.only(right:MediaQuery.sizeOf(context).width/10, ),
             child: Column(
             children: [
-             CurrentAndNextLocationWord(isCurrentLocation: true,),
+             CurrentAndNextLocationWord(isCurrentLocation: true),
              SizedBox(height:widget.sizeOfGreySection/25 ,),
              Row(
               //mainAxisAlignment: MainAxisAlignment.spaceAround,
                children: [
-                 CurrentAndNextLocationWord(isCurrentLocation: false,),
+                 CurrentAndNextLocationWord(isCurrentLocation: false,location: 'توجد 2 محطات',),
                  SizedBox(width: widthOfScreen/12,),
-                 SizedBox(
-                  height: widget.sizeOfGreySection/13,
-                  width: widthOfScreen/4 +20,
-                  child: CustomButton(textButton: '+محطات اخرى ',textSize:14,fontWeight:FontWeight.w600 , onTap: () { }))
+                //  SizedBox(
+                //   height: widget.sizeOfGreySection/13,
+                //   width: widthOfScreen/4 +20,
+                //   child: CustomButton(textButton: '+محطات اخرى ',textSize:13, onTap: () { },))
                ],
              ),
 
@@ -70,7 +70,7 @@ class _WidgetAfterWriteDirectionState extends State<WidgetAfterWriteDirection> {
                children: [
                  SizedBox(
                   width:widthOfScreen*0.8,
-                   child: ButtonLikeTextField(text:'90 EGP- انقر لاقتراح السعر المناسب' ,textSize:17, fontWeight:FontWeight.w400 ,heightContainer:heightOfScreen * 0.06,
+                   child: ButtonLikeTextField(text:'90 EGP- انقر لاقتراح السعر المناسب' ,textSize:15, 
                    suffixWidget:Icon(Icons.edit_outlined), 
                    //width: widthOfScreen*0.8,
                     onPressed: () {},),
@@ -81,19 +81,19 @@ class _WidgetAfterWriteDirectionState extends State<WidgetAfterWriteDirection> {
              Row(
               children: [
                 SvgPicture.asset(ImageAssetManager.automaticAcceptanceIcon),
-                CustomTextWidget(text: 'قبول تلقائي لعرض بقيمة EGP 90', fontSize: 17, color: Colors.black,fontWeight:FontWeight.w400 ,),
-               Switch(
+                CustomTextWidget(text: 'قبول تلقائي لعرض بقيمة EGP 90', fontSize: 14 , color: Colors.black),
+              Switch(
                  value: switchValue, 
                  onChanged: (value) {
                    setState(() {
-                     switchValue=value; 
+                    switchValue=value; 
                    });
                  },
                  
                  inactiveTrackColor:ColorManager.grey ,
                  inactiveThumbColor: ColorManager.yellow,
                  activeColor:ColorManager.yellow,
-                 hoverColor: ColorManager.yellow,)
+                 hoverColor: ColorManager.yellow,),
 
 
               ],
@@ -122,7 +122,7 @@ class _WidgetAfterWriteDirectionState extends State<WidgetAfterWriteDirection> {
                 Icon(Icons.error_outline , color:ColorManager.grey ,),
                 SizedBox(width:3 ,),
                 Center(
-                 child: CustomTextWidget(text:'السعر الموصى به 90 EGP\nوقت السفر: 11 دقيقة' , fontSize: 15,color: Colors.black , fontWeight:FontWeight.w600 ,)),
+                 child: CustomTextWidget(text:'السعر الموصى به 90 EGP\nوقت السفر: 11 دقيقة' , fontSize: 11,color: Colors.black)),
               ],
             ),
           ],
@@ -132,8 +132,8 @@ class _WidgetAfterWriteDirectionState extends State<WidgetAfterWriteDirection> {
             ),
             SizedBox(height: widget.sizeOfGreySection/20),
 
-            PayAndySearchDriverAndChoices(notesController: widget.notesController,),
-         SizedBox(height: widget.sizeOfGreySection/28),
+            PayAndySearchDriverAndChoices(notesController:widget.notesController),
+         //SizedBox(height: widget.sizeOfGreySection/28),
                       ],
                     ),
                   ],

@@ -6,12 +6,15 @@ class ButtonLikeTextField extends StatelessWidget {
   final double textSize;
   final Widget suffixWidget;
   final Function() onPressed;
-  const ButtonLikeTextField({super.key, required this.text, required this.textSize, required this.suffixWidget,  required this.onPressed});
+  FontWeight? fontWeight;
+  double? heightContainer; 
+   ButtonLikeTextField({super.key, required this.text, required this.textSize, required this.suffixWidget,  required this.onPressed , this.fontWeight , this.heightContainer});
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return Container(
-      height: 50,
+      height:heightContainer??screenHeight * 0.05,
       decoration: BoxDecoration(
         color:Colors.white ,
         borderRadius:  BorderRadius.all(Radius.circular(10) ),
@@ -22,7 +25,7 @@ class ButtonLikeTextField extends StatelessWidget {
         child: Row(
          mainAxisAlignment: MainAxisAlignment.spaceAround,
          children: [
-          CustomTextWidget(text:text ,fontSize: textSize , color: Colors.black), 
+          CustomTextWidget(text:text ,fontSize: textSize , color: Colors.black , fontWeight:fontWeight ,), 
            suffixWidget                  
                      ],
           ),
