@@ -19,8 +19,8 @@ class StartYourJourneyAppbar extends StatelessWidget
     double screenWidth = MediaQuery.of(context).size.width;
     return AppBar(
       backgroundColor: ColorManager.darkGrey,
-      elevation: 4, // Adds a slight shadow
-      automaticallyImplyLeading: false, // Disable default back arrow
+      elevation: 4,
+      automaticallyImplyLeading: false, 
       actions: [
         IconButton(
           icon: const Icon(
@@ -32,7 +32,7 @@ class StartYourJourneyAppbar extends StatelessWidget
       ],
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(8), // Circular bottom corners
+          bottom: Radius.circular(8), 
         ),
       ),
       title: Center(
@@ -55,8 +55,8 @@ class StartYourJourneyAppbar extends StatelessWidget
         ),
       ),
 
-      centerTitle: true, // Ensures the title row is centered
-      toolbarHeight: screenHeight * 0.1, // Responsive AppBar height
+      centerTitle: true, 
+      toolbarHeight: screenHeight * 0.1,
     );
   }
 

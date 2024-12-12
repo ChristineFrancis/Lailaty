@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/inbox_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/order_history_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/safity_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/setting_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_arial.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/Drawer/my_bottom_sheet.dart';
@@ -90,12 +94,23 @@ class MyDrawer extends StatelessWidget {
                       Icons.directions_car_filled_outlined, () {}),
                   _myTile(context, 'تعليم القيادة',
                       Icons.directions_car_filled_outlined, () {}),
-                  _myTile(context, 'سجل الطلبات', Icons.history, () {}),
-                  _myTile(
-                      context, 'السلامة', Icons.verified_user_outlined, () {}),
+                  _myTile(context, 'سجل الطلبات', Icons.history, () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => OrderHistoryPage()));
+                  }),
+                  _myTile(context, 'السلامة', Icons.verified_user_outlined, () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => SafityPage()));
+                  }),
                   _myTile(context, 'الصندوق الوارد', Icons.mail_outline_rounded,
-                      () {}),
-                  _myTile(context, 'الإعدادات', Icons.settings_outlined, () {}),
+                      () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => InboxPage()));
+                  }),
+                  _myTile(context, 'الإعدادات', Icons.settings_outlined, () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => SettingPage()));
+                  }),
                   _myTile(
                       context, 'مشاركة التطبيق', Icons.share_outlined, () {}),
                   _myTile(context, 'اتصل بنا', Icons.support_agent, () {}),
