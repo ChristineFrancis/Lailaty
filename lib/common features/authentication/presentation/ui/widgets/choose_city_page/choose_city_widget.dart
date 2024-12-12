@@ -1,5 +1,6 @@
 // // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
 class CityDropdown extends StatefulWidget {
@@ -41,10 +42,11 @@ class _CityDropdownState extends State<CityDropdown> {
               children: [
                 
                 const SizedBox(width: 8),
-                Text(
-                  'مصر', // Display the selected city
-                  style: const TextStyle(fontSize: 18),
-                ),
+                CustomTextWidget(text: 'مصر', color: Colors.black,fontSize: 22,fontWeight:FontWeight.w600 ),
+                // Text(
+                //   'مصر', // Display the selected city
+                //   style: const TextStyle(fontSize: 18),
+                // ),
                 const SizedBox(width: 8),
                 Text(
                   '🇪🇬', // Fixed flag
@@ -73,10 +75,7 @@ class _CityDropdownState extends State<CityDropdown> {
                 items: widget.cities.map<DropdownMenuItem<String>>((String city) {
                   return DropdownMenuItem<String>(
                     value: city,
-                    child: Text(
-                      city,
-                      style: const TextStyle(fontSize: 18),
-                    ),
+                    child: CustomTextWidget(text:city, color: Colors.black,fontSize: 20,fontWeight:FontWeight.w400 ),
                   );
                 }).toList(),
               ),

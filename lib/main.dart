@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: "Segeo",
             ),
-            home: SettingPage(),
+            home: SplashPage(),
           );
         });
   }

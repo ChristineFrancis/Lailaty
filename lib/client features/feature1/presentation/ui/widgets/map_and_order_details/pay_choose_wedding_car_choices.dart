@@ -1,15 +1,19 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/choices_bottom_sheet.dart';
-import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/enter_path_bottom_sheet.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/ways_to_pay_bottom_sheet.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 
-class PayAndySearchDriverAndChoices extends StatelessWidget {
+class PayChooseWeddingCarChoices extends StatelessWidget {
   final  TextEditingController notesController;
 
-  const PayAndySearchDriverAndChoices({super.key, required this.notesController});
+  const PayChooseWeddingCarChoices({
+    Key? key,
+    required this.notesController,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,34 +21,25 @@ class PayAndySearchDriverAndChoices extends StatelessWidget {
     return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Spacer(flex: 4,),
-             InkWell(
+            Spacer(flex: 1,),
+            InkWell(
               onTap:() async{await waysToPayBottomSheet(context ); } ,
               child: SvgPicture.asset(ImageAssetManager.moneyIcon)),
-           Spacer(flex: 3,),
+           Spacer(flex: 2,),
             SizedBox(
               //height: 50,
-              width:widthOfScreen/3 ,
-              child: CustomButton(textButton: 'بحث عن سائق',textSize: 17,
+              width:widthOfScreen/2,
+              child: CustomButton(textButton: 'اختر سيارة زفافك',textSize: 19,
                     onTap: () {}, 
                           ),
                   ),
-                  Spacer(flex: 1,),
+                  Spacer(flex: 2,),
             //SizedBox(width: widthOfScreen/12), 
-            SizedBox(
-            width:widthOfScreen/3 ,
-           // height: 50, 
-            child: 
-            CustomButton(
-            textButton: 'بحث عن ليدي',textSize: 17,
-            onTap: () {}, 
-                  ),
-              ),
-              Spacer(flex: 3,),
+            
             InkWell
-            (onTap:() async{await enterYourPathBottomSheet(context , notesController); } ,
+            (onTap:() async{await choicesBottomSheet(context , notesController); } ,
               child: SvgPicture.asset(ImageAssetManager.choicesIcon)),
-            Spacer(flex: 4,),
+            Spacer(flex: 1,),
               ],
            );
   }

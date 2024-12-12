@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/privacy_and_age_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
@@ -17,14 +19,14 @@ class TextFieldWithArabicPrefix extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     double fieldWidth = screenWidth * 0.8;
     double fieldheight = screenHeight * 0.05;
-    double fontSize = screenWidth * 0.07;
+    //double fontSize = screenWidth * 0.07;
     return  SizedBox(
     width: MediaQuery.of(context).size.width*0.7, 
     child: Stack(
      alignment: Alignment.centerRight,
      children: [
      TextField(
-      style:TextStyle(height: screenHeight * 0.001, fontSize: fontSize * 0.8),
+      style:TextStyle(height: screenHeight * 0.001, fontSize: 21.sp),
       textDirection: TextDirection.rtl, 
       decoration: InputDecoration(
       focusColor: Colors.black,
@@ -33,9 +35,11 @@ class TextFieldWithArabicPrefix extends StatelessWidget {
       filled: true,
       fillColor: Colors.white, 
       hintText: hintText,
+      
       hintStyle: TextStyle(
        height: 1.2,
-      fontSize: fontSize * 0.8,
+      fontSize: 21.sp,
+      //fontWeight:FontWeight.w600 ,
       color: ColorManager.grey),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
@@ -52,7 +56,7 @@ class TextFieldWithArabicPrefix extends StatelessWidget {
                   ),
                   Positioned(
                     right: 15, // Padding to position the constant word
-                    child:  CustomTextWidget(text:PrefixText ,fontSize: 20 , color: Colors.black), 
+                    child:  CustomTextWidget(text:PrefixText ,fontSize: 20 , color: Colors.black , fontWeight: FontWeight.w400 ,), 
                   ),
        ],),);
   }

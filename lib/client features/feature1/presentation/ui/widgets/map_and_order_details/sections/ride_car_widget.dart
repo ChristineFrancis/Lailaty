@@ -9,11 +9,12 @@ import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_a
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
-
-class RideMotorWidget extends StatelessWidget {
+////////////////17
+class RideCarWidget extends StatelessWidget {
   final double sizeOfGreySection;
   final List <CarType> carsType;
-  const RideMotorWidget({super.key, required this.sizeOfGreySection, required this.carsType});
+  final TextEditingController notesController=TextEditingController();
+   RideCarWidget({super.key, required this.sizeOfGreySection, required this.carsType});
 
   @override
   Widget build(BuildContext context) {
@@ -39,19 +40,19 @@ class RideMotorWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/7, ),
             child: Column(
             children: [
-            TextFieldWithArabicPrefix(hintText: '' ,PrefixText:'من' ,),
-             SizedBox(height: sizeOfGreySection/28),
-             TextFieldWithArabicPrefix(hintText: '' ,PrefixText:'الى' ,),
-             SizedBox(height: sizeOfGreySection/28),
-             ButtonLikeTextField(text:'اقترح السعر المناسب' ,textSize: 20, 
+             CurrentAndNextLocationWord(isCurrentLocation: true,),
+             SizedBox(height: sizeOfGreySection/27),
+             TextFieldWithArabicPrefix(hintText: 'lorem ipsum' ,PrefixText:'الى' ,),
+             SizedBox(height: sizeOfGreySection/27),
+             ButtonLikeTextField(text:'اقترح السعر المناسب' ,textSize: 20, fontWeight:FontWeight.w400 ,
              suffixWidget:Icon(Icons.edit_outlined),
              // width: widthOfScreen*0.7,
              onPressed: () {},),
-             SizedBox(height: sizeOfGreySection/26),
+             SizedBox(height: sizeOfGreySection/25),
                   ],
               ),
           ),
-        PayAndySearchDriverAndChoices(),
+        PayAndySearchDriverAndChoices(notesController: notesController,),
          SizedBox(height: sizeOfGreySection/28),
                       ],
                     ),

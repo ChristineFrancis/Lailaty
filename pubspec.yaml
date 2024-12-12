@@ -38,7 +38,4 @@ flutter:
     - family: Segeo
       fonts:
         - asset: assets/fonts/segoeuithis.ttf
-    - family: Arial
-      fonts:
-        - asset: assets/fonts/ARIAL.TTF
 

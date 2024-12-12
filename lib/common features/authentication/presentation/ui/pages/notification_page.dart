@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/location_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';
@@ -54,9 +55,10 @@ class NotificationPage extends StatelessWidget {
               Spacer(flex: 3,),
               Padding(
                 padding:  EdgeInsets.symmetric(horizontal: MediaQuery.sizeOf(context).width/20),
-                child: Text('هل تود السماح لتطبيق ليلتي بارسال الاشعارات',
-                textAlign: TextAlign.center,
-                style: const TextStyle( fontWeight: FontWeight.w600 , fontSize: 23,)),
+                child:CustomTextWidget(text:'هل تود السماح لتطبيق ليلتي بارسال الاشعارات' , color: Colors.black,fontSize: 25,) 
+                // Text('هل تود السماح لتطبيق ليلتي بارسال الاشعارات',
+                // textAlign: TextAlign.center,
+                // style: const TextStyle( fontWeight: FontWeight.w600 , fontSize: 23,)),
               ),
               //SizedBox(height: 20,),
               //Spacer(flex: 1,),
@@ -67,15 +69,15 @@ class NotificationPage extends StatelessWidget {
           Spacer(flex: 3,),
           Padding(
             padding:  EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/7, ),
-            child: CustomButton(textButton: 'السماح', 
+            child: 
+            CustomButton(textButton: 'السماح', textSize: 25,
             onTap: () {
               Navigator.of(context).push(
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) => LocationPage(),));
-            },),
+            }, ),
           ),
-          TextButton(child: Text('تخطي',
-          style: const TextStyle(color:ColorManager.yellow, fontWeight: FontWeight.w600 , fontSize: 24,)) , 
+          TextButton(child: CustomTextWidget(text:'تخطي', color: ColorManager.yellow , fontSize: 27,) , 
           onPressed: () {
             
           }, ),

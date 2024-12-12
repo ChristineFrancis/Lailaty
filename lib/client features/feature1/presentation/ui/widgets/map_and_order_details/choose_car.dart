@@ -13,13 +13,13 @@ class CarSelection extends StatefulWidget {
 }
 
 class _CarSelectionState extends State<CarSelection> {
-  int selectedIndex = 0; // To track the selected car index
-
+  int selectedIndex = 0; 
   @override
   Widget build(BuildContext context) {
+    final sizeOfScreen=MediaQuery.sizeOf(context).height;
     return Container(
       margin: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
-      height: 90,
+      height: sizeOfScreen/8.6,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: widget.carsType.length,
@@ -30,17 +30,22 @@ class _CarSelectionState extends State<CarSelection> {
               InkWell(
                 onTap: () {
                   setState(() {
-                    selectedIndex = index; // Update the selected car index
+                    selectedIndex = index; 
                   });
                 },
                 child: Container(
-                  height: 90,
-                  width: 85,
+                  height: sizeOfScreen/9,
+                  width: sizeOfScreen/9,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                     color: selectedIndex == index
                         ? ColorManager.yellow.withOpacity(1.0) // Full brightness for selected
-                        : ColorManager.yellow.withOpacity(0.5), // Dimmed for unselected
+                        : ColorManager.yellow.withOpacity(0.5),
+                         boxShadow: [
+                  BoxShadow(
+                  color: Colors.black.withOpacity(0.4), // Slight shadow
+                   blurRadius: 6, // Soft blur effect
+                   offset: Offset(0, 7),),], // Dimmed for unselected
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

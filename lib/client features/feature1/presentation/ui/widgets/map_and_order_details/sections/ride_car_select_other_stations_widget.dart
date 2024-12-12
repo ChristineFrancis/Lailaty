@@ -11,18 +11,19 @@ import 'package:lailaty/common%20features/authentication/presentation/ui/widgets
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
-
-class WidgetAfterSelectStations extends StatefulWidget {
+/////////18
+class RideCarSelectOtherStations extends StatefulWidget {
    final double sizeOfGreySection;
   final List <CarType> carsType;
+  final TextEditingController notesController=TextEditingController();
   
-   WidgetAfterSelectStations({super.key, required this.sizeOfGreySection, required this.carsType});
+   RideCarSelectOtherStations({super.key, required this.sizeOfGreySection, required this.carsType});
 
   @override
-  State<WidgetAfterSelectStations> createState() => _WidgetAfterSelectStationsState();
+  State<RideCarSelectOtherStations> createState() => _RideCarSelectOtherStationsState();
 }
 
-class _WidgetAfterSelectStationsState extends State<WidgetAfterSelectStations> {
+class _RideCarSelectOtherStationsState extends State<RideCarSelectOtherStations> {
   bool switchValue=false;
 
   @override
@@ -52,14 +53,14 @@ class _WidgetAfterSelectStationsState extends State<WidgetAfterSelectStations> {
              CurrentAndNextLocationWord(isCurrentLocation: true),
              SizedBox(height:widget.sizeOfGreySection/25 ,),
              Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
                children: [
                  CurrentAndNextLocationWord(isCurrentLocation: false,location: 'توجد 2 محطات',),
                  SizedBox(width: widthOfScreen/12,),
-                //  SizedBox(
-                //   height: widget.sizeOfGreySection/13,
-                //   width: widthOfScreen/4 +20,
-                //   child: CustomButton(textButton: '+محطات اخرى ',textSize:13, onTap: () { },))
+                 SizedBox(
+                  height: widget.sizeOfGreySection/13,
+                  width: widthOfScreen/4 +20,
+                  child: CustomButton(textButton: '+محطات اخرى ',textSize:13, onTap: () { },))
                ],
              ),
 
@@ -81,18 +82,18 @@ class _WidgetAfterSelectStationsState extends State<WidgetAfterSelectStations> {
               children: [
                 SvgPicture.asset(ImageAssetManager.automaticAcceptanceIcon),
                 CustomTextWidget(text: 'قبول تلقائي لعرض بقيمة EGP 90', fontSize: 14 , color: Colors.black),
-               Switch(
+              Switch(
                  value: switchValue, 
                  onChanged: (value) {
                    setState(() {
-                     switchValue=value; 
+                    switchValue=value; 
                    });
                  },
                  
                  inactiveTrackColor:ColorManager.grey ,
                  inactiveThumbColor: ColorManager.yellow,
                  activeColor:ColorManager.yellow,
-                 hoverColor: ColorManager.yellow,)
+                 hoverColor: ColorManager.yellow,),
 
 
               ],
@@ -131,7 +132,7 @@ class _WidgetAfterSelectStationsState extends State<WidgetAfterSelectStations> {
             ),
             SizedBox(height: widget.sizeOfGreySection/20),
 
-            PayAndySearchDriverAndChoices(),
+            PayAndySearchDriverAndChoices(notesController:widget.notesController),
          //SizedBox(height: widget.sizeOfGreySection/28),
                       ],
                     ),
