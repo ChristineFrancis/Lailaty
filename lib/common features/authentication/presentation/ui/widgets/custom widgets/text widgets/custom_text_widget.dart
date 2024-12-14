@@ -16,6 +16,7 @@ class CustomTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeigth = MediaQuery.of(context).size.height;
 
     return Text(
@@ -23,11 +24,58 @@ class CustomTextWidget extends StatelessWidget {
       style: TextStyle(
         height: screenHeigth * 0.0017,
         color: color,
-        fontSize: fontSize.sp, 
-        fontWeight: fontWeight ?? FontWeight.bold,
+        fontSize: fontSize.sp, // Font size relative to screen width
+        fontWeight:fontWeight ?? FontWeight.bold,
         //fontFamily: "Segeo",
       ),
       textAlign: TextAlign.center,
     );
   }
+}
+double getResponsiveText(double fontSize , BuildContext context)
+{
+  double scalefactor=getScalefactor(context);
+  double responsiveFontSize=fontSize*scalefactor;
+  double lowerLimit=fontSize *.8;
+   double upperLimit=fontSize*1.2;
+   return responsiveFontSize.clamp(lowerLimit, upperLimit);
+
+  // double screenWidth = MediaQuery.of(context).size.width;
+  // if (screenWidth>800)
+  // {
+  //   return fontSize.sp * 0.4;
+  // }
+  // else if (screenWidth<500)
+  // {
+  //   return fontSize.sp * 0.5;
+  // }
+  // else if (screenWidth<400)
+  // {
+  //   return fontSize.sp * 0.0002;
+  // }
+  // else
+  // {
+  //   return fontSize.sp;
+  // }
+
+
+}
+
+double getScalefactor( BuildContext context)
+{
+   double width = MediaQuery.sizeOf(context).width;
+   if(width<600)
+   {
+    return width/400;
+   }
+   else if(width<900)
+   {
+    return width/700;
+   }
+   else
+   {
+    return width/1000;
+   }
+
+
 }

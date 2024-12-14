@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/suggest_your_price_bottom_sheet.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/button_like_text_field.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_name.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_suffix.dart';
 
 class PrivateTripWidget extends StatelessWidget {
   final double sizeOfGreySection;
   final TextEditingController timeController;
   final TextEditingController numberOfdaysController;
   final TextEditingController commentsController;
-  const PrivateTripWidget({super.key, required this.sizeOfGreySection, required this.timeController, required this.numberOfdaysController, required this.commentsController});
+  final TextEditingController priceController;
+  const PrivateTripWidget({super.key, required this.sizeOfGreySection, required this.timeController, required this.numberOfdaysController, required this.commentsController, required this.priceController});
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +32,9 @@ class PrivateTripWidget extends StatelessWidget {
                  SizedBox(height: sizeOfGreySection/75),
                  CustomTextFormFieldName(hintText:'عدد الركاب', controller:numberOfdaysController,hintTextColor: Colors.black,isArabic: true,textAlign: TextAlign.start, heightTextFormField: heightOfScreen * 0.06 , isNum: true,),
                  SizedBox(height: sizeOfGreySection/75),
-                  ButtonLikeTextField(text:'اقترح السعر المناسب' ,textSize: 22, fontWeight: FontWeight.w400,heightContainer:heightOfScreen * 0.06,
-                 suffixWidget:Icon(Icons.edit_outlined),
-                 
-                 onPressed: () {},),
+                  InkWell(
+                   onTap: () async{await suggestYourPriceBottomSheet(context ,priceController); },
+                  child: CustomTextFormFieldSuffix(hintText: 'اقترح السعر المناسب',fontSizeText: 18 , hintTextColor: Colors.black , suffixIcon:Icon(Icons.edit_outlined) , isReadonly: true , isArabic: true ,textAlign: TextAlign.start,)),
                  
                 
                  SizedBox(height: sizeOfGreySection/75),

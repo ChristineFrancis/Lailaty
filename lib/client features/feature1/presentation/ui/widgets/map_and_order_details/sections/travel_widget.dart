@@ -63,10 +63,10 @@ class TravelWidget extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
               children: [
-              CustomTextFormFieldName(hintText:'من', controller:startingLocationController ,hintTextColor: Colors.black,isArabic: true,textAlign: TextAlign.start,heightTextFormField: heightOfScreen * 0.06),
+              CustomTextFormFieldName(hintText:'من', controller:startingLocationController ,hintTextColor: Colors.black,isArabic: true,textAlign: TextAlign.start,heightTextFormField: heightOfScreen * 0.06 ,  fontSizeText: 18),
               
                SizedBox(height: sizeOfGreySection/75),
-               CustomTextFormFieldName(hintText:'الى', controller:destinationLocationController,hintTextColor: Colors.black,isArabic: true,textAlign: TextAlign.start, heightTextFormField: heightOfScreen * 0.06),
+               CustomTextFormFieldName(hintText:'الى', controller:destinationLocationController,hintTextColor: Colors.black,isArabic: true,textAlign: TextAlign.start, heightTextFormField: heightOfScreen * 0.06 ,  fontSizeText: 18),
                //SizedBox(height: sizeOfGreySection/45),
               ])),
               CarSelection(carsType: travelCarsType,),

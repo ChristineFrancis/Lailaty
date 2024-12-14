@@ -54,10 +54,10 @@ class MapAndOrderDetails extends StatelessWidget {
             ),
 
             //26
-            //TravelWidgetAfter(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.9, carsType: carsType),
+            TravelWidgetAfter(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.9, carsType: carsType),
 
             //24 _ 25
-            //TravelWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.9, carsType: carsType),
+           // TravelWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.9, carsType: carsType),
 
             //23
            //WeddingBuisinessMenAfterSelectCarStartlocationDestinationlocationWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.8,carsType: carsType),
@@ -66,7 +66,7 @@ class MapAndOrderDetails extends StatelessWidget {
            /// WeddingAndBusinessMenWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.8,carsType: carsType),
            
            //20
-            RideMotorWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height/2 +40,carsType: carsType,),
+           // RideMotorWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height/2 +40,carsType: carsType,),
 
            //19
            // RideCarAfterWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.6 ,carsType: carsType ),

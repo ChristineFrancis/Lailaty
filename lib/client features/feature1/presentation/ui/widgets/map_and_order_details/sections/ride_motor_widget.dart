@@ -54,7 +54,7 @@ class RideMotorWidget extends StatelessWidget {
               child: CustomTextFormFieldName(hintText:'الى', controller:destinationLocationController,hintTextColor: Colors.black,isArabic: true,textAlign: TextAlign.start)),
              //TextFieldWithArabicPrefix(hintText: '' ,PrefixText:'الى' ,),
              SizedBox(height: sizeOfGreySection/28),
-             ButtonLikeTextField(text:'اقترح السعر المناسب' ,textSize: 22, fontWeight: FontWeight.w400,
+             ButtonLikeTextField(text:'ح السعر المناسب' ,textSize: 22, fontWeight: FontWeight.w400,
              suffixWidget:Icon(Icons.edit_outlined),
              // width: widthOfScreen*0.7,
              onPressed: () {},),

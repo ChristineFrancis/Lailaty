@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/pages/map_and_order_details_page.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/suggest_your_price_bottom_sheet.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/button_like_text_field.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/choose_car.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/current_and_next_location_word.dart';
@@ -16,6 +17,7 @@ class RideCarSelectOtherStations extends StatefulWidget {
    final double sizeOfGreySection;
   final List <CarType> carsType;
   final TextEditingController notesController=TextEditingController();
+  final TextEditingController priceController=TextEditingController();
   
    RideCarSelectOtherStations({super.key, required this.sizeOfGreySection, required this.carsType});
 
@@ -73,7 +75,7 @@ class _RideCarSelectOtherStationsState extends State<RideCarSelectOtherStations>
                    child: ButtonLikeTextField(text:'90 EGP- انقر لاقتراح السعر المناسب' ,textSize:15, 
                    suffixWidget:Icon(Icons.edit_outlined), 
                    //width: widthOfScreen*0.8,
-                    onPressed: () {},),
+                    onPressed: () async{await suggestYourPriceBottomSheet(context , widget.priceController); },),
                  ),
                ],
              ),

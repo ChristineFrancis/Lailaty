@@ -13,6 +13,7 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       height:50,           
       decoration: const BoxDecoration(
@@ -28,7 +29,7 @@ class CustomButton extends StatelessWidget {
       textButton,
       style: TextStyle(
         color:  Colors.black,
-        fontSize: textSize.sp, // Font size relative to screen width
+        fontSize: getResponsiveText(textSize , context), // Font size relative to screen width
         fontWeight:fontWeight ?? FontWeight.bold,
         shadows: [
       Shadow(

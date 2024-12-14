@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/choose_city_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';
@@ -55,7 +56,7 @@ class PrivacyAndAgePage extends StatelessWidget {
     text: TextSpan(
       text: 'عمري 18 او اكثر و أوافق على شروط الخصوصية والاستخدام ',
       style:  TextStyle(
-        fontSize: 18.sp,
+        fontSize: getResponsiveText(18 , context),
         color: Colors.black,
         fontWeight: FontWeight.w600,
       ),
@@ -63,7 +64,7 @@ class PrivacyAndAgePage extends StatelessWidget {
         TextSpan(
           text: 'الخاصة بتطبيق ليلتي',
           style: TextStyle(
-            fontSize: 18.sp,
+            fontSize: getResponsiveText(18 , context),
             color: ColorManager.yellow,
             fontWeight: FontWeight.w600,
           ),
