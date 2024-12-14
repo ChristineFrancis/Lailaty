@@ -1,16 +1,18 @@
 // TODO: disable text form fields when its not their turns
-// TODO: resizeToAvoidBottomInset: false,
 // TODO: make the page responsive
+
+//Todo: make the duration of bg a little longer 1200
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_name.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_password.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_elevation_button.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_with_prefix.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/logo_with_laylaty.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/user_info_page/detect_gender_widget.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
@@ -71,6 +73,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     double horizontalOffset;
     double verticalOffset;
     double scale;
@@ -99,46 +103,42 @@ class _UserInfoPageState extends State<UserInfoPage> {
         scale = 1.5;
     }
 
-    // Animation duration
-    const Duration animationDuration = Duration(milliseconds: 800);
+    const Duration animationDuration = Duration(milliseconds: 1200);
 
     return Scaffold(
       backgroundColor: ColorManager.grey,
       body: Stack(
         children: [
-          // Background image with animated position and scaling
+          //! Background image
           AnimatedPositioned(
             duration: animationDuration,
             curve: Curves.easeOut,
-            left: MediaQuery.of(context).size.width * -horizontalOffset,
-            top: MediaQuery.of(context).size.height * verticalOffset,
+            left: screenWidth * -horizontalOffset,
+            top: screenHeight * verticalOffset,
             child: AnimatedScale(
               duration: animationDuration,
               curve: (_clickCount == 3) ? Curves.easeOut : Curves.easeIn,
-              scale: scale, // Apply dynamic scaling
-              //! my image
+              scale: scale,
               child: SvgPicture.asset(
-                ImageAssetManager.lailatyArabic, // Updated image asset path
+                ImageAssetManager.lailatyArabic,
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
                     Colors.white.withOpacity(imgOpacity), BlendMode.modulate),
-                width: MediaQuery.of(context).size.width * 1.5,
+                width: screenWidth * 1.5,
               ),
             ),
           ),
+          //! end of backgorund image
 
-          // Centered content based on _clickCount
           Positioned.fill(
-            child: Align(
-              alignment: Alignment.center,
+            child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 120,
-                  ),
+                  SpcY(y: 15),
+                  _myBackArrow(),
                   LogoWithLaylaty(),
-                  const SizedBox(height: 30),
+                  SpcY(y: 25),
                   if (_clickCount < 3)
                     CustomTextWidget(
                         text: 'تسجيل الدخول',
@@ -147,37 +147,36 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   Stack(
                     children: [
                       //!click count ==0
-                      //if (_clickCount == 0)
                       AnimatedOpacity(
                         opacity: _clickCount == 0 ? 1.0 : 0.0,
-                        duration: Duration(seconds: 1),
+                        duration: Duration(milliseconds: 1200),
                         child: Center(
                           child: Form(
                             key: _formKeyMobile,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const SizedBox(height: 40),
+                                SpcY(y: 50),
                                 CustomTextWidget(
                                     text: 'ادخل رقمك',
                                     fontSize: 28,
                                     color: Colors.black),
-                                const SizedBox(height: 20),
+                                SpcY(y: 25),
                                 CustomTextWidget(
                                     text: "ادخل رقم الهاتف الفعال كمحفظة مالية",
                                     fontSize: 18,
                                     color: Colors.black),
-                                const SizedBox(height: 30),
+                                SpcY(y: 37.5),
                                 CustomTextFormFieldWithPrefix(
                                     controller: _mobileNumberController,
                                     prefixText: "+ 20 ",
                                     hintText: "| 9123456789"),
-                                const SizedBox(height: 40),
+                                SpcY(y: 50),
                                 CustomTextWidget(
                                     text: "ادخل رقم الهاتف مرة اخرى للتأكيد",
                                     fontSize: 18,
                                     color: Colors.black),
-                                const SizedBox(height: 30),
+                                SpcY(y: 37.5),
                                 CustomTextFormFieldWithPrefix(
                                     controller:
                                         _mobileNumberValidatorController,
@@ -190,10 +189,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
                       ),
 
                       //!click count ==1
-                      //if (_clickCount == 1)
                       AnimatedOpacity(
                         opacity: _clickCount == 1 ? 1.0 : 0.0,
-                        duration: Duration(seconds: 1),
+                        duration: Duration(milliseconds: 1200),
                         child: Form(
                           key: _formKeyPassword,
                           child: Center(
@@ -232,10 +230,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
                       ),
 
                       //!click count ==2
-                      // if (_clickCount == 2)
                       AnimatedOpacity(
                         opacity: _clickCount == 2 ? 1.0 : 0.0,
-                        duration: Duration(seconds: 1),
+                        duration: Duration(milliseconds: 1200),
                         child: Form(
                           key: _formKeyName,
                           child: Column(
@@ -278,10 +275,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
                       ),
 
                       //!click count ==3
-                      //if (_clickCount == 3)
                       AnimatedOpacity(
                         opacity: _clickCount == 3 ? 1.0 : 0.0,
-                        duration: Duration(seconds: 1),
+                        duration: Duration(milliseconds: 1200),
                         child: Column(
                           children: [
                             SizedBox(height: 120),
@@ -317,35 +313,61 @@ class _UserInfoPageState extends State<UserInfoPage> {
                       ),
                     ],
                   ),
+                  //! bottom button
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth / 9,
+                    ),
+                    child: CustomButton(
+                      textButton: 'التالي',
+                      textSize: 27,
+                      onTap: () {
+                        setState(() {
+                          if (_clickCount < 3) {
+                            _clickCount++;
+                            if (_clickCount >= 3) {
+                              Timer(Duration(milliseconds: 1500), () {
+                                setState(() {
+                                  showCar = true;
+                                });
+                              });
+                            }
+                          }
+                        });
+                      },
+                    ),
+                  ),
+                  //!end of button
                 ],
               ),
             ),
           ),
-
-          // Bottom button to increment _clickCount
-          Positioned(
-            bottom: 30,
-            left: 0,
-            right: 0,
-            child: Center(
-                child: CustomElevatedButton(
-                    text: "تحقق",
-                    onPressed: () {
-                      setState(() {
-                        if (_clickCount < 3) {
-                          _clickCount++;
-                          if (_clickCount >= 3) {
-                            Timer(Duration(milliseconds: 1500), () {
-                              setState(() {
-                                showCar = true;
-                              });
-                            });
-                          }
-                        }
-                      });
-                    }, textColor: Colors.black,buttonColor: ColorManager.yellow, fontSize: 27,)),
-          ),
         ],
+      ),
+    );
+  }
+  //! My Widgets:
+
+  Widget _myBackArrow() {
+    return Container(
+      padding: EdgeInsets.all(3.5),
+      alignment: Alignment.centerRight,
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: IconButton(
+            onPressed: () {
+              setState(() {
+                if (_clickCount == 0) {
+                  Navigator.of(context).pop();
+                } else {
+                  _clickCount--;
+                }
+              });
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: ColorManager.yellow,
+            )),
       ),
     );
   }

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/inbox_page.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/order_history_page.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/safity_page.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/setting_page.dart';
 import 'package:lailaty/common%20features/splash/splash_page.dart';
 
 void main() {

@@ -7,13 +7,12 @@ class CustomTextWidget extends StatelessWidget {
   final Color color;
   FontWeight? fontWeight;
 
-   CustomTextWidget({
-    super.key,
-    required this.text,
-    required this.fontSize,
-    required this.color,
-    this.fontWeight
-  });
+  CustomTextWidget(
+      {super.key,
+      required this.text,
+      required this.fontSize,
+      required this.color,
+      this.fontWeight});
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +23,11 @@ class CustomTextWidget extends StatelessWidget {
       style: TextStyle(
         height: screenHeigth * 0.0017,
         color: color,
-        fontSize: fontSize.sp, // Font size relative to screen width
-        fontWeight:fontWeight ?? FontWeight.bold,
+        fontSize: fontSize.sp, 
+        fontWeight: fontWeight ?? FontWeight.bold,
         //fontFamily: "Segeo",
       ),
-      textAlign: TextAlign.center, // Optional alignment
+      textAlign: TextAlign.center,
     );
   }
 }
