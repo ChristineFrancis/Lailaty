@@ -17,6 +17,8 @@ class _CarSelectionState extends State<CarSelection> {
   @override
   Widget build(BuildContext context) {
     final sizeOfScreen=MediaQuery.sizeOf(context).height;
+    final widthOfScreen=MediaQuery.sizeOf(context).width;
+
     return Container(
       margin: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
       height: sizeOfScreen/8.6,
@@ -35,7 +37,7 @@ class _CarSelectionState extends State<CarSelection> {
                 },
                 child: Container(
                   height: sizeOfScreen/9,
-                  width: sizeOfScreen/9,
+                  width: widthOfScreen/5,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                     color: selectedIndex == index

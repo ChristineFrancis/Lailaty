@@ -9,6 +9,8 @@ class CurrentAndNextLocationWord extends StatelessWidget {
   String? location;
   final bool isCurrentLocation;
   
+
+  
    CurrentAndNextLocationWord({
     Key? key,
     this.location, required this.isCurrentLocation,
@@ -25,7 +27,7 @@ class CurrentAndNextLocationWord extends StatelessWidget {
       CustomTextWidget(text:
       location==null? 
       isCurrentLocation?'الموقع الحالي' :'الموقع التالي' 
-      : location!,fontSize: 23 , color: Colors.black , fontWeight:FontWeight.w600 ,),],
+      : location!,fontSize: 21 , color: Colors.black , fontWeight:FontWeight.w600 ,),],
                             );
   }
 }

@@ -72,18 +72,21 @@ Future enterYourPathBottomSheet(BuildContext context , TextEditingController con
                                 controller: controller,
                                 textAlign: TextAlign.right,
                                 style:
-                                    TextStyle(height: heightOfScreen * 0.001, fontSize:20.sp),
+                                    TextStyle(
+                                      height: 1.2, 
+                                      fontSize:getResponsiveText(18 , context)),
                                 decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                                  contentPadding: EdgeInsets.symmetric(horizontal: 20 , vertical: 1.2),
                                   filled: true,
                                   fillColor: Colors.white,
+                                  
                                   hintText: 'الى',
                                    prefixIcon: Icon(Icons.search),
                                   // suffixIcon: suffixWidget?? Container() ,
                                   // suffix:suffixWidget?? Container() ,
                                   hintStyle: TextStyle(
                                      height: 1.2,
-                                    fontSize:23.sp,
+                                    fontSize:getResponsiveText(18 , context),
                                     color:Colors.black), // Hint covers entire field
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),

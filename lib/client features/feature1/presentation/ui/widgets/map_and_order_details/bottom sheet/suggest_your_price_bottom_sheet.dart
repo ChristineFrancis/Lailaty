@@ -5,7 +5,7 @@ import 'package:lailaty/common%20features/authentication/presentation/ui/widgets
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
-Future suggestYourPriceBottomSheet(BuildContext context, TextEditingController controller) {
+Future<void> suggestYourPriceBottomSheet(BuildContext context, TextEditingController controller) {
   bool switchValue = false;
   return showModalBottomSheet(
     context: context,
@@ -29,7 +29,7 @@ Future suggestYourPriceBottomSheet(BuildContext context, TextEditingController c
               child:  CustomScrollView(
                 slivers: [
                   SliverFillRemaining(
-                             hasScrollBody: false,
+                  hasScrollBody: false,
                     child: Column(
                        mainAxisSize: MainAxisSize.min, 
                       children: [
@@ -71,7 +71,7 @@ Future suggestYourPriceBottomSheet(BuildContext context, TextEditingController c
                           child: CustomTextWidget(
                             text: 'السعر المقترح لايمكن ان يقل عن 90 ج',
                             color: ColorManager.yellow,
-                            fontSize: 22,
+                            fontSize: 20,
                           ),
                         ),
                         Spacer(flex: 1,),
@@ -84,7 +84,7 @@ Future suggestYourPriceBottomSheet(BuildContext context, TextEditingController c
                               CustomTextWidget(
                                 text: 'نقداً',
                                 color: ColorManager.yellow,
-                                fontSize: 20,
+                                fontSize: 18,
                               ),
                             ],
                           ),
@@ -93,29 +93,31 @@ Future suggestYourPriceBottomSheet(BuildContext context, TextEditingController c
                         Spacer(flex: 1,),
                         Directionality(
                           textDirection: TextDirection.rtl,
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(ImageAssetManager.automaticAcceptanceIcon),
-                              SizedBox(width: widthOfScreen/26,),
-                              CustomTextWidget(
-                                text: 'قبول تلقائي لعرض بقيمة EGP 90',
-                                fontSize: 18,
-                                color: ColorManager.yellow,
-                              ),
-                              SizedBox(width: widthOfScreen/26,),
-                              Switch(
-                                value: switchValue,
-                                onChanged: (value) {
-                                  setState(() {
-                                    switchValue = value;
-                                  });
-                                },
-                                inactiveTrackColor: ColorManager.grey,
-                                inactiveThumbColor: ColorManager.yellow,
-                                activeColor: ColorManager.yellow,
-                                hoverColor: ColorManager.yellow,
-                              ),
-                            ],
+                          child: Expanded(
+                            child: Row(
+                              children: [
+                                SvgPicture.asset(ImageAssetManager.automaticAcceptanceIcon),
+                                SizedBox(width: widthOfScreen/26,),
+                                CustomTextWidget(
+                                  text: 'قبول تلقائي لعرض بقيمة EGP 90',
+                                  fontSize: 16,
+                                  color: ColorManager.yellow,
+                                ),
+                                SizedBox(width: widthOfScreen/30,),
+                                Switch(
+                                  value: switchValue,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      switchValue = value;
+                                    });
+                                  },
+                                  inactiveTrackColor: ColorManager.grey,
+                                  inactiveThumbColor: ColorManager.yellow,
+                                  activeColor: ColorManager.yellow,
+                                  hoverColor: ColorManager.yellow,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Spacer(flex: 3,),

@@ -42,7 +42,9 @@ class _CityDropdownState extends State<CityDropdown> {
               children: [
                 
                 const SizedBox(width: 8),
-                CustomTextWidget(text: 'مصر', color: Colors.black,fontSize: 22,fontWeight:FontWeight.w600 ),
+                CustomTextWidget(text: 'مصر', color: Colors.black,
+                fontSize:getResponsiveText(22, context),
+                fontWeight:FontWeight.w600 ),
                 // Text(
                 //   'مصر', // Display the selected city
                 //   style: const TextStyle(fontSize: 18),

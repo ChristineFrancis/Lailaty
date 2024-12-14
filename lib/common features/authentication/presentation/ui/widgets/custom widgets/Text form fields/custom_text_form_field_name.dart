@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,50 +14,67 @@ class CustomTextFormFieldName extends StatelessWidget {
   final bool isNum;
   final int maxLines;
   final bool isReadonly;
-  // Widget? prefixWidget;
-  // Widget? suffixWidget;
-  
-   CustomTextFormFieldName(
-      {super.key, required this.controller, required this.hintText , this.hintTextColor , this.isArabic=false, this.textAlign=TextAlign.end,
-      this.fontSizeText , this.heightTextFormField , this.isNum=false , this.maxLines=1, this.isReadonly=false
-      //this.prefixWidget , this.suffixWidget
-      });
+
+  CustomTextFormFieldName({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    this.hintTextColor,
+    this.isArabic = false,
+    this.textAlign = TextAlign.end,
+    this.fontSizeText,
+    this.heightTextFormField,
+    this.isNum = false,
+    this.maxLines = 1,
+    this.isReadonly = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     double fieldWidth = screenWidth * 0.8;
-    double fieldheight = screenHeight * 0.05;
-    double fontSize = screenWidth * 0.07;
+    double fieldHeight = screenHeight * 0.05;
+    double fontSize =fontSizeText?? 14;
+    //  screenWidth > 800 ? 
+    //  fontSizeText!=null?
+    //  fontSizeText!.sp*0.5 : 14.sp 
+    // : fontSizeText!=null?fontSizeText!.sp : 14.sp; // Use ScreenUtil for font scaling
+
     return SizedBox(
       width: fieldWidth,
-      height:heightTextFormField?? fieldheight,
+      height: heightTextFormField ?? fieldHeight,
       child: TextFormField(
         readOnly: isReadonly,
         maxLines: maxLines,
-        keyboardType:isNum ? const TextInputType.numberWithOptions(decimal: true) : TextInputType.text ,
-        textDirection:isArabic? TextDirection.rtl :TextDirection.ltr, 
+        keyboardType: isNum
+            ? const TextInputType.numberWithOptions(decimal: true)
+            : TextInputType.text,
+        textDirection:
+            isArabic ? TextDirection.rtl : TextDirection.ltr,
         controller: controller,
         textAlign: textAlign,
-        style:
-            TextStyle(height: screenHeight * 0.001, fontSize: fontSize * 0.8),
+        style: TextStyle(
+          height: 1.2,
+          fontSize: getResponsiveText(fontSize , context),
+          color: Colors.black,
+        ),
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           filled: true,
           fillColor: Colors.white,
           hintText: hintText,
-          // prefix: prefixWidget ?? Container(),
-          // suffixIcon: suffixWidget?? Container() ,
-          // suffix:suffixWidget?? Container() ,
           hintStyle: TextStyle(
-             height: 1.2,
-              fontSize:fontSizeText?? fontSize * 0.8,
-              color:hintTextColor?? ColorManager.grey), // Hint covers entire field
+            height: 1.2,
+            fontSize: getResponsiveText(fontSize , context), // Consistent scaling for hint text
+            color: hintTextColor ?? ColorManager.grey,
+          ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-                color: Colors.black, width: 4), // Thicker border
+              color: Colors.black,
+              width: 4,
+            ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

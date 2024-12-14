@@ -24,6 +24,7 @@ class TravelWidgetAfter extends StatelessWidget {
  final TextEditingController timeController=TextEditingController();
  final TextEditingController numberOfdaysController=TextEditingController();
  final TextEditingController notesController=TextEditingController();
+ final TextEditingController priceController=TextEditingController();
 
  List <CarType> travelCarsType=
   [
@@ -74,7 +75,7 @@ class TravelWidgetAfter extends StatelessWidget {
               Padding(
                 padding:  EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/7, ),
                 child: 
-                PrivateTripAfterWidget(commentsController: commentsController,numberOfdaysController: numberOfdaysController,sizeOfGreySection: sizeOfGreySection,timeController: timeController,),
+                PrivateTripAfterWidget(commentsController: commentsController,numberOfdaysController: numberOfdaysController,sizeOfGreySection: sizeOfGreySection,timeController: timeController,priceController: priceController,),
                 //GeneralTripafterWidget(commentsController: commentsController,numberOfdaysController: numberOfdaysController,sizeOfGreySection: sizeOfGreySection,timeController: timeController,),
               ),
             
