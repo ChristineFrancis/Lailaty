@@ -18,10 +18,12 @@ class CustomTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeigth = MediaQuery.of(context).size.height;
 
     return Text(
       text,
       style: TextStyle(
+        height: screenHeigth * 0.0017,
         color: color,
         fontSize: getResponsiveText(fontSize , context), // Font size relative to screen width
         fontWeight:fontWeight ?? FontWeight.bold,

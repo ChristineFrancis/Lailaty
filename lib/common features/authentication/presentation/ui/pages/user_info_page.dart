@@ -343,7 +343,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                           }
                         }
                       });
-                    }, textColor: Colors.black,buttonColor: ColorManager.yellow,)),
+                    }, textColor: Colors.black,buttonColor: ColorManager.yellow, fontSize: 27,)),
           ),
         ],
       ),

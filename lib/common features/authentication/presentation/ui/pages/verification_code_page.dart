@@ -48,7 +48,7 @@ class VerificationCodePage extends StatelessWidget {
                 text: "تحقق",
                 onPressed: () {},
                 textColor: Colors.black,
-                buttonColor: ColorManager.yellow,
+                buttonColor: ColorManager.yellow, fontSize: 27,
               ),
               const SizedBox(height: 20),
             ],

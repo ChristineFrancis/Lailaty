@@ -9,13 +9,9 @@ class ChooseServiceCard extends StatelessWidget {
   final Color firstTextColor;
   final String secondText;
   final void Function()? onTap;
-  final double screenHeight;
-  final double screenWidth;
 
   const ChooseServiceCard({
     super.key,
-    required this.screenHeight,
-    required this.screenWidth,
     required this.svgPictureName,
     required this.containerColor,
     required this.firstText,
@@ -36,6 +32,8 @@ class ChooseServiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: onTap,
       child: Material(
@@ -64,16 +62,16 @@ class ChooseServiceCard extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                height: screenHeight * screenWidth * 0.00015,
+                //height: screenHeight *  0.00015,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      height: screenHeight * screenWidth * 0.00007,
-                      width: screenWidth * screenHeight * 0.0002,
+                      height: screenHeight * 0.03,
+                      width: screenWidth * 0.172,
                       child: SvgPicture.asset(svgPictureName),
                     ),
                     SizedBox(
@@ -84,15 +82,16 @@ class ChooseServiceCard extends StatelessWidget {
                         color: firstTextColor,
                       ),
                     ),
+                    
                   ],
                 ),
               ),
               SizedBox(
-                height: screenHeight * screenWidth * 0.00032,
+                //height: screenHeight * screenWidth * 0.00032,
                 child: Center(
                   child: CustomTextWidget(
                     text: secondText,
-                    fontSize: 13,
+                    fontSize: 12,
                     color: Colors.black,
                   ),
                 ),

@@ -2,8 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/pages/map_and_order_details_page.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/start_your_journey_page15.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/user_info_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/inbox_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/order_history_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/safity_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/setting_page.dart';
 import 'package:lailaty/common%20features/splash/splash_page.dart';
 import 'package:device_preview/device_preview.dart';
 
