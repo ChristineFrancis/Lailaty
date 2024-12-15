@@ -10,7 +10,7 @@ class StringManager {
   static const String photoLecienceCar = "اضف صور رخصة السيارة :";
   static const String photoFrontBackLecienceCar = "صورة خلفية وصورة أمامية :";
   static const String tam = "تم";
-  static const String pressHere = "اضغط هنا";
+  static const String pressHere = " اضغط هنا ";
   static const String questionToContactWithClientService =
       "إذا كانت لديك أسئلة يرجى التواصل مع ";
   static const String clientService = "خدمة العملاء";
@@ -27,7 +27,7 @@ class StringManager {
   static const String photoLescenceMotor = "صورة رخصة السيارة";
   static const String yearMade = "سنة الصنع";
   static const String moreThanFourChairs = "اكثر من 4 كراسي";
-  static const String serviceOfCleints = "خدمة العملاء";
+  static const String serviceOfCleints = " خدمة العملاء ";
   static const String editingCarToAnother = "معدلة إلى\n نوع سيارة آخر";
   static const String connectToserviceOfClients =
       "إذا كان لديك أسئلة يرجى التواصل مع";

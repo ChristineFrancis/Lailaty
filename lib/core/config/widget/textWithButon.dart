@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -22,29 +23,20 @@ class TextWithButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.zero,
-      child: Wrap(
-        direction: Axis.horizontal,
-        alignment: WrapAlignment.start,
-        runAlignment: WrapAlignment.start,
-        children: [
-          Text(
-            text,
-            maxLines: 12,
-            overflow: TextOverflow.ellipsis,
-            softWrap: true,
-            style: styleOfNormalText,
-          ),
-          TextButton(
-              onPressed: onPress,
-              child: Text(
-                maxLines: 10,
-                softWrap: true,
-                overflow: TextOverflow.ellipsis,
-                textbutton,
+      child: RichText(
+          softWrap: true,
+          maxLines: 12,
+          overflow: TextOverflow.ellipsis,
+          text: TextSpan(children: [
+            TextSpan(
+              text: text,
+              style: styleOfNormalText,
+            ),
+            TextSpan(
+                recognizer: TapGestureRecognizer()..onTap = onPress,
                 style: styleOfButtonText,
-              ))
-        ],
-      ),
+                text: textbutton)
+          ])),
     );
   }
 }

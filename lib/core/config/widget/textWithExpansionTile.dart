@@ -20,19 +20,22 @@ class textWithExpansionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          HeaderText(
-            text: text,
-            styleOfText: StyleManager.normalText18(color: ColorManager.black),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: HeaderText(
+              text: text,
+              styleOfText: StyleManager.normalText18(color: ColorManager.black),
+            ),
           ),
           const SizedBox(
-            width: 6,
+            width: 11,
           ),
-          SizedBox(
-            width: widthOfExpansionTile,
+          Flexible(
+            // width: widthOfExpansionTile,
             child: myExpansionTile(
               text1: textOfOption,
               primaryColor: ColorManager.greyWithOpacity,

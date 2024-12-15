@@ -32,18 +32,18 @@ class CarInfoView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 textWithExpansionTile(
-                  widthOfExpansionTile: MediaQuery.of(context).size.width / 1.5,
+                textWithExpansionTile(
+                  widthOfExpansionTile: MediaQuery.of(context).size.width / 2,
                   text: StringManager.typeOfCar,
                   textOfOption: StringManager.krolla,
                 ),
-                 textWithExpansionTile(
-                  widthOfExpansionTile: MediaQuery.of(context).size.width / 1.5,
+                textWithExpansionTile(
+                  widthOfExpansionTile: MediaQuery.of(context).size.width / 2,
                   text: StringManager.typeGeerOfCar,
                   textOfOption: StringManager.autoGeer,
                 ),
-                 textWithExpansionTile(
-                  widthOfExpansionTile: MediaQuery.of(context).size.width / 1.5,
+                textWithExpansionTile(
+                  widthOfExpansionTile: MediaQuery.of(context).size.width / 2,
                   text: StringManager.numberOfChairsInCars,
                   textOfOption: StringManager.fourChairs,
                 ),
