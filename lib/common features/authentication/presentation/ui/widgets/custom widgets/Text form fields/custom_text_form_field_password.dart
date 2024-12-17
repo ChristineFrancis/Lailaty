@@ -1,29 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 
 class CustomTextFormFieldPassword extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
+  final bool readOnly;
+  final double fontSize;
 
   const CustomTextFormFieldPassword(
-      {super.key, required this.controller, required this.hintText});
+      {super.key,
+      required this.controller,
+      required this.hintText,
+      required this.readOnly,
+      required this.fontSize});
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    double fieldWidth = screenWidth * 0.8;
-    double fieldheight = screenHeight * 0.05;
-    double fontSize = screenWidth * 0.07;
+    double fieldWidth = screenWidth * 345 / 430;
+    double fieldheight = screenHeight * 56 / 932;
+    double getResponsiveText(double fontSize, BuildContext context) {
+      double scalefactor = getScalefactor(context);
+      double responsiveFontSize = fontSize * scalefactor;
+      double lowerLimit = fontSize * .8;
+      double upperLimit = fontSize * 1.2;
+      return responsiveFontSize.clamp(lowerLimit, upperLimit);
+    }
 
     return SizedBox(
       width: fieldWidth,
       height: fieldheight,
       child: TextFormField(
+        readOnly: readOnly,
         obscureText: true,
         controller: controller,
         keyboardType: TextInputType.visiblePassword,
         textAlign: TextAlign.center,
-        style: TextStyle(height: screenHeight * 0.001, fontSize: fontSize),
+        style: TextStyle(
+            height: screenHeight * 0.001,
+            fontSize: getResponsiveText(fontSize, context)),
         decoration: InputDecoration(
           /*contentPadding: const EdgeInsets.symmetric(
                       vertical: 5), // Make the field thinner*/
@@ -31,7 +48,7 @@ class CustomTextFormFieldPassword extends StatelessWidget {
           fillColor: Colors.white,
           hintText: hintText,
           hintStyle: TextStyle(
-              fontSize: fontSize,
+              fontSize: getResponsiveText(fontSize, context),
               color: Colors.grey), // Hint covers entire field
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

@@ -16,11 +16,11 @@ class _DetectGenderWidgetState extends State<DetectGenderWidget> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width * 0.2;
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          width: screenWidth ,
-          padding: EdgeInsets.only(left: screenWidth*0.1),
+          width: screenWidth,
+          padding: EdgeInsets.only(left: screenWidth * 0.1),
           decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(color: Colors.black, width: 2),
@@ -29,7 +29,7 @@ class _DetectGenderWidgetState extends State<DetectGenderWidget> {
           child: DropdownButton<bool>(
             icon: Icon(
               Icons.arrow_drop_down,
-              size: screenWidth*0.4,
+              size: screenWidth * 0.4,
               color: Colors.black,
             ),
             value: selectedGender,
@@ -37,11 +37,13 @@ class _DetectGenderWidgetState extends State<DetectGenderWidget> {
             items: [
               DropdownMenuItem<bool>(
                 value: true,
-                child: CustomTextWidget(text: 'ذكر', fontSize: 14, color: Colors.black),
+                child: CustomTextWidget(
+                    text: 'ذكر', fontSize: 14, color: Colors.black),
               ),
               DropdownMenuItem<bool>(
                   value: false,
-                  child: CustomTextWidget(text: 'انثى', fontSize: 14, color: Colors.black)),
+                  child: CustomTextWidget(
+                      text: 'انثى', fontSize: 14, color: Colors.black)),
             ],
             onChanged: (value) {
               setState(() {
@@ -51,7 +53,7 @@ class _DetectGenderWidgetState extends State<DetectGenderWidget> {
             },
           ),
         ),
-        CustomTextWidget(text: ":النوع", fontSize: 18, color: Colors.black)
+        CustomTextWidget(text: ":النوع", fontSize: 22, color: Colors.black)
       ],
     );
   }

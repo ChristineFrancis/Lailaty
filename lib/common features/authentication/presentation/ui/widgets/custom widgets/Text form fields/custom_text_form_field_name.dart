@@ -33,12 +33,12 @@ class CustomTextFormFieldName extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    double fieldWidth = screenWidth * 0.8;
-    double fieldHeight = screenHeight * 0.05;
-    double fontSize =fontSizeText?? 14;
-    //  screenWidth > 800 ? 
+    double fieldWidth = screenWidth * 314 / 430;
+    double fieldHeight = screenHeight * 56 / 932;
+    double fontSize = fontSizeText ?? 14;
+    //  screenWidth > 800 ?
     //  fontSizeText!=null?
-    //  fontSizeText!.sp*0.5 : 14.sp 
+    //  fontSizeText!.sp*0.5 : 14.sp
     // : fontSizeText!=null?fontSizeText!.sp : 14.sp; // Use ScreenUtil for font scaling
 
     return SizedBox(
@@ -50,13 +50,12 @@ class CustomTextFormFieldName extends StatelessWidget {
         keyboardType: isNum
             ? const TextInputType.numberWithOptions(decimal: true)
             : TextInputType.text,
-        textDirection:
-            isArabic ? TextDirection.rtl : TextDirection.ltr,
+        textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
         controller: controller,
         textAlign: textAlign,
         style: TextStyle(
           height: 1.2,
-          fontSize: getResponsiveText(fontSize , context),
+          fontSize: getResponsiveText(fontSize, context),
           color: Colors.black,
         ),
         decoration: InputDecoration(
@@ -66,7 +65,7 @@ class CustomTextFormFieldName extends StatelessWidget {
           hintText: hintText,
           hintStyle: TextStyle(
             height: 1.2,
-            fontSize: getResponsiveText(fontSize , context), // Consistent scaling for hint text
+            fontSize: getResponsiveText(fontSize, context),
             color: hintTextColor ?? ColorManager.grey,
           ),
           border: OutlineInputBorder(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/inbox_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/order_history_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/safity_page.dart';
@@ -6,6 +7,7 @@ import 'package:lailaty/common%20features/authentication/presentation/ui/pages/s
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_arial.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/Drawer/my_bottom_sheet.dart';
+import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -116,7 +118,12 @@ class MyDrawer extends StatelessWidget {
                   _myTile(context, 'اتصل بنا', Icons.support_agent, () {}),
                   SizedBox(height: screenHeight * 0.1),
                   _captianMood(context),
-                  // TODO: put insta and facebook logo
+                  Row(
+                    children: [
+                      SvgPicture.asset(ImageAssetManager.facebookLogo),
+                      SvgPicture.asset(ImageAssetManager.instaLogo),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -226,7 +233,7 @@ Widget _captianMood(BuildContext context) {
           color: ColorManager.yellow, borderRadius: BorderRadius.circular(8)),
       child: Center(
         child: CustomTextArial(
-            text: 'وضع الشريك السائق', fontSize: 25, color: Colors.black),
+            text: 'وضع الشريك السائق', fontSize: 22, color: Colors.black),
       ),
     ),
   );
