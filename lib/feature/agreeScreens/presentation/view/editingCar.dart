@@ -44,16 +44,16 @@ class EditingCar extends StatelessWidget {
                       text: StringManager.editingCarToAnother,
                       textOfOption: StringManager.krolla),
                   const sizedBox30(),
-               
                   TextWithButtonWidget(
                       onPress: () {},
                       text: StringManager.connectToserviceOfClients,
                       textbutton: StringManager.serviceOfCleints,
                       styleOfButtonText: StyleManager.miniSmallText14(
-                          color: ColorManager.boldyellow),
+                          color: ColorManager.semiBoldyellow),
                       styleOfNormalText: StyleManager.miniSmallText14()),
                   const sizedBox50(),
                   acceptButtonCustomer(
+                    text: StringManager.tam,
                     onPress: () {},
                   ),
                 ],

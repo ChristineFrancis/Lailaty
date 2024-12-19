@@ -22,7 +22,7 @@ class CarInfoView extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppbar(
         ispop: true,
-        title: "معلومات السيارة",
+        title: StringManager.carInfo,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -101,10 +101,11 @@ class CarInfoView extends StatelessWidget {
                     text: StringManager.editingCar,
                     textbutton: StringManager.pressHere,
                     styleOfButtonText: StyleManager.smallBlackText16(
-                        color: ColorManager.boldyellow),
+                        color: ColorManager.semiBoldyellow),
                     styleOfNormalText: StyleManager.smallBlackText16()),
                 const sizedBox50(),
                 acceptButtonCustomer(
+                  text: StringManager.tam,
                   onPress: () {},
                 ),
               ],

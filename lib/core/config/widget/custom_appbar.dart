@@ -12,12 +12,15 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: ColorManager.semiBoldyellow,
         centerTitle: true,
         title: title != null
-            ? Text(
-                '$title',
-                style: const TextStyle(
-                    fontSize: 21,
-                    fontWeight: FontWeight.bold,
-                    color: ColorManager.black),
+            ? FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  '$title',
+                  style: const TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.bold,
+                      color: ColorManager.black),
+                ),
               )
             : null,
         leading: ispop == true
