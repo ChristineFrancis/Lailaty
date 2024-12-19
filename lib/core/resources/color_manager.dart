@@ -18,4 +18,14 @@ abstract class ColorManager {
   static const blackColor = Color(0xff414141);
   static const errorColor = Colors.red;
   static const successColor = Colors.green;
+
+// static const Color appBarColor = Color(0xff707070);>>grey1
+  static const Color backGroundColor = Color(0xffF5F5F5);
+  static const Color cardColor = Color(0xff898883);
+  static const Color yellowTextColor = Color(0xffFFFC01);
+  static const Color dropShadowColor = Color(0x00000029);
+  static const Color blueTextColor = Color(0xff0000FF);
+  static const Color shadowColor = Color.fromARGB(255, 210, 209, 209);
+
+
 }

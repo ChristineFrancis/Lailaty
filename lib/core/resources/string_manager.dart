@@ -33,4 +33,38 @@ class StringManager {
       "إذا كان لديك أسئلة يرجى التواصل مع";
   static const String noteInEditingCar =
       "تنويه: إذا كانت سيارتك معدلة إلى نوع آخر غير نوع السيارة الأساسي وليست مجددة الى موديل أحدث من نفس النوع";
+
+  static const String loginPrompt = "هل تريد التسجيل في تطبيقنا";
+  // static const String supportMessage =
+  //     "اذا كانت لديك اسئلة اخرى يرجى التواصل مع";!>questionToContactWithClientService
+  // static const String customerService = "خدمة العملاء";>>serviceOfCleints
+  static const String car = "سيارة";
+  static const String motorcycle = "دراجة بخارية";
+  static const String add = "إضافة";
+  static const String personalInformation = "المعلومات الشخصية";
+  static const String personalImage = ":الصورة الشخصية";
+  static const String clearFace = "وجه واضح";
+  static const String goodLighting = 'اضاءة جيدة';
+  static const String noFilters = 'بدون فلاتر';
+  static const String nationalIdPhoto = 'صورة البطاقة الشخصية';
+  // static const String frontSidePhoto = 'صورة أمامية';>>addFrontphotoCar
+  // static const String backSidePhoto = 'صورة خلفية';>> addBackphotoCar
+  static const String driverLicenseImage = 'صورة رخصة القيادة';
+  static const String goodConductCertificate = ':شهادة حسن سيرة وسلوك';
+  static const String optionalLabel = '(اختياري)';
+  static const String missingCriminalRecordMessage =
+      'في حال لم تقم بإضافة الفيش الجنائي عليك اضافته';
+  static const String notificationPromptMessage = 'عند إشعارك بذلك';
+
+  static const String birthDate = ':تاريخ الميلاد';
+  static const String next = 'التالي';
+  static const String select = 'اختر';
+  static const String uploadAllImages =
+      'يرجى رفع جميع الصور المطلوبة قبل المتابعة.';
+  static const String selectBirthDate = 'يرجى اختيار تاريخ الميلاد.';
+
+  static const String securityInformation = 'معلومات الامان';
+  static const String declarationAndCommitment = 'إقرار وعهد';
+  static const String ensureAppSafetyMessage =
+      'لضمان سلامة التطبيق، في حال لم تقم بتحميل شهادة حسن';
 }
