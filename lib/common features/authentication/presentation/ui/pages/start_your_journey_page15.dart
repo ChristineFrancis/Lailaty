@@ -16,6 +16,7 @@ class StartYourJourneyPage15 extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: ColorManager.grey100,
       appBar: StartYourJourneyAppbar(),
       body: SingleChildScrollView(

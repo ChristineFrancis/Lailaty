@@ -75,7 +75,7 @@ class ChooseServiceCard extends StatelessWidget {
                       //height: screenHeight * 0.03,
                       child: CustomTextWidget(
                         text: firstText,
-                        fontSize: 22,
+                        fontSize: 19,
                         color: firstTextColor,
                       ),
                     ),

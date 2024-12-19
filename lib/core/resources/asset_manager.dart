@@ -44,4 +44,7 @@ class ImageAssetManager {
   static String caporlehCarPic = "$rootImage/كابورليه.svg";
   static String facebookLogo = "$rootImage/facebook logo.svg";
   static String instaLogo = "$rootImage/instagram logo.svg";
+
+  static String lLetter = "$rootImage/L.svg";
+  static String yLetter = "$rootImage/y.svg";
 }
