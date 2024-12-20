@@ -4,6 +4,7 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/state_managment/birthdate_view_model.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/state_managment/personal_information_view.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/carInfo.dart';
+import 'package:lailaty/feature/agreeScreens/presentation/view/login_prompt_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/personal_information_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/security_information_page.dart';
 import 'package:provider/provider.dart';
@@ -39,7 +40,18 @@ class Routes {
         path: AppKeys.securityInformationPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
-          child: const SecurityInformationPage(),
+          child: ChangeNotifierProvider(
+            create: (context) => PersonalInformationView(),
+            child: const SecurityInformationPage(),
+          ),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.loginPromptPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const LoginPromptPage(),
           transitionsBuilder: _fadeTransition,
         ),
       ),

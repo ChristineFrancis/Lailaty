@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/go_router/go_router.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/view/personInfo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-
-        routerConfig: Routes().router,
-        debugShowCheckedModeBanner: false,
-
+      routerConfig: Routes().router,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

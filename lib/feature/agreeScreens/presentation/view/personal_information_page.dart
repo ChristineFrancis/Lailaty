@@ -7,6 +7,7 @@ import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/state_managment/birthdate_view_model.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/state_managment/personal_information_view.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/birth_date_widget.dart';
+import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/client_service_row.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/driver_license_image_widget.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/good_conduct_certificate_widget.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/national_id_photo_widget.dart';
@@ -68,6 +69,10 @@ class PersonalInformationPage extends StatelessWidget {
                   const BirthDateWidget(),
                   SizedBox(
                     height: context.screenHeight * 0.02,
+                  ),
+                  const ClientServiceRow(),
+                  SizedBox(
+                    height: context.screenHeight * 0.01,
                   ),
                 ],
               ),

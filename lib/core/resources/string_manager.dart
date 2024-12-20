@@ -4,7 +4,7 @@ class StringManager {
   static const String editingCar = "إذا كانت سيارتك معدلة";
   static const String photoCar = "اضف صور السيارة :";
   static const String addAroundphotoCar = "صور جانبية عدد 2:";
-  static const String addBackphotoCar = "صورة خلفية:";
+  static const String addBackphotoCar = "صورة خلفية";
   static const String addFrontphotoCar = "صورة أمامية";
   static const String addInsidephotoCar = "صورة داخلية:";
   static const String photoLecienceCar = "اضف صور رخصة السيارة :";
@@ -53,18 +53,27 @@ class StringManager {
   static const String goodConductCertificate = ':شهادة حسن سيرة وسلوك';
   static const String optionalLabel = '(اختياري)';
   static const String missingCriminalRecordMessage =
-      'في حال لم تقم بإضافة الفيش الجنائي عليك اضافته';
+      'في حال لم تقم بإضافة الفيش الجنائي عليك اضافته*';
   static const String notificationPromptMessage = 'عند إشعارك بذلك';
 
   static const String birthDate = ':تاريخ الميلاد';
   static const String next = 'التالي';
   static const String select = 'اختر';
   static const String uploadAllImages =
-      'يرجى رفع جميع الصور المطلوبة قبل المتابعة.';
+      'يرجى رفع جميع الصور المطلوبة قبل المتابعة';
   static const String selectBirthDate = 'يرجى اختيار تاريخ الميلاد.';
 
   static const String securityInformation = 'معلومات الامان';
-  static const String declarationAndCommitment = 'إقرار وعهد';
+  static const String declarationAndCommitment = 'إقرار وتعهد';
   static const String ensureAppSafetyMessage =
       'لضمان سلامة التطبيق، في حال لم تقم بتحميل شهادة حسن';
+
+  static const String goodConductCertificateMessage =
+      'سيرة وسلوك يرجى إضافته حتى إشعار آخر';
+  static const String agreeAndCommitMessage =
+      'LAYLATYأقر وأتعهد بأنه عند قبول وتوصيل الرحلات في';
+  static const String certificateRequiredMessage =
+      'يجب أن أحمل شهادة حسن سيرة وسلوك عند إشعاري بذلك';
+  static const String delayWillSuspendAccountMessage =
+      'أي تأخير في هذه العملية سيؤدي الى توقيف حساب السائق الخاص بي';
 }

@@ -7,4 +7,5 @@ class AppKeys {
   static const String certificate = 'certificate';
   static const String personalInformationPageKey = '/pesonal_page';
   static const String securityInformationPageKey = '/security_page';
+  static const String loginPromptPageKey = '/loginPrompt_Page';
 }
