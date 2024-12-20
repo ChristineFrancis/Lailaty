@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Segeo",
       ),
-      home: TestPage(),
+      home: SplashVideo(),
     );
   }
 }
