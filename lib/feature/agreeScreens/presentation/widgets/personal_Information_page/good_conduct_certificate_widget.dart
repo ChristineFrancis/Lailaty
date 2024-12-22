@@ -38,8 +38,14 @@ class GoodConductCertificateWidget extends StatelessWidget {
           const TitleForDetailsWidget(
             title: StringManager.goodConductCertificate,
           ),
+          SizedBox(
+            height: context.screenHeight * 0.01,
+          ),
           const DetailsText(
             text: StringManager.optionalLabel,
+          ),
+          SizedBox(
+            height: context.screenHeight * 0.01,
           ),
           ImagePickerPlaceHolder(
             noImgeWidget: Icon(
@@ -48,7 +54,7 @@ class GoodConductCertificateWidget extends StatelessWidget {
               color: ColorManager.grey1,
             ),
             width: context.screenWidth * 0.3,
-            height: context.screenHeight * 0.18,
+            height: context.screenWidth * 0.3, //context.screenHeight * 0.18,
             hasImage: selectedImage == null,
             imageFile: selectedImage,
             onTap: () async {
@@ -61,6 +67,9 @@ class GoodConductCertificateWidget extends StatelessWidget {
               }
             },
           ),
+          SizedBox(
+            height: context.screenHeight * 0.01,
+          ),
           const DetailsText(
             text: StringManager.missingCriminalRecordMessage,
           ),
@@ -68,7 +77,7 @@ class GoodConductCertificateWidget extends StatelessWidget {
             text: StringManager.notificationPromptMessage,
           ),
           SizedBox(
-            height: context.screenHeight * 0.02,
+            height: context.screenHeight * 0.03,
           ),
         ],
       ),

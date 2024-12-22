@@ -64,7 +64,8 @@ class DriverLicenseImageWidget extends StatelessWidget {
                   color: ColorManager.grey1,
                 ),
                 width: context.screenWidth * 0.3,
-                height: context.screenHeight * 0.18,
+                height:
+                    context.screenWidth * 0.3, //context.screenHeight * 0.18,
                 hasImage: selectedFrontImage == null,
                 imageFile: selectedFrontImage,
                 onTap: () async {
@@ -84,7 +85,8 @@ class DriverLicenseImageWidget extends StatelessWidget {
                   color: ColorManager.grey1,
                 ),
                 width: context.screenWidth * 0.3,
-                height: context.screenHeight * 0.18,
+                height:
+                    context.screenWidth * 0.3, //context.screenHeight * 0.18,
                 hasImage: selectedBackImage == null,
                 imageFile: selectedBackImage,
                 onTap: () async {
@@ -100,7 +102,7 @@ class DriverLicenseImageWidget extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: context.screenHeight * 0.02,
+            height: context.screenHeight * 0.03,
           )
         ],
       ),

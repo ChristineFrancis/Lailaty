@@ -47,7 +47,7 @@ class PersonalImageWidget extends StatelessWidget {
           ImagePickerPlaceHolder(
             noImgeWidget: const NoImagePlaceholderWidget(),
             width: context.screenWidth * 0.3,
-            height: context.screenHeight * 0.18,
+            height: context.screenWidth * 0.3, //context.screenHeight * 0.18,
             hasImage: selectedImage == null,
             imageFile: selectedImage,
             onTap: () async {
@@ -70,7 +70,7 @@ class PersonalImageWidget extends StatelessWidget {
             text: StringManager.noFilters,
           ),
           SizedBox(
-            height: context.screenHeight * 0.02,
+            height: context.screenHeight * 0.03,
           )
         ],
       ),
