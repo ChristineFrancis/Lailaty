@@ -7,6 +7,7 @@ import 'package:lailaty/feature/agreeScreens/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/login_prompt_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/personal_information_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/security_information_page.dart';
+import 'package:lailaty/feature/travel/presentation/view/travel_page.dart';
 import 'package:provider/provider.dart';
 
 class Routes {
@@ -52,6 +53,14 @@ class Routes {
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: const LoginPromptPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.travelPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const TravelPage(),
           transitionsBuilder: _fadeTransition,
         ),
       ),

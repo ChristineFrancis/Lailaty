@@ -28,8 +28,8 @@ class SecurityInformationPage extends StatelessWidget {
         title: const Text(
           StringManager.securityInformation,
           style: TextStyle(
-            fontWeight: FontWeight.w500,
-            color: ColorManager.yellowTextColor,
+            fontWeight: FontWeight.bold,
+            color: ColorManager.black,
           ),
         ),
         backgroundColor: ColorManager.grey1,
@@ -43,7 +43,7 @@ class SecurityInformationPage extends StatelessWidget {
           IconButton(
             icon: const Icon(
               Icons.arrow_forward,
-              color: ColorManager.yellowAccent,
+              color: ColorManager.black,
             ),
             onPressed: () {
               context.pop();
@@ -92,10 +92,12 @@ class SecurityInformationPage extends StatelessWidget {
             ),
             const ClientServiceRow(),
             SizedBox(
-              height: context.screenHeight * 0.1,
+              height: context.screenHeight * 0.15,
             ),
             NextBotton(
-              onTap: () {},
+              onTap: () {
+                context.push(AppKeys.travelPageKey);
+              },
             ),
           ],
         ),

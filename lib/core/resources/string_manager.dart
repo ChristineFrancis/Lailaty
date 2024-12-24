@@ -76,4 +76,25 @@ class StringManager {
       'يجب أن أحمل شهادة حسن سيرة وسلوك عند إشعاري بذلك';
   static const String delayWillSuspendAccountMessage =
       'أي تأخير في هذه العملية سيؤدي الى توقيف حساب السائق الخاص بي';
+
+  static const String travelTitle = 'سفر';
+  static const String orderHistory = "سجل الطلبات";
+  static const String orders = "الطلبات";
+  static const String ordersOverview = 'قيد الانتظار 1 ، الطلبات المقبولة 1';
+  static const String aLetter = 'A';
+  static const String bLetter = 'B';
+  static const String cityAlexandria = 'الإسكندرية';
+  static const String paths = 'مسارات';
+  static const String when = 'متى';
+  static const String notifyNewOrders = 'اخطرني بالطلبات الجديدة';
+  static const String tripFareDetails = "نظير 3 ركاب EGP";
+  static const String privateTrip = 'رحلة خاصة';
+  static const String cash = 'نقداً';
+  static const String dateTimeExample = 'الأربعاء 30 نوفمبر 5:30 مساءاً';
+  static const String alexandriaStreetExample = "...الإسكندرية شارع";
+  static const String elapsedTimeExample = "منذ 50 دقيقة";
+  static const String exampleCaptainName = "محمد";
+  static const String acceptAnOffer = 'EGP قبول عرض  88';
+  static const String suggestYourPrice = 'اقترح سعرك';
+  static const String viewOnMap = 'عرض على الخريطة';
 }

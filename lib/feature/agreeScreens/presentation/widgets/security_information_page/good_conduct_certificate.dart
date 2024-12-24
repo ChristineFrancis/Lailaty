@@ -53,7 +53,7 @@ class GoodConductCertificateContainer extends StatelessWidget {
           ImagePickerPlaceHolder(
             noImgeWidget: const NoImagePlaceholderWidget(),
             width: context.screenWidth * 0.3,
-            height: context.screenHeight * 0.18,
+            height: context.screenWidth * 0.3, //context.screenHeight * 0.18,
             hasImage: selectedImage == null,
             imageFile: selectedImage,
             onTap: () async {
