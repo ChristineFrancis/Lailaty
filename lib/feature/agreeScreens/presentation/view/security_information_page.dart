@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 
@@ -34,6 +36,7 @@ class SecurityInformationPage extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   //!change this !!
+                  context.push(AppKeys.loginPromptPageKey);
                 },
                 child: Container(
                   width: context.screenWidth * 0.8,

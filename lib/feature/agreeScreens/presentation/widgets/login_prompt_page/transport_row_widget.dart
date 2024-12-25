@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/login_prompt_page/mode_of_transport_card_widget.dart';
+
+import '../../../../../core/resources/key_manager.dart';
 
 class TransportRowWidget extends StatelessWidget {
   const TransportRowWidget({
@@ -9,14 +12,20 @@ class TransportRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         ModeOfTransportCardWidget(
           transportMode: StringManager.motorcycle,
+          onTap: () {
+            context.push(AppKeys.motorInfoPath);
+          },
         ),
         ModeOfTransportCardWidget(
           transportMode: StringManager.car,
+          onTap: () {
+            context.push(AppKeys.carInfoPath);
+          },
         ),
       ],
     );

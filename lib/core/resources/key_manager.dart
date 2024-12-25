@@ -3,8 +3,24 @@ class AppKeys {
   static const String nationalIdFront = 'national_id_front';
   static const String nationalIdBack = 'national_id_back';
   static const String licenseFront = 'license_Front';
+  static const String carFront = 'car_Front';
+  static const String carBack = 'car_Back';
+  static const String carleft = 'car_Left';
+  static const String carRight = 'car_Right';
+  static const String carInner = 'car_Inner';
+
+  static const String frontLecienceCar= 'front_lecience_car';
+static const String backLecienceCar= 'back_lecience_car';
   static const String licenseBack = 'license_Back';
   static const String certificate = 'certificate';
-  static const String personalInformationPageKey = '/pesonal_page';
+  static const String editingCarPage = '/EditingCar';
+  //pages
+  static const String personalInformationPageKey = '/';
   static const String securityInformationPageKey = '/security_page';
+  static const String loginPromptPageKey = '/LoginPromptPage';
+
+  static String carInfoPath = "/carInfoView";
+  static String motorInfoPath = "/MotorInfoView";
+  static String showCategoryPath = "/CategoryView";
+  static String noticeToDriverPath = "/NoticeToDriverView";
 }

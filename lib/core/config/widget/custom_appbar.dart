@@ -9,7 +9,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        backgroundColor: ColorManager.semiBoldyellow,
+        backgroundColor: ColorManager.greyWithOpacity,
         centerTitle: true,
         title: title != null
             ? FittedBox(

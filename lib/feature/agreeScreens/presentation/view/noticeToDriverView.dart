@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/widget/Titles.dart';
 
 import 'package:lailaty/core/config/widget/custom_appbar.dart';
@@ -8,6 +9,7 @@ import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 
 import '../../../../core/config/widget/accept_button_customer.dart';
+import '../../../../core/resources/key_manager.dart';
 
 class NoticeToDriverView extends StatelessWidget {
   const NoticeToDriverView({super.key});
@@ -49,7 +51,9 @@ class NoticeToDriverView extends StatelessWidget {
                   const sizedBox30(),
                   acceptButtonCustomer(
                     text: StringManager.next,
-                    onPress: () {},
+                    onPress: () {
+                      context.push(AppKeys.showCategoryPath);
+                    },
                   ),
                 ],
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/widget/Titles.dart';
 import 'package:lailaty/core/config/widget/my_sized_box.dart';
 import 'package:lailaty/core/config/widget/textWithExpansionTile.dart';
@@ -10,6 +11,7 @@ import '../../../../core/config/widget/accept_button_customer.dart';
 import '../../../../core/config/widget/custom_appbar.dart';
 import '../../../../core/config/widget/textWithButon.dart';
 import '../../../../core/resources/color_manager.dart';
+import '../../../../core/resources/key_manager.dart';
 
 class EditingCar extends StatelessWidget {
   const EditingCar({super.key});
@@ -54,7 +56,9 @@ class EditingCar extends StatelessWidget {
                   const sizedBox50(),
                   acceptButtonCustomer(
                     text: StringManager.tam,
-                    onPress: () {},
+                    onPress: () {
+                      context.push(AppKeys.noticeToDriverPath);
+                    },
                   ),
                 ],
               ),

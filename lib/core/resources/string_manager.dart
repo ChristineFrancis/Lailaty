@@ -2,13 +2,15 @@ class StringManager {
   static const String carInfo = "معلومات السيارة";
   static const String typeOfCar = "نوع السيارة : ";
   static const String editingCar = "إذا كانت سيارتك معدلة";
-  static const String photoCar = "اضف صور السيارة :";
-  static const String addAroundphotoCar = "صور جانبية عدد 2:";
+  static const String photoCar = "صور السيارة";
+  static const String addphotoCar = "يرجى إضافة 5 صور :";
+  static const String photosCar =
+      "صورة أمامية\nصورة خلفية\nصورة داخلية\nصورتان جانبيتان";
   static const String addBackphotoCar = "صورة خلفية:";
   static const String addFrontphotoCar = "صورة أمامية :";
   static const String addInsidephotoCar = "صورة داخلية :";
-  static const String photoLecienceCar = "اضف صور رخصة السيارة :";
-  static const String photoFrontBackLecienceCar = "صورة خلفية وصورة أمامية :";
+  static const String photoLecienceCar = "صور رخصة السيارة";
+  static const String photoFrontBackLecienceCar = "صورة خلفية\nصورة أمامية";
   static const String tam = "تم";
   static const String pressHere = " اضغط هنا ";
   static const String questionToContactWithClientService =
@@ -35,7 +37,7 @@ class StringManager {
   static const String next = "التالي";
   static const String noticeContentSecondPart =
       " اثناء التفاوض والنسبة المذكورة تؤخذ مقدما من العميل للتطبيق بعد التفاوض وقبول الكابتن بالمشوار وباقي المبلغ صافي ربح لك \nتعتبر هذه الميزة أفضلية للشريك السائق لضمان عدم تلاعب الراكب بوقت الشريك\n عند اختيارك فئة زفاف-رجال اعمال قم بالتسجيل في الفئة السعرية المناسبة لسيارتك\n لتتمكن من المنافسة والتميز مع الشركاء السائقين لفئتك السعرية والحصول على مشاوير اكثر مع وجود حد ادنى للسعر في كل فئة من الفئات الموجوده ويتم مضاعفة الحد الأدنى إذا حجز العميل اكثر من يوم على سبيل المثال يختار الراكب الفئة السعرية المناسبة له بنفسه \nويتم التفاوض مع الكابتن علي عدد ساعات الزفه او المشوار والمسافه المقطوعه حتي الوصول للسعر العادل بين الطرفين \nفي حالة إلغائك للمشوار بعد التفاوض عليه وتحديد السعر المناسب الذي يشمل نسبة التطبيق وقبوله وتحويل العميل نسبة التطبيق كجدية حجز مسبق يتم إيقاف حسابك حتى سداد المخالفة المالية التي يحددها التطبيق بسبب إلغائك للمشوار بعد قبوله بإستثناء في حال كان الإلغاء لأمر طارئ(لاقدر الله) يتم التواصل مع خدمة العملاء للنظر فيه وعند إثباتك للحالة الطارئة سيتم التواصل مباشرة من قبل خدمة العملاء لتطبيق ليلتي بطلب رحلة مدفوعة من التطبيق لإرسال  اقرب شريك كابتن إليك لمساعدتك إذا كان الأمر الطارئ خاص بعطل في سيارتك وعدم وقوع اي مخالفه عليك : ويتم مكافئه الشريك السائق لتقديم المساعده بمكافئته وترقيه تقيمه نظراً لجهوده الانسانيه في مساعدتك من خلال تقييمك له";
-  static const String editingCarToAnother = "معدلة إلى\n نوع سيارة آخر";
+  static const String editingCarToAnother = "معدلة إلى نوع سيارة آخر";
   static const String connectToserviceOfClients =
       "إذا كان لديك أسئلة يرجى التواصل مع";
   static const String showCategoryCars = "اختر جميع الفئات المناسبة لسيارتك";
@@ -46,12 +48,12 @@ class StringManager {
   static const String onYourMode = "على مودك";
   static const String rigester = "تسجيل";
   static const String withoutCost = "بدون عمولة";
-  static const String  contectOfdriving= "";
-  static const String  contectOfwidding= "";
-  static const String  contectOfrideMotor= "";
-  static const String  contectOfrideCar= "";
-  static const String  contectOfridetraveling= "";
-  static const String  contectOfrideMode= "";
+  static const String contectOfdriving = "";
+  static const String contectOfwidding = "";
+  static const String contectOfrideMotor = "";
+  static const String contectOfrideCar = "";
+  static const String contectOfridetraveling = "";
+  static const String contectOfrideMode = "";
   static const String noteInEditingCar =
       "تنويه: إذا كانت سيارتك معدلة إلى نوع آخر غير نوع السيارة الأساسي وليست مجددة الى موديل أحدث من نفس النوع";
 
@@ -78,7 +80,6 @@ class StringManager {
   static const String notificationPromptMessage = 'عند إشعارك بذلك';
 
   static const String birthDate = ':تاريخ الميلاد';
-  static const String next = 'التالي';
   static const String select = 'اختر';
   static const String uploadAllImages =
       'يرجى رفع جميع الصور المطلوبة قبل المتابعة.';

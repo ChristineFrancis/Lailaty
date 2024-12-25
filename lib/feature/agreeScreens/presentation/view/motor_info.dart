@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/widget/Titles.dart';
 import 'package:lailaty/core/config/widget/addPhoto.dart';
 import 'package:lailaty/core/config/widget/custom_appbar.dart';
@@ -13,6 +14,7 @@ import 'package:lailaty/feature/agreeScreens/presentation/view/editingCar.dart';
 
 import '../../../../core/config/widget/accept_button_customer.dart';
 import '../../../../core/config/widget/textWithExpansionTile.dart';
+import '../../../../core/resources/key_manager.dart';
 
 class MotorInfoView extends StatelessWidget {
   const MotorInfoView({super.key});
@@ -81,8 +83,10 @@ class MotorInfoView extends StatelessWidget {
                         color: ColorManager.boldyellow),
                     styleOfNormalText: StyleManager.smallBlackText16()),
                 acceptButtonCustomer(
-                text:   StringManager.tam,
-                  onPress: () {},
+                  text: StringManager.tam,
+                  onPress: () {
+                    context.push(AppKeys.noticeToDriverPath);
+                  },
                 ),
               ],
             ),
