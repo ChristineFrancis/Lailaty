@@ -24,11 +24,12 @@ class NextBotton extends StatelessWidget {
               color: ColorManager.grey1,
               borderRadius: BorderRadius.circular(5),
             ),
-            child: const Center(
+            child: Center(
               child: Text(
                 StringManager.next,
                 style: TextStyle(
-                  color: ColorManager.yellowTextColor,
+                  fontSize: context.screenWidth * 0.05,
+                  color: ColorManager.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),

@@ -55,6 +55,7 @@ class PersonalInformationView extends ChangeNotifier {
         viewModel.getImage(AppKeys.nationalIdBack) != null &&
         viewModel.getImage(AppKeys.personalPhoto) != null;
   }
+
   bool validateImagesInCarInfoView(BuildContext context) {
     final viewModel = context.read<PersonalInformationView>();
 
@@ -62,8 +63,16 @@ class PersonalInformationView extends ChangeNotifier {
         viewModel.getImage(AppKeys.backLecienceCar) != null &&
         viewModel.getImage(AppKeys.carBack) != null &&
         viewModel.getImage(AppKeys.carFront) != null &&
-        viewModel.getImage(AppKeys.carInner) != null&&
-        viewModel.getImage(AppKeys.carRight) != null&&
+        viewModel.getImage(AppKeys.carInner) != null &&
+        viewModel.getImage(AppKeys.carRight) != null &&
         viewModel.getImage(AppKeys.carleft) != null;
+  }
+
+  bool validateImagesInMotorInfoView(BuildContext context) {
+    final viewModel = context.read<PersonalInformationView>();
+
+    return viewModel.getImage(AppKeys.motorPhoto) != null &&
+        viewModel.getImage(AppKeys.frontMotorLicence) != null &&
+        viewModel.getImage(AppKeys.backLecienceCar) != null;
   }
 }

@@ -7,8 +7,8 @@ import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/state_managment/birthdate_view_model.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/state_managment/personal_information_view.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/birth_date_widget.dart';
+import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/client_service_row.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/driver_license_image_widget.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/good_conduct_certificate_widget.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/national_id_photo_widget.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/next_botton_widget.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/personal_image_widget.dart';
@@ -28,8 +28,8 @@ class PersonalInformationPage extends StatelessWidget {
         title: const Text(
           StringManager.personalInformation,
           style: TextStyle(
-            fontWeight: FontWeight.w500,
-            color: ColorManager.yellowTextColor,
+            fontWeight: FontWeight.bold,
+            color: ColorManager.black,
           ),
         ),
         backgroundColor: ColorManager.grey1,
@@ -61,13 +61,17 @@ class PersonalInformationPage extends StatelessWidget {
                     sectionIdFront: AppKeys.licenseFront,
                     sectionIdBack: AppKeys.licenseBack,
                   ),
-                  GoodConductCertificateWidget(
-                    viewModel: viewModel,
-                    sectionId: AppKeys.certificate,
-                  ),
+                  // GoodConductCertificateWidget(
+                  //   viewModel: viewModel,
+                  //   sectionId: AppKeys.certificate,
+                  // ),
                   const BirthDateWidget(),
                   SizedBox(
                     height: context.screenHeight * 0.02,
+                  ),
+                  const ClientServiceRow(),
+                  SizedBox(
+                    height: context.screenHeight * 0.01,
                   ),
                 ],
               ),

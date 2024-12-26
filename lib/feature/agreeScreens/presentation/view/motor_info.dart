@@ -10,18 +10,25 @@ import 'package:lailaty/core/config/widget/textWithButon.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
+import 'package:lailaty/feature/agreeScreens/presentation/state_managment/personal_information_view.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/editingCar.dart';
+import 'package:lailaty/feature/agreeScreens/presentation/widgets/car_info_page/my_container_with_bottom_border.dart';
+import 'package:lailaty/feature/agreeScreens/presentation/widgets/motor_info_page/add_motor_photo_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/config/widget/accept_button_customer.dart';
 import '../../../../core/config/widget/textWithExpansionTile.dart';
 import '../../../../core/resources/key_manager.dart';
+import '../widgets/motor_info_page/add_photo_licence_motor.dart';
 
 class MotorInfoView extends StatelessWidget {
   const MotorInfoView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<PersonalInformationView>();
     return Scaffold(
+      backgroundColor: ColorManager.backGroundColor,
       appBar: CustomAppbar(
         ispop: true,
         title: StringManager.motorInfo,
@@ -39,53 +46,66 @@ class MotorInfoView extends StatelessWidget {
                   text: StringManager.yearMade,
                   textOfOption: "1970",
                 ),
-                const sizedBox50(),
-                FittedBox(
-                  child: addPhotoWidget(
-                    onPressed: () {},
-                    numberOfAddPhotoContainer: 1,
-                    styleOfText: StyleManager.smallBlackText16(
-                        color: ColorManager.black),
-                    title: StringManager.photoMotor,
+                myContainerWithBottomBorder(
+                  contentWidget: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: HeaderText(
+                          text: StringManager.photoMotor,
+                          styleOfText: StyleManager.normalText18(
+                              color: ColorManager.black),
+                        ),
+                      ),
+                      const sizedBox50(),
+                      addMotorPhotoWidget(
+                          viewModel: viewModel,
+                          selectedPhoto:
+                              viewModel.getImage(AppKeys.motorPhoto)),
+                      const sizedBox50(),
+                    ],
                   ),
                 ),
-                HeaderText(
-                  text: StringManager.photoLescenceMotor,
-                  styleOfText:
-                      StyleManager.normalText18(color: ColorManager.black),
-                ),
-                FittedBox(
-                  fit: BoxFit.cover,
-                  child: addPhotoWidget(
-                    onPressed: () {},
-                    numberOfAddPhotoContainer: 1,
-                    styleOfText: StyleManager.smallBlackText16(
-                        color: ColorManager.black),
-                    title: StringManager.addFrontphotoCar,
+                myContainerWithBottomBorder(
+                  contentWidget: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: HeaderText(
+                          text: StringManager.photoLecienceCar,
+                          styleOfText: StyleManager.normalText18(
+                              color: ColorManager.black),
+                        ),
+                      ),
+                      const sizedBox50(),
+                      addLecienceMotorPhotoWidget(
+                        viewModel: viewModel,
+                        selectedFrontPhoto:
+                            viewModel.getImage(AppKeys.frontMotorLicence),
+                        selectedBackPhoto:
+                            viewModel.getImage(AppKeys.backMotorLicence),
+                      ),
+                      const sizedBox50(),
+                    ],
                   ),
                 ),
-                FittedBox(
-                  fit: BoxFit.cover,
-                  child: addPhotoWidget(
-                    onPressed: () {},
-                    numberOfAddPhotoContainer: 1,
-                    styleOfText: StyleManager.smallBlackText16(
-                        color: ColorManager.black),
-                    title: StringManager.addBackphotoCar,
-                  ),
-                ),
-                const sizedBox30(),
                 TextWithButtonWidget(
                     onPress: () {},
                     text: StringManager.connectToserviceOfClients,
                     textbutton: StringManager.serviceOfCleints,
                     styleOfButtonText: StyleManager.smallBlackText16(
-                        color: ColorManager.boldyellow),
+                        color: ColorManager.blueTextColor),
                     styleOfNormalText: StyleManager.smallBlackText16()),
+                const sizedBox50(),
                 acceptButtonCustomer(
                   text: StringManager.tam,
                   onPress: () {
-                    context.push(AppKeys.noticeToDriverPath);
+                   if(viewModel.validateImagesInMotorInfoView(context)){
+                     context.push(AppKeys.noticeToDriverPath);
+                   }else{
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(StringManager.uploadAllImages)));
+                   }
                   },
                 ),
               ],

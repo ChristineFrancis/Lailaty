@@ -8,19 +8,23 @@ class AppKeys {
   static const String carleft = 'car_Left';
   static const String carRight = 'car_Right';
   static const String carInner = 'car_Inner';
+  static const String motorPhoto = 'motor_photo';
+  static const String frontMotorLicence = 'front_licence_motor';
+  static const String backMotorLicence = 'back_licence_motor';
 
-  static const String frontLecienceCar= 'front_lecience_car';
-static const String backLecienceCar= 'back_lecience_car';
+  static const String frontLecienceCar = 'front_lecience_car';
+  static const String backLecienceCar = 'back_lecience_car';
   static const String licenseBack = 'license_Back';
   static const String certificate = 'certificate';
   static const String editingCarPage = '/EditingCar';
   //pages
-  static const String personalInformationPageKey = '/';
+  static const String personalInformationPageKey = '/personalInformationPage';
   static const String securityInformationPageKey = '/security_page';
-  static const String loginPromptPageKey = '/LoginPromptPage';
+  static const String loginPromptPageKey = '/';
 
   static String carInfoPath = "/carInfoView";
   static String motorInfoPath = "/MotorInfoView";
   static String showCategoryPath = "/CategoryView";
   static String noticeToDriverPath = "/NoticeToDriverView";
+  static const String travelPageKey = '/travel_Page';
 }

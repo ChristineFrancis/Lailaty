@@ -14,7 +14,7 @@ class DetailsText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        fontSize: context.screenWidth * 0.04,
+        fontSize: context.screenWidth * 0.032,
         fontWeight: FontWeight.w400,
         color: ColorManager.blackColor,
       ),

@@ -15,7 +15,7 @@ import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/car_info_page/add_back_car_photo_widget.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/widgets/car_info_page/add_car_lecience_front_photo.dart';
+import 'package:lailaty/feature/agreeScreens/presentation/widgets/car_info_page/add_car_lecience_photo.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/car_info_page/add_inner_car_photo_widget.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/car_info_page/add_left_car_photo_widget%20copy%203.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/car_info_page/add_right_car_photo_widget%20copy.dart';
@@ -210,6 +210,9 @@ class CarInfoView extends StatelessWidget {
                   onPress: () {
                     if (viewModel.validateImagesInCarInfoView(context)) {
                       context.push(AppKeys.noticeToDriverPath);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(StringManager.uploadAllImages)));
                     }
                   },
                 ),

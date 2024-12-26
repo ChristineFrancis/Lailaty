@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
@@ -8,18 +9,20 @@ import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Infor
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/no_image_placeholder_widget.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/title_for_details_widget.dart';
 
-class PersonalImageWidget extends StatelessWidget {
-  const PersonalImageWidget({
+class GoodConductCertificateContainer extends StatelessWidget {
+  const GoodConductCertificateContainer({
     super.key,
+    required this.selectedImage,
     required this.viewModel,
     required this.sectionId,
   });
 
+  final File? selectedImage;
   final PersonalInformationView viewModel;
   final String sectionId;
+
   @override
   Widget build(BuildContext context) {
-    final selectedImage = viewModel.getImage(sectionId);
     return Container(
       margin: const EdgeInsets.all(20),
       width: context.screenWidth,
@@ -39,7 +42,10 @@ class PersonalImageWidget extends StatelessWidget {
       child: Column(
         children: [
           const TitleForDetailsWidget(
-            title: StringManager.personalImage,
+            title: StringManager.goodConductCertificate,
+          ),
+          const DetailsText(
+            text: StringManager.optionalLabel,
           ),
           SizedBox(
             height: context.screenHeight * 0.02,
@@ -60,18 +66,9 @@ class PersonalImageWidget extends StatelessWidget {
               }
             },
           ),
-          const DetailsText(
-            text: StringManager.clearFace,
-          ),
-          const DetailsText(
-            text: StringManager.goodLighting,
-          ),
-          const DetailsText(
-            text: StringManager.noFilters,
-          ),
           SizedBox(
             height: context.screenHeight * 0.03,
-          )
+          ),
         ],
       ),
     );

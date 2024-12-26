@@ -55,10 +55,9 @@ class CategoryView extends StatelessWidget {
                               styleOfText: StyleManager.normalText18(
                                   size: 16, color: ColorManager.boldyellow)),
                           HeaderText(
-                              text:
-                                  "dkgjl lgjdslfkg jjjjjjjjjjjjjjjjjj dslkfj;",
+                              text: StringManager.conntentOfdriving,
                               styleOfText: StyleManager.smallBlackText16()),
-                        const  sizedBox40(),
+                          const sizedBox40(),
                           acceptButtonCustomer(
                             width: MediaQuery.of(context).size.width / 4,
                             height: MediaQuery.of(context).size.height / 25,

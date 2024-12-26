@@ -77,7 +77,7 @@ class _BirthDateWidgetState extends State<BirthDateWidget> {
             ),
           ),
           SizedBox(
-            height: context.screenHeight * 0.02,
+            height: context.screenHeight * 0.03,
           ),
         ],
       ),

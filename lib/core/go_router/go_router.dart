@@ -9,8 +9,10 @@ import 'package:lailaty/feature/agreeScreens/presentation/view/motor_info.dart';
 import 'package:lailaty/feature/chooseCategoryScreens/presentation/view/categoryView.dart';
 
 import '../../feature/agreeScreens/presentation/view/noticeToDriverView.dart';
+import 'package:lailaty/feature/agreeScreens/presentation/view/login_prompt_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/personal_information_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/security_information_page.dart';
+import 'package:lailaty/feature/travel/presentation/view/travel_page.dart';
 import 'package:provider/provider.dart';
 
 class Routes {
@@ -49,7 +51,10 @@ class Routes {
         path: AppKeys.motorInfoPath,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
-          child: const MotorInfoView(),
+     child: ChangeNotifierProvider(
+            create: (_) => PersonalInformationView(),
+            child: const MotorInfoView(),
+          ),
           transitionsBuilder: _fadeTransition,
         ),
       ),
@@ -91,7 +96,26 @@ class Routes {
         path: AppKeys.securityInformationPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
-          child: const SecurityInformationPage(),
+          child: ChangeNotifierProvider(
+            create: (context) => PersonalInformationView(),
+            child: const SecurityInformationPage(),
+          ),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.loginPromptPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const LoginPromptPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.travelPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const TravelPage(),
           transitionsBuilder: _fadeTransition,
         ),
       ),
