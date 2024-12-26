@@ -9,6 +9,7 @@ class ClientTripDetailsModel {
   final String city2;
   final String captainName;
   final String elapsedTimeExample;
+  final String status;
   ClientTripDetailsModel({
     required this.title,
     required this.cashType,
@@ -18,6 +19,7 @@ class ClientTripDetailsModel {
     required this.city2,
     required this.captainName,
     required this.elapsedTimeExample,
+    required this.status,
   });
 }
 
@@ -32,6 +34,7 @@ List<ClientTripDetailsModel> getClientTripDetails() {
       city2: StringManager.alexandriaStreetExample,
       captainName: StringManager.exampleCaptainName,
       elapsedTimeExample: StringManager.elapsedTimeExample,
+      status: StringManager.acceptedOrders,
     ),
     ClientTripDetailsModel(
       title: StringManager.tripFareDetails,
@@ -42,6 +45,7 @@ List<ClientTripDetailsModel> getClientTripDetails() {
       city2: StringManager.alexandriaStreetExample,
       captainName: 'mo',
       elapsedTimeExample: StringManager.elapsedTimeExample,
+      status: StringManager.onHoldOrders,
     ),
     ClientTripDetailsModel(
       title: StringManager.tripFareDetails,
@@ -52,6 +56,7 @@ List<ClientTripDetailsModel> getClientTripDetails() {
       city2: StringManager.alexandriaStreetExample,
       captainName: 'dd',
       elapsedTimeExample: StringManager.elapsedTimeExample,
+      status: StringManager.onHoldOrders,
     ),
   ];
 }

@@ -97,4 +97,10 @@ class StringManager {
   static const String acceptAnOffer = 'EGP قبول عرض  88';
   static const String suggestYourPrice = 'اقترح سعرك';
   static const String viewOnMap = 'عرض على الخريطة';
+  static const String onHoldOrders = 'قيد الانتظار ';
+  static const String acceptedOrders = 'الطلبات المقبولة';
+  static const String archivedOrders = 'الطلبات المؤرشفة';
+  static const String noOrdersFound = "لم يتم العثور على طلبات";
+  static const String completeTheOrder = 'تكملة الطلب';
+  static const String orderCancellation = 'إلغاء الطلب';
 }

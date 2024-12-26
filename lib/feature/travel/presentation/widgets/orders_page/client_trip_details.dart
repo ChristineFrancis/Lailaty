@@ -10,14 +10,8 @@ import 'package:lailaty/feature/travel/presentation/widgets/orders_page/custom_d
 
 class ClientTripDetailsContainer extends StatelessWidget {
   final ClientTripDetailsModel clientTripDetailsModel;
-  // final String title;
-  // final String cashType;
-  // final String tripType;
-  // final String dateTime;
-  // final String city1;
-  // final String city2;
-  // final String captainName;
   final VoidCallback onTap;
+  final Widget widget;
   const ClientTripDetailsContainer({
     super.key,
     // required this.title,
@@ -29,6 +23,7 @@ class ClientTripDetailsContainer extends StatelessWidget {
     // required this.captainName,
     required this.onTap,
     required this.clientTripDetailsModel,
+    required this.widget,
   });
 
   @override
@@ -86,12 +81,7 @@ class ClientTripDetailsContainer extends StatelessWidget {
               ),
             ),
             const CustomDivider(),
-            CityRow(
-              city: clientTripDetailsModel.captainName,
-              letter: '',
-              radius: context.screenWidth * 0.055,
-              backGroundColor: ColorManager.yellowTextColor,
-            ),
+            widget,
           ],
         ),
       ),

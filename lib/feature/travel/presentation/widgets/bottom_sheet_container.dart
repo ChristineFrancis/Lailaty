@@ -10,10 +10,20 @@ import 'package:lailaty/feature/travel/presentation/widgets/orders_page/city_row
 import 'package:lailaty/feature/travel/presentation/widgets/orders_page/letter_circle.dart';
 
 class BottomSheetContainer extends StatelessWidget {
+  final String firstBottonText;
+  final String secondBottonText;
+  final String thirdBottonText;
+  final Color secondBottonColor;
+  final Color thirdBottonColor;
   final ClientTripDetailsModel clientTripDetailsModel;
   const BottomSheetContainer({
     super.key,
     required this.clientTripDetailsModel,
+    required this.firstBottonText,
+    required this.secondBottonText,
+    required this.thirdBottonText,
+    required this.secondBottonColor,
+    required this.thirdBottonColor,
   });
 
   @override
@@ -128,7 +138,7 @@ class BottomSheetContainer extends StatelessWidget {
                 colors: ColorManager.yellowTextColor,
                 widget: Center(
                   child: Text(
-                    StringManager.acceptAnOffer,
+                    firstBottonText,
                     style: StyleManager.boldTextStyle24(
                         size: context.screenHeight * 0.03),
                   ),
@@ -144,10 +154,10 @@ class BottomSheetContainer extends StatelessWidget {
                 width: context.screenWidth * 0.7,
                 height: context.screenHeight * 0.05,
                 radius: 5,
-                colors: ColorManager.whiteColor,
+                colors: secondBottonColor,
                 widget: Center(
                   child: Text(
-                    StringManager.suggestYourPrice,
+                    secondBottonText,
                     style: StyleManager.boldTextStyle24(
                       size: context.screenHeight * 0.03,
                     ),
@@ -164,10 +174,10 @@ class BottomSheetContainer extends StatelessWidget {
                 width: context.screenWidth * 0.7,
                 height: context.screenHeight * 0.05,
                 radius: 5,
-                colors: ColorManager.yellowTextColor,
+                colors: thirdBottonColor,
                 widget: Center(
                   child: Text(
-                    StringManager.viewOnMap,
+                    thirdBottonText,
                     style: StyleManager.boldTextStyle24(
                         size: context.screenHeight * 0.03),
                   ),

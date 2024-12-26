@@ -15,10 +15,10 @@ class Routes {
 
   GoRouter router = GoRouter(
     routes: [
-      GoRoute(
-        path: carInfoPath,
-        builder: (context, state) => const CarInfoView(),
-      ),
+      // GoRoute(
+      //   path: carInfoPath,
+      //   builder: (context, state) => const CarInfoView(),
+      // ),
       GoRoute(
         path: AppKeys.personalInformationPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
@@ -57,7 +57,7 @@ class Routes {
         ),
       ),
       GoRoute(
-        path: AppKeys.travelPageKey,
+        path: '/', // AppKeys.travelPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: const TravelPage(),
