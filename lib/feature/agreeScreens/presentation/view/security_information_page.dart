@@ -92,12 +92,10 @@ class SecurityInformationPage extends StatelessWidget {
             ),
             const ClientServiceRow(),
             SizedBox(
-              height: context.screenHeight * 0.15,
+              height: context.screenHeight * 0.1,
             ),
             NextBotton(
-              onTap: () {
-                context.push(AppKeys.travelPageKey);
-              },
+              onTap: () {},
             ),
           ],
         ),

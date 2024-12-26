@@ -4,6 +4,11 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/state_managment/birthdate_view_model.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/state_managment/personal_information_view.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/carInfo.dart';
+import 'package:lailaty/feature/agreeScreens/presentation/view/editingCar.dart';
+import 'package:lailaty/feature/agreeScreens/presentation/view/motor_info.dart';
+import 'package:lailaty/feature/chooseCategoryScreens/presentation/view/categoryView.dart';
+
+import '../../feature/agreeScreens/presentation/view/noticeToDriverView.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/login_prompt_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/personal_information_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/security_information_page.dart';
@@ -11,14 +16,67 @@ import 'package:lailaty/feature/travel/presentation/view/travel_page.dart';
 import 'package:provider/provider.dart';
 
 class Routes {
-  static String carInfoPath = "/";
-
   GoRouter router = GoRouter(
     routes: [
       // GoRoute(
       //   path: carInfoPath,
       //   builder: (context, state) => const CarInfoView(),
       // ),
+      //   path:" ${AppKeys.carInfoPath}/:sectionId",
+      //   builder: (context, state) {
+      //     final sectionId = state.pathParameters['sectionId']!;
+      //     return CarInfoView(
+      //       viewModel: context.read<PersonalInformationView>(),
+      //       sectionId: sectionId,
+      //     );
+      //   },
+      // ),
+      GoRoute(
+        path: AppKeys.carInfoPath,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: ChangeNotifierProvider(
+            create: (context) => PersonalInformationView(),
+            child: const CarInfoView(),
+          ),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.editingCarPage,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const EditingCar(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.motorInfoPath,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: ChangeNotifierProvider(
+            create: (_) => PersonalInformationView(),
+            child: const MotorInfoView(),
+          ),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.noticeToDriverPath,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const NoticeToDriverView(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.showCategoryPath,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const CategoryView(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
       GoRoute(
         path: AppKeys.personalInformationPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
@@ -57,7 +115,7 @@ class Routes {
         ),
       ),
       GoRoute(
-        path: '/', // AppKeys.travelPageKey,
+        path: AppKeys.travelPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: const TravelPage(),

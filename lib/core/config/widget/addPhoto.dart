@@ -21,8 +21,10 @@ class addPhotoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        HeaderText(text: title, styleOfText: styleOfText),
-        SizedBox(
+        FittedBox(
+            fit: BoxFit.scaleDown,
+            child: HeaderText(text: title, styleOfText: styleOfText)),
+      const  SizedBox(
           width: 12,
         ),
         SizedBox(

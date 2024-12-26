@@ -12,7 +12,7 @@ abstract class ColorManager {
   static const boldgrey = Color(0xff5A5A5A);
 
   static const greyWithMoreOpacity = Color(0xffB8B8B8);
-  static const greyWithOpacity = Color.fromARGB(255, 220, 218, 218);
+  static const greyWithOpacity = Color(0xffB2B1AD);
 
   static const whiteColor = Colors.white;
   static const blackColor = Color(0xff414141);

@@ -38,7 +38,7 @@ class textWithExpansionTile extends StatelessWidget {
             // width: widthOfExpansionTile,
             child: myExpansionTile(
               text1: textOfOption,
-              primaryColor: ColorManager.greyWithOpacity,
+              primaryColor: ColorManager.whiteColor,
               children: [],
             ),
           ),
