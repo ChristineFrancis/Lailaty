@@ -21,25 +21,27 @@ class LoginPromptPage extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              StringManager.loginPrompt,
-              style: TextStyle(
-                fontSize: context.screenWidth * 0.06,
-                fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                StringManager.loginPrompt,
+                style: TextStyle(
+                  fontSize: context.screenWidth * 0.06,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            SizedBox(
-              height: context.screenHeight * 0.08,
-            ),
-            const TransportRowWidget(),
-            SizedBox(
-              height: context.screenHeight * 0.08,
-            ),
-            const CustomerServiceRowWidget(),
-          ],
+              SizedBox(
+                height: context.screenHeight * 0.08,
+              ),
+              const TransportRowWidget(),
+              SizedBox(
+                height: context.screenHeight * 0.08,
+              ),
+              const CustomerServiceRowWidget(),
+            ],
+          ),
         ),
       ),
     );

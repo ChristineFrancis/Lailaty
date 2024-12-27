@@ -7,7 +7,6 @@ import 'package:lailaty/feature/agreeScreens/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/motor_info.dart';
 import 'package:lailaty/feature/chooseCategoryScreens/presentation/view/categoryView.dart';
-
 import '../../feature/agreeScreens/presentation/view/noticeToDriverView.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/login_prompt_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/personal_information_page.dart';

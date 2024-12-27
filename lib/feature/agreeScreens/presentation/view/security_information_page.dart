@@ -95,7 +95,9 @@ class SecurityInformationPage extends StatelessWidget {
               height: context.screenHeight * 0.1,
             ),
             NextBotton(
-              onTap: () {},
+              onTap: () {
+                context.push(AppKeys.loginPromptPageKey);
+              },
             ),
           ],
         ),
