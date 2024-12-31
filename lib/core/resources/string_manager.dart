@@ -48,12 +48,18 @@ class StringManager {
   static const String onYourMode = "على مودك";
   static const String rigester = "تسجيل";
   static const String withoutCost = "بدون عمولة";
-  static const String conntentOfdriving = "جاهز معانا تكون كابتن ليلتي\nلتعليم مبتدئين لقيادة السيارات\nمن 1977 او أحدث";
-  static const String conntentOfwidding = "جميع أنواع السيارات\nمن 2007 او أحدث\nتتسع لعدد 4 ركاب بشكل مريح";
-  static const String conntentOfrideMotor = "تتسع لعدد 4 ركاب بشكل مريح\nدراجة نارية\nتتسع لراكب واحد بشكل مريح";
-  static const String conntentOfrideCar = "سيارة سيدان متوسطة او كبيرة الحجم\nمن 1995 او أحدث\nتتسع لعدد 4 ركاب بشكل مريح";
-  static const String conntentOfridetraveling = "سيارة سيدان متوسطة او كبيرة الحجم\nمن 2000 او أحدث\nتتسع لعدد 4 ركاب او اكثر بشكل مريح";
-  static const String conntentOfrideMode = "سيارة سيدان من 2007 او أحدث تتسع\nلمرافقة العميل للتنزه والتسوق واصطحابه\nحتى إتمام المشوار تبدأ الرحلة من ساعة أو اكثر";
+  static const String conntentOfdriving =
+      "جاهز معانا تكون كابتن ليلتي\nلتعليم مبتدئين لقيادة السيارات\nمن 1977 او أحدث";
+  static const String conntentOfwidding =
+      "جميع أنواع السيارات\nمن 2007 او أحدث\nتتسع لعدد 4 ركاب بشكل مريح";
+  static const String conntentOfrideMotor =
+      "تتسع لعدد 4 ركاب بشكل مريح\nدراجة نارية\nتتسع لراكب واحد بشكل مريح";
+  static const String conntentOfrideCar =
+      "سيارة سيدان متوسطة او كبيرة الحجم\nمن 1995 او أحدث\nتتسع لعدد 4 ركاب بشكل مريح";
+  static const String conntentOfridetraveling =
+      "سيارة سيدان متوسطة او كبيرة الحجم\nمن 2000 او أحدث\nتتسع لعدد 4 ركاب او اكثر بشكل مريح";
+  static const String conntentOfrideMode =
+      "سيارة سيدان من 2007 او أحدث تتسع\nلمرافقة العميل للتنزه والتسوق واصطحابه\nحتى إتمام المشوار تبدأ الرحلة من ساعة أو اكثر";
   static const String noteInEditingCar =
       "تنويه: إذا كانت سيارتك معدلة إلى نوع آخر غير نوع السيارة الأساسي وليست مجددة الى موديل أحدث من نفس النوع";
 
@@ -125,4 +131,6 @@ class StringManager {
   static const String noOrdersFound = "لم يتم العثور على طلبات";
   static const String completeTheOrder = 'تكملة الطلب';
   static const String orderCancellation = 'إلغاء الطلب';
+  static const String ratingThePassenger = 'تقييم الراكب';
+  static const String obtainingAReceipt = 'الحصول على إيصال';
 }

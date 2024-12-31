@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
-import 'package:lailaty/core/resources/style_maneger.dart';
-import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
 import 'package:lailaty/feature/travel/presentation/state_managment/filter_order_view_model.dart';
 import 'package:lailaty/feature/travel/presentation/widgets/bottom_sheet_container.dart';
+import 'package:lailaty/feature/travel/presentation/widgets/order_history_page/archived_order_bottom_sheet.dart';
+import 'package:lailaty/feature/travel/presentation/widgets/order_history_page/contact_row.dart';
 import 'package:lailaty/feature/travel/presentation/widgets/orders_page/client_trip_details.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/orders_page/letter_circle.dart';
 import 'package:provider/provider.dart';
 
 class OrderHistoryPage extends StatefulWidget {
@@ -18,7 +17,7 @@ class OrderHistoryPage extends StatefulWidget {
 }
 
 class _OrderHistoryPageState extends State<OrderHistoryPage> {
-  void _showDetailsSheet(
+  void _showDetailsSheetForAcceptedOrders(
       {required ClientTripDetailsModel clientTripDetailsModel}) {
     showModalBottomSheet(
       context: context,
@@ -30,6 +29,20 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
           secondBottonColor: ColorManager.yellowTextColor,
           thirdBottonColor: ColorManager.transparentColor,
           clientTripDetailsModel: clientTripDetailsModel,
+        );
+      },
+    );
+  }
+
+  void _showDetailsSheetForArchivedOrders(
+      {required ClientTripDetailsModel clientTripDetailsModel}) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return ArchivedOrderBottomSheet(
+          clientTripDetailsModel: clientTripDetailsModel,
+          firstBottonText: StringManager.obtainingAReceipt,
+          secondBottonText: StringManager.ratingThePassenger,
         );
       },
     );
@@ -81,62 +94,18 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                   itemBuilder: (context, index) {
                     final order = filterOrderViewModel.filteredOrders[index];
                     return ClientTripDetailsContainer(
-                      widget: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          //! change this to a choices?
-                          CircleAvatar(
-                            radius: context.screenWidth * 0.04,
-                            backgroundColor: ColorManager.yellowTextColor,
-                            child: const Icon(
-                              Icons
-                                  .group, // change this with : FontAwesomeIcons.whatsapp
-                              color: ColorManager.cardColor,
-                            ),
-                          ),
-                          SizedBox(
-                            width: context.screenWidth * 0.02,
-                          ),
-                          CircleAvatar(
-                            radius: context.screenWidth * 0.04,
-                            backgroundColor: ColorManager.yellowTextColor,
-                            child: const Icon(
-                              Icons.message_outlined,
-                              color: ColorManager.cardColor,
-                            ),
-                          ),
-                          SizedBox(
-                            width: context.screenWidth * 0.02,
-                          ),
-                          CircleAvatar(
-                            radius: context.screenWidth * 0.04,
-                            backgroundColor: ColorManager.yellowTextColor,
-                            child: const Icon(
-                              Icons.phone_outlined,
-                              color: ColorManager.cardColor,
-                            ),
-                          ),
-                          const Spacer(),
-                          Text(
-                            order.captainName,
-                            style: StyleManager.semiboldTextStyle20(
-                              size: context.screenWidth * 0.05,
-                            ),
-                          ),
-                          SizedBox(
-                            width: context.screenWidth * 0.03,
-                          ),
-                          LetterCircle(
-                            radius: context.screenWidth * 0.05,
-                            letter: '',
-                            backGroundColor: ColorManager.yellowTextColor,
-                          ),
-                        ],
-                      ),
+                      widget: ContactRow(order: order),
                       onTap: () {
                         if (filterOrderViewModel.currentFilter ==
                             StringManager.acceptedOrders) {
-                          _showDetailsSheet(
+                          _showDetailsSheetForAcceptedOrders(
+                            clientTripDetailsModel:
+                                getClientTripDetails()[index],
+                          );
+                        }
+                        if (filterOrderViewModel.currentFilter ==
+                            StringManager.archivedOrders) {
+                          _showDetailsSheetForArchivedOrders(
                             clientTripDetailsModel:
                                 getClientTripDetails()[index],
                           );

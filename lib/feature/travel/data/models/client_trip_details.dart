@@ -56,7 +56,7 @@ List<ClientTripDetailsModel> getClientTripDetails() {
       city2: StringManager.alexandriaStreetExample,
       captainName: 'dd',
       elapsedTimeExample: StringManager.elapsedTimeExample,
-      status: StringManager.onHoldOrders,
+      status: StringManager.archivedOrders,
     ),
   ];
 }
