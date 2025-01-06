@@ -36,6 +36,7 @@ class StyleManager {
     return TextStyle(
       color: color,
       fontFamily: "Poppins",
+       decoration: TextDecoration.none,
       fontSize: size,
     );
   }
@@ -43,21 +44,39 @@ class StyleManager {
   static TextStyle miniSmallText14({
     Color color = ColorManager.black,
     double size = 14,
+    FontWeight fontWeight = FontWeight.normal,
   }) {
-    return TextStyle(color: color, fontSize: size, fontFamily: "Poppins");
+    return TextStyle(
+        color: color,
+        fontSize: size,
+        fontFamily: "Poppins", decoration: TextDecoration.none,
+        fontWeight: fontWeight);
   }
 
   static TextStyle normalText18({
     Color color = ColorManager.black,
     double size = 18,
+    FontWeight fontWeight = FontWeight.normal,
   }) {
-    return TextStyle(color: color, fontSize: size, fontFamily: "Poppins");
+    return TextStyle(
+        color: color,
+        fontSize: size,
+        fontFamily: "Poppins",
+        decoration: TextDecoration.none,
+        fontWeight: fontWeight);
   }
 
   static TextStyle grySmallText12({
-    Color color = ColorManager.greyTextr,
+    Color color = ColorManager.black,
     double size = 12,
+    FontWeight fontWeight = FontWeight.normal,
+    
   }) {
-    return TextStyle(color: color, fontSize: size, fontFamily: "Poppins");
+    return TextStyle(
+        color: color,
+        fontSize: size,
+        fontFamily: "Poppins",
+         decoration: TextDecoration.none,
+        fontWeight: fontWeight);
   }
 }

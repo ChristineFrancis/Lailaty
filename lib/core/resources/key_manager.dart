@@ -20,11 +20,12 @@ class AppKeys {
   //pages
   static const String personalInformationPageKey = '/personalInformationPage';
   static const String securityInformationPageKey = '/security_page';
-  static const String loginPromptPageKey = '/';
+  static const String loginPromptPageKey = '/loginPromptPage';
+  // static const String loginPromptPageKey = '/';
 
   static String carInfoPath = "/carInfoView";
   static String motorInfoPath = "/MotorInfoView";
-  static String showCategoryPath = "/CategoryView";
+  static String showCategoryPath = "/";
   static String noticeToDriverPath = "/NoticeToDriverView";
   static const String travelPageKey = '/travel_Page';
 }
