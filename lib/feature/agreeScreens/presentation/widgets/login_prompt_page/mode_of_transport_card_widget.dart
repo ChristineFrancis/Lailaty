@@ -1,19 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
+import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 
-import '../../../../../core/resources/key_manager.dart';
-
 class ModeOfTransportCardWidget extends StatelessWidget {
   final String transportMode;
+  final String image;
   final void Function() onTap;
   const ModeOfTransportCardWidget({
     super.key,
     required this.transportMode,
     required this.onTap,
+    required this.image,
   });
 
   @override
@@ -21,11 +20,11 @@ class ModeOfTransportCardWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 200,
-        height: 150,
+        width: context.screenWidth * 0.45,
+        height: context.screenWidth * 0.35,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: ColorManager.cardColor,
+          color: ColorManager.grey1,
           boxShadow: const [
             BoxShadow(
               color: ColorManager.dropShadowColor,
@@ -35,13 +34,23 @@ class ModeOfTransportCardWidget extends StatelessWidget {
           ],
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SvgPicture.asset(
+              image,
+              width: context.screenWidth * 0.25,
+              height: context.screenWidth * 0.1,
+            ),
+            SizedBox(
+              height: context.screenHeight * 0.02,
+            ),
             Text(
               transportMode,
               style: TextStyle(
-                fontSize: context.screenWidth * 0.04,
+                fontSize: context.screenWidth * 0.06,
                 fontWeight: FontWeight.bold,
-                color: ColorManager.yellowTextColor,
+                color: ColorManager.black,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

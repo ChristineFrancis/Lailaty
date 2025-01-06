@@ -7,7 +7,6 @@ import 'package:lailaty/feature/agreeScreens/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/motor_info.dart';
 import 'package:lailaty/feature/chooseCategoryScreens/presentation/view/categoryView.dart';
-
 import '../../feature/agreeScreens/presentation/view/noticeToDriverView.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/login_prompt_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/personal_information_page.dart';
@@ -19,6 +18,9 @@ class Routes {
   GoRouter router = GoRouter(
     routes: [
       // GoRoute(
+      //   path: carInfoPath,
+      //   builder: (context, state) => const CarInfoView(),
+      // ),
       //   path:" ${AppKeys.carInfoPath}/:sectionId",
       //   builder: (context, state) {
       //     final sectionId = state.pathParameters['sectionId']!;
@@ -51,7 +53,7 @@ class Routes {
         path: AppKeys.motorInfoPath,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
-     child: ChangeNotifierProvider(
+          child: ChangeNotifierProvider(
             create: (_) => PersonalInformationView(),
             child: const MotorInfoView(),
           ),

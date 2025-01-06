@@ -9,18 +9,22 @@ import 'package:lailaty/feature/travel/presentation/widgets/orders_page/cash_and
 import 'package:lailaty/feature/travel/presentation/widgets/orders_page/city_row.dart';
 import 'package:lailaty/feature/travel/presentation/widgets/orders_page/letter_circle.dart';
 
-class BottomSheetContainer extends StatelessWidget {
+class ArchivedOrderBottomSheet extends StatelessWidget {
+  final String firstBottonText;
+  final String secondBottonText;
   final ClientTripDetailsModel clientTripDetailsModel;
-  const BottomSheetContainer({
+  const ArchivedOrderBottomSheet({
     super.key,
     required this.clientTripDetailsModel,
+    required this.firstBottonText,
+    required this.secondBottonText,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16.0),
-      height: context.screenHeight * 0.6,
+      height: context.screenHeight * 0.5,
       width: context.screenWidth,
       decoration: const BoxDecoration(
           color: ColorManager.grey1,
@@ -40,7 +44,7 @@ class BottomSheetContainer extends StatelessWidget {
               clientTripDetailsModel: clientTripDetailsModel,
             ),
             SizedBox(
-              height: context.screenHeight * 0.02,
+              height: context.screenHeight * 0.01,
             ),
             Text(
               clientTripDetailsModel.dateTime,
@@ -62,7 +66,7 @@ class BottomSheetContainer extends StatelessWidget {
                       backGroundColor: ColorManager.blueCircleColor,
                     ),
                     SizedBox(
-                      height: context.screenHeight * 0.05,
+                      height: context.screenHeight * 0.02,
                     ),
                     CityRow(
                       city: clientTripDetailsModel.city2,
@@ -128,29 +132,9 @@ class BottomSheetContainer extends StatelessWidget {
                 colors: ColorManager.yellowTextColor,
                 widget: Center(
                   child: Text(
-                    StringManager.acceptAnOffer,
+                    firstBottonText,
                     style: StyleManager.boldTextStyle24(
                         size: context.screenHeight * 0.03),
-                  ),
-                ),
-                onpress: () {},
-              ),
-            ),
-            SizedBox(
-              height: context.screenHeight * 0.01,
-            ),
-            Center(
-              child: MyButtonWidget(
-                width: context.screenWidth * 0.7,
-                height: context.screenHeight * 0.05,
-                radius: 5,
-                colors: ColorManager.whiteColor,
-                widget: Center(
-                  child: Text(
-                    StringManager.suggestYourPrice,
-                    style: StyleManager.boldTextStyle24(
-                      size: context.screenHeight * 0.03,
-                    ),
                   ),
                 ),
                 onpress: () {},
@@ -167,17 +151,16 @@ class BottomSheetContainer extends StatelessWidget {
                 colors: ColorManager.yellowTextColor,
                 widget: Center(
                   child: Text(
-                    StringManager.viewOnMap,
+                    secondBottonText,
                     style: StyleManager.boldTextStyle24(
-                        size: context.screenHeight * 0.03),
+                      size: context.screenHeight * 0.03,
+                    ),
                   ),
                 ),
                 onpress: () {},
               ),
             ),
-            SizedBox(
-              height: context.screenHeight * 0.01,
-            ),
+
           ],
         ),
       ),

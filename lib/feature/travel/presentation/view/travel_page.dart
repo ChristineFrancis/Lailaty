@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
+import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
+import 'package:lailaty/feature/travel/presentation/state_managment/filter_order_view_model.dart';
 import 'package:lailaty/feature/travel/presentation/view/order_history.dart';
 import 'package:lailaty/feature/travel/presentation/view/orders_page.dart';
 import 'package:lailaty/feature/travel/presentation/widgets/travel_page/custom_bottom_navBar.dart';
 import 'package:lailaty/feature/travel/presentation/widgets/travel_page/custom_drawer.dart';
+import 'package:provider/provider.dart';
 
 class TravelPage extends StatefulWidget {
   const TravelPage({super.key});
@@ -15,9 +18,16 @@ class TravelPage extends StatefulWidget {
 
 class _TravelPageState extends State<TravelPage> {
   int _selectedIndex = 1;
-  final List<Widget> _pages = const [
-    OrderHistoryPage(),
-    OrdersPage(),
+  final List<Widget> _pages = [
+    ChangeNotifierProvider(
+      create: (_) {
+        final orderViewModel = FilterOrderViewModel();
+        orderViewModel.initializeOrders(getClientTripDetails());
+        return orderViewModel;
+      },
+      child: const OrderHistoryPage(),
+    ),
+    const OrdersPage(),
   ];
 
   void _openRightDrawer(BuildContext context) {

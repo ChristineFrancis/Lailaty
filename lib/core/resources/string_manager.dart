@@ -62,6 +62,7 @@ class StringManager {
   static const String onYourMode = "على مودك";
   static const String rigester = "تسجيل";
 
+
   static const String conntentOfdriving =
       "جاهز معانا تكون كابتن ليلتي\nلتعليم مبتدئين لقيادة السيارات\nمن 1977 او أحدث";
   static const String conntentOfwidding =
@@ -74,6 +75,7 @@ class StringManager {
       "سيارة سيدان متوسطة او كبيرة الحجم\nمن 2000 او أحدث\nتتسع لعدد 4 ركاب او اكثر بشكل مريح";
   static const String conntentOfrideMode =
       "سيارة سيدان من 2007 او أحدث تتسع لمرافقة العميل للتنزه والتسوق واصطحابه حتى إتمام المشوار تبدأ الرحلة من ساعة أو اكثر";
+
   static const String noteInEditingCar =
       "تنويه: إذا كانت سيارتك معدلة إلى نوع آخر غير نوع السيارة الأساسي وليست مجددة الى موديل أحدث من نفس النوع";
 
@@ -139,4 +141,12 @@ class StringManager {
   static const String acceptAnOffer = 'EGP قبول عرض  88';
   static const String suggestYourPrice = 'اقترح سعرك';
   static const String viewOnMap = 'عرض على الخريطة';
+  static const String onHoldOrders = 'قيد الانتظار ';
+  static const String acceptedOrders = 'الطلبات المقبولة';
+  static const String archivedOrders = 'الطلبات المؤرشفة';
+  static const String noOrdersFound = "لم يتم العثور على طلبات";
+  static const String completeTheOrder = 'تكملة الطلب';
+  static const String orderCancellation = 'إلغاء الطلب';
+  static const String ratingThePassenger = 'تقييم الراكب';
+  static const String obtainingAReceipt = 'الحصول على إيصال';
 }

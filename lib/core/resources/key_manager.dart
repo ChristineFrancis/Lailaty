@@ -18,10 +18,10 @@ class AppKeys {
   static const String certificate = 'certificate';
   static const String editingCarPage = '/EditingCar';
   //pages
-  static const String personalInformationPageKey = '/personalInformationPage';
+  static const String personalInformationPageKey =
+      '/'; //'/personalInformationPage';
   static const String securityInformationPageKey = '/security_page';
-  static const String loginPromptPageKey = '/loginPromptPage';
-  // static const String loginPromptPageKey = '/';
+  static const String loginPromptPageKey = '/login_prompt_page';
 
   static String carInfoPath = "/carInfoView";
   static String motorInfoPath = "/MotorInfoView";

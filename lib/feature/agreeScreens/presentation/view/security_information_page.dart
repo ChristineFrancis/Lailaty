@@ -51,37 +51,56 @@ class SecurityInformationPage extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: context.screenHeight * 0.1,
-            child: Center(
-              child: InkWell(
-                onTap: () {
-                  //!change this !!
-                  context.push(AppKeys.loginPromptPageKey);
-                },
-                child: Container(
-                  width: context.screenWidth * 0.8,
-                  height: context.screenHeight * 0.05,
-                  decoration: BoxDecoration(
-                    color: ColorManager.grey1,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      StringManager.next,
-                      style: TextStyle(
-                        color: ColorManager.yellowTextColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            GoodConductCertificateContainer(
+              selectedImage: selectedImage,
+              viewModel: viewModel,
+              sectionId: sectionId,
+            ),
+            const TitleForDetailsWidget(
+              title: StringManager.declarationAndCommitment,
+            ),
+            Text(
+              StringManager.ensureAppSafetyMessage,
+              style: TextStyle(
+                fontSize: context.screenWidth * 0.04,
+                fontWeight: FontWeight.w500,
+                color: ColorManager.black,
               ),
             ),
-          ),
-        ],
+            Text(
+              StringManager.goodConductCertificateMessage,
+              style: TextStyle(
+                fontSize: context.screenWidth * 0.04,
+                fontWeight: FontWeight.w500,
+                color: ColorManager.black,
+              ),
+            ),
+            const DetailsText(
+              text: StringManager.agreeAndCommitMessage,
+            ),
+            const DetailsText(
+              text: StringManager.certificateRequiredMessage,
+            ),
+            const DetailsText(
+              text: StringManager.delayWillSuspendAccountMessage,
+            ),
+            SizedBox(
+              height: context.screenHeight * 0.1,
+            ),
+            const ClientServiceRow(),
+            SizedBox(
+              height: context.screenHeight * 0.1,
+            ),
+            NextBotton(
+              onTap: () {
+                context.push(AppKeys.loginPromptPageKey);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
