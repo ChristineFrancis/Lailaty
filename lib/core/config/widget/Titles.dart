@@ -68,10 +68,12 @@ class SubTitle2 extends StatelessWidget {
 class HeaderText extends StatelessWidget {
   String text;
   TextStyle styleOfText;
+  TextDirection? textDirection;
   HeaderText({
     Key? key,
     required this.text,
     required this.styleOfText,
+     this.textDirection,
   }) : super(key: key);
 
   @override
@@ -81,6 +83,7 @@ class HeaderText extends StatelessWidget {
       maxLines: 10,
       overflow: TextOverflow.ellipsis,
       style: styleOfText,
+      textDirection: textDirection??TextDirection.rtl,
     );
   }
 }

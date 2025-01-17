@@ -29,7 +29,7 @@ class AppKeys {
 
   static String carInfoPath = "/carInfoView";
   static String motorInfoPath = "/MotorInfoView";
-  static String showCategoryPath = "/CategoryView";
+  static String showCategoryPath = "/";
   static String noticeToDriverPath = "/NoticeToDriverView";
   static const String travelPageKey = '/travel_Page';
   static const String safetyPageKey = '/safety_page';

@@ -1,4 +1,18 @@
 class StringManager {
+  static const String withoutCost = "بدون \nعمولة";
+  static const String suvCar = "SUV سيارة";
+  static const String sidanBigOrMiddle = "سيدان متوسطة او كبيرة";
+  static const String limozenCar = "سيارة ليموزين";
+  static const String vipCategory = "VIP category";
+  static const String luxuryCar = " luxury car";
+  static const String vipCaporlia = "VIP كابورليه";
+  static const String caporlia = "كابوليه";
+  static const String selectCategoryToYourCar =
+      "اختر الفئة المناسبة لتسجيل سيارتك";
+  static const String minProceForWeddingBussinesman =
+      "الحد الأدنى لمشوار الزفة و رجال الأعمال";
+  static const String switchToClient = "التبديل إلى وضع الراكب";
+
   static const String carInfo = "معلومات السيارة";
   static const String typeOfCar = "نوع السيارة : ";
   static const String editingCar = "إذا كانت سيارتك معدلة";
@@ -47,7 +61,8 @@ class StringManager {
   static const String travelling = "سفر";
   static const String onYourMode = "على مودك";
   static const String rigester = "تسجيل";
-  static const String withoutCost = "بدون عمولة";
+
+
   static const String conntentOfdriving =
       "جاهز معانا تكون كابتن ليلتي\nلتعليم مبتدئين لقيادة السيارات\nمن 1977 او أحدث";
   static const String conntentOfwidding =
@@ -59,7 +74,8 @@ class StringManager {
   static const String conntentOfridetraveling =
       "سيارة سيدان متوسطة او كبيرة الحجم\nمن 2000 او أحدث\nتتسع لعدد 4 ركاب او اكثر بشكل مريح";
   static const String conntentOfrideMode =
-      "سيارة سيدان من 2007 او أحدث تتسع\nلمرافقة العميل للتنزه والتسوق واصطحابه\nحتى إتمام المشوار تبدأ الرحلة من ساعة أو اكثر";
+      "سيارة سيدان من 2007 او أحدث تتسع لمرافقة العميل للتنزه والتسوق واصطحابه حتى إتمام المشوار تبدأ الرحلة من ساعة أو اكثر";
+
   static const String noteInEditingCar =
       "تنويه: إذا كانت سيارتك معدلة إلى نوع آخر غير نوع السيارة الأساسي وليست مجددة الى موديل أحدث من نفس النوع";
 

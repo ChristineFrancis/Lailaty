@@ -25,7 +25,7 @@ class acceptButtonCustomer extends StatelessWidget {
         styleOfTExt: StyleManager.normalText18(),
         title: text,
         onpress: onPress,
-        colors: ColorManager.greyWithOpacity,
+        colors: ColorManager.yellowAccent,
         width: width ?? MediaQuery.of(context).size.width / 2,
         height: height ?? MediaQuery.of(context).size.height / 15,
         radius: 18);

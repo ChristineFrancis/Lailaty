@@ -26,18 +26,15 @@ class MyButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
-      child: InkWell(
-        onTap: onpress,
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(radius), color: colors),
-          margin: EdgeInsets.only(left: 6),
-          width: width,
-          height: height,
-          child: Center(child: widget),
-        ),
+    return GestureDetector(
+      onTap: onpress,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(radius), color: colors),
+        margin: EdgeInsets.only(left: 6),
+        width: width,
+        height: height,
+        child: Center(child: widget),
       ),
     );
   }
