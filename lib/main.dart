@@ -16,3 +16,13 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+//adding the datePicker to travel page
+//making safety page ui
+//making share app page ui
+//change the appbar border in customwidget
+//fix the date select in travel
+
+
+
+//! fixing the call us page : >> text <<

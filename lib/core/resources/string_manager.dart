@@ -72,6 +72,7 @@ class StringManager {
   static const String add = "إضافة";
   static const String personalInformation = "المعلومات الشخصية";
   static const String personalImage = ":الصورة الشخصية";
+  static const String personalImage2 = "الصورة الشخصية";
   static const String clearFace = "وجه واضح";
   static const String goodLighting = 'اضاءة جيدة';
   static const String noFilters = 'بدون فلاتر';
@@ -133,4 +134,65 @@ class StringManager {
   static const String orderCancellation = 'إلغاء الطلب';
   static const String ratingThePassenger = 'تقييم الراكب';
   static const String obtainingAReceipt = 'الحصول على إيصال';
+  static const String safety = 'السلامة';
+  static const String whoToContact = "بمن تريد الاتصال؟";
+  static const String ambulance = "الإسعاف";
+  static const String police = "الشرطة";
+  static const String shareApp = 'مشاركة التطبيق';
+  static const String yourInvitationCode = ":كود الدعوة الخاص بك";
+  static const String invitingDriverPartners =
+      ":بالنسبة لدعوة الشركاء السائقين";
+  static const String driverPartnerBenefits =
+      "عندما يقوم احد الشركاء السائقين باستخدام كود\n"
+      "المشاركة الخاص بك ستحصل على";
+  static const String regardingClientInvitation = ":بالنسبة لدعوة العملاء";
+  static const String discountGiftForFriend = "هدية خصم لصديق";
+
+  static const String discountText =
+      "عند إتمامك أي رحلة تتطلب دفع جدية حجز كعمولة التطبيق\n"
+      "وقمت بمشاركة الكود الخاص بك مع احد اصدقاءك سيحصل\n"
+      "على خصم 5% من رحلته في التطبيق";
+  static const String fivePercent = '${5}%';
+  static const String fromEarnings = 'من الأرباح';
+  static const String discountFromAppCommission =
+      "تُخصم من عمولة التطبيق في هذه الرحلات كهدية منك له";
+  static const String share = "المشاركة";
+  static const String copyLink = "نسخ الرابط";
+  static const String callUs = 'اتصل بنا';
+  static const String splashMessage = "سبلاش";
+  static const String contactUs24 = "يمكنك الاتصال بنا  24/7";
+  static const String aboutLailatyMessage =
+      "ليلتي هو التطبيق الأكثر تميزاً واماناً\n"
+      "وطفرة فريدة من نوعها في عالم النقل التشاركي\n"
+      "لكل من السائق والراكب\n"
+      "نحن نقدم اقل عمولة تصل في بعض الفئات مثل\n"
+      "(سفر و رحلات داخلية الى 0% )\n"
+      "مما يضمن حصولك على افضل قيمة لرحلاتك\n"
+      "وضمان تجربة محترمة وعادلة وعالية الجودة للجميع";
+  static const String settings = 'الإعدادات';
+  static const String deleteAccount = "حذف الحساب";
+  static const String logOut = "تسجيل الخروج";
+  static const String appVersion = "إصدار التطبيق";
+  static const String rateApp = "قيم التطبيق";
+  static const String appLanguage = "لغة التطبيق";
+  static const String arabic = 'العربية';
+  static const String profileTitle = 'الملف الشخصي';
+  static const String firstName = 'الاسم الأول';
+  static const String lastName = 'الاسم الاخير';
+  static const String phoneNumber = 'رقم الهاتف';
+
+  static const String editLocation = 'تعديل الموقع ';
+  static const String myCars = 'سياراتي';
+  static const String unknown = 'غير معروف';
+  static const String carNameExample = 'كورولا';
+  static const String edit = 'تعديل';
+  static const String delete = 'حذف';
+  static const String addCar = 'إضافة سيارة';
+  static const String editImage = 'تغيير الصورة';
+  static const String save = 'حفظ';
+  static const String cancel = 'إالغاء';
+  static const String carName = 'اسم السيارة';
+  static const String newImageSelected = 'تم اختيار صورة جديدة';
+  static const String addANewCar = 'إضافة سيارة جديدة';
+  static const String fromBackData = 'من الباك';
 }

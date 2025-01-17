@@ -10,7 +10,7 @@ import 'package:lailaty/core/config/widget/textWithButon.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/state_managment/personal_information_view.dart';
+import 'package:lailaty/core/viewmodels/personal_information_view.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/car_info_page/my_container_with_bottom_border.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/motor_info_page/add_motor_photo_widget.dart';

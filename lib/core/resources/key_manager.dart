@@ -1,5 +1,6 @@
 class AppKeys {
   static const String personalPhoto = 'personal_photo';
+  static const String personalPhotoEdit = 'personal_Photo_Edit';
   static const String nationalIdFront = 'national_id_front';
   static const String nationalIdBack = 'national_id_back';
   static const String licenseFront = 'license_Front';
@@ -16,8 +17,11 @@ class AppKeys {
   static const String backLecienceCar = 'back_lecience_car';
   static const String licenseBack = 'license_Back';
   static const String certificate = 'certificate';
+
+  //: ??
   static const String editingCarPage = '/EditingCar';
-  //pages
+
+  //pages:
   static const String personalInformationPageKey =
       '/'; //'/personalInformationPage';
   static const String securityInformationPageKey = '/security_page';
@@ -28,4 +32,9 @@ class AppKeys {
   static String showCategoryPath = "/CategoryView";
   static String noticeToDriverPath = "/NoticeToDriverView";
   static const String travelPageKey = '/travel_Page';
+  static const String safetyPageKey = '/safety_page';
+  static const String shareAppPageKey = '/share_app_page';
+  static const String callUsPageKey = '/callUs_page';
+  static const String settingsPageKey = '/settings_page';
+  static const String profilePageKey = '/profile_page';
 }

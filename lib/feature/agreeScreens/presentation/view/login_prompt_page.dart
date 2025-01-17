@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lailaty/core/resources/asset_manager.dart';
+import 'package:lailaty/core/config/widget/custom_appbar.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
@@ -14,14 +13,7 @@ class LoginPromptPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.backGroundColor,
-      appBar: AppBar(
-        backgroundColor: ColorManager.grey1,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(10),
-          ),
-        ),
-      ),
+      appBar: CustomAppbar(ispop: false),
       body: Center(
         child: SingleChildScrollView(
           child: Column(

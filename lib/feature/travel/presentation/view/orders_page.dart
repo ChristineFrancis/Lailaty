@@ -17,13 +17,13 @@ class OrdersPage extends StatefulWidget {
 }
 
 class _OrdersPageState extends State<OrdersPage> {
-  bool _isFilterVisible = false;
+  // bool _isFilterVisible = false;
 
-  void _toggleFilterVisibility() {
-    setState(() {
-      _isFilterVisible = !_isFilterVisible;
-    });
-  }
+  // void _toggleFilterVisibility() {
+  //   setState(() {
+  //     _isFilterVisible = !_isFilterVisible;
+  //   });
+  // }
 
   void _showDetailsSheet(
       {required ClientTripDetailsModel clientTripDetailsModel}) {
@@ -46,25 +46,10 @@ class _OrdersPageState extends State<OrdersPage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        OrdersOverviewContainer(
-          onTap: _toggleFilterVisibility,
-          isFilterVisible: _isFilterVisible,
-        ),
-
+        const OrdersOverviewContainer(),
+        const FilterContainer(),
         // if (_isFilterVisible) FilterContainer(),
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          transitionBuilder: (child, animation) {
-            return SizeTransition(
-              sizeFactor: animation,
-              axisAlignment: 1.0,
-              child: child,
-            );
-          },
-          child: _isFilterVisible
-              ? const FilterContainer()
-              : const SizedBox.shrink(),
-        ),
+
         // SizedBox(
         //   height: context.screenHeight * 0.025,
         // ),

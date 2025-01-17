@@ -23,7 +23,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/config/widget/accept_button_customer.dart';
 import '../../../../core/config/widget/textWithExpansionTile.dart';
-import '../state_managment/personal_information_view.dart';
+import '../../../../core/viewmodels/personal_information_view.dart';
 import '../widgets/car_info_page/add_front_car_photo_widget copy 2.dart';
 import '../widgets/car_info_page/my_container_with_bottom_border.dart';
 

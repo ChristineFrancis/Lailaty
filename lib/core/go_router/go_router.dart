@@ -1,12 +1,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/state_managment/birthdate_view_model.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/state_managment/personal_information_view.dart';
+import 'package:lailaty/core/viewmodels/birthdate_view_model.dart';
+import 'package:lailaty/core/viewmodels/personal_information_view.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/motor_info.dart';
 import 'package:lailaty/feature/chooseCategoryScreens/presentation/view/categoryView.dart';
+import 'package:lailaty/feature/side_bar_screens/presentation/state_managment/car_list_view_model.dart';
+import 'package:lailaty/feature/side_bar_screens/presentation/view/call_us_page.dart';
+import 'package:lailaty/feature/side_bar_screens/presentation/view/profile_page.dart';
+import 'package:lailaty/feature/side_bar_screens/presentation/view/safety_page.dart';
+import 'package:lailaty/feature/side_bar_screens/presentation/view/settings_page.dart';
+import 'package:lailaty/feature/side_bar_screens/presentation/view/share_app_page.dart';
 import '../../feature/agreeScreens/presentation/view/noticeToDriverView.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/login_prompt_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/personal_information_page.dart';
@@ -86,7 +92,7 @@ class Routes {
                 create: (_) => PersonalInformationView(),
               ),
               ChangeNotifierProvider(
-                create: (_) => BirthdateviewModel(),
+                create: (_) => DateviewModel(),
               ),
             ],
             child: const PersonalInformationPage(),
@@ -117,7 +123,60 @@ class Routes {
         path: AppKeys.travelPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
-          child: const TravelPage(),
+          child: ChangeNotifierProvider(
+            create: (context) => DateviewModel(),
+            child: const TravelPage(),
+          ),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.safetyPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const SafetyPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.shareAppPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const ShareAppPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.callUsPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const CallUsPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.settingsPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const SettingsPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.profilePageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: MultiProvider(
+            providers: [
+              ChangeNotifierProvider(
+                create: (_) => PersonalInformationView(),
+              ),
+              ChangeNotifierProvider(
+                create: (_) => CarListViewModel(),
+              ),
+            ],
+            child: const ProfilePage(),
+          ),
           transitionsBuilder: _fadeTransition,
         ),
       ),

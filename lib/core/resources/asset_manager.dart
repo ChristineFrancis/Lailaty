@@ -29,8 +29,7 @@ class ImageAssetManager {
   static String moneyIcon = "$rootImage/نقدا.svg";
   static String choicesIcon = "$rootImage/key.svg";
   static String redCircleIcon = "$rootImage/red.svg";
-static String yallowCircleIcon = "$rootImage/yallow.svg";
-
+  static String yallowCircleIcon = "$rootImage/yallow.svg";
 
   static String weddingCarPic = "$rootImage/زفاف .svg";
   static String drivingEduCarPic = "$rootImage/تعليم قيادة.svg";
@@ -43,4 +42,6 @@ static String yallowCircleIcon = "$rootImage/yallow.svg";
   static String luxuryCarPic = "$rootImage/luxury.svg";
   static String vipCaporlehCarPic = "$rootImage/كابورليه vip.svg";
   static String caporlehCarPic = "$rootImage/كابورليه.svg";
+  static String whatsupPic = "$rootImage/whatsup.svg";
+  static String facebookPic = "$rootImage/facebook_logo.svg";
 }

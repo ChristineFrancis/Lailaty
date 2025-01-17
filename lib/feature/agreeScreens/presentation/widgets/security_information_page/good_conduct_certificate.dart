@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/state_managment/personal_information_view.dart';
+import 'package:lailaty/core/viewmodels/personal_information_view.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/details_text_widget.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/image_picker_place_holder.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/widgets/personal_Information_page/no_image_placeholder_widget.dart';

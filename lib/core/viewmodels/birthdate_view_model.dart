@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 
-class BirthdateviewModel with ChangeNotifier {
+class DateviewModel with ChangeNotifier {
   DateTime? _selectedDate;
 
   DateTime? get selectedDate => _selectedDate;
@@ -16,12 +16,13 @@ class BirthdateviewModel with ChangeNotifier {
     return '$day/$month/$year';
   }
 
-  Future<void> pickDate(BuildContext context) async {
+  Future<void> pickDate(BuildContext context,
+      {bool allowFutureDates = false}) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: _selectedDate ?? DateTime.now(),
       firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
+      lastDate: allowFutureDates ? DateTime(2100) : DateTime.now(),
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
