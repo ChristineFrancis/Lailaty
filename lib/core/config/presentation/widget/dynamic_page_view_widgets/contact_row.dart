@@ -3,7 +3,7 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/orders_page/letter_circle.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/letter_circle.dart';
 
 class ContactRow extends StatelessWidget {
   const ContactRow({

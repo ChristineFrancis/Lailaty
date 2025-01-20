@@ -18,11 +18,18 @@ class DateviewModel with ChangeNotifier {
 
   Future<void> pickDate(BuildContext context,
       {bool allowFutureDates = false}) async {
+    final DateTime now = DateTime.now();
+    final DateTime lastDate = DateTime(now.year - 18, now.month, now.day);
+
+    final DateTime initialDate =
+        _selectedDate == null || _selectedDate!.isAfter(lastDate)
+            ? lastDate
+            : _selectedDate!;
     final DateTime? pickedDate = await showDatePicker(
       context: context,
-      initialDate: _selectedDate ?? DateTime.now(),
+      initialDate: initialDate, //_selectedDate ?? DateTime.now(),
       firstDate: DateTime(1900),
-      lastDate: allowFutureDates ? DateTime(2100) : DateTime.now(),
+      lastDate: allowFutureDates ? DateTime(2100) : lastDate,
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(

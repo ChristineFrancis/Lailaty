@@ -31,10 +31,14 @@ class AppKeys {
   static String motorInfoPath = "/MotorInfoView";
   static String showCategoryPath = "/";
   static String noticeToDriverPath = "/NoticeToDriverView";
-  static const String travelPageKey = '/travel_Page';
+  static const String dynamicPageViewKey = '/dynamic_PageView';
   static const String safetyPageKey = '/safety_page';
   static const String shareAppPageKey = '/share_app_page';
   static const String callUsPageKey = '/callUs_page';
   static const String settingsPageKey = '/settings_page';
   static const String profilePageKey = '/profile_page';
+
+  static const String appBarTitleKey = 'appBarTitle';
+  static const String pagesKey = 'pages';
+  static const String initialIndexKey = 'initialIndex';
 }

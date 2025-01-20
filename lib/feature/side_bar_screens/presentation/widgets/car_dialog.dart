@@ -11,13 +11,13 @@ class CarDialog extends StatefulWidget {
   const CarDialog({
     super.key,
     required this.nameController,
-    this.car,
+    required this.car,
     required this.viewModel,
     this.index,
   });
 
   final TextEditingController nameController;
-  final CarInfo? car;
+  final CarInfo car;
   final CarListViewModel viewModel;
   final int? index;
 
@@ -30,16 +30,14 @@ class _CarDialogState extends State<CarDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final isEditing = widget.car != null;
-
     return Directionality(
       textDirection: TextDirection.rtl,
       child: AlertDialog(
         backgroundColor: ColorManager.grey1,
-        title: Text(
-          isEditing ? StringManager.edit : StringManager.addANewCar,
+        title: const Text(
+          StringManager.edit,
           textAlign: TextAlign.center,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -108,9 +106,7 @@ class _CarDialogState extends State<CarDialog> {
                       Text(
                         _tempImage != null
                             ? StringManager.newImageSelected
-                            : isEditing
-                                ? StringManager.editImage
-                                : StringManager.addANewCar,
+                            : StringManager.editImage,
                         style: const TextStyle(
                           color: ColorManager.backGroundColor,
                         ),
@@ -125,18 +121,12 @@ class _CarDialogState extends State<CarDialog> {
         actions: [
           TextButton(
             onPressed: () {
-              if (isEditing) {
-                widget.viewModel.editCar(
-                  widget.index!,
-                  name: widget.nameController.text,
-                  image: _tempImage,
-                );
-              } else {
-                widget.viewModel.addCar(
-                  name: widget.nameController.text,
-                  image: _tempImage,
-                );
-              }
+              widget.viewModel.editCar(
+                widget.index!,
+                name: widget.nameController.text,
+                image: _tempImage,
+              );
+
               context.pop();
             },
             child: const Text(

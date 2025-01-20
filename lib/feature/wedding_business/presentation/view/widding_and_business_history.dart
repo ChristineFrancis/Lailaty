@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/bottom_sheet_container.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/client_trip_details.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
-import 'package:lailaty/core/viewmodels/filter_order_view_model.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/bottom_sheet_container.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/archived_order_bottom_sheet.dart';
+import 'package:lailaty/core/viewmodels/filter_order_view_model.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/contact_row.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/client_trip_details.dart';
 import 'package:provider/provider.dart';
 
-class TravelOrderHistoryPage extends StatefulWidget {
-  const TravelOrderHistoryPage({super.key});
+class WiddingAndBusinessHistoryPage extends StatefulWidget {
+  const WiddingAndBusinessHistoryPage({super.key});
 
   @override
-  State<TravelOrderHistoryPage> createState() => _TravelOrderHistoryPageState();
+  State<WiddingAndBusinessHistoryPage> createState() =>
+      _WiddingAndBusinessHistoryPageState();
 }
 
-class _TravelOrderHistoryPageState extends State<TravelOrderHistoryPage> {
+class _WiddingAndBusinessHistoryPageState
+    extends State<WiddingAndBusinessHistoryPage> {
   void _showDetailsSheetForAcceptedOrders(
       {required ClientTripDetailsModel clientTripDetailsModel}) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
         return BottomSheetContainer(
-          isTravelPage: true,
+          isTravelPage: false,
           firstBottonText: StringManager.completeTheOrder,
           secondBottonText: StringManager.viewOnMap,
           thirdBottonText: StringManager.orderCancellation,
@@ -41,7 +43,7 @@ class _TravelOrderHistoryPageState extends State<TravelOrderHistoryPage> {
       context: context,
       builder: (context) {
         return ArchivedOrderBottomSheet(
-          isTravelPage: true,
+          isTravelPage: false,
           clientTripDetailsModel: clientTripDetailsModel,
           firstBottonText: StringManager.obtainingAReceipt,
           secondBottonText: StringManager.ratingThePassenger,
@@ -97,8 +99,8 @@ class _TravelOrderHistoryPageState extends State<TravelOrderHistoryPage> {
                   itemBuilder: (context, index) {
                     final order = filterOrderViewModel.filteredOrders[index];
                     return ClientTripDetailsContainer(
-                      //!changed
-                      isTravelPage: true,
+
+                      isTravelPage: false,
                       widget: ContactRow(order: order),
                       onTap: () {
                         if (filterOrderViewModel.currentFilter ==

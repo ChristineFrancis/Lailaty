@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/widget/Titles.dart';
+import 'package:lailaty/core/config/presentation/widget/Titles.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
-import '../../resources/string_manager.dart';
-import '../../resources/style_maneger.dart';
+import '../../../resources/string_manager.dart';
+import '../../../resources/style_maneger.dart';
 import 'oneNestedExpansionTile.dart';
 
 class textWithExpansionTile extends StatelessWidget {

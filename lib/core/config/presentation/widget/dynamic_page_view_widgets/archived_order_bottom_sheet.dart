@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/widget/myButtonWidget.dart';
+import 'package:lailaty/core/config/presentation/widget/myButtonWidget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
 import 'package:lailaty/feature/travel/presentation/widgets/orders_page/cash_and_trip_type_row.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/orders_page/city_row.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/orders_page/letter_circle.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/filter_container/city_row.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/letter_circle.dart';
 
 class ArchivedOrderBottomSheet extends StatelessWidget {
   final String firstBottonText;
   final String secondBottonText;
   final ClientTripDetailsModel clientTripDetailsModel;
+  final bool isTravelPage;
   const ArchivedOrderBottomSheet({
     super.key,
     required this.clientTripDetailsModel,
     required this.firstBottonText,
     required this.secondBottonText,
+    required this.isTravelPage,
   });
 
   @override
@@ -41,6 +43,7 @@ class ArchivedOrderBottomSheet extends StatelessWidget {
               height: context.screenHeight * 0.01,
             ),
             CashAndTripTypeRow(
+              isTravelPage: isTravelPage,
               clientTripDetailsModel: clientTripDetailsModel,
             ),
             SizedBox(
@@ -160,7 +163,6 @@ class ArchivedOrderBottomSheet extends StatelessWidget {
                 onpress: () {},
               ),
             ),
-
           ],
         ),
       ),

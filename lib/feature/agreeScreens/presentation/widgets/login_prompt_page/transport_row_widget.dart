@@ -27,7 +27,7 @@ class TransportRowWidget extends StatelessWidget {
           transportMode: StringManager.car,
           image: ImageAssetManager.rideCar,
           onTap: () {
-            context.push(AppKeys.carInfoPath);
+            context.push(AppKeys.carInfoPath,);
           },
         ),
       ],

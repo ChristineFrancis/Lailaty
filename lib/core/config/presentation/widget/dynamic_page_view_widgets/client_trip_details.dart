@@ -5,13 +5,14 @@ import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
 import 'package:lailaty/feature/travel/presentation/widgets/orders_page/cash_and_trip_type_row.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/orders_page/city_row.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/filter_container/city_row.dart';
 import 'package:lailaty/feature/travel/presentation/widgets/orders_page/custom_divider.dart';
 
 class ClientTripDetailsContainer extends StatelessWidget {
   final ClientTripDetailsModel clientTripDetailsModel;
   final VoidCallback onTap;
   final Widget widget;
+  final bool isTravelPage;
   const ClientTripDetailsContainer({
     super.key,
     // required this.title,
@@ -23,7 +24,7 @@ class ClientTripDetailsContainer extends StatelessWidget {
     // required this.captainName,
     required this.onTap,
     required this.clientTripDetailsModel,
-    required this.widget,
+    required this.widget, required this.isTravelPage,
   });
 
   @override
@@ -50,6 +51,7 @@ class ClientTripDetailsContainer extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: context.screenWidth * 0.02),
               child: CashAndTripTypeRow(
+                isTravelPage:isTravelPage ,
                 clientTripDetailsModel: clientTripDetailsModel,
               ),
             ),

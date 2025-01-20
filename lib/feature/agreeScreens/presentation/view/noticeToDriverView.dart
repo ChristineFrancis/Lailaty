@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lailaty/core/config/widget/Titles.dart';
+import 'package:lailaty/core/config/presentation/widget/Titles.dart';
 
-import 'package:lailaty/core/config/widget/custom_appbar.dart';
-import 'package:lailaty/core/config/widget/my_sized_box.dart';
+import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
+import 'package:lailaty/core/config/presentation/widget/my_sized_box.dart';
 
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 
-import '../../../../core/config/widget/accept_button_customer.dart';
+import '../../../../core/config/presentation/widget/accept_button_customer.dart';
 import '../../../../core/resources/key_manager.dart';
 
 class NoticeToDriverView extends StatelessWidget {

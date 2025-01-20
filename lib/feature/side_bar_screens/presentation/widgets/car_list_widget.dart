@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/state_managment/car_list_view_model.dart';
-import 'package:lailaty/feature/side_bar_screens/presentation/widgets/car_dialog.dart';
 import 'package:provider/provider.dart';
 
 class CarListWidget extends StatelessWidget {
@@ -132,14 +133,17 @@ class CarListWidget extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {
-                  final nameController = TextEditingController(); //!!
-                  showDialog(
-                    context: context,
-                    builder: (_) => CarDialog(
-                      nameController: nameController,
-                      viewModel: viewModel,
-                    ),
-                  );
+                  context.push(AppKeys.carInfoPath, extra: () {
+                    context.pop();
+                  });
+                  //   final nameController = TextEditingController(); //!!
+                  //   showDialog(
+                  //     context: context,
+                  //     builder: (_) => CarDialog(
+                  //       nameController: nameController,
+                  //       viewModel: viewModel,
+                  //     ),
+                  //   );
                 },
                 icon: Icon(
                   Icons.add_rounded,

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
-import '../../../../core/config/widget/Titles.dart';
-import '../../../../core/config/widget/my_sized_box.dart';
+import '../../../../core/config/presentation/widget/Titles.dart';
+import '../../../../core/config/presentation/widget/my_sized_box.dart';
 
 import '../../../../core/resources/style_maneger.dart';
 import 'accept_button_text_switch_to_icon.dart';

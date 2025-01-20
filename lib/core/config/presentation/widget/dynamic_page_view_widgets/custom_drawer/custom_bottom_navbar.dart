@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/travel_page/bottom_nav_item.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/bottom_nav_item.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final int selectedIndex;

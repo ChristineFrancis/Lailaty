@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lailaty/core/config/presentation/pages/dynamic_page_view.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
+import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/viewmodels/birthdate_view_model.dart';
 import 'package:lailaty/core/viewmodels/personal_information_view.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/carInfo.dart';
@@ -13,16 +15,17 @@ import 'package:lailaty/feature/side_bar_screens/presentation/view/profile_page.
 import 'package:lailaty/feature/side_bar_screens/presentation/view/safety_page.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/settings_page.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/share_app_page.dart';
+import 'package:lailaty/main.dart';
 import '../../feature/agreeScreens/presentation/view/noticeToDriverView.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/login_prompt_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/personal_information_page.dart';
 import 'package:lailaty/feature/agreeScreens/presentation/view/security_information_page.dart';
-import 'package:lailaty/feature/travel/presentation/view/travel_page.dart';
 import 'package:provider/provider.dart';
 
 class Routes {
   GoRouter router = GoRouter(
     routes: [
+      //delete this :
       // GoRoute(
       //   path: carInfoPath,
       //   builder: (context, state) => const CarInfoView(),
@@ -37,16 +40,19 @@ class Routes {
       //   },
       // ),
       GoRoute(
-        path: AppKeys.carInfoPath,
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: ChangeNotifierProvider(
-            create: (context) => PersonalInformationView(),
-            child: const CarInfoView(),
-          ),
-          transitionsBuilder: _fadeTransition,
-        ),
-      ),
+          path: AppKeys.carInfoPath,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: ChangeNotifierProvider(
+                create: (context) => PersonalInformationView(),
+                child: CarInfoView(
+                  onNavigate: state.extra as VoidCallback?,
+                ),
+              ),
+              transitionsBuilder: _fadeTransition,
+            );
+          }),
       GoRoute(
         path: AppKeys.editingCarPage,
         pageBuilder: (context, state) => CustomTransitionPage(
@@ -82,6 +88,7 @@ class Routes {
           transitionsBuilder: _fadeTransition,
         ),
       ),
+
       GoRoute(
         path: AppKeys.personalInformationPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
@@ -120,16 +127,24 @@ class Routes {
         ),
       ),
       GoRoute(
-        path: AppKeys.travelPageKey,
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: ChangeNotifierProvider(
-            create: (context) => DateviewModel(),
-            child: const TravelPage(),
-          ),
-          transitionsBuilder: _fadeTransition,
-        ),
-      ),
+          path: AppKeys.dynamicPageViewKey,
+          pageBuilder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>?;
+
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: ChangeNotifierProvider(
+                create: (context) => DateviewModel(),
+                child: DynamicPageView(
+                  appBarTitle: extra?[AppKeys.appBarTitleKey] ??
+                      StringManager.travelTitle,
+                  pages: extra?[AppKeys.pagesKey] ?? [],
+                  initialIndex: extra?[AppKeys.initialIndexKey] ?? 1,
+                ),
+              ),
+              transitionsBuilder: _fadeTransition,
+            );
+          }),
       GoRoute(
         path: AppKeys.safetyPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
@@ -180,6 +195,16 @@ class Routes {
           transitionsBuilder: _fadeTransition,
         ),
       ),
+   //! this page to nav to the travel and widding ..
+   //! temp page !!
+      // GoRoute(
+      //   path: '/', //AppKeys.callUsPageKey,
+      //   pageBuilder: (context, state) => CustomTransitionPage(
+      //     key: state.pageKey,
+      //     child: const TestPage(),
+      //     transitionsBuilder: _fadeTransition,
+      //   ),
+      // ),
     ],
   );
 

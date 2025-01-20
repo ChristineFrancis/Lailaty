@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/filter_container/filter_container.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/orders_overview_container.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
@@ -6,32 +8,24 @@ import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/bottom_sheet_container.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/filter_container/city_row.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/client_trip_details.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/filter_container/filter_container.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/orders_overview_container.dart';
 
-class TravelOrdersPage extends StatefulWidget {
-  const TravelOrdersPage({super.key});
+class WiddingAndBusinessOrderPage extends StatefulWidget {
+  const WiddingAndBusinessOrderPage({super.key});
 
   @override
-  State<TravelOrdersPage> createState() => _TravelOrdersPageState();
+  State<WiddingAndBusinessOrderPage> createState() =>
+      _WiddingAndBusinessOrderPageState();
 }
 
-class _TravelOrdersPageState extends State<TravelOrdersPage> {
-  // bool _isFilterVisible = false;
-
-  // void _toggleFilterVisibility() {
-  //   setState(() {
-  //     _isFilterVisible = !_isFilterVisible;
-  //   });
-  // }
-
+class _WiddingAndBusinessOrderPageState
+    extends State<WiddingAndBusinessOrderPage> {
   void _showDetailsSheet(
       {required ClientTripDetailsModel clientTripDetailsModel}) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
         return BottomSheetContainer(
-          isTravelPage: true,
+          isTravelPage: false,
           firstBottonText: StringManager.acceptAnOffer,
           secondBottonText: StringManager.suggestYourPrice,
           thirdBottonText: StringManager.viewOnMap,
@@ -49,17 +43,8 @@ class _TravelOrdersPageState extends State<TravelOrdersPage> {
       children: [
         const OrdersOverviewContainer(),
         const FilterContainer(
-          isTravelPage: true,
+          isTravelPage: false,
         ),
-        // if (_isFilterVisible) FilterContainer(),
-
-        // SizedBox(
-        //   height: context.screenHeight * 0.025,
-        // ),
-        // const FilterContainer(),
-        // SizedBox(
-        //   height: context.screenHeight * 0.025,
-        // ),
         Expanded(
           child: ListView.builder(
             itemCount: getClientTripDetails()
@@ -67,7 +52,7 @@ class _TravelOrdersPageState extends State<TravelOrdersPage> {
             itemBuilder: (context, index) {
               final order = getClientTripDetails()[index];
               return ClientTripDetailsContainer(
-                isTravelPage: true,
+                isTravelPage: false,
                 widget: CityRow(
                   city: order.captainName,
                   letter: '',

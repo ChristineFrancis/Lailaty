@@ -20,9 +20,9 @@ class StringManager {
   static const String addphotoCar = "يرجى إضافة 5 صور :";
   static const String photosCar =
       "صورة أمامية\nصورة خلفية\nصورة داخلية\nصورتان جانبيتان";
-  static const String addBackphotoCar = "صورة خلفية:";
-  static const String addFrontphotoCar = "صورة أمامية :";
-  static const String addInsidephotoCar = "صورة داخلية :";
+  static const String addBackphotoCar = ":صورة خلفية";
+  static const String addFrontphotoCar = ":صورة أمامية ";
+  static const String addInsidephotoCar = ":صورة داخلية ";
   static const String photoLecienceCar = "صور رخصة السيارة";
   static const String photoFrontBackLecienceCar = "صورة خلفية\nصورة أمامية";
   static const String tam = "تم";
@@ -61,7 +61,6 @@ class StringManager {
   static const String travelling = "سفر";
   static const String onYourMode = "على مودك";
   static const String rigester = "تسجيل";
-
 
   static const String conntentOfdriving =
       "جاهز معانا تكون كابتن ليلتي\nلتعليم مبتدئين لقيادة السيارات\nمن 1977 او أحدث";
@@ -211,4 +210,5 @@ class StringManager {
   static const String newImageSelected = 'تم اختيار صورة جديدة';
   static const String addANewCar = 'إضافة سيارة جديدة';
   static const String fromBackData = 'من الباك';
+  static const String weddingBusiness = 'زفاف - رجال اعمال';
 }

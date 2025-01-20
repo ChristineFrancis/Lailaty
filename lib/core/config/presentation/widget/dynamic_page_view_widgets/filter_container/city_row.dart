@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/orders_page/letter_circle.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/letter_circle.dart';
 
 class CityRow extends StatelessWidget {
   final String city;
