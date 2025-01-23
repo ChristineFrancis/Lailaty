@@ -211,4 +211,11 @@ class StringManager {
   static const String addANewCar = 'إضافة سيارة جديدة';
   static const String fromBackData = 'من الباك';
   static const String weddingBusiness = 'زفاف - رجال اعمال';
+  static const String iHaveArrived = 'لقد وصلت';
+  static const String journeyCompleted = 'اكتملت الرحلة';
+  static const String isTheTripOver = 'هل انتهت الرحلة؟';
+  static const String payExample = '88 EGP';
+  static const String yes = 'نعم';
+  static const String no = 'لا';
+  static const String startTheJourney = 'ابدأ الرحلة';
 }

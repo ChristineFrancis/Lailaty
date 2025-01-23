@@ -37,8 +37,18 @@ class AppKeys {
   static const String callUsPageKey = '/callUs_page';
   static const String settingsPageKey = '/settings_page';
   static const String profilePageKey = '/profile_page';
+  static const String mapPageKey = '/map_page';
 
+//dynamic page view :
   static const String appBarTitleKey = 'appBarTitle';
   static const String pagesKey = 'pages';
   static const String initialIndexKey = 'initialIndex';
+
+//map containers :
+  static const String iHaveArrivedContainer = 'iHaveArrivedContainer';
+
+  static const String journeyCompletedContainer = "journeyCompleted";
+  static const String journeyEndedContainer = "journeyEnded";
+  static const String rateJourneyContainer = "rateJourney";
+  static const String startTheJourneyContainer = "startTheJourney";
 }
