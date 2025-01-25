@@ -197,10 +197,10 @@ class Routes {
         ),
       ),
       GoRoute(
-        path: '/',
+        path: AppKeys.mapPageKey,
         pageBuilder: (context, state) {
-          String initialContainerKey = AppKeys.iHaveArrivedContainer;
-          //   state.extra as String; // ?? AppKeys.journeyCompleted;
+          String initialContainerKey = //AppKeys.rateJourneyContainer;
+              state.extra as String; // ?? AppKeys.journeyCompleted;
 
           return CustomTransitionPage(
             key: state.pageKey,
@@ -212,14 +212,14 @@ class Routes {
 
       //! this page to nav to the travel and widding ..
       //! temp page !!
-      // GoRoute(
-      //   path: '/',
-      //   pageBuilder: (context, state) => CustomTransitionPage(
-      //     key: state.pageKey,
-      //     child: const TestPage(),
-      //     transitionsBuilder: _fadeTransition,
-      //   ),
-      // ),
+      GoRoute(
+        path: '/',
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const TestPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
     ],
   );
 

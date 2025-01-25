@@ -218,4 +218,10 @@ class StringManager {
   static const String yes = 'نعم';
   static const String no = 'لا';
   static const String startTheJourney = 'ابدأ الرحلة';
+  static const String veryBad = 'سيئة جداً';
+  static const String bad = 'سيئة';
+  static const String average = "متوسطة";
+  static const String good = "جيدة جدا";
+  static const String veryGood = 'ممتازة';
+  static const String send = 'إرسال';
 }

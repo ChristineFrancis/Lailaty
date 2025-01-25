@@ -41,7 +41,7 @@ class HaveArrivedContainer extends StatelessWidget {
                 height: context.screenHeight * 0.05,
                 decoration: BoxDecoration(
                   color: ColorManager.yellowTextColor,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(5),
                 ),
                 child: Center(
                   child: Text(

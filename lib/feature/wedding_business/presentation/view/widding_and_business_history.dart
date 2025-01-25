@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/bottom_sheet_container.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/client_trip_details.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/archived_order_bottom_sheet.dart';
@@ -26,6 +28,12 @@ class _WiddingAndBusinessHistoryPageState
       builder: (context) {
         return BottomSheetContainer(
           isTravelPage: false,
+          firstButtonFunc: () {
+            context.push(
+              AppKeys.mapPageKey,
+              extra: AppKeys.startTheJourneyContainer,
+            );
+          },
           firstBottonText: StringManager.completeTheOrder,
           secondBottonText: StringManager.viewOnMap,
           thirdBottonText: StringManager.orderCancellation,
@@ -99,7 +107,6 @@ class _WiddingAndBusinessHistoryPageState
                   itemBuilder: (context, index) {
                     final order = filterOrderViewModel.filteredOrders[index];
                     return ClientTripDetailsContainer(
-
                       isTravelPage: false,
                       widget: ContactRow(order: order),
                       onTap: () {

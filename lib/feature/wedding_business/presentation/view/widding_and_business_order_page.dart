@@ -26,6 +26,7 @@ class _WiddingAndBusinessOrderPageState
       builder: (context) {
         return BottomSheetContainer(
           isTravelPage: false,
+          firstButtonFunc: () {},
           firstBottonText: StringManager.acceptAnOffer,
           secondBottonText: StringManager.suggestYourPrice,
           thirdBottonText: StringManager.viewOnMap,

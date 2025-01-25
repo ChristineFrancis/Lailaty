@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/feature/map/presentation/widgets/have_arrived_container.dart';
 import 'package:lailaty/feature/map/presentation/widgets/journey_ended_container.dart';
+import 'package:lailaty/feature/map/presentation/widgets/rate_journey_container.dart';
 
 class MapPage extends StatefulWidget {
   final String initialContainerKey;
@@ -122,10 +124,9 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
           () => _showContainer(AppKeys.rateJourneyContainer),
         );
       case AppKeys.rateJourneyContainer:
-        return _buildRateJourneyContainer(
-          () => _showContainer(AppKeys.journeyCompletedContainer),
-          () => _showContainer(AppKeys.journeyEndedContainer),
-        );
+        return _buildRateJourneyContainer(() {
+          context.pop();
+        });
       default:
         return const SizedBox();
     }
@@ -160,30 +161,9 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _buildRateJourneyContainer(
-      VoidCallback toJourneyCompleted, VoidCallback toJourneyEnded) {
-    return Container(
-      key: const ValueKey(AppKeys.rateJourneyContainer),
-      height: 400,
-      width: double.infinity,
-      color: Colors.red,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            "Rate Journey",
-            style: TextStyle(color: Colors.white, fontSize: 18),
-          ),
-          ElevatedButton(
-            onPressed: toJourneyCompleted,
-            child: const Text("Journey Completed"),
-          ),
-          ElevatedButton(
-            onPressed: toJourneyEnded,
-            child: const Text("Journey Ended"),
-          ),
-        ],
-      ),
+  Widget _buildRateJourneyContainer(VoidCallback toThePrivousPage) {
+    return RateJourneyContainer(
+      toThePrivousPage: toThePrivousPage,
     );
   }
 }

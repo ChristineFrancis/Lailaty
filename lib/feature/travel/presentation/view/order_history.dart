@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
 import 'package:lailaty/core/viewmodels/filter_order_view_model.dart';
@@ -24,6 +26,12 @@ class _TravelOrderHistoryPageState extends State<TravelOrderHistoryPage> {
       builder: (context) {
         return BottomSheetContainer(
           isTravelPage: true,
+          firstButtonFunc: () {
+            context.push(
+              AppKeys.mapPageKey,
+              extra: AppKeys.startTheJourneyContainer,
+            );
+          },
           firstBottonText: StringManager.completeTheOrder,
           secondBottonText: StringManager.viewOnMap,
           thirdBottonText: StringManager.orderCancellation,

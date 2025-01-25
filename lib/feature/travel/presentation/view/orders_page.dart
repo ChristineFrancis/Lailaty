@@ -32,6 +32,9 @@ class _TravelOrdersPageState extends State<TravelOrdersPage> {
       builder: (context) {
         return BottomSheetContainer(
           isTravelPage: true,
+          firstButtonFunc: () {
+
+          },
           firstBottonText: StringManager.acceptAnOffer,
           secondBottonText: StringManager.suggestYourPrice,
           thirdBottonText: StringManager.viewOnMap,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/core/config/presentation/widget/bottom_sheet_handle.dart';
 import 'package:lailaty/core/config/presentation/widget/myButtonWidget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
@@ -17,6 +18,7 @@ class BottomSheetContainer extends StatelessWidget {
   final Color thirdBottonColor;
   final ClientTripDetailsModel clientTripDetailsModel;
   final bool isTravelPage;
+  final void Function() firstButtonFunc;
   const BottomSheetContainer({
     super.key,
     required this.clientTripDetailsModel,
@@ -26,6 +28,7 @@ class BottomSheetContainer extends StatelessWidget {
     required this.secondBottonColor,
     required this.thirdBottonColor,
     required this.isTravelPage,
+    required this.firstButtonFunc,
   });
 
   @override
@@ -41,6 +44,7 @@ class BottomSheetContainer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
+            //      const Center(child: BottomSheetHandle()),
             Text(
               clientTripDetailsModel.title,
               style: StyleManager.boldTextStyle24(),
@@ -148,7 +152,7 @@ class BottomSheetContainer extends StatelessWidget {
                         size: context.screenHeight * 0.03),
                   ),
                 ),
-                onpress: () {},
+                onpress: firstButtonFunc,
               ),
             ),
             SizedBox(

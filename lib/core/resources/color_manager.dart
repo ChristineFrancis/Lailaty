@@ -30,4 +30,6 @@ abstract class ColorManager {
   static const Color shadowColor = Color.fromARGB(255, 210, 209, 209);
   static const Color brightGreen = Color(0xff01FF3D);
   static const Color transparentColor = Colors.transparent;
+  static const Color greyRateContainer = Color(0xff979797);
+  static const Color greyStartRating = Color(0xffE0DFC9);
 }

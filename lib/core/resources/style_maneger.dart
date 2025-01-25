@@ -70,7 +70,7 @@ class StyleManager {
     Color color = ColorManager.black,
     double size = 12,
     FontWeight fontWeight = FontWeight.normal,
-    
+
   }) {
     return TextStyle(
         color: color,
