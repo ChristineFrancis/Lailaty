@@ -224,4 +224,9 @@ class StringManager {
   static const String good = "جيدة جدا";
   static const String veryGood = 'ممتازة';
   static const String send = 'إرسال';
+  static const String thePassengerDidNotShow = "الراكب لم يظهر";
+  static const String refuseToExecuteTheRequest = "ارفض تنفيذ الطلب";
+  static const String falseRequest = "طلب زائف";
+  static const String passengerComplaint = "شكوى بشأن الراكب";
+  static const String reasonForCancellation = "سبب الإلغاء";
 }

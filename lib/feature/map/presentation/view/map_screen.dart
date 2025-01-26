@@ -4,6 +4,7 @@ import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
+import 'package:lailaty/feature/map/presentation/widgets/cancel_journey_container.dart';
 import 'package:lailaty/feature/map/presentation/widgets/have_arrived_container.dart';
 import 'package:lailaty/feature/map/presentation/widgets/journey_ended_container.dart';
 import 'package:lailaty/feature/map/presentation/widgets/rate_journey_container.dart';
@@ -127,6 +128,11 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
         return _buildRateJourneyContainer(() {
           context.pop();
         });
+      case AppKeys.cancelJourneyContainer:
+        return _buildCancelJourneyContainer(
+          () => _showContainer(AppKeys.iHaveArrivedContainer),
+          () => context.pop(),
+        );
       default:
         return const SizedBox();
     }
@@ -164,6 +170,14 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
   Widget _buildRateJourneyContainer(VoidCallback toThePrivousPage) {
     return RateJourneyContainer(
       toThePrivousPage: toThePrivousPage,
+    );
+  }
+
+  Widget _buildCancelJourneyContainer(
+      VoidCallback toThePrivousPage, VoidCallback onChooseCancellationReason) {
+    return CancelJourneyContainer(
+      onClose: toThePrivousPage,
+      onChooseCancellationReason: onChooseCancellationReason,
     );
   }
 }

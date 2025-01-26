@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/config/presentation/widget/bottom_sheet_handle.dart';
+import 'package:lailaty/core/config/presentation/widget/myButton.dart';
+import 'package:lailaty/core/config/presentation/widget/myButtonWidget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
@@ -20,7 +22,7 @@ class RateJourneyContainer extends StatefulWidget {
 }
 
 class _RateJourneyContainerState extends State<RateJourneyContainer> {
-  int _currentRating = 5;
+  int _currentRating = 1;
 
   void _onRatingChanged(int rating) {
     setState(() {
@@ -48,29 +50,25 @@ class _RateJourneyContainerState extends State<RateJourneyContainer> {
             StarsRatingWidget(onRatingChanged: _onRatingChanged),
             SizedBox(height: context.screenHeight * 0.02),
             RatingGrid(rating: _currentRating),
-            SizedBox(height: context.screenHeight * 0.02),
-            InkWell(
-              onTap: widget.toThePrivousPage,
-              child: Container(
-                width: context.screenWidth * 0.8,
+            SizedBox(height: context.screenHeight * 0.01),
+            Center(
+              child: MyButtonWidget(
+                width: context.screenWidth * 0.7,
                 height: context.screenHeight * 0.05,
-                decoration: BoxDecoration(
-                  color: ColorManager.yellowTextColor,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Center(
+                radius: 5,
+                colors: ColorManager.yellowTextColor,
+                widget: Center(
                   child: Text(
                     StringManager.send,
                     style: StyleManager.boldTextStyle24(
-                      size: context.screenHeight * 0.02,
+                      size: context.screenHeight * 0.03,
                     ),
                   ),
                 ),
+                onpress: widget.toThePrivousPage,
               ),
             ),
-            SizedBox(
-              height: context.screenHeight * 0.02,
-            ),
+
           ],
         ),
       ),

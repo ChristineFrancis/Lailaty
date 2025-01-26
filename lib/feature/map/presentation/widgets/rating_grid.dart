@@ -10,7 +10,7 @@ class RatingGrid extends StatelessWidget {
 
   List<String> _getContentForRating(int rating) {
     switch (rating) {
-      case 5:
+      case 1:
         return [
           "تفاصيل الرحلة غير موجودة",
           "عنوان غير دقيق",
@@ -20,7 +20,7 @@ class RatingGrid extends StatelessWidget {
           "راكب متناقض",
           "تجاوزت مدة الانتظار",
         ];
-      case 1:
+      case 5:
         return [
           "سيارة لطيفة",
           "سائق مؤدب",

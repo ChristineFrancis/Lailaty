@@ -51,4 +51,5 @@ class AppKeys {
   static const String journeyEndedContainer = "journeyEnded";
   static const String rateJourneyContainer = "rateJourney";
   static const String startTheJourneyContainer = "startTheJourney";
+  static const String cancelJourneyContainer = "cancelJourney";
 }
