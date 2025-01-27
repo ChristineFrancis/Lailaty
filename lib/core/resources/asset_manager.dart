@@ -31,7 +31,6 @@ class ImageAssetManager {
   static String redCircleIcon = "$rootImage/Path 1517.svg";
   static String yallowCircleIcon = "$rootImage/Ellipse 49.svg";
 
-
   static String weddingCarPic = "$rootImage/زفاف .svg";
   static String drivingEduCarPic = "$rootImage/تعليم قيادة.svg";
   static String rideCarPic = "$rootImage/ride سيارة.svg";
@@ -51,4 +50,9 @@ class ImageAssetManager {
   static String timerIcon = "$rootImage/timer.svg";
 
 
+  static String facebookLogo = "$rootImage/facebook logo.svg";
+  static String instaLogo = "$rootImage/instagram logo.svg";
+
+  static String lLetter = "$rootImage/L.svg";
+  static String yLetter = "$rootImage/y.svg";
 }

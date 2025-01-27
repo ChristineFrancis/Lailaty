@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom_search_delegate.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/start_your_journey_page15/choose_car_card.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/start_your_journey_page15/search_with_text_form_field.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
@@ -114,6 +115,13 @@ class CarSelectionDialogWithSearch extends StatelessWidget {
                 SizedBox(height: 10),
                 _filterCars(context),
                 SizedBox(height: 10),
+                SearchWithTextFormField(
+                  items: ["Toyota", "Mercedes", "BMW", "Nisan"],
+                  hintText: "ادخل نوع السيارة التي تريدها...",
+                  onItemSelected: (value) {
+                    print("Selected: $value");
+                  },
+                ),
               ],
             ),
           )),

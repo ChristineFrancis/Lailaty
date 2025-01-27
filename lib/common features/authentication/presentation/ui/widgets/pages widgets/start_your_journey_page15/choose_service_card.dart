@@ -47,12 +47,9 @@ class ChooseServiceCard extends StatelessWidget {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                // const Color(0xCC000000),
-                // const Color(0x00000000),
                 containerColor,
                 darken(containerColor),
               ],
-              //stops: [0.0, 0.6, 1.0],
             ),
             borderRadius: BorderRadius.circular(12),
           ),
@@ -78,11 +75,10 @@ class ChooseServiceCard extends StatelessWidget {
                       //height: screenHeight * 0.03,
                       child: CustomTextWidget(
                         text: firstText,
-                        fontSize: 22,
+                        fontSize: 19,
                         color: firstTextColor,
                       ),
                     ),
-                    
                   ],
                 ),
               ),
@@ -91,7 +87,7 @@ class ChooseServiceCard extends StatelessWidget {
                 child: Center(
                   child: CustomTextWidget(
                     text: secondText,
-                    fontSize: 12,
+                    fontSize: 11,
                     color: Colors.black,
                   ),
                 ),

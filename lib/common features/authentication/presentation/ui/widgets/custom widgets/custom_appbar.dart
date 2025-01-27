@@ -9,7 +9,6 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
     return AppBar(
       backgroundColor: ColorManager.darkGrey,
       elevation: 4,
@@ -38,5 +37,4 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight + 15);
-  //TODO: make the heigth of app bar better if you can
 }

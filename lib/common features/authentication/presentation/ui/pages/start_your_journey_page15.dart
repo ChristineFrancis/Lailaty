@@ -14,22 +14,24 @@ class StartYourJourneyPage15 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: ColorManager.grey100,
       appBar: StartYourJourneyAppbar(),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: GridView(
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: [
+              GridView(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 15,
                   crossAxisSpacing: 10,
-                  mainAxisExtent: screenHeight * 0.225,
+                  mainAxisExtent: screenHeight * 210 / 932,
                 ),
                 children: [
                   ChooseServiceCard(
@@ -90,28 +92,28 @@ class StartYourJourneyPage15 extends StatelessWidget {
                       onTap: () {}),
                 ],
               ),
-            ),
-            SizedBox(height: 15),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.055,
-              child: CustomElevatedButton(
-                text: 'التالي',
-                onPressed: () {},
-                textColor: ColorManager.yellow,
-                buttonColor: ColorManager.grey,
-                fontSize: 27,
+              SizedBox(height: 20),
+              SizedBox(
+                height: screenHeight * 47 / 932,
+                width: screenWidth * 307 / 430,
+                child: CustomElevatedButton(
+                  text: 'التالي',
+                  onPressed: () {},
+                  textColor: ColorManager.yellow,
+                  buttonColor: ColorManager.grey,
+                  fontSize: 22,
+                ),
               ),
-            ),
-            SizedBox(height: 10),
-            InkWell(
-              onTap: () {},
-              child: CustomTextArial(
-                  text: 'التبديل الى وضع السائق',
-                  fontSize: 35,
-                  color: Colors.black),
-            ),
-            SizedBox(height: 15),
-          ],
+              SizedBox(height: 10),
+              InkWell(
+                onTap: () {},
+                child: CustomTextArial(
+                    text: 'التبديل الى وضع السائق',
+                    fontSize: 28,
+                    color: Colors.black),
+              ),
+            ],
+          ),
         ),
       ),
     );

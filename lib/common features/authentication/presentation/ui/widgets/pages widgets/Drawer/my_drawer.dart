@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/inbox_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/order_history_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/safity_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/setting_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_arial.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/Drawer/my_bottom_sheet.dart';
+import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -18,7 +21,8 @@ class MyDrawer extends StatelessWidget {
     double photoWidth = screenWidth * 0.13;
     return Drawer(
       backgroundColor: ColorManager.grey,
-      width: screenWidth * 0.62,
+      width: screenWidth * 267 / 430,
+      
       child: Container(
         height: screenHeight,
         padding: EdgeInsets.symmetric(horizontal: 7, vertical: 9),
@@ -114,9 +118,33 @@ class MyDrawer extends StatelessWidget {
                   _myTile(
                       context, 'مشاركة التطبيق', Icons.share_outlined, () {}),
                   _myTile(context, 'اتصل بنا', Icons.support_agent, () {}),
-                  SizedBox(height: screenHeight * 0.1),
+                  SpcY(y: 45),
                   _captianMood(context),
-                  // TODO: put insta and facebook logo
+                  SpcY(y: 15),
+                  SizedBox(
+                    width: screenWidth * 200 / 430,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: SizedBox(
+                              width: screenWidth * 44 / 430,
+                              height: screenHeight * 44 / 932,
+                              child: SvgPicture.asset(
+                                  ImageAssetManager.facebookLogo)),
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: SizedBox(
+                              width: screenWidth * 44 / 430,
+                              height: screenHeight * 44 / 932,
+                              child: SvgPicture.asset(
+                                  ImageAssetManager.instaLogo)),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -140,7 +168,7 @@ Widget _myTile(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          CustomTextWidget(text: text, fontSize: 20, color: Colors.black),
+          CustomTextWidget(text: text, fontSize: 18, color: Colors.black),
           SizedBox(width: 10),
           Icon(
             icon,
@@ -168,7 +196,7 @@ Widget _carOrMotor(BuildContext context, VoidCallback onpressedCar,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CustomTextWidget(
-                  text: 'سيارة', fontSize: 20, color: Colors.black),
+                  text: 'سيارة', fontSize: 18, color: Colors.black),
               SizedBox(width: 10 + screenWidth * 0.08),
             ],
           ),
@@ -196,7 +224,7 @@ Widget _carOrMotor(BuildContext context, VoidCallback onpressedCar,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CustomTextWidget(
-                  text: 'دراجة نارية', fontSize: 20, color: Colors.black),
+                  text: 'دراجة نارية', fontSize: 18, color: Colors.black),
               SizedBox(width: 10 + screenWidth * 0.08),
             ],
           ),
@@ -226,7 +254,7 @@ Widget _captianMood(BuildContext context) {
           color: ColorManager.yellow, borderRadius: BorderRadius.circular(8)),
       child: Center(
         child: CustomTextArial(
-            text: 'وضع الشريك السائق', fontSize: 25, color: Colors.black),
+            text: 'وضع الشريك السائق', fontSize: 22, color: Colors.black),
       ),
     ),
   );

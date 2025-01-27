@@ -48,11 +48,11 @@ class ChooseCarCard extends StatelessWidget {
               child: SvgPicture.asset(svgPictureName),
             ),
             CustomTextWidget(
-                text: title, fontSize: 11, color: ColorManager.yellow),
+                text: title, fontSize: 9, color: ColorManager.yellow),
             CustomTextWidget(
-                text: description, fontSize: 9, color: Colors.black),
+                text: description, fontSize: 8, color: Colors.black),
             CustomTextWidget(
-                text: price, fontSize: 20, color: ColorManager.yellow),
+                text: price, fontSize: 18, color: ColorManager.yellow),
             SizedBox(
               height: screenHeight * 0.032,
               width: screenWidth * 0.16,
