@@ -5,7 +5,7 @@ import 'package:lailaty/common%20features/authentication/presentation/ui/widgets
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
-Future<void> suggestYourPriceBottomSheet(BuildContext context, TextEditingController controller) {
+Future<void> searchOnDriverBottomSheet(BuildContext context, TextEditingController controller) {
   bool switchValue = false;
   return showModalBottomSheet(
     context: context,
@@ -25,7 +25,7 @@ Future<void> suggestYourPriceBottomSheet(BuildContext context, TextEditingContro
                  borderRadius:  BorderRadius.all(Radius.circular(10) ),
                 color: ColorManager.grey,
               ),
-              height: heightOfScreen / 2.5,
+              height: heightOfScreen / 3,
               child:  CustomScrollView(
                 slivers: [
                   SliverFillRemaining(
@@ -33,6 +33,7 @@ Future<void> suggestYourPriceBottomSheet(BuildContext context, TextEditingContro
                     child: Column(
                        mainAxisSize: MainAxisSize.min, 
                       children: [
+                         
                         Directionality(
                           textDirection: TextDirection.ltr,
                           child: Row(
@@ -49,51 +50,69 @@ Future<void> suggestYourPriceBottomSheet(BuildContext context, TextEditingContro
                         ),
                         Center(
                           child: CustomTextWidget(
-                            text: 'اقترح سعرك',
-                            fontSize: 27,
+                            text: 'البحث عن كباتن',
+                            fontSize: 24,
                             color: Colors.black,
                             fontWeight: FontWeight.w900,
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(top:  8.0),
+                          child: Center(
+                            child: CustomTextWidget(
+                              text: 'عرضك',
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ),
+                        Row(
+  mainAxisAlignment: MainAxisAlignment.spaceAround,
+  children: [
+    IconButton(
+      onPressed: () {},
+      icon: Icon(Icons.remove, size: 24, weight: 30),
+    ),
+    Center(
+      child: CustomTextWidget(
+        text: '90 EGP',
+        fontSize: 24,
+        color: Colors.black,
+        fontWeight: FontWeight.w900,
+      ),
+    ),
+    Container(
+      height: 40,
+      width: 40,
+      decoration: const BoxDecoration(
+        color: ColorManager.yellow,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Center( // Ensure the icon is perfectly centered
+        child: IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.add, size: 24, color: Colors.black),
+        ),
+      ),
+    ),
+  ],
+),
+
                         //Spacer(flex: 1,),
                         SizedBox(height: 10,),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: widthOfScreen/3.5),
+                          padding: EdgeInsets.symmetric(horizontal: widthOfScreen/4),
                           child: Center(
                             child: CustomTextFormFieldName(
                               controller: controller,
-                              hintText: '',
+                              hintText: 'رفع السعر المقترح',
                               heightTextFormField: heightOfScreen*0.06,
                             ),
                           ),
                         ),
-                        Spacer(flex: 1,),
-                        Center(
-                          child: CustomTextWidget(
-                            text: 'السعر المقترح لايمكن ان يقل عن 90 ج',
-                            color: ColorManager.yellow,
-                            fontSize: 20,
-                          ),
-                        ),
-                        //Spacer(flex: 1,),
-                        SizedBox(height: 10,),
-                       Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(ImageAssetManager.moneyIcon),
-                              SizedBox(width: widthOfScreen/26,),
-                              CustomTextWidget(
-                                text: 'نقداً',
-                                color: ColorManager.yellow,
-                                fontSize: 18,
-                              ),
-                            ],
-                          ),
-                        ),
-                                
-                       // Spacer(flex: 1,),
                        SizedBox(height: 10,),
+                       // Spacer(flex: 1,),
                         Directionality(
                           textDirection: TextDirection.rtl,
                           child: Expanded(
@@ -123,8 +142,8 @@ Future<void> suggestYourPriceBottomSheet(BuildContext context, TextEditingContro
                             ),
                           ),
                         ),
-                       // Spacer(flex: 3,),
-                       SizedBox(height: 10,),
+                        //Spacer(flex: 3,),
+                        SizedBox(height: 10,),
                       ],
                     ),
                   ),

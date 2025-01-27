@@ -8,16 +8,17 @@ class CustomButton extends StatelessWidget {
   final Function() onTap;
   final double textSize;
   FontWeight? fontWeight;
+  final Color color;
   //final double fontSize;
-   CustomButton({super.key, required this.textButton, required this.onTap , this.textSize=24 , this.fontWeight} );
+   CustomButton({super.key, required this.textButton, required this.onTap , this.textSize=24 , this.fontWeight , this.color=ColorManager.yellow} );
 
   @override
   Widget build(BuildContext context) {
      double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       height:50,           
-      decoration: const BoxDecoration(
-       color: ColorManager.yellow,
+      decoration:  BoxDecoration(
+       color: color,
        borderRadius:  BorderRadius.all(Radius.circular(10) )),
       child: MaterialButton(
         shape:const RoundedRectangleBorder(

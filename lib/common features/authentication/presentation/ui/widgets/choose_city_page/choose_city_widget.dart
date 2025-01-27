@@ -12,19 +12,18 @@ class CityDropdown extends StatefulWidget {
 }
 
 class _CityDropdownState extends State<CityDropdown> {
-  late String selectedCity; // Holds the currently selected city
+  late String selectedCity;
 
   @override
   void initState() {
     super.initState();
-    // Set the default selected city to the first city in the list
     selectedCity = widget.cities.first;
   }
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl, // Arabic text direction
+      textDirection: TextDirection.rtl, 
       child: Container(
         height: 60,
         margin: EdgeInsets.symmetric(horizontal: MediaQuery.sizeOf(context).width/5),
@@ -37,7 +36,7 @@ class _CityDropdownState extends State<CityDropdown> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Fixed flag on the left
+            
             Row(
               children: [
                 

@@ -3,6 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/button_like_text_field.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/choose_car.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/current_and_next_location_word.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/offer/driver_offer_with_timer.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/sections/journey_in_car_widget.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/sections/ride_car_select_other_stations_widget.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/sections/ride_car_widget.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/sections/ride_motor_widget.dart';
@@ -22,13 +24,27 @@ class MapAndOrderDetails extends StatelessWidget {
    final TextEditingController directionController = TextEditingController();
   List <CarType> carsType=
   [
-    CarType(name: 'Ride', image: ImageAssetManager.rideCar, islargeText: false , ),
-    CarType(name: 'Ride', image: ImageAssetManager.comfortBlackCar , islargeText: false),
-    CarType(name: 'Ride', image: ImageAssetManager.rideMotor , islargeText: false),
-    CarType(name: 'زفاف - رجال اعمال', image: ImageAssetManager.weddingCar , islargeText: true),
-    CarType(name: 'تعليم قيادة', image: ImageAssetManager.leaningCar , islargeText: true),
-    CarType(name: 'سفر', image: ImageAssetManager.rideCar , islargeText: false),
-    CarType(name: 'على مودك', image: ImageAssetManager.rideCar , islargeText: false),
+    CarType(name: 'Ride', image: ImageAssetManager.rideCar, islargeText: false ,
+    details: 
+    'نوفر لك رحلات سريعة وبأسعار عادلة للتنقل في المدينة بالسعر اللي تحدده وبتكلفة معقولة' ),
+
+    CarType(name: 'Ride', image: ImageAssetManager.comfortBlackCar , islargeText: false , 
+    details: 'نوفر لك رحلات سريعة وبأسعار عادلة للتنقل في المدينة بالسعر اللي تحدده وبتكلفة معقولة'),
+
+    CarType(name: 'Ride', image: ImageAssetManager.rideMotor , islargeText: false, 
+    details: 'نوفر لك رحلات سريعة وبأسعار عادلة للتنقل في المدينة بالسعر اللي تحدده وبتكلفة معقولة'),
+
+    CarType(name: 'زفاف - رجال اعمال', image: ImageAssetManager.weddingCar , islargeText: true , 
+    details: 'نوفر لك رحلات سريعة وبأسعار عادلة للتنقل في المدينة بالسعر اللي تحدده وبتكلفة معقولة'),
+
+    CarType(name: 'تعليم قيادة', image: ImageAssetManager.leaningCar , islargeText: true , 
+    details: 'نوفر لك رحلات سريعة وبأسعار عادلة للتنقل في المدينة بالسعر اللي تحدده وبتكلفة معقولة'),
+
+    CarType(name: 'سفر', image: ImageAssetManager.rideCar , islargeText: false ,
+    details: 'نوفر لك رحلات سريعة وبأسعار عادلة للتنقل في المدينة بالسعر اللي تحدده وبتكلفة معقولة'),
+
+    CarType(name: 'على مودك', image: ImageAssetManager.rideCar , islargeText: false,
+    details: 'نوفر لك رحلات سريعة وبأسعار عادلة للتنقل في المدينة بالسعر اللي تحدده وبتكلفة معقولة'),
   ];
   
 
@@ -54,7 +70,7 @@ class MapAndOrderDetails extends StatelessWidget {
             ),
 
             //26
-            TravelWidgetAfter(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.9, carsType: carsType),
+           // TravelWidgetAfter(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.9, carsType: carsType),
 
             //24 _ 25
            // TravelWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.9, carsType: carsType),
@@ -75,7 +91,10 @@ class MapAndOrderDetails extends StatelessWidget {
            // RideCarSelectOtherStations(sizeOfGreySection: MediaQuery.sizeOf(context).height*0.6 ,carsType: carsType),
 
            //17
-           // RideCarWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height/2 +40,carsType: carsType,)
+            RideCarWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height/2 +40,carsType: carsType,),
+            DriverOfferWithTimer()
+
+           //JourneyInCarWidget(sizeOfGreySection: MediaQuery.sizeOf(context).height/2 +40,carsType: carsType),
         
           ],
         ),
@@ -88,7 +107,8 @@ class CarType
   final String name;
   final String image;
   final bool islargeText;
+  final String details;
 
-  CarType({required this.islargeText, required this.name, required this.image});
+  CarType({required this.islargeText, required this.name, required this.image ,required this.details });
 
 }

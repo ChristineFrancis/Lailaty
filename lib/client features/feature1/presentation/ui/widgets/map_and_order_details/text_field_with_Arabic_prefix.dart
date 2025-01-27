@@ -21,12 +21,13 @@ class TextFieldWithArabicPrefix extends StatelessWidget {
     double fieldheight = screenHeight * 0.05;
     //double fontSize = screenWidth * 0.07;
     return  SizedBox(
+      height: fieldheight,
     width: MediaQuery.of(context).size.width*0.7, 
     child: Stack(
      alignment: Alignment.centerRight,
      children: [
      TextField(
-      style:TextStyle(height: screenHeight * 0.001, fontSize: 21.sp),
+      style:TextStyle(height: screenHeight * 0.001, fontSize: getResponsiveText(21, context)),
       textDirection: TextDirection.rtl, 
       decoration: InputDecoration(
       focusColor: Colors.black,
@@ -38,7 +39,7 @@ class TextFieldWithArabicPrefix extends StatelessWidget {
       
       hintStyle: TextStyle(
        height: 1.2,
-      fontSize: 21.sp,
+      fontSize:  getResponsiveText(21, context),
       //fontWeight:FontWeight.w600 ,
       color: ColorManager.grey),
       border: OutlineInputBorder(
@@ -56,7 +57,7 @@ class TextFieldWithArabicPrefix extends StatelessWidget {
                   ),
                   Positioned(
                     right: 15, // Padding to position the constant word
-                    child:  CustomTextWidget(text:PrefixText ,fontSize: 20 , color: Colors.black , fontWeight: FontWeight.w400 ,), 
+                    child:  CustomTextWidget(text:PrefixText ,fontSize: getResponsiveText(20, context) , color: Colors.black , fontWeight: FontWeight.w400 ,), 
                   ),
        ],),);
   }

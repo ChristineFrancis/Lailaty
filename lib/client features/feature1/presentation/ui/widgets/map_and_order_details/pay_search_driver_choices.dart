@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/cancel_order_bottom_sheet.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/evaluate_driver_bottom_sheet.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/reasons_for_canceling_order_bottom_sheet.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/choices_bottom_sheet.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/driver-accept_bottom_sheet.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/driver_waiting_bottom_sheet.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/driver_waiting_with_button_bottom_sheet.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/enter_path_bottom_sheet.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/search_on_driver_bottom_sheet.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/time_to_arrive_and_evalute_the_trip_bottom_sheet.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/bottom%20sheet/ways_to_pay_bottom_sheet.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
@@ -26,7 +34,17 @@ class PayAndySearchDriverAndChoices extends StatelessWidget {
               //height: 50,
               width:widthOfScreen/3 ,
               child: CustomButton(textButton: 'بحث عن سائق',textSize: 17,
-                    onTap: () {}, 
+                    onTap: ()async{await
+                     searchOnDriverBottomSheet(context , notesController); 
+                    //driverAcceptBottomSheet(context);
+                    //driverWaitingBottomSheet(context) ;
+                    //cancelOrderBottomSheet(context);
+                    //cancelOrderBottomSheet(context);
+                    //timeToArriveAndEvaluteTheTripBottomSheet(context);
+                    //evaluateDriverBottomSheet(context);
+                    }
+                     
+                    
                           ),
                   ),
                   Spacer(flex: 1,),

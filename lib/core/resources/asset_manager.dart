@@ -28,8 +28,8 @@ class ImageAssetManager {
   static String automaticAcceptanceIcon = "$rootImage/قبول تلقائي.svg";
   static String moneyIcon = "$rootImage/نقدا.svg";
   static String choicesIcon = "$rootImage/key.svg";
-  static String redCircleIcon = "$rootImage/red.svg";
-static String yallowCircleIcon = "$rootImage/yallow.svg";
+  static String redCircleIcon = "$rootImage/Path 1517.svg";
+  static String yallowCircleIcon = "$rootImage/Ellipse 49.svg";
 
 
   static String weddingCarPic = "$rootImage/زفاف .svg";
@@ -43,4 +43,12 @@ static String yallowCircleIcon = "$rootImage/yallow.svg";
   static String luxuryCarPic = "$rootImage/luxury.svg";
   static String vipCaporlehCarPic = "$rootImage/كابورليه vip.svg";
   static String caporlehCarPic = "$rootImage/كابورليه.svg";
+  static String closeIcon = "$rootImage/Group 708.svg";
+
+  static String safetyIcon = "$rootImage/safety.svg";
+  static String politIcon = "$rootImage/polit.svg";
+  static String carIcon = "$rootImage/car.svg";
+  static String timerIcon = "$rootImage/timer.svg";
+
+
 }

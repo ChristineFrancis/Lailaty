@@ -28,8 +28,8 @@ class TravelWidgetAfter extends StatelessWidget {
 
  List <CarType> travelCarsType=
   [
-    CarType(name: 'رحلة خاصة', image: ImageAssetManager.rideCar , islargeText: true),
-    CarType(name: 'رحلة مشتركة', image: ImageAssetManager.rideCar , islargeText: true),
+    CarType(name: 'رحلة خاصة', image: ImageAssetManager.rideCar , islargeText: true ,details: ''),
+    CarType(name: 'رحلة مشتركة', image: ImageAssetManager.rideCar , islargeText: true , details: ''),
   ];
   
 
