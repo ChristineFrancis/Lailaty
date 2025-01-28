@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/privacy_and_age_page.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
@@ -11,7 +12,7 @@ class SplashVideo extends StatefulWidget {
 }
 
 class _SplashVideoState extends State<SplashVideo> {
-  List<bool> vis = List.generate(8, (index) => false);
+  List<bool> vis = List.generate(9, (index) => false);
   int currentIndex = 0;
   Timer? timer;
 
@@ -36,6 +37,15 @@ class _SplashVideoState extends State<SplashVideo> {
           vis[currentIndex] = true;
         });
         currentIndex++;
+
+        // Navigate to PrivacyAndAgePage when vis[8] is true
+        if (currentIndex == 9) {
+          timer.cancel();
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => PrivacyAndAgePage()),
+          );
+        }
       } else {
         timer.cancel();
       }

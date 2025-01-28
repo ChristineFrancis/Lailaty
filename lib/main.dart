@@ -1,12 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lailaty/common%20features/authentication/presentation/test_page.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/start_your_journey_page15.dart';
+import 'package:lailaty/common%20features/chat/pages/empty_page.dart';
+
 /*
-void main() => runApp(
-      MyApp(),
-    );*/
+void main() {
+  // لتضل الشاشة بالطول
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]);
+  runApp(
+    MyApp(),
+  );
+}
+*/
 
 void main() => runApp(
       DevicePreview(
