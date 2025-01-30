@@ -1,18 +1,21 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/state_managment/birthdate_view_model.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/state_managment/personal_information_view.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/view/carInfo.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/view/editingCar.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/view/motor_info.dart';
-import 'package:lailaty/feature/chooseCategoryScreens/presentation/view/categoryView.dart';
-import '../../feature/agreeScreens/presentation/view/noticeToDriverView.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/view/login_prompt_page.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/view/personal_information_page.dart';
-import 'package:lailaty/feature/agreeScreens/presentation/view/security_information_page.dart';
+import 'package:lailaty/feature/agree_pages/presentation/state_managment/birthdate_view_model.dart';
+import 'package:lailaty/feature/agree_pages/presentation/state_managment/personal_information_view.dart';
+import 'package:lailaty/feature/agree_pages/presentation/view/carInfo.dart';
+import 'package:lailaty/feature/agree_pages/presentation/view/editingCar.dart';
+import 'package:lailaty/feature/agree_pages/presentation/view/motor_info.dart';
+import 'package:lailaty/feature/choose_category_page/presentation/view/categoryView.dart';
+import '../../feature/agree_pages/presentation/view/noticeToDriverView.dart';
+import 'package:lailaty/feature/agree_pages/presentation/view/login_prompt_page.dart';
+import 'package:lailaty/feature/agree_pages/presentation/view/personal_information_page.dart';
+import 'package:lailaty/feature/agree_pages/presentation/view/security_information_page.dart';
 import 'package:lailaty/feature/travel/presentation/view/travel_page.dart';
 import 'package:provider/provider.dart';
+
+import '../../feature/home_page/presentaion/view/home_page/home_page.dart';
+import '../../feature/home_page/presentaion/view/orders/search_orders_page.dart';
 
 class Routes {
   GoRouter router = GoRouter(
@@ -57,6 +60,14 @@ class Routes {
             create: (_) => PersonalInformationView(),
             child: const MotorInfoView(),
           ),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.searchOrderPage,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: HomePageView(),
           transitionsBuilder: _fadeTransition,
         ),
       ),

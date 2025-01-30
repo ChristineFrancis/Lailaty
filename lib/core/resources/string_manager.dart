@@ -62,7 +62,6 @@ class StringManager {
   static const String onYourMode = "على مودك";
   static const String rigester = "تسجيل";
 
-
   static const String conntentOfdriving =
       "جاهز معانا تكون كابتن ليلتي\nلتعليم مبتدئين لقيادة السيارات\nمن 1977 او أحدث";
   static const String conntentOfwidding =
@@ -149,4 +148,14 @@ class StringManager {
   static const String orderCancellation = 'إلغاء الطلب';
   static const String ratingThePassenger = 'تقييم الراكب';
   static const String obtainingAReceipt = 'الحصول على إيصال';
+  static const String waitOrdersShowHere = 'انتظر , ستظهر الطلبات هنا قريبا';
+  static const String searchForClosingOrder = "جارٍ البحث عن طلبات قريبة... ";
+  static const String searchInWidelyPlace = "البحث في نطاق أوسع...";
+  static const String wallet = "المحفظة";
+  static const String connect = "متصل";
+  static const String notConnect = "غير متصل";
+  static const String areYouReadytoRecieveOrders =
+      "هل أنت جاهز لاستقبال الطلبات ؟";
+  static const String performance = "الأداء";
+  static const String startRecieveOrders = "البدء باستقبال الطلبات";
 }

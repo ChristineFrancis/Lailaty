@@ -4,6 +4,7 @@ abstract class ColorManager {
   static const Color grey1 = Color(0xffb2b1ad); // 707070
   static const Color boldyellow = Color.fromARGB(255, 212, 207, 53);
   static const Color yellowAccent = Colors.yellowAccent;
+  static const Color red = Colors.redAccent;
 
   static const Color smallBoldYellow = Color.fromARGB(255, 247, 244, 149);
   static const Color semiBoldyellow = Color.fromARGB(255, 240, 237, 90);

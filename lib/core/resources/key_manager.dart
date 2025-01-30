@@ -18,14 +18,16 @@ class AppKeys {
   static const String certificate = 'certificate';
   static const String editingCarPage = '/EditingCar';
   //pages
+  static const String searchOrderPage = '/';
+  //SearchOrderPage
   static const String personalInformationPageKey =
-      '/'; //'/personalInformationPage';
+      '/personalInformationPage'; //'/personalInformationPage';
   static const String securityInformationPageKey = '/security_page';
   static const String loginPromptPageKey = '/login_prompt_page';
 
   static String carInfoPath = "/carInfoView";
   static String motorInfoPath = "/MotorInfoView";
-  static String showCategoryPath = "/";
+  static String showCategoryPath = "/CategoryView";
   static String noticeToDriverPath = "/NoticeToDriverView";
   static const String travelPageKey = '/travel_Page';
 }

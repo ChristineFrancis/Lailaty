@@ -12,6 +12,7 @@ class ImageAssetManager {
   static String captainPic = "$rootImage/كابتن.svg";
   static String carPic = "$rootImage/سيارة.svg";
   static String carNormal = "$rootImage/normal.svg";
+  static String noConnectImage = "$rootImage/Order ahead-bro.svg";
   static String motor = "$rootImage/دراجة.svg";
   static String weddingCar = "$rootImage/زفاف .svg";
   static String rideCar = "$rootImage/ride سيارة.svg";
@@ -22,6 +23,9 @@ class ImageAssetManager {
   static String luxurycar = "$rootImage/luxury.svg";
   static String lemozinCar = "$rootImage/ليموزين.svg";
   static String sedancar = "$rootImage/سيدان.svg";
+  static String carIcon = "$rootImage/Car.svg";
+  static String arrowIcon = "$rootImage/arrow.svg";
+  static String walletIcon = "$rootImage/wallet.svg";
   static String suvCar = "$rootImage/suv.svg";
   static String leaningCar = "$rootImage/تعليم قيادة.svg";
   static String comfortBlackCar = "$rootImage/comfort.svg";
@@ -29,8 +33,7 @@ class ImageAssetManager {
   static String moneyIcon = "$rootImage/نقدا.svg";
   static String choicesIcon = "$rootImage/key.svg";
   static String redCircleIcon = "$rootImage/red.svg";
-static String yallowCircleIcon = "$rootImage/yallow.svg";
-
+  static String yallowCircleIcon = "$rootImage/yallow.svg";
 
   static String weddingCarPic = "$rootImage/زفاف .svg";
   static String drivingEduCarPic = "$rootImage/تعليم قيادة.svg";
