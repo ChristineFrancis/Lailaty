@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lailaty/core/config/widget/Titles.dart';
-import 'package:lailaty/core/config/widget/my_sized_box.dart';
+import 'package:lailaty/core/config/presentation/widget/Titles.dart';
+import 'package:lailaty/core/config/presentation/widget/my_sized_box.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';

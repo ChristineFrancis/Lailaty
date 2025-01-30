@@ -2,12 +2,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:lailaty/core/resources/asset_manager.dart';
 
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/feature/home_page/widgets/animation_loading_page.dart';
 import 'package:lailaty/feature/home_page/widgets/textMovingY.dart';
+// import 'package:lailaty/feature/home_page/widgets/textMovingY.dart';
 
 class SearchOrderPage extends StatefulWidget {
   SearchOrderPage({
@@ -112,7 +111,7 @@ class _SearchOrderPageState extends State<SearchOrderPage>
         animation: _controller,
         builder: (context, child) {
           final angle = _controller.value * 2 * pi;
-          return Stack(children: [
+          return Stack(alignment: AlignmentDirectional.center, children: [
             CustomPaint(
               size: const Size(300, 1000),
               painter: LoadingAnimationPainter(angle, showTrianggle,

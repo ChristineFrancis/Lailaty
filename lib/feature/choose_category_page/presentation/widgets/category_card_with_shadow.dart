@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lailaty/core/config/widget/shadow_painter.dart';
+import 'package:lailaty/core/config/presentation/widget/shadow_painter.dart';
 
-import '../../../../core/config/widget/Titles.dart';
-import '../../../../core/config/widget/my_sized_box.dart';
+import '../../../../core/config/presentation/widget/Titles.dart';
+import '../../../../core/config/presentation/widget/my_sized_box.dart';
 import '../../../../core/resources/asset_manager.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/string_manager.dart';

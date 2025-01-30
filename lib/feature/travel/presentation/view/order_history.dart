@@ -1,28 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
-import 'package:lailaty/feature/travel/presentation/state_managment/filter_order_view_model.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/bottom_sheet_container.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/order_history_page/archived_order_bottom_sheet.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/order_history_page/contact_row.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/orders_page/client_trip_details.dart';
+import 'package:lailaty/core/viewmodels/filter_order_view_model.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/bottom_sheet_container.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/archived_order_bottom_sheet.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/contact_row.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/client_trip_details.dart';
 import 'package:provider/provider.dart';
 
-class OrderHistoryPage extends StatefulWidget {
-  const OrderHistoryPage({super.key});
+class TravelOrderHistoryPage extends StatefulWidget {
+  const TravelOrderHistoryPage({super.key});
 
   @override
-  State<OrderHistoryPage> createState() => _OrderHistoryPageState();
+  State<TravelOrderHistoryPage> createState() => _TravelOrderHistoryPageState();
 }
 
-class _OrderHistoryPageState extends State<OrderHistoryPage> {
+class _TravelOrderHistoryPageState extends State<TravelOrderHistoryPage> {
   void _showDetailsSheetForAcceptedOrders(
       {required ClientTripDetailsModel clientTripDetailsModel}) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
         return BottomSheetContainer(
+          isTravelPage: true,
+          firstButtonFunc: () {
+            context.push(
+              AppKeys.mapPageKey,
+              extra: AppKeys.startTheJourneyContainer,
+            );
+          },
           firstBottonText: StringManager.completeTheOrder,
           secondBottonText: StringManager.viewOnMap,
           thirdBottonText: StringManager.orderCancellation,
@@ -40,6 +49,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
       context: context,
       builder: (context) {
         return ArchivedOrderBottomSheet(
+          isTravelPage: true,
           clientTripDetailsModel: clientTripDetailsModel,
           firstBottonText: StringManager.obtainingAReceipt,
           secondBottonText: StringManager.ratingThePassenger,
@@ -50,7 +60,8 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final filterOrderViewModel = context.watch<FilterOrderViewModel>();
+    final filterOrderViewModel =
+        context.watch<FilterOrderViewModel>(); //! change
     return Column(
       children: [
         Padding(
@@ -94,6 +105,8 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                   itemBuilder: (context, index) {
                     final order = filterOrderViewModel.filteredOrders[index];
                     return ClientTripDetailsContainer(
+                      //!changed
+                      isTravelPage: true,
                       widget: ContactRow(order: order),
                       onTap: () {
                         if (filterOrderViewModel.currentFilter ==

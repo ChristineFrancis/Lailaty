@@ -20,9 +20,9 @@ class StringManager {
   static const String addphotoCar = "يرجى إضافة 5 صور :";
   static const String photosCar =
       "صورة أمامية\nصورة خلفية\nصورة داخلية\nصورتان جانبيتان";
-  static const String addBackphotoCar = "صورة خلفية:";
-  static const String addFrontphotoCar = "صورة أمامية :";
-  static const String addInsidephotoCar = "صورة داخلية :";
+  static const String addBackphotoCar = ":صورة خلفية";
+  static const String addFrontphotoCar = ":صورة أمامية ";
+  static const String addInsidephotoCar = ":صورة داخلية ";
   static const String photoLecienceCar = "صور رخصة السيارة";
   static const String photoFrontBackLecienceCar = "صورة خلفية\nصورة أمامية";
   static const String tam = "تم";
@@ -87,6 +87,7 @@ class StringManager {
   static const String add = "إضافة";
   static const String personalInformation = "المعلومات الشخصية";
   static const String personalImage = ":الصورة الشخصية";
+  static const String personalImage2 = "الصورة الشخصية";
   static const String clearFace = "وجه واضح";
   static const String goodLighting = 'اضاءة جيدة';
   static const String noFilters = 'بدون فلاتر';
@@ -158,4 +159,84 @@ class StringManager {
       "هل أنت جاهز لاستقبال الطلبات ؟";
   static const String performance = "الأداء";
   static const String startRecieveOrders = "البدء باستقبال الطلبات";
+  static const String safety = 'السلامة';
+  static const String whoToContact = "بمن تريد الاتصال؟";
+  static const String ambulance = "الإسعاف";
+  static const String police = "الشرطة";
+  static const String shareApp = 'مشاركة التطبيق';
+  static const String yourInvitationCode = ":كود الدعوة الخاص بك";
+  static const String invitingDriverPartners =
+      ":بالنسبة لدعوة الشركاء السائقين";
+  static const String driverPartnerBenefits =
+      "عندما يقوم احد الشركاء السائقين باستخدام كود\n"
+      "المشاركة الخاص بك ستحصل على";
+  static const String regardingClientInvitation = ":بالنسبة لدعوة العملاء";
+  static const String discountGiftForFriend = "هدية خصم لصديق";
+
+  static const String discountText =
+      "عند إتمامك أي رحلة تتطلب دفع جدية حجز كعمولة التطبيق\n"
+      "وقمت بمشاركة الكود الخاص بك مع احد اصدقاءك سيحصل\n"
+      "على خصم 5% من رحلته في التطبيق";
+  static const String fivePercent = '${5}%';
+  static const String fromEarnings = 'من الأرباح';
+  static const String discountFromAppCommission =
+      "تُخصم من عمولة التطبيق في هذه الرحلات كهدية منك له";
+  static const String share = "المشاركة";
+  static const String copyLink = "نسخ الرابط";
+  static const String callUs = 'اتصل بنا';
+  static const String splashMessage = "سبلاش";
+  static const String contactUs24 = "يمكنك الاتصال بنا  24/7";
+  static const String aboutLailatyMessage =
+      "ليلتي هو التطبيق الأكثر تميزاً واماناً\n"
+      "وطفرة فريدة من نوعها في عالم النقل التشاركي\n"
+      "لكل من السائق والراكب\n"
+      "نحن نقدم اقل عمولة تصل في بعض الفئات مثل\n"
+      "(سفر و رحلات داخلية الى 0% )\n"
+      "مما يضمن حصولك على افضل قيمة لرحلاتك\n"
+      "وضمان تجربة محترمة وعادلة وعالية الجودة للجميع";
+  static const String settings = 'الإعدادات';
+  static const String deleteAccount = "حذف الحساب";
+  static const String logOut = "تسجيل الخروج";
+  static const String appVersion = "إصدار التطبيق";
+  static const String rateApp = "قيم التطبيق";
+  static const String appLanguage = "لغة التطبيق";
+  static const String arabic = 'العربية';
+  static const String profileTitle = 'الملف الشخصي';
+  static const String firstName = 'الاسم الأول';
+  static const String lastName = 'الاسم الاخير';
+  static const String phoneNumber = 'رقم الهاتف';
+
+  static const String editLocation = 'تعديل الموقع ';
+  static const String myCars = 'سياراتي';
+  static const String unknown = 'غير معروف';
+  static const String carNameExample = 'كورولا';
+  static const String edit = 'تعديل';
+  static const String delete = 'حذف';
+  static const String addCar = 'إضافة سيارة';
+  static const String editImage = 'تغيير الصورة';
+  static const String save = 'حفظ';
+  static const String cancel = 'إالغاء';
+  static const String carName = 'اسم السيارة';
+  static const String newImageSelected = 'تم اختيار صورة جديدة';
+  static const String addANewCar = 'إضافة سيارة جديدة';
+  static const String fromBackData = 'من الباك';
+  static const String weddingBusiness = 'زفاف - رجال اعمال';
+  static const String iHaveArrived = 'لقد وصلت';
+  static const String journeyCompleted = 'اكتملت الرحلة';
+  static const String isTheTripOver = 'هل انتهت الرحلة؟';
+  static const String payExample = '88 EGP';
+  static const String yes = 'نعم';
+  static const String no = 'لا';
+  static const String startTheJourney = 'ابدأ الرحلة';
+  static const String veryBad = 'سيئة جداً';
+  static const String bad = 'سيئة';
+  static const String average = "متوسطة";
+  static const String good = "جيدة جدا";
+  static const String veryGood = 'ممتازة';
+  static const String send = 'إرسال';
+  static const String thePassengerDidNotShow = "الراكب لم يظهر";
+  static const String refuseToExecuteTheRequest = "ارفض تنفيذ الطلب";
+  static const String falseRequest = "طلب زائف";
+  static const String passengerComplaint = "شكوى بشأن الراكب";
+  static const String reasonForCancellation = "سبب الإلغاء";
 }

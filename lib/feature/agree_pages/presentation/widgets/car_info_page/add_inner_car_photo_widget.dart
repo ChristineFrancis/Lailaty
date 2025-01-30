@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import '../../../../../core/resources/key_manager.dart';
-import '../../state_managment/personal_information_view.dart';
+import '../../../../../core/viewmodels/personal_information_view.dart';
 import '../personal_Information_page/image_picker_place_holder.dart';
 import '../personal_Information_page/no_image_placeholder_widget.dart';
 

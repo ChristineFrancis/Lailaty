@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/widget/Titles.dart';
-import 'package:lailaty/core/config/widget/myButton.dart';
-import 'package:lailaty/core/config/widget/myButtonWidget.dart';
+import 'package:lailaty/core/config/presentation/widget/Titles.dart';
+import 'package:lailaty/core/config/presentation/widget/myButton.dart';
+import 'package:lailaty/core/config/presentation/widget/myButtonWidget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';

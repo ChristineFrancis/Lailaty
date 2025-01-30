@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:lailaty/core/config/widget/Titles.dart';
+import 'package:lailaty/core/config/presentation/widget/Titles.dart';
+// import 'package:lailaty/core/config/widget/Titles.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 
 class TextMoveY extends StatelessWidget {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 abstract class ColorManager {
   static const Color grey1 = Color(0xffb2b1ad); // 707070
+  static const Color grey2 = Color(0xff707070);
   static const Color boldyellow = Color.fromARGB(255, 212, 207, 53);
   static const Color yellowAccent = Colors.yellowAccent;
   static const Color red = Colors.redAccent;
@@ -30,4 +31,6 @@ abstract class ColorManager {
   static const Color shadowColor = Color.fromARGB(255, 210, 209, 209);
   static const Color brightGreen = Color(0xff01FF3D);
   static const Color transparentColor = Colors.transparent;
+  static const Color greyRateContainer = Color(0xff979797);
+  static const Color greyStartRating = Color(0xffE0DFC9);
 }

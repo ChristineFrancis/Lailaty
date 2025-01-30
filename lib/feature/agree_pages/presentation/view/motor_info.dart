@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lailaty/core/config/widget/Titles.dart';
-import 'package:lailaty/core/config/widget/addPhoto.dart';
-import 'package:lailaty/core/config/widget/custom_appbar.dart';
-import 'package:lailaty/core/config/widget/myButton.dart';
-import 'package:lailaty/core/config/widget/my_sized_box.dart';
-import 'package:lailaty/core/config/widget/oneNestedExpansionTile.dart';
-import 'package:lailaty/core/config/widget/textWithButon.dart';
+import 'package:lailaty/core/config/presentation/widget/Titles.dart';
+
+import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
+
+import 'package:lailaty/core/config/presentation/widget/my_sized_box.dart';
+
+import 'package:lailaty/core/config/presentation/widget/textWithButon.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
-import 'package:lailaty/feature/agree_pages/presentation/state_managment/personal_information_view.dart';
-import 'package:lailaty/feature/agree_pages/presentation/view/editingCar.dart';
+
 import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/my_container_with_bottom_border.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/motor_info_page/add_motor_photo_widget.dart';
+import 'package:lailaty/core/viewmodels/personal_information_view.dart';
+
 import 'package:provider/provider.dart';
 
-import '../../../../core/config/widget/accept_button_customer.dart';
-import '../../../../core/config/widget/textWithExpansionTile.dart';
+import '../../../../core/config/presentation/widget/accept_button_customer.dart';
+import '../../../../core/config/presentation/widget/textWithExpansionTile.dart';
 import '../../../../core/resources/key_manager.dart';
 import '../widgets/motor_info_page/add_photo_licence_motor.dart';
 

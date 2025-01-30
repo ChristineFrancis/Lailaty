@@ -1,5 +1,6 @@
 class AppKeys {
   static const String personalPhoto = 'personal_photo';
+  static const String personalPhotoEdit = 'personal_Photo_Edit';
   static const String nationalIdFront = 'national_id_front';
   static const String nationalIdBack = 'national_id_back';
   static const String licenseFront = 'license_Front';
@@ -16,10 +17,13 @@ class AppKeys {
   static const String backLecienceCar = 'back_lecience_car';
   static const String licenseBack = 'license_Back';
   static const String certificate = 'certificate';
+
+  //: ??
   static const String editingCarPage = '/EditingCar';
+
   //pages
   static const String searchOrderPage = '/';
-  //SearchOrderPage
+
   static const String personalInformationPageKey =
       '/personalInformationPage'; //'/personalInformationPage';
   static const String securityInformationPageKey = '/security_page';
@@ -29,5 +33,25 @@ class AppKeys {
   static String motorInfoPath = "/MotorInfoView";
   static String showCategoryPath = "/CategoryView";
   static String noticeToDriverPath = "/NoticeToDriverView";
-  static const String travelPageKey = '/travel_Page';
+  static const String dynamicPageViewKey = '/dynamic_PageView';
+  static const String safetyPageKey = '/safety_page';
+  static const String shareAppPageKey = '/share_app_page';
+  static const String callUsPageKey = '/callUs_page';
+  static const String settingsPageKey = '/settings_page';
+  static const String profilePageKey = '/profile_page';
+  static const String mapPageKey = '/map_page';
+
+//dynamic page view :
+  static const String appBarTitleKey = 'appBarTitle';
+  static const String pagesKey = 'pages';
+  static const String initialIndexKey = 'initialIndex';
+
+//map containers :
+  static const String iHaveArrivedContainer = 'iHaveArrivedContainer';
+
+  static const String journeyCompletedContainer = "journeyCompleted";
+  static const String journeyEndedContainer = "journeyEnded";
+  static const String rateJourneyContainer = "rateJourney";
+  static const String startTheJourneyContainer = "startTheJourney";
+  static const String cancelJourneyContainer = "cancelJourney";
 }

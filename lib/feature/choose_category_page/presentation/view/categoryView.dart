@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lailaty/core/config/widget/Titles.dart';
-import 'package:lailaty/core/config/widget/myButton.dart';
-import 'package:lailaty/core/config/widget/my_sized_box.dart';
+import 'package:lailaty/core/config/presentation/widget/Titles.dart';
+import 'package:lailaty/core/config/presentation/widget/myButton.dart';
+import 'package:lailaty/core/config/presentation/widget/my_sized_box.dart';
 
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
@@ -13,7 +13,7 @@ import 'package:lailaty/feature/choose_category_page/presentation/widgets/first_
 import 'package:lailaty/feature/choose_category_page/presentation/widgets/second_row_of_category_view.dart';
 import 'package:lailaty/feature/choose_category_page/presentation/widgets/third_row_of_category_view.dart';
 
-import '../../../../core/config/widget/custom_appbar.dart';
+import '../../../../core/config/presentation/widget/custom_appbar.dart';
 import '../../../../core/resources/color_manager.dart';
 
 class CategoryView extends StatefulWidget {

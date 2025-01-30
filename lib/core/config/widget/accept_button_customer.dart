@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/core/config/presentation/widget/myButton.dart';
 
 import '../../resources/color_manager.dart';
-import '../../resources/string_manager.dart';
+
 import '../../resources/style_maneger.dart';
-import 'myButton.dart';
 
 class acceptButtonCustomer extends StatelessWidget {
   void Function() onPress;

@@ -3,27 +3,27 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/bottom_sheet_container.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/orders_page/city_row.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/orders_page/client_trip_details.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/orders_page/filter_container.dart';
-import 'package:lailaty/feature/travel/presentation/widgets/orders_page/orders_overview_container.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/bottom_sheet_container.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/filter_container/city_row.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/client_trip_details.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/filter_container/filter_container.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/orders_overview_container.dart';
 
-class OrdersPage extends StatefulWidget {
-  const OrdersPage({super.key});
+class TravelOrdersPage extends StatefulWidget {
+  const TravelOrdersPage({super.key});
 
   @override
-  State<OrdersPage> createState() => _OrdersPageState();
+  State<TravelOrdersPage> createState() => _TravelOrdersPageState();
 }
 
-class _OrdersPageState extends State<OrdersPage> {
-  bool _isFilterVisible = false;
+class _TravelOrdersPageState extends State<TravelOrdersPage> {
+  // bool _isFilterVisible = false;
 
-  void _toggleFilterVisibility() {
-    setState(() {
-      _isFilterVisible = !_isFilterVisible;
-    });
-  }
+  // void _toggleFilterVisibility() {
+  //   setState(() {
+  //     _isFilterVisible = !_isFilterVisible;
+  //   });
+  // }
 
   void _showDetailsSheet(
       {required ClientTripDetailsModel clientTripDetailsModel}) {
@@ -31,6 +31,10 @@ class _OrdersPageState extends State<OrdersPage> {
       context: context,
       builder: (context) {
         return BottomSheetContainer(
+          isTravelPage: true,
+          firstButtonFunc: () {
+
+          },
           firstBottonText: StringManager.acceptAnOffer,
           secondBottonText: StringManager.suggestYourPrice,
           thirdBottonText: StringManager.viewOnMap,
@@ -46,25 +50,12 @@ class _OrdersPageState extends State<OrdersPage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        OrdersOverviewContainer(
-          onTap: _toggleFilterVisibility,
-          isFilterVisible: _isFilterVisible,
+        const OrdersOverviewContainer(),
+        const FilterContainer(
+          isTravelPage: true,
         ),
-
         // if (_isFilterVisible) FilterContainer(),
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          transitionBuilder: (child, animation) {
-            return SizeTransition(
-              sizeFactor: animation,
-              axisAlignment: 1.0,
-              child: child,
-            );
-          },
-          child: _isFilterVisible
-              ? const FilterContainer()
-              : const SizedBox.shrink(),
-        ),
+
         // SizedBox(
         //   height: context.screenHeight * 0.025,
         // ),
@@ -74,10 +65,12 @@ class _OrdersPageState extends State<OrdersPage> {
         // ),
         Expanded(
           child: ListView.builder(
-            itemCount: getClientTripDetails().length,
+            itemCount: getClientTripDetails()
+                .length, //! changed + the provider will change
             itemBuilder: (context, index) {
               final order = getClientTripDetails()[index];
               return ClientTripDetailsContainer(
+                isTravelPage: true,
                 widget: CityRow(
                   city: order.captainName,
                   letter: '',

@@ -8,47 +8,50 @@ class CashAndTripTypeRow extends StatelessWidget {
   const CashAndTripTypeRow({
     super.key,
     required this.clientTripDetailsModel,
+    required this.isTravelPage,
   });
 
   final ClientTripDetailsModel clientTripDetailsModel;
-
+  final bool isTravelPage;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(2),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: ColorManager.whiteColor,
-          ),
-          child: Center(
-            child: Text(
-              clientTripDetailsModel.cashType,
-              style: StyleManager.boldTextStyle24(
-                size: context.screenWidth * 0.04,
+    return isTravelPage
+        ? Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: ColorManager.whiteColor,
+                ),
+                child: Center(
+                  child: Text(
+                    clientTripDetailsModel.cashType,
+                    style: StyleManager.boldTextStyle24(
+                      size: context.screenWidth * 0.04,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
-        SizedBox(width: context.screenWidth * 0.02),
-        Container(
-          padding: const EdgeInsets.all(2),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: ColorManager.yellowAccent,
-          ),
-          child: Center(
-            child: Text(
-              clientTripDetailsModel.tripType,
-              style: StyleManager.boldTextStyle24(
-                size: context.screenWidth * 0.04,
+              SizedBox(width: context.screenWidth * 0.02),
+              Container(
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: ColorManager.yellowAccent,
+                ),
+                child: Center(
+                  child: Text(
+                    clientTripDetailsModel.tripType,
+                    style: StyleManager.boldTextStyle24(
+                      size: context.screenWidth * 0.04,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
-      ],
-    );
+            ],
+          )
+        : const SizedBox.shrink();
   }
 }
