@@ -29,7 +29,10 @@ class _TravelOrderHistoryPageState extends State<TravelOrderHistoryPage> {
           firstButtonFunc: () {
             context.push(
               AppKeys.mapPageKey,
-              extra: AppKeys.startTheJourneyContainer,
+              // extra: AppKeys.startTheJourneyContainer,
+              extra: {
+                AppKeys.initialContainerKey: AppKeys.startTheJourneyContainer,
+              },
             );
           },
           firstBottonText: StringManager.completeTheOrder,

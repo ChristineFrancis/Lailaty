@@ -9,16 +9,18 @@ import 'package:lailaty/feature/map/presentation/widgets/journy_details_row.dart
 class JourneyEndedContainer extends StatelessWidget {
   final VoidCallback toJourneyCompleted;
   final VoidCallback toRateJourney;
+  final bool justOnePath;
   const JourneyEndedContainer({
     super.key,
     required this.toJourneyCompleted,
     required this.toRateJourney,
+    required this.justOnePath,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.screenHeight * 0.4,
+      //  height: context.screenHeight * 0.4,
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.vertical(
@@ -41,7 +43,9 @@ class JourneyEndedContainer extends StatelessWidget {
             SizedBox(
               height: context.screenHeight * 0.02,
             ),
-            const JournyDetailsRow(),
+            JournyDetailsRow(
+              justOnePath: justOnePath,
+            ),
             SizedBox(
               height: context.screenHeight * 0.02,
             ),

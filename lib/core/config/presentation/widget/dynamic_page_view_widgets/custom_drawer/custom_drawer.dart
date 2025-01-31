@@ -98,6 +98,18 @@ class CustomDrawer extends StatelessWidget {
             ),
             DrawerOption(
               icon: Icons.directions_car_outlined,
+              text: StringManager.withinTheCityCar,
+              onTap: () {
+                context.push(
+                  AppKeys.searchOrderPage,
+                );
+              },
+            ),
+            SizedBox(
+              height: context.screenHeight * 0.02,
+            ),
+            DrawerOption(
+              icon: Icons.directions_car_outlined,
               text: StringManager.travelTitle,
               onTap: () {
                 context.push(
@@ -148,6 +160,18 @@ class CustomDrawer extends StatelessWidget {
                     AppKeys.initialIndexKey: 1,
                   },
                 );
+              },
+            ),
+            SizedBox(
+              height: context.screenHeight * 0.02,
+            ),
+             DrawerOption(
+              icon: Icons.directions_car_outlined,
+              text: StringManager.drivingEducation,
+              onTap: () {
+                // context.push(
+                //   AppKeys.,
+                // );
               },
             ),
             SizedBox(

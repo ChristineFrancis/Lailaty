@@ -7,8 +7,10 @@ import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 
 class JournyDetailsRow extends StatelessWidget {
+  final bool justOnePath;
   const JournyDetailsRow({
     super.key,
+    required this.justOnePath,
   });
 
   @override
@@ -51,14 +53,18 @@ class JournyDetailsRow extends StatelessWidget {
             SizedBox(
               height: context.screenHeight * 0.02,
             ),
-            const CityRow(
-              city: StringManager.alexandriaStreetExample,
-              backGroundColor: ColorManager.brightGreen,
-              letter: StringManager.bLetter,
-            ),
-            SizedBox(
-              height: context.screenHeight * 0.02,
-            ),
+            justOnePath
+                ? const SizedBox.shrink()
+                : const CityRow(
+                    city: StringManager.alexandriaStreetExample,
+                    backGroundColor: ColorManager.brightGreen,
+                    letter: StringManager.bLetter,
+                  ),
+            justOnePath
+                ? const SizedBox.shrink()
+                : SizedBox(
+                    height: context.screenHeight * 0.02,
+                  ),
             Text(
               StringManager.payExample,
               textAlign: TextAlign.right,

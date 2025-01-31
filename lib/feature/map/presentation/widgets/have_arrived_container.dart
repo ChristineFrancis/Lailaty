@@ -8,16 +8,19 @@ import 'package:lailaty/feature/map/presentation/widgets/journy_details_row.dart
 class HaveArrivedContainer extends StatelessWidget {
   final VoidCallback onTap;
   final String containerName;
+  final bool justOnePath;
+
   const HaveArrivedContainer({
     super.key,
     required this.onTap,
     required this.containerName,
+    required this.justOnePath,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.screenHeight * 0.3,
+      //height: context.screenHeight * 0.3,
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.vertical(
@@ -31,7 +34,9 @@ class HaveArrivedContainer extends StatelessWidget {
             SizedBox(
               height: context.screenHeight * 0.02,
             ),
-            const JournyDetailsRow(),
+            JournyDetailsRow(
+              justOnePath: justOnePath,
+            ),
             SizedBox(
               height: context.screenHeight * 0.02,
             ),

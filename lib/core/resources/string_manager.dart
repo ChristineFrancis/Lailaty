@@ -215,7 +215,7 @@ class StringManager {
   static const String addCar = 'إضافة سيارة';
   static const String editImage = 'تغيير الصورة';
   static const String save = 'حفظ';
-  static const String cancel = 'إالغاء';
+  static const String cancel = 'إلغاء';
   static const String carName = 'اسم السيارة';
   static const String newImageSelected = 'تم اختيار صورة جديدة';
   static const String addANewCar = 'إضافة سيارة جديدة';
@@ -239,4 +239,6 @@ class StringManager {
   static const String falseRequest = "طلب زائف";
   static const String passengerComplaint = "شكوى بشأن الراكب";
   static const String reasonForCancellation = "سبب الإلغاء";
+  static const String withinTheCityCar = 'داخل المدينة\n سيارة';
+  static const String drivingEducation = 'تعليم القيادة';
 }

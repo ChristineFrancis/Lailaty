@@ -29,7 +29,6 @@ import 'package:provider/provider.dart';
 
 import '../../feature/home_page/presentaion/view/home_page/home_page.dart';
 
-
 class Routes {
   GoRouter router = GoRouter(
     routes: [
@@ -214,26 +213,24 @@ class Routes {
       GoRoute(
         path: AppKeys.mapPageKey,
         pageBuilder: (context, state) {
-          String initialContainerKey = //AppKeys.cancelJourneyContainer;
-              state.extra as String; // ?? AppKeys.journeyCompleted;
+          // String initialContainerKey = //AppKeys.cancelJourneyContainer;
+          //     state.extra as String; // ?? AppKeys.journeyCompleted;
+
+          final extra = state.extra as Map<String, dynamic>?;
+
+          String initialContainerKey = extra?[AppKeys.initialContainerKey] ??
+              AppKeys.journeyCompletedContainer;
+          bool justOnePath = extra?[AppKeys.justOnePathKey] ?? false;
 
           return CustomTransitionPage(
             key: state.pageKey,
-            child: MapPage(initialContainerKey: initialContainerKey),
+            child: MapPage(
+              initialContainerKey: initialContainerKey,
+              justOnePath: justOnePath,
+            ),
             transitionsBuilder: _fadeTransition,
           );
         },
-      ),
-
-      //! this page to nav to the travel and widding ..
-      //! temp page !!
-      GoRoute(
-        path: '/',
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: const TestPage(),
-          transitionsBuilder: _fadeTransition,
-        ),
       ),
     ],
   );

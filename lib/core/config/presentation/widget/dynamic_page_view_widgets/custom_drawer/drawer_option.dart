@@ -23,6 +23,7 @@ class DrawerOption extends StatelessWidget {
         children: [
           Text(
             text,
+            textAlign: TextAlign.right,
             style: StyleManager.boldTextStyle24(
               size: context.screenWidth * 0.04,
               color: ColorManager.black,

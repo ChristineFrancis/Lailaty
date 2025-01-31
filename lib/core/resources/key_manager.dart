@@ -40,7 +40,7 @@ class AppKeys {
   static const String settingsPageKey = '/settings_page';
   static const String profilePageKey = '/profile_page';
   static const String mapPageKey = '/map_page';
-
+  static const String drivingEducationPage = "driving_education";
 //dynamic page view :
   static const String appBarTitleKey = 'appBarTitle';
   static const String pagesKey = 'pages';
@@ -54,4 +54,7 @@ class AppKeys {
   static const String rateJourneyContainer = "rateJourney";
   static const String startTheJourneyContainer = "startTheJourney";
   static const String cancelJourneyContainer = "cancelJourney";
+
+  static const String initialContainerKey = 'initialContainerKey';
+  static const String justOnePathKey = 'justOnePathKey';
 }

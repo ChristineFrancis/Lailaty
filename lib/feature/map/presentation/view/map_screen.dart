@@ -4,6 +4,8 @@ import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
+import 'package:lailaty/core/resources/style_maneger.dart';
+import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/map/presentation/widgets/cancel_journey_container.dart';
 import 'package:lailaty/feature/map/presentation/widgets/have_arrived_container.dart';
 import 'package:lailaty/feature/map/presentation/widgets/journey_ended_container.dart';
@@ -11,10 +13,11 @@ import 'package:lailaty/feature/map/presentation/widgets/rate_journey_container.
 
 class MapPage extends StatefulWidget {
   final String initialContainerKey;
-
+  final bool justOnePath;
   const MapPage({
     super.key,
     required this.initialContainerKey,
+    this.justOnePath = false,
   });
 
   @override
@@ -75,7 +78,34 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.backGroundColor,
-      appBar: CustomAppbar(ispop: false),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: ValueListenableBuilder<String>(
+          valueListenable: _currentContainerId,
+          builder: (context, currentId, child) {
+            return CustomAppbar(
+              ispop: false,
+              leading: (currentId == AppKeys.journeyCompletedContainer)
+                  ? InkWell(
+                      onTap: () {
+                        // _currentContainerId.value =
+                        //     AppKeys.cancelJourneyContainer;
+                        _showContainer(AppKeys.cancelJourneyContainer);
+                      },
+                      child: Center(
+                        child: Text(
+                          StringManager.cancel,
+                          style: StyleManager.semiboldTextStyle20(
+                            size: context.screenWidth * 0.05,
+                          ),
+                        ),
+                      ),
+                    )
+                  : null,
+            );
+          },
+        ),
+      ),
       body: Stack(
         children: [
           // the map widget , better to extract it out of this page
@@ -109,20 +139,23 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
       case AppKeys.iHaveArrivedContainer:
         return _buildIHaveArrivedContainer(
           () => _showContainer(AppKeys.startTheJourneyContainer),
+          widget.justOnePath,
         );
       case AppKeys.startTheJourneyContainer:
         return _buildstartTheJourneyContainer(
           () => _showContainer(AppKeys.journeyCompletedContainer),
+          widget.justOnePath,
         );
-
       case AppKeys.journeyCompletedContainer:
         return _buildJourneyCompletedContainer(
           () => _showContainer(AppKeys.journeyEndedContainer),
+          widget.justOnePath,
         );
       case AppKeys.journeyEndedContainer:
         return _buildJourneyEndedContainer(
           () => _showContainer(AppKeys.journeyCompletedContainer),
           () => _showContainer(AppKeys.rateJourneyContainer),
+          widget.justOnePath,
         );
       case AppKeys.rateJourneyContainer:
         return _buildRateJourneyContainer(() {
@@ -130,7 +163,8 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
         });
       case AppKeys.cancelJourneyContainer:
         return _buildCancelJourneyContainer(
-          () => _showContainer(AppKeys.iHaveArrivedContainer),
+          () => _showContainer(
+              AppKeys.journeyCompletedContainer), //! where this going to go ?
           () => context.pop(),
         );
       default:
@@ -138,32 +172,39 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
     }
   }
 
-  Widget _buildIHaveArrivedContainer(VoidCallback haveArrived) {
+  Widget _buildIHaveArrivedContainer(
+      VoidCallback haveArrived, bool justOnePath) {
     return HaveArrivedContainer(
       onTap: haveArrived,
       containerName: StringManager.iHaveArrived,
+      justOnePath: justOnePath,
     );
   }
 
-  Widget _buildstartTheJourneyContainer(VoidCallback toJourneyCompleted) {
+  Widget _buildstartTheJourneyContainer(
+      VoidCallback toJourneyCompleted, bool justOnePath) {
     return HaveArrivedContainer(
       onTap: toJourneyCompleted,
       containerName: StringManager.startTheJourney,
+      justOnePath: justOnePath,
     );
   }
 
-  Widget _buildJourneyCompletedContainer(VoidCallback toJourneyEnded) {
+  Widget _buildJourneyCompletedContainer(
+      VoidCallback toJourneyEnded, bool justOnePath) {
     return HaveArrivedContainer(
       onTap: toJourneyEnded,
       containerName: StringManager.journeyCompleted,
+      justOnePath: justOnePath,
     );
   }
 
-  Widget _buildJourneyEndedContainer(
-      VoidCallback toJourneyCompleted, VoidCallback toRateJourney) {
+  Widget _buildJourneyEndedContainer(VoidCallback toJourneyCompleted,
+      VoidCallback toRateJourney, bool justOnePath) {
     return JourneyEndedContainer(
       toJourneyCompleted: toJourneyCompleted,
       toRateJourney: toRateJourney,
+      justOnePath: justOnePath,
     );
   }
 

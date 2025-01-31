@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/core/config/presentation/widget/Titles.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/custom_drawer/custom_drawer.dart';
 import 'package:lailaty/core/config/presentation/widget/myButton.dart';
 // import 'package:lailaty/core/config/widget/Titles.dart';
 
@@ -28,7 +29,12 @@ class _HomePageViewState extends State<HomePageView> {
     setState(() {
       isConnected = !isConnected;
     });
+
     print(isConnected);
+  }
+
+  void _openRightDrawer(BuildContext context) {
+    Scaffold.of(context).openEndDrawer();
   }
 
   @override
@@ -69,8 +75,16 @@ class _HomePageViewState extends State<HomePageView> {
     ];
 
     return Scaffold(
+        endDrawer: const CustomDrawer(),
         appBar: AppBar(
-          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.list))],
+          actions: [
+            Builder(
+              builder: (context) => IconButton(
+                onPressed: () => Scaffold.of(context).openEndDrawer(),
+                icon: const Icon(Icons.menu),
+              ),
+            )
+          ],
           leading:
               IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
           backgroundColor: ColorManager.greyTextr,

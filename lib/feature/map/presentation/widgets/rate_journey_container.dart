@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/config/presentation/widget/bottom_sheet_handle.dart';
-import 'package:lailaty/core/config/presentation/widget/myButton.dart';
 import 'package:lailaty/core/config/presentation/widget/myButtonWidget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
@@ -34,7 +33,7 @@ class _RateJourneyContainerState extends State<RateJourneyContainer> {
   Widget build(BuildContext context) {
     return Container(
       key: const ValueKey(AppKeys.rateJourneyContainer),
-      height: context.screenHeight * 0.45,
+      //  height: context.screenHeight * 0.45,
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.vertical(
@@ -68,7 +67,7 @@ class _RateJourneyContainerState extends State<RateJourneyContainer> {
                 onpress: widget.toThePrivousPage,
               ),
             ),
-
+            SizedBox(height: context.screenHeight * 0.01),
           ],
         ),
       ),

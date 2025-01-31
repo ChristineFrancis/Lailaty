@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
-  CustomAppbar({super.key, this.title, required this.ispop});
+  CustomAppbar({super.key, this.title, required this.ispop, this.leading});
 
   final bool ispop; //! we can remove this :)
   final String? title;
+  final Widget? leading;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -28,6 +29,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
               ),
             )
           : null,
+      leading: leading,
       // automaticallyImplyLeading: false,
       //! the (null) don't really give the needed effect , we can use this line ( ^ )if we don't need the back arrow to appear
       //! or when navigate to tha page , use pushReplacement
