@@ -10,7 +10,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     return AppBar(
-      backgroundColor: ColorManager.darkGrey,
+      backgroundColor: ColorManager.grey,
       elevation: 4,
       automaticallyImplyLeading: false,
       centerTitle: true,

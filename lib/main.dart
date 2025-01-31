@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lailaty/common%20features/authentication/presentation/test_page.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/pages/map_and_order_details_page.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:lailaty/common%20features/authentication/presentation/test_page.dart';
 import 'package:lailaty/common%20features/chat/pages/empty_page.dart';
+import 'package:lailaty/core/ui/splash_video/splash_video.dart';
 
 /*
 void main() {
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Segeo",
       ),
-      home: SplashVideo(),
+      home: MapAndOrderDetails(),
     );
   }
 }
