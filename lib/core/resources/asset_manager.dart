@@ -8,6 +8,10 @@ class ImageAssetManager {
   static String city = "$rootImage/المدينة.svg";
   static String notifications = "$rootImage/notifications.svg";
   static String location = "$rootImage/location1.svg";
+  static String person = "$rootImage/person.svg";
+  static String profile = "$rootImage/profile.svg";
+  static String aLetter = "$rootImage/A.svg";
+  static String bLetter = "$rootImage/B.svg";
   static String passengerPic = "$rootImage/راكب.svg";
   static String captainPic = "$rootImage/كابتن.svg";
   static String carPic = "$rootImage/سيارة.svg";

@@ -36,7 +36,7 @@ class StyleManager {
     return TextStyle(
       color: color,
       fontFamily: "Poppins",
-       decoration: TextDecoration.none,
+      decoration: TextDecoration.none,
       fontSize: size,
     );
   }
@@ -49,7 +49,8 @@ class StyleManager {
     return TextStyle(
         color: color,
         fontSize: size,
-        fontFamily: "Poppins", decoration: TextDecoration.none,
+        fontFamily: "Poppins",
+        decoration: TextDecoration.none,
         fontWeight: fontWeight);
   }
 
@@ -70,13 +71,12 @@ class StyleManager {
     Color color = ColorManager.black,
     double size = 12,
     FontWeight fontWeight = FontWeight.normal,
-
   }) {
     return TextStyle(
         color: color,
         fontSize: size,
         fontFamily: "Poppins",
-         decoration: TextDecoration.none,
+        decoration: TextDecoration.none,
         fontWeight: fontWeight);
   }
 }

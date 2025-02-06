@@ -9,6 +9,11 @@ class StringManager {
   static const String caporlia = "كابوليه";
   static const String showMap = "عرض الخريطة";
   static const String disappear = "إخفاء";
+  static const String newOrders = "الطلبات الجديدة";
+  static const String fleet = "الاسطول";
+  static const String accept = "قبول";
+  static const String refuse = "رفض";
+
   static const String complaint = "شكوى";
   static const String selectCategoryToYourCar =
       "اختر الفئة المناسبة لتسجيل سيارتك";

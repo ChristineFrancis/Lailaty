@@ -28,6 +28,6 @@ class acceptButtonCustomer extends StatelessWidget {
         colors: ColorManager.yellowAccent,
         width: width ?? MediaQuery.of(context).size.width / 2,
         height: height ?? MediaQuery.of(context).size.height / 15,
-        radius: 18);
+        radius: 11);
   }
 }

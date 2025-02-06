@@ -6,6 +6,7 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/motor_info.dart';
+import 'package:lailaty/feature/fleet_pages/fleet_home_page/presentaion/fleet_home_page.dart';
 
 import '../../feature/agree_pages/presentation/view/noticeToDriverView.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/login_prompt_page.dart';
@@ -65,6 +66,14 @@ class Routes {
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: const EditingCar(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.fleetHomePageViewPath,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child:  fleetHomePageView(),
           transitionsBuilder: _fadeTransition,
         ),
       ),

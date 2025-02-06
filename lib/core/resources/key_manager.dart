@@ -18,7 +18,6 @@ class AppKeys {
   static const String licenseBack = 'license_Back';
   static const String certificate = 'certificate';
 
-  //: ??
   static const String editingCarPage = '/EditingCar';
 
   //pages
@@ -30,6 +29,7 @@ class AppKeys {
   static const String loginPromptPageKey = '/login_prompt_page';
 
   static String carInfoPath = "/carInfoView";
+  static String fleetHomePageViewPath = "/fleetHomePageView";
   static String motorInfoPath = "/MotorInfoView";
   static String showCategoryPath = "/CategoryView";
   static String noticeToDriverPath = "/NoticeToDriverView";
