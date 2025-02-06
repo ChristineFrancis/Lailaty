@@ -7,6 +7,9 @@ class StringManager {
   static const String luxuryCar = " luxury car";
   static const String vipCaporlia = "VIP كابورليه";
   static const String caporlia = "كابوليه";
+  static const String showMap = "عرض الخريطة";
+  static const String disappear = "إخفاء";
+  static const String complaint = "شكوى";
   static const String selectCategoryToYourCar =
       "اختر الفئة المناسبة لتسجيل سيارتك";
   static const String minProceForWeddingBussinesman =
@@ -156,7 +159,7 @@ class StringManager {
   static const String connect = "متصل";
   static const String notConnect = "غير متصل";
   static const String areYouReadytoRecieveOrders =
-      "هل أنت جاهز لاستقبال الطلبات ؟";
+      "لا يمكنك استقبال الطلبات الآن ";
   static const String performance = "الأداء";
   static const String startRecieveOrders = "البدء باستقبال الطلبات";
   static const String safety = 'السلامة';

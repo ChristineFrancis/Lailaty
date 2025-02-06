@@ -73,7 +73,7 @@ class HeaderText extends StatelessWidget {
     Key? key,
     required this.text,
     required this.styleOfText,
-     this.textDirection,
+    this.textDirection,
   }) : super(key: key);
 
   @override
@@ -81,9 +81,10 @@ class HeaderText extends StatelessWidget {
     return Text(
       text,
       maxLines: 10,
-      overflow: TextOverflow.ellipsis,
+      softWrap: true,
+      overflow: TextOverflow.clip,
       style: styleOfText,
-      textDirection: textDirection??TextDirection.rtl,
+      textDirection: textDirection ?? TextDirection.rtl,
     );
   }
 }

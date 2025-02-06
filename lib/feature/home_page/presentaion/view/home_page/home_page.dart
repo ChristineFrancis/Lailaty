@@ -15,6 +15,8 @@ import 'package:lailaty/feature/home_page/presentaion/view/wallet/wallet_page.da
 import 'package:lailaty/feature/home_page/widgets/my_bottom_navigation_bar.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
+import '../orders/orders.dart';
+
 class HomePageView extends StatefulWidget {
   HomePageView({super.key});
   int currentIndex = 2;
@@ -49,28 +51,21 @@ class _HomePageViewState extends State<HomePageView> {
       const WalletPage(),
       const PerformancePage(),
       isConnected
-          ? SearchOrderPage()
-          : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                HeaderText(
-                    text: StringManager.areYouReadytoRecieveOrders,
-                    styleOfText: StyleManager.semiboldTextStyle20()),
-                SvgPicture.asset(
-                  ImageAssetManager.noConnectImage,
-                  height: MediaQuery.of(context).size.height / 3,
-                  width: MediaQuery.of(context).size.width / 3,
-                ),
-                MyButton(
-                    title: StringManager.startRecieveOrders,
-                    onpress: _isConnected,
-                    colors: ColorManager.grey1,
-                    width: MediaQuery.of(context).size.width / 1.7,
-                    height: MediaQuery.of(context).size.height / 16,
-                    radius: 11,
-                    styleOfTExt: StyleManager.smallBlackText16())
-              ],
+          ? MyOrders()
+          : Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  HeaderText(
+                      text: StringManager.areYouReadytoRecieveOrders,
+                      styleOfText: StyleManager.semiboldTextStyle20()),
+                  SvgPicture.asset(
+                    ImageAssetManager.noConnectImage,
+                    height: MediaQuery.of(context).size.height / 3,
+                    width: MediaQuery.of(context).size.width / 3,
+                  ),
+                ],
+              ),
             )
     ];
 
