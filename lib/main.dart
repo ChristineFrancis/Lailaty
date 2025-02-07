@@ -21,4 +21,3 @@ class MyApp extends StatelessWidget {
 //! editing car in the profile <<
 
 
-//fixed the drawer width, remove the arrow from drawer ,making the NoOrdersWidget singlton, fix the rating container,teach drive container ,and wait container
