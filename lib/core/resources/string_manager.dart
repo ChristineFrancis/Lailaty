@@ -242,6 +242,15 @@ class StringManager {
   static const String falseRequest = "طلب زائف";
   static const String passengerComplaint = "شكوى بشأن الراكب";
   static const String reasonForCancellation = "سبب الإلغاء";
-  static const String withinTheCityCar = 'داخل المدينة\n سيارة';
+  static const String withinTheCityCar = 'داخل المدينة';
   static const String drivingEducation = 'تعليم القيادة';
+  static const String noOrdersRightNow = "لا يوجد طلبات حاليا";
+  static const String refresh = "تحديث";
+  static const String enterYourNotes = "ادخل ملاحظاتك";
+  static const String writeYourNotesHere = "..اكتب ملاحظاتك هنا";
+  static const String day = "ايام";
+  static const String hours = "ساعات";
+  static const String examplePrice = "88 EGP";
+  static const String skip = 'تخطي';
+  static const String acceptancefor = 'القبول مقابل';
 }

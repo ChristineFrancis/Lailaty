@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/letter_circle.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
@@ -17,11 +18,24 @@ class CaptainNameAndRating extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        LetterCircle(
+        // LetterCircle(
+        //   radius: context.screenWidth * 0.06,
+        //   backGroundColor: ColorManager.yellowTextColor,
+        //   letter: '',
+        // ),
+        CircleAvatar(
           radius: context.screenWidth * 0.06,
-          backGroundColor: ColorManager.yellowTextColor,
-          letter: '',
+          backgroundColor: Colors.transparent,
+          child: ClipOval(
+            child: SvgPicture.asset(
+              ImageAssetManager.profileExample,
+              width: context.screenWidth * 0.12,
+              height: context.screenWidth * 0.12,
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
         Text(
           clientTripDetailsModel != null
@@ -30,6 +44,7 @@ class CaptainNameAndRating extends StatelessWidget {
           style: StyleManager.semiboldTextStyle20(),
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
               '5', //! this from where ?

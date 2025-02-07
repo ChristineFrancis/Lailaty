@@ -5,6 +5,7 @@ import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widget
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
+import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/archived_order_bottom_sheet.dart';
 import 'package:lailaty/core/viewmodels/filter_order_view_model.dart';
@@ -74,26 +75,38 @@ class _WiddingAndBusinessHistoryPageState
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              _buildFilterButton(
-                context: context,
-                title: StringManager.archivedOrders,
-                filter: StringManager.archivedOrders,
-                isActive: filterOrderViewModel.currentFilter ==
-                    StringManager.archivedOrders,
+              Flexible(
+                child: _buildFilterButton(
+                  context: context,
+                  title: StringManager.archivedOrders,
+                  filter: StringManager.archivedOrders,
+                  isActive: filterOrderViewModel.currentFilter ==
+                      StringManager.archivedOrders,
+                ),
               ),
-              _buildFilterButton(
-                context: context,
-                title: StringManager.acceptedOrders,
-                filter: StringManager.acceptedOrders,
-                isActive: filterOrderViewModel.currentFilter ==
-                    StringManager.acceptedOrders,
+              SizedBox(
+                width: context.screenWidth * 0.01,
               ),
-              _buildFilterButton(
-                context: context,
-                title: StringManager.onHoldOrders,
-                filter: StringManager.onHoldOrders,
-                isActive: filterOrderViewModel.currentFilter ==
-                    StringManager.onHoldOrders,
+              Flexible(
+                child: _buildFilterButton(
+                  context: context,
+                  title: StringManager.acceptedOrders,
+                  filter: StringManager.acceptedOrders,
+                  isActive: filterOrderViewModel.currentFilter ==
+                      StringManager.acceptedOrders,
+                ),
+              ),
+              SizedBox(
+                width: context.screenWidth * 0.01,
+              ),
+              Flexible(
+                child: _buildFilterButton(
+                  context: context,
+                  title: StringManager.onHoldOrders,
+                  filter: StringManager.onHoldOrders,
+                  isActive: filterOrderViewModel.currentFilter ==
+                      StringManager.onHoldOrders,
+                ),
               ),
             ],
           ),
@@ -158,8 +171,10 @@ class _WiddingAndBusinessHistoryPageState
         ),
         child: Text(
           title,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            fontSize: context.screenWidth * 0.035,
             color: isActive
                 ? ColorManager.black
                 : ColorManager.black.withAlpha((0.6 * 255).toInt()),

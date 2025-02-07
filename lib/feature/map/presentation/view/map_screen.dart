@@ -10,6 +10,8 @@ import 'package:lailaty/feature/map/presentation/widgets/cancel_journey_containe
 import 'package:lailaty/feature/map/presentation/widgets/have_arrived_container.dart';
 import 'package:lailaty/feature/map/presentation/widgets/journey_ended_container.dart';
 import 'package:lailaty/feature/map/presentation/widgets/rate_journey_container.dart';
+import 'package:lailaty/feature/map/presentation/widgets/request_to_teach_driving_and_on_your_mood_container.dart';
+import 'package:lailaty/feature/map/presentation/widgets/while_waiting_container.dart';
 
 class MapPage extends StatefulWidget {
   final String initialContainerKey;
@@ -167,6 +169,14 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
               AppKeys.journeyCompletedContainer), //! where this going to go ?
           () => context.pop(),
         );
+      case AppKeys.requestToTeachDrivingAndWithYourModeContainer:
+        return _buildRequestToTeachDrivingAndWithYourModeContainer(
+            () => context.pop(),
+            () => _showContainer(AppKeys.whileWaitingContainer));
+      case AppKeys.whileWaitingContainer:
+        return _buildWhileWaitingContainerForTeachDrivingAndWithYourMode(
+          () => _showContainer(AppKeys.iHaveArrivedContainer),
+        );
       default:
         return const SizedBox();
     }
@@ -219,6 +229,23 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
     return CancelJourneyContainer(
       onClose: toThePrivousPage,
       onChooseCancellationReason: onChooseCancellationReason,
+    );
+  }
+
+  Widget _buildRequestToTeachDrivingAndWithYourModeContainer(
+      VoidCallback toThePrivousPage, VoidCallback onAccepted) {
+    return RequestToTeachDrivingAndWithYourModeContainer(
+      toThePrivousPage: toThePrivousPage,
+      onAccepted: onAccepted,
+      //teachDrivingWidget: false, if its onMode : false
+    );
+  }
+
+  Widget _buildWhileWaitingContainerForTeachDrivingAndWithYourMode(
+      VoidCallback onAccepted) {
+    return WhileWaitingContainer(
+      onAccepted: onAccepted,
+      //  teachDrivingWidget: false ,
     );
   }
 }

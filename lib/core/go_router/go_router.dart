@@ -6,6 +6,7 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/motor_info.dart';
+import 'package:lailaty/feature/choose_category_page/presentation/view/categoryView.dart';
 
 import '../../feature/agree_pages/presentation/view/noticeToDriverView.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/login_prompt_page.dart';
@@ -23,7 +24,6 @@ import 'package:lailaty/feature/side_bar_screens/presentation/view/profile_page.
 import 'package:lailaty/feature/side_bar_screens/presentation/view/safety_page.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/settings_page.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/share_app_page.dart';
-import 'package:lailaty/main.dart';
 
 import 'package:provider/provider.dart';
 

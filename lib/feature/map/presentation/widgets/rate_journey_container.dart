@@ -23,10 +23,19 @@ class RateJourneyContainer extends StatefulWidget {
 class _RateJourneyContainerState extends State<RateJourneyContainer> {
   int _currentRating = 1;
 
+  bool _isNoteFieldVisible = false;
+  final TextEditingController _notesController = TextEditingController();
+
   void _onRatingChanged(int rating) {
     setState(() {
       _currentRating = rating;
     });
+  }
+
+  @override
+  void dispose() {
+    _notesController.dispose();
+    super.dispose();
   }
 
   @override
@@ -49,6 +58,61 @@ class _RateJourneyContainerState extends State<RateJourneyContainer> {
             StarsRatingWidget(onRatingChanged: _onRatingChanged),
             SizedBox(height: context.screenHeight * 0.02),
             RatingGrid(rating: _currentRating),
+            if (!_isNoteFieldVisible)
+              Center(
+                child: MyButtonWidget(
+                  width: context.screenWidth * 0.7,
+                  height: context.screenHeight * 0.05,
+                  radius: 5,
+                  colors: ColorManager.whiteColor,
+                  widget: Center(
+                    child: Text(
+                      StringManager.enterYourNotes,
+                      style: StyleManager.boldTextStyle24(
+                        size: context.screenHeight * 0.02,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  onpress: () {
+                    setState(() {
+                      _isNoteFieldVisible = true;
+                    });
+                  },
+                ),
+              )
+            else
+              SizedBox(
+                width: context.screenWidth * 0.7,
+                height: context.screenHeight * 0.05,
+                child: TextField(
+                  controller: _notesController,
+                  textAlign: TextAlign.right,
+                  cursorColor: ColorManager.grey1,
+                  decoration: InputDecoration(
+                    hintText: StringManager.writeYourNotesHere,
+                    hintStyle: const TextStyle(color: ColorManager.grey1),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(
+                          color: ColorManager.transparentColor),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(
+                          color: ColorManager.transparentColor),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide:
+                          const BorderSide(color: ColorManager.whiteColor),
+                    ),
+                    filled: true,
+                    fillColor: ColorManager.whiteColor,
+                  ),
+                  maxLines: 1,
+                ),
+              ),
             SizedBox(height: context.screenHeight * 0.01),
             Center(
               child: MyButtonWidget(

@@ -54,6 +54,9 @@ class AppKeys {
   static const String rateJourneyContainer = "rateJourney";
   static const String startTheJourneyContainer = "startTheJourney";
   static const String cancelJourneyContainer = "cancelJourney";
+  static const String requestToTeachDrivingAndWithYourModeContainer =
+      'requestToTeachDrivingAndWithYourMode';
+  static const String whileWaitingContainer = 'WhileWaiting';
 
   static const String initialContainerKey = 'initialContainerKey';
   static const String justOnePathKey = 'justOnePathKey';
