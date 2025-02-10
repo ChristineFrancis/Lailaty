@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/cancel_journey_container.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/rating_container/rate_journey_container.dart';
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/journey_ended_container.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/core/config/presentation/widget/complete_order_containers/cancel_journey_container.dart';
 import 'package:lailaty/core/config/presentation/widget/complete_order_containers/have_arrived_or_journey_completed_container.dart';
-import 'package:lailaty/core/config/presentation/widget/complete_order_containers/journey_ended_container.dart';
-import 'package:lailaty/core/config/presentation/widget/complete_order_containers/rating_container/rate_journey_container.dart';
-import 'package:lailaty/feature/map/presentation/widgets/request_to_teach_driving_and_on_your_mood_container.dart';
-import 'package:lailaty/feature/map/presentation/widgets/while_waiting_container.dart';
 
-class MapPage extends StatefulWidget {
+class CompleteTravelOrder extends StatefulWidget {
   final String initialContainerKey;
-  final bool justOnePath;
-  const MapPage({
+
+  const CompleteTravelOrder({
     super.key,
     required this.initialContainerKey,
-    this.justOnePath = false,
   });
 
   @override
-  State<MapPage> createState() => _MapPageState();
+  State<CompleteTravelOrder> createState() => _CompleteTravelOrderState();
 }
 
-class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
+class _CompleteTravelOrderState extends State<CompleteTravelOrder>
+    with SingleTickerProviderStateMixin {
+  final bool justOnePath = false;
+
   late final ValueNotifier<String> _currentContainerId;
   late final AnimationController _animationController;
   late final Animation<double> _fadeAnimation;
@@ -87,7 +87,8 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
           builder: (context, currentId, child) {
             return CustomAppbar(
               ispop: false,
-              leading: (currentId == AppKeys.journeyCompletedContainer)
+              leading: (currentId == AppKeys.journeyCompletedContainer ||
+                      currentId == AppKeys.journeyEndedContainer)
                   ? InkWell(
                       onTap: () {
                         // _currentContainerId.value =
@@ -136,28 +137,19 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
     );
   }
 
+//in travel :  jourenycompleted >> journey ended container >> rating <<and>>cancel
   Widget _getContainerForId(String containerId) {
     switch (containerId) {
-      case AppKeys.iHaveArrivedContainer:
-        return _buildIHaveArrivedContainer(
-          () => _showContainer(AppKeys.startTheJourneyContainer),
-          widget.justOnePath,
-        );
-      case AppKeys.startTheJourneyContainer:
-        return _buildstartTheJourneyContainer(
-          () => _showContainer(AppKeys.journeyCompletedContainer),
-          widget.justOnePath,
-        );
       case AppKeys.journeyCompletedContainer:
         return _buildJourneyCompletedContainer(
           () => _showContainer(AppKeys.journeyEndedContainer),
-          widget.justOnePath,
+          justOnePath,
         );
       case AppKeys.journeyEndedContainer:
         return _buildJourneyEndedContainer(
           () => _showContainer(AppKeys.journeyCompletedContainer),
           () => _showContainer(AppKeys.rateJourneyContainer),
-          widget.justOnePath,
+          justOnePath,
         );
       case AppKeys.rateJourneyContainer:
         return _buildRateJourneyContainer(() {
@@ -166,38 +158,13 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
       case AppKeys.cancelJourneyContainer:
         return _buildCancelJourneyContainer(
           () => _showContainer(
-              AppKeys.journeyCompletedContainer), //! where this going to go ?
+            AppKeys.journeyCompletedContainer,
+          ),
           () => context.pop(),
-        );
-      case AppKeys.requestToTeachDrivingAndWithYourModeContainer:
-        return _buildRequestToTeachDrivingAndWithYourModeContainer(
-            () => context.pop(),
-            () => _showContainer(AppKeys.whileWaitingContainer));
-      case AppKeys.whileWaitingContainer:
-        return _buildWhileWaitingContainerForTeachDrivingAndWithYourMode(
-          () => _showContainer(AppKeys.iHaveArrivedContainer),
         );
       default:
         return const SizedBox();
     }
-  }
-
-  Widget _buildIHaveArrivedContainer(
-      VoidCallback haveArrived, bool justOnePath) {
-    return HaveArrivedOrJourneyCompletedContainer(
-      onTap: haveArrived,
-      containerName: StringManager.iHaveArrived,
-      justOnePath: justOnePath,
-    );
-  }
-
-  Widget _buildstartTheJourneyContainer(
-      VoidCallback toJourneyCompleted, bool justOnePath) {
-    return HaveArrivedOrJourneyCompletedContainer(
-      onTap: toJourneyCompleted,
-      containerName: StringManager.startTheJourney,
-      justOnePath: justOnePath,
-    );
   }
 
   Widget _buildJourneyCompletedContainer(
@@ -229,23 +196,6 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
     return CancelJourneyContainer(
       onClose: toThePrivousPage,
       onChooseCancellationReason: onChooseCancellationReason,
-    );
-  }
-
-  Widget _buildRequestToTeachDrivingAndWithYourModeContainer(
-      VoidCallback toThePrivousPage, VoidCallback onAccepted) {
-    return RequestToTeachDrivingAndWithYourModeContainer(
-      toThePrivousPage: toThePrivousPage,
-      onAccepted: onAccepted,
-      //teachDrivingWidget: false, if its onMode : false
-    );
-  }
-
-  Widget _buildWhileWaitingContainerForTeachDrivingAndWithYourMode(
-      VoidCallback onAccepted) {
-    return WhileWaitingContainer(
-      onAccepted: onAccepted,
-      //  teachDrivingWidget: false ,
     );
   }
 }

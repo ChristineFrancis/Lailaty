@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain_name_and_rating_widget.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain/captain_name_and_rating_widget.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/from_and_to_city_column_widget.dart';
 import 'package:lailaty/core/config/presentation/widget/myButtonWidget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lailaty/core/resources/asset_manager.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain/captain_image.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
@@ -20,23 +19,7 @@ class CaptainNameAndRating extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        // LetterCircle(
-        //   radius: context.screenWidth * 0.06,
-        //   backGroundColor: ColorManager.yellowTextColor,
-        //   letter: '',
-        // ),
-        CircleAvatar(
-          radius: context.screenWidth * 0.06,
-          backgroundColor: Colors.transparent,
-          child: ClipOval(
-            child: SvgPicture.asset(
-              ImageAssetManager.profileExample,
-              width: context.screenWidth * 0.12,
-              height: context.screenWidth * 0.12,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
+        const CaptainImage(),
         Text(
           clientTripDetailsModel != null
               ? clientTripDetailsModel!.captainName

@@ -7,6 +7,7 @@ import 'package:lailaty/feature/agree_pages/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/motor_info.dart';
 import 'package:lailaty/feature/choose_category_page/presentation/view/categoryView.dart';
+import 'package:lailaty/feature/travel/presentation/view/complete_travel_order.dart';
 
 import '../../feature/agree_pages/presentation/view/noticeToDriverView.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/login_prompt_page.dart';
@@ -210,6 +211,28 @@ class Routes {
           transitionsBuilder: _fadeTransition,
         ),
       ),
+
+      GoRoute(
+        path: AppKeys.completeTravelOrderPage,
+        pageBuilder: (context, state) {
+          // String initialContainerKey = //AppKeys.cancelJourneyContainer;
+          //     state.extra as String; // ?? AppKeys.journeyCompleted;
+
+          final extra = state.extra as Map<String, dynamic>?;
+
+          String initialContainerKey = extra?[AppKeys.initialContainerKey] ??
+              AppKeys.journeyCompletedContainer;
+return CustomTransitionPage(
+            key: state.pageKey,
+            child: CompleteTravelOrder(
+              initialContainerKey: initialContainerKey,
+
+            ),
+            transitionsBuilder: _fadeTransition,
+          );
+        },
+      ),
+
       GoRoute(
         path: AppKeys.mapPageKey,
         pageBuilder: (context, state) {
