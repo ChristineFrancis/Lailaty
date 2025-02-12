@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain/captain_image.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
@@ -21,200 +22,226 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      backgroundColor: ColorManager.grey1,
-      child: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            InkWell(
-              onTap: () {
-                context.push(AppKeys.profilePageKey);
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  //  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.arrow_back_ios,
-                      color: ColorManager.backGroundColor,
-                    ),
-                    const Spacer(),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          StringManager.exampleCaptainName,
-                          style: StyleManager.boldTextStyle24(
-                            size: context.screenWidth * 0.06,
-                            color: ColorManager.black,
+    return SizedBox(
+      width: context.screenWidth * 0.6,
+      child: Drawer(
+        backgroundColor: ColorManager.grey1,
+        child: SafeArea(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              InkWell(
+                onTap: () {
+                  context.push(AppKeys.profilePageKey);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    //  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // const Icon(
+                      //   Icons.arrow_back_ios,
+                      //   color: ColorManager.backGroundColor,
+                      // ),
+                      const Spacer(),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            StringManager.exampleCaptainName,
+                            style: StyleManager.boldTextStyle24(
+                              size: context.screenWidth * 0.06,
+                              color: ColorManager.black,
+                            ),
                           ),
-                        ),
-                        //! make function depend on the back the star will filled
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.star_border,
-                              color: ColorManager.yellowAccent,
-                              size: context.screenWidth * 0.04,
-                            ),
-                            Icon(
-                              Icons.star_border,
-                              color: ColorManager.yellowAccent,
-                              size: context.screenWidth * 0.04,
-                            ),
-                            Icon(
-                              Icons.star_border,
-                              color: ColorManager.yellowAccent,
-                              size: context.screenWidth * 0.04,
-                            ),
-                            Icon(
-                              Icons.star_border,
-                              color: ColorManager.yellowAccent,
-                              size: context.screenWidth * 0.04,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Container(
-                      width: context.screenWidth * 0.1,
-                      height: context.screenWidth * 0.1,
-                      decoration: BoxDecoration(
-                        color: ColorManager.yellowAccent,
-                        borderRadius: BorderRadius.circular(50),
+                          //! make function depend on the back the star will filled
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.star_border,
+                                color: ColorManager.yellowAccent,
+                                size: context.screenWidth * 0.04,
+                              ),
+                              Icon(
+                                Icons.star_border,
+                                color: ColorManager.yellowAccent,
+                                size: context.screenWidth * 0.04,
+                              ),
+                              Icon(
+                                Icons.star_border,
+                                color: ColorManager.yellowAccent,
+                                size: context.screenWidth * 0.04,
+                              ),
+                              Icon(
+                                Icons.star_border,
+                                color: ColorManager.yellowAccent,
+                                size: context.screenWidth * 0.04,
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                      const CaptainImage()
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Divider(
-              color: ColorManager.black,
-              endIndent: context.screenWidth * 0.04,
-              indent: context.screenWidth * 0.04,
-            ),
-            DrawerOption(
-              icon: Icons.directions_car_outlined,
-              text: StringManager.withinTheCityCar,
-              onTap: () {
-                context.push(
-                  AppKeys.searchOrderPage,
-                );
-              },
-            ),
-            SizedBox(
-              height: context.screenHeight * 0.02,
-            ),
-            DrawerOption(
-              icon: Icons.directions_car_outlined,
-              text: StringManager.travelTitle,
-              onTap: () {
-                context.push(
-                  AppKeys.dynamicPageViewKey,
-                  extra: {
-                    AppKeys.appBarTitleKey: StringManager.travelTitle,
-                    AppKeys.pagesKey: [
-                      ChangeNotifierProvider(
-                        //! changed
-                        create: (_) {
-                          final orderViewModel = FilterOrderViewModel();
-                          orderViewModel
-                              .initializeOrders(getClientTripDetails());
-                          return orderViewModel;
-                        },
-                        child: const TravelOrderHistoryPage(),
-                      ),
-                      const TravelOrdersPage(),
-                    ],
-                    AppKeys.initialIndexKey: 1,
-                  },
-                );
-              },
-            ),
-            SizedBox(
-              height: context.screenHeight * 0.02,
-            ),
-            DrawerOption(
-              icon: Icons.directions_car_outlined,
-              text: StringManager.weddingBusiness,
-              onTap: () {
-                context.push(
-                  AppKeys.dynamicPageViewKey,
-                  extra: {
-                    AppKeys.appBarTitleKey: StringManager.weddingBusiness,
-                    AppKeys.pagesKey: [
-                      ChangeNotifierProvider(
-                        create: (_) {
-                          final orderViewModel = FilterOrderViewModel();
-                          orderViewModel
-                              .initializeOrders(getClientTripDetails());
-                          return orderViewModel;
-                        },
-                        child: const WiddingAndBusinessHistoryPage(),
-                      ),
-                      const WiddingAndBusinessOrderPage(),
-                    ],
-                    AppKeys.initialIndexKey: 1,
-                  },
-                );
-              },
-            ),
-            SizedBox(
-              height: context.screenHeight * 0.02,
-            ),
-             DrawerOption(
-              icon: Icons.directions_car_outlined,
-              text: StringManager.drivingEducation,
-              onTap: () {
-                // context.push(
-                //   AppKeys.,
-                // );
-              },
-            ),
-            SizedBox(
-              height: context.screenHeight * 0.02,
-            ),
-            DrawerOption(
-              icon: Icons.verified_user_outlined,
-              text: StringManager.safety,
-              onTap: () {
-                context.push(AppKeys.safetyPageKey);
-              },
-            ),
-            SizedBox(
-              height: context.screenHeight * 0.02,
-            ),
-            DrawerOption(
-              icon: Icons.settings_outlined,
-              text: StringManager.settings,
-              onTap: () {
-                context.push(AppKeys.settingsPageKey);
-              },
-            ),
-            SizedBox(
-              height: context.screenHeight * 0.02,
-            ),
-            DrawerOption(
-              icon: Icons.share_outlined,
-              text: StringManager.shareApp,
-              onTap: () {
-                context.push(AppKeys.shareAppPageKey);
-              },
-            ),
-            SizedBox(
-              height: context.screenHeight * 0.02,
-            ),
-            DrawerOption(
-              icon: Icons.support_agent,
-              text: StringManager.callUs,
-              onTap: () {
-                context.push(AppKeys.callUsPageKey);
-              },
-            ),
-          ],
+              Divider(
+                color: ColorManager.black,
+                endIndent: context.screenWidth * 0.04,
+                indent: context.screenWidth * 0.04,
+              ),
+              DrawerOption(
+                icon: Icons.directions_car_outlined,
+                text: StringManager.withinTheCityCar,
+                onTap: () {
+                  context.push(
+                    AppKeys.searchOrderPage,
+                  );
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.directions_car_outlined,
+                text: StringManager.travelTitle,
+                onTap: () {
+                  context.push(
+                    AppKeys.dynamicPageViewKey,
+                    extra: {
+                      AppKeys.appBarTitleKey: StringManager.travelTitle,
+                      AppKeys.pagesKey: [
+                        ChangeNotifierProvider(
+                          //! changed
+                          create: (_) {
+                            final orderViewModel = FilterOrderViewModel();
+                            orderViewModel
+                                .initializeOrders(getClientTripDetails());
+                            return orderViewModel;
+                          },
+                          child: const TravelOrderHistoryPage(),
+                        ),
+                        const TravelOrdersPage(),
+                      ],
+                      AppKeys.initialIndexKey: 1,
+                    },
+                  );
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.directions_car_outlined,
+                text: StringManager.weddingBusiness,
+                onTap: () {
+                  context.push(
+                    AppKeys.dynamicPageViewKey,
+                    extra: {
+                      AppKeys.appBarTitleKey: StringManager.weddingBusiness,
+                      AppKeys.pagesKey: [
+                        ChangeNotifierProvider(
+                          create: (_) {
+                            final orderViewModel = FilterOrderViewModel();
+                            orderViewModel
+                                .initializeOrders(getClientTripDetails());
+                            return orderViewModel;
+                          },
+                          child: const WiddingAndBusinessHistoryPage(),
+                        ),
+                        const WiddingAndBusinessOrderPage(),
+                      ],
+                      AppKeys.initialIndexKey: 1,
+                    },
+                  );
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.directions_car_outlined,
+                text: StringManager.drivingEducation,
+                onTap: () {
+                  context.push(AppKeys.completeTeachDrivingOrderPage, extra: {
+                    AppKeys.initialContainerKey:
+                        AppKeys.requestToTeachDrivingAndWithYourModeContainer
+                  });
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.directions_car_outlined,
+                text: StringManager.onYourMode,
+                onTap: () {
+                  context.push(AppKeys.completeOnYourMoodOrderPage, extra: {
+                    AppKeys.initialContainerKey:
+                        AppKeys.requestToTeachDrivingAndWithYourModeContainer
+                  });
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.directions_car_outlined,
+                text: StringManager.completeTheOrder,
+                onTap: () {
+                  context.push(
+                    AppKeys.completeOrderInlandTransportationPage,
+                    extra: {
+                      AppKeys.initialContainerKey:
+                          AppKeys.confirmSuggestedPriceForTripAndRideContainer
+                    },
+                  );
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.verified_user_outlined,
+                text: StringManager.safety,
+                onTap: () {
+                  context.push(AppKeys.safetyPageKey);
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.settings_outlined,
+                text: StringManager.settings,
+                onTap: () {
+                  context.push(AppKeys.settingsPageKey);
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.share_outlined,
+                text: StringManager.shareApp,
+                onTap: () {
+                  context.push(AppKeys.shareAppPageKey);
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.support_agent,
+                text: StringManager.callUs,
+                onTap: () {
+                  context.push(AppKeys.callUsPageKey);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

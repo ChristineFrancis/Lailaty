@@ -12,6 +12,7 @@ class CustomDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return isNotShrink
         ? const Divider(
+          thickness: 2,
             indent: 5,
             endIndent: 5,
             color: ColorManager.boldyellow,

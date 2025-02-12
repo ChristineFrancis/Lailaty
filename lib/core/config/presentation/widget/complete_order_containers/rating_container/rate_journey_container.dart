@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/presentation/widget/bottom_sheet_handle.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/rating_container/editable_button_field.dart';
 import 'package:lailaty/core/config/presentation/widget/myButtonWidget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/map/presentation/widgets/rating_grid.dart';
-import 'package:lailaty/feature/map/presentation/widgets/stars_raing_widget.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/rating_container/rating_grid.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/rating_container/stars_rating_widget.dart';
 
 class RateJourneyContainer extends StatefulWidget {
   final VoidCallback toThePrivousPage;
@@ -23,10 +23,19 @@ class RateJourneyContainer extends StatefulWidget {
 class _RateJourneyContainerState extends State<RateJourneyContainer> {
   int _currentRating = 1;
 
+  bool _isNoteFieldVisible = false;
+  final TextEditingController _notesController = TextEditingController();
+
   void _onRatingChanged(int rating) {
     setState(() {
       _currentRating = rating;
     });
+  }
+
+  @override
+  void dispose() {
+    _notesController.dispose();
+    super.dispose();
   }
 
   @override
@@ -45,10 +54,22 @@ class _RateJourneyContainerState extends State<RateJourneyContainer> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const BottomSheetHandle(),
+          //  const BottomSheetHandle(),
             StarsRatingWidget(onRatingChanged: _onRatingChanged),
             SizedBox(height: context.screenHeight * 0.02),
             RatingGrid(rating: _currentRating),
+            EditableButtonField(
+              hintText: StringManager.writeYourNotesHere,
+              initialText: StringManager.enterYourNotes,
+              buttonColor: ColorManager.whiteColor,
+              textEditingController: _notesController,
+              isTextFieldVisible: _isNoteFieldVisible,
+              onToggle: (bool isVisible) {
+                setState(() {
+                  _isNoteFieldVisible = isVisible;
+                });
+              },
+            ),
             SizedBox(height: context.screenHeight * 0.01),
             Center(
               child: MyButtonWidget(

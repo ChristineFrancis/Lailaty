@@ -3,14 +3,19 @@ import 'package:lailaty/core/config/presentation/widget/myButtonWidget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/map/presentation/widgets/journy_details_row.dart';
+import 'package:lailaty/core/config/presentation/widget/journy_details_row.dart';
 
-class HaveArrivedContainer extends StatelessWidget {
+// this container used in three way :
+//1) have arrived
+//2) the journey completed
+//3) start The Journey
+
+class HaveArrivedOrJourneyCompletedContainer extends StatelessWidget {
   final VoidCallback onTap;
   final String containerName;
   final bool justOnePath;
 
-  const HaveArrivedContainer({
+  const HaveArrivedOrJourneyCompletedContainer({
     super.key,
     required this.onTap,
     required this.containerName,

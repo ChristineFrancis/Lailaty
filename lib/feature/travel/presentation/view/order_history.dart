@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
+import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
 import 'package:lailaty/core/viewmodels/filter_order_view_model.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/bottom_sheet_container.dart';
@@ -28,10 +29,10 @@ class _TravelOrderHistoryPageState extends State<TravelOrderHistoryPage> {
           isTravelPage: true,
           firstButtonFunc: () {
             context.push(
-              AppKeys.mapPageKey,
+              AppKeys.completeTravelOrderPage,
               // extra: AppKeys.startTheJourneyContainer,
               extra: {
-                AppKeys.initialContainerKey: AppKeys.startTheJourneyContainer,
+                AppKeys.initialContainerKey: AppKeys.journeyCompletedContainer,
               },
             );
           },
@@ -72,26 +73,38 @@ class _TravelOrderHistoryPageState extends State<TravelOrderHistoryPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              _buildFilterButton(
-                context: context,
-                title: StringManager.archivedOrders,
-                filter: StringManager.archivedOrders,
-                isActive: filterOrderViewModel.currentFilter ==
-                    StringManager.archivedOrders,
+              Flexible(
+                child: _buildFilterButton(
+                  context: context,
+                  title: StringManager.archivedOrders,
+                  filter: StringManager.archivedOrders,
+                  isActive: filterOrderViewModel.currentFilter ==
+                      StringManager.archivedOrders,
+                ),
               ),
-              _buildFilterButton(
-                context: context,
-                title: StringManager.acceptedOrders,
-                filter: StringManager.acceptedOrders,
-                isActive: filterOrderViewModel.currentFilter ==
-                    StringManager.acceptedOrders,
+              SizedBox(
+                width: context.screenWidth * 0.01,
               ),
-              _buildFilterButton(
-                context: context,
-                title: StringManager.onHoldOrders,
-                filter: StringManager.onHoldOrders,
-                isActive: filterOrderViewModel.currentFilter ==
-                    StringManager.onHoldOrders,
+              Flexible(
+                child: _buildFilterButton(
+                  context: context,
+                  title: StringManager.acceptedOrders,
+                  filter: StringManager.acceptedOrders,
+                  isActive: filterOrderViewModel.currentFilter ==
+                      StringManager.acceptedOrders,
+                ),
+              ),
+              SizedBox(
+                width: context.screenWidth * 0.01,
+              ),
+              Flexible(
+                child: _buildFilterButton(
+                  context: context,
+                  title: StringManager.onHoldOrders,
+                  filter: StringManager.onHoldOrders,
+                  isActive: filterOrderViewModel.currentFilter ==
+                      StringManager.onHoldOrders,
+                ),
               ),
             ],
           ),
@@ -155,13 +168,17 @@ class _TravelOrderHistoryPageState extends State<TravelOrderHistoryPage> {
               : ColorManager.yellowTextColor.withAlpha((0.5 * 255).toInt()),
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Text(
-          title,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: isActive
-                ? ColorManager.black
-                : ColorManager.black.withAlpha((0.6 * 255).toInt()),
+        child: Center(
+          child: Text(
+            title,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: context.screenWidth * 0.035,
+              fontWeight: FontWeight.bold,
+              color: isActive
+                  ? ColorManager.black
+                  : ColorManager.black.withAlpha((0.6 * 255).toInt()),
+            ),
           ),
         ),
       ),

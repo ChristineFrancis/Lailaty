@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain_name_and_rating_widget.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain/captain_name_and_rating_widget.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/from_and_to_city_column_widget.dart';
 import 'package:lailaty/core/config/presentation/widget/myButtonWidget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
@@ -61,7 +61,9 @@ class ArchivedOrderBottomSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FromAndToCityColumnWidget(
-                  clientTripDetailsModel: clientTripDetailsModel,
+                  //  archivedorder: true,
+                  city1: clientTripDetailsModel.city1,
+                  city2: clientTripDetailsModel.city2,
                 ),
                 SizedBox(
                   width: context.screenWidth * 0.04,

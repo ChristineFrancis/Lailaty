@@ -8,6 +8,11 @@ import 'package:lailaty/feature/agree_pages/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/motor_info.dart';
 import 'package:lailaty/feature/fleet_pages/fleet_home_page/presentaion/fleet_home_page.dart';
 
+import 'package:lailaty/feature/on_your_mood/presentation/view/complete_on_your_mood_order.dart';
+import 'package:lailaty/feature/teach_driving/presentation/view/complete_teach_driving_order.dart';
+import 'package:lailaty/feature/travel/presentation/view/complete_travel_order.dart';
+import 'package:lailaty/feature/wedding_business/presentation/view/complete_widding_and_business_order.dart';
+
 import '../../feature/agree_pages/presentation/view/noticeToDriverView.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/login_prompt_page.dart';
 
@@ -17,14 +22,13 @@ import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/viewmodels/birthdate_view_model.dart';
 import 'package:lailaty/core/viewmodels/personal_information_view.dart';
 
-import 'package:lailaty/feature/map/presentation/view/map_screen.dart';
+import 'package:lailaty/feature/inland_transportation/presentation/view/inland_transportation.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/state_managment/car_list_view_model.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/call_us_page.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/profile_page.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/safety_page.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/settings_page.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/share_app_page.dart';
-import 'package:lailaty/main.dart';
 
 import 'package:provider/provider.dart';
 
@@ -228,23 +232,81 @@ class Routes {
           transitionsBuilder: _fadeTransition,
         ),
       ),
+
       GoRoute(
-        path: AppKeys.mapPageKey,
+        path: AppKeys.completeTravelOrderPage,
         pageBuilder: (context, state) {
-          // String initialContainerKey = //AppKeys.cancelJourneyContainer;
-          //     state.extra as String; // ?? AppKeys.journeyCompleted;
-
           final extra = state.extra as Map<String, dynamic>?;
-
           String initialContainerKey = extra?[AppKeys.initialContainerKey] ??
               AppKeys.journeyCompletedContainer;
-          bool justOnePath = extra?[AppKeys.justOnePathKey] ?? false;
-
           return CustomTransitionPage(
             key: state.pageKey,
-            child: MapPage(
+            child: CompleteTravelOrder(
               initialContainerKey: initialContainerKey,
-              justOnePath: justOnePath,
+            ),
+            transitionsBuilder: _fadeTransition,
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppKeys.completeWiddingAndBusinessOrderPage,
+        pageBuilder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          String initialContainerKey = extra?[AppKeys.initialContainerKey] ??
+              AppKeys.journeyCompletedContainer;
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: CompleteWiddingAndBusinessOrder(
+              initialContainerKey: initialContainerKey,
+            ),
+            transitionsBuilder: _fadeTransition,
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppKeys.completeTeachDrivingOrderPage,
+        pageBuilder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          String initialContainerKey = extra?[AppKeys.initialContainerKey] ??
+              AppKeys.journeyCompletedContainer;
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: CompleteTeachDrivingOrder(
+              initialContainerKey: initialContainerKey,
+            ),
+            transitionsBuilder: _fadeTransition,
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppKeys.completeOnYourMoodOrderPage,
+        pageBuilder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          String initialContainerKey = extra?[AppKeys.initialContainerKey] ??
+              AppKeys.journeyCompletedContainer;
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: CompleteOnYourMoodOrder(
+              initialContainerKey: initialContainerKey,
+            ),
+            transitionsBuilder: _fadeTransition,
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppKeys.completeOrderInlandTransportationPage,
+        pageBuilder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          String initialContainerKey = extra?[AppKeys.initialContainerKey] ??
+              AppKeys.journeyCompletedContainer;
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: InlandTransportationCompleteOrder(
+              initialContainerKey: initialContainerKey,
             ),
             transitionsBuilder: _fadeTransition,
           );

@@ -17,90 +17,102 @@ class PathsRow extends StatefulWidget {
 }
 
 class _PathsRowState extends State<PathsRow> {
-  late TextEditingController _controller;
-  int _paths = 0;
+  List<String> selectedPaths = [];
+  bool showPathOptions = false;
 
-  void _incrementPaths() {
+  final List<String> availablePaths = [
+    "المسار ١",
+    "المسار ٢",
+    "المسار ٣",
+    "المسار ٤",
+    "المسار ٥"
+  ];
+
+  void _togglePathSelection() {
     setState(() {
-      _paths++;
-      _controller.text = _paths.toString();
+      showPathOptions = !showPathOptions;
     });
   }
 
-  void _updatePaths(String value) {
-    final parsedValue = int.tryParse(value);
-    if (parsedValue != null) {
+  void _selectPath(String path) {
+    if (!selectedPaths.contains(path)) {
       setState(() {
-        _paths = parsedValue;
-        _controller.text = _paths.toString();
+        selectedPaths.add(path);
+        showPathOptions = false;
       });
     }
   }
 
   @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController(text: _paths.toString());
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return widget.isTravelPage
-        ? Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              IconButton(
-                onPressed: _incrementPaths,
-                icon: const Icon(
-                  Icons.add,
-                  color: ColorManager.black,
-                  size: 30,
-                ),
-              ),
-              const Spacer(),
-              Text(
-                StringManager.paths,
-                style: StyleManager.semiboldTextStyle20(
-                  size: context.screenWidth * 0.05,
-                ),
-              ),
-              SizedBox(
-                width: context.screenWidth * 0.02,
-              ),
-              SizedBox(
-                width: context.screenWidth * 0.1,
-                child: TextField(
-                  controller: _controller,
-                  cursorColor: ColorManager.boldyellow,
-                  keyboardType: TextInputType.number,
-                  textAlign: TextAlign.center,
-                  decoration: const InputDecoration(
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: ColorManager.yellowTextColor,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    onPressed: _togglePathSelection,
+                    icon: const Icon(
+                      Icons.add,
+                      color: ColorManager.black,
+                      size: 30,
+                    ),
+                  ),
+                  SizedBox(width: context.screenWidth * 0.02),
+                  // Text(
+                  //   StringManager.paths,
+                  //   style: StyleManager.semiboldTextStyle20(
+                  //     size: context.screenWidth * 0.05,
+                  //   ),
+                  // ),
+                  // SizedBox(width: context.screenWidth * 0.02),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      reverse: true,
+                      child: Text(
+                        selectedPaths.isNotEmpty
+                            ? selectedPaths.reversed.join(" - ")
+                            : StringManager.paths,
+                        textDirection: TextDirection.rtl,
+                        style: StyleManager.semiboldTextStyle20(
+                          size: context.screenWidth * 0.045,
+                        ),
                       ),
                     ),
                   ),
-                  onSubmitted: _updatePaths,
-                  style: StyleManager.semiboldTextStyle20(
-                    size: context.screenWidth * 0.05,
+                  SizedBox(width: context.screenWidth * 0.02),
+                  const LetterCircle(
+                    backGroundColor: ColorManager.brightGreen,
+                    letter: StringManager.bLetter,
                   ),
-                  onChanged: _updatePaths,
+                ],
+              ),
+              if (showPathOptions)
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  margin: const EdgeInsets.only(top: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: ColorManager.grey1),
+                  ),
+                  child: Column(
+                    children: availablePaths
+                        .map(
+                          (path) => ListTile(
+                            title: Text(
+                              path,
+                              textDirection: TextDirection.rtl,
+                            ),
+                            onTap: () => _selectPath(path),
+                          ),
+                        )
+                        .toList(),
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: context.screenWidth * 0.02,
-              ),
-              const LetterCircle(
-                backGroundColor: ColorManager.brightGreen,
-                letter: StringManager.bLetter,
-              ),
             ],
           )
         : const SizedBox.shrink();

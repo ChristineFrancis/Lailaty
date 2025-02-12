@@ -4,24 +4,25 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/map/presentation/widgets/journy_details_row.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/captain_and_trip_info_row.dart';
 
-class JourneyEndedContainer extends StatelessWidget {
-  final VoidCallback toJourneyCompleted;
-  final VoidCallback toRateJourney;
-  final bool justOnePath;
-  const JourneyEndedContainer({
+class RequestToTeachDrivingAndWithYourModeContainer extends StatelessWidget {
+  final VoidCallback toThePrivousPage;
+  final VoidCallback onAccepted;
+  final bool teachDrivingWidget;
+  const RequestToTeachDrivingAndWithYourModeContainer({
     super.key,
-    required this.toJourneyCompleted,
-    required this.toRateJourney,
-    required this.justOnePath,
+    required this.onAccepted,
+    required this.toThePrivousPage,
+    this.teachDrivingWidget = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      //  height: context.screenHeight * 0.4,
-      padding: const EdgeInsets.all(5),
+      height: context.screenHeight * 0.4,
+      width: context.screenWidth,
+      padding: const EdgeInsets.all(8),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(12),
@@ -31,23 +32,16 @@ class JourneyEndedContainer extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            TeachDrivingAndOnYourModeCaptainAndTripInfoRow(teachDrivingWidget: teachDrivingWidget),
             SizedBox(
-              height: context.screenHeight * 0.02,
+              height: context.screenWidth * 0.02,
             ),
-            Text(
-              StringManager.isTheTripOver,
-              style: StyleManager.boldTextStyle24(
-                size: context.screenWidth * 0.075,
-              ),
-            ),
-            SizedBox(
-              height: context.screenHeight * 0.02,
-            ),
-            JournyDetailsRow(
-              justOnePath: justOnePath,
+            const Divider(
+              color: ColorManager.yellowTextColor,
+              thickness: 1.5,
             ),
             SizedBox(
-              height: context.screenHeight * 0.02,
+              height: context.screenWidth * 0.04,
             ),
             Center(
               child: MyButtonWidget(
@@ -57,32 +51,28 @@ class JourneyEndedContainer extends StatelessWidget {
                 colors: ColorManager.yellowTextColor,
                 widget: Center(
                   child: Text(
-                    StringManager.yes,
+                    '${StringManager.examplePrice} ${StringManager.acceptancefor}',
                     style: StyleManager.boldTextStyle24(
                       size: context.screenHeight * 0.03,
                     ),
                   ),
                 ),
-                onpress: toRateJourney,
+                onpress: onAccepted,
               ),
             ),
             SizedBox(
-              height: context.screenHeight * 0.02,
+              height: context.screenWidth * 0.02,
             ),
             InkWell(
-              onTap: toJourneyCompleted,
-              child: Center(
-                child: Text(
-                  StringManager.no,
-                  style: StyleManager.boldTextStyle24(
-                    size: context.screenHeight * 0.02,
-                  ),
+              onTap: toThePrivousPage,
+              child: Text(
+                StringManager.skip,
+                style: StyleManager.boldTextStyle24(
+                  size: context.screenHeight * 0.03,
+                  color: ColorManager.black,
                 ),
               ),
-            ),
-            SizedBox(
-              height: context.screenHeight * 0.02,
-            ),
+            )
           ],
         ),
       ),

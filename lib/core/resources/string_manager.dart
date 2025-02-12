@@ -251,6 +251,24 @@ class StringManager {
   static const String falseRequest = "طلب زائف";
   static const String passengerComplaint = "شكوى بشأن الراكب";
   static const String reasonForCancellation = "سبب الإلغاء";
-  static const String withinTheCityCar = 'داخل المدينة\n سيارة';
+  static const String withinTheCityCar = 'داخل المدينة';
   static const String drivingEducation = 'تعليم القيادة';
+  static const String noOrdersRightNow = "لا يوجد طلبات حاليا";
+  static const String refresh = "تحديث";
+  static const String enterYourNotes = "ادخل ملاحظاتك";
+  static const String writeYourNotesHere = "..اكتب ملاحظاتك هنا";
+  static const String day = "ايام";
+  static const String hours = "ساعات";
+  static const String examplePrice = "88 EGP";
+  static const String skip = 'تخطي';
+  static const String acceptancefor = 'القبول مقابل';
+  static const String meter = ' متر ';
+  static const String meterExample = '١٣٩';
+  static const String suggestYourFare = 'اقترح اجرتك';
+  static const String suggestedPriceLimit =
+      "السعر المقترح لايمكن ان يزيد عن 100 ج";
+  static const String submitOffer = "تقديم عرض";
+  static const String pleaseEntertheSuggestedPrice = "يرجى إدخال سعر ";
+  static const String yourOfferWasNotAccepted = ' لم يتم قبول عرضك ';
+  static const String offerLessFare = ' اعرض اجرة اقل ';
 }
