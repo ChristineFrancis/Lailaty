@@ -6,6 +6,7 @@ class ImageAssetManager {
   static String loginAmico = "$rootImage/Login-amico.svg";
   static String privacyLock = "$rootImage/Privacy policy-bro.svg";
   static String city = "$rootImage/المدينة.svg";
+  static String noPhoto = "$rootImage/no_photo.jpg";
   static String notifications = "$rootImage/notifications.svg";
   static String location = "$rootImage/location1.svg";
   static String person = "$rootImage/person.svg";

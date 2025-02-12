@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/core/config/presentation/widget/Titles.dart';
-import 'package:lailaty/core/config/presentation/widget/accept_button_customer.dart';
-import 'package:lailaty/core/config/presentation/widget/my_button_with_border.dart';
-import 'package:lailaty/core/resources/asset_manager.dart';
+import 'package:lailaty/core/config/presentation/widget/imageProduct.dart';
+
 import 'package:lailaty/core/resources/color_manager.dart';
-import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
-import 'package:lailaty/feature/home_page/widgets/name_with_review.dart';
+
+import '../widget/row_of_two_text_with_icon.dart';
 
 class FleetContentView extends StatelessWidget {
   const FleetContentView({super.key});
@@ -15,53 +13,61 @@ class FleetContentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorManager.backGroundColor,
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: ListView.builder(
             itemCount: 2,
-            itemBuilder: (context, index) => Container(
-                margin: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(11),
-                    color: ColorManager.grey1),
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          SvgPicture.asset(
-                            ImageAssetManager.profile,
-                            height: MediaQuery.of(context).size.height / 9,
-                            width: MediaQuery.of(context).size.width / 3,
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width / 22,
-                          ),
-                          Expanded(
-                              child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              HeaderText(
-                                  text: "back",
-                                  styleOfText: StyleManager.normalText18()),
-                              HeaderText(
-                                  text: "car",
-                                  styleOfText: StyleManager.smallBlackText16()),
-                            ],
-                          )),
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: IconButton(
-                              icon: Icon(Icons.arrow_forward_ios_sharp),
-                              onPressed: () {},
+            itemBuilder: (context, index) => Card(
+                  shadowColor: ColorManager.grey2,
+                  elevation: 7,
+                  child: Container(
+                      margin: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: ColorManager.grey1),
+                          borderRadius: BorderRadius.circular(11),
+                          color: ColorManager.backGroundColor),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                ImageProduct(image: ""),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 22,
+                                ),
+                                Expanded(
+                                    child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    HeaderText(
+                                        text: "back",
+                                        styleOfText:
+                                            StyleManager.normalText18()),
+                                    HeaderText(
+                                        text: "car",
+                                        styleOfText:
+                                            StyleManager.smallBlackText16()),
+                                    twoTextWithIconsInRow(
+                                      textStar: "3",
+                                      textTrendUp: "22 trip",
+                                    )
+                                  ],
+                                )),
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: IconButton(
+                                    icon: Icon(Icons.arrow_forward_ios_sharp),
+                                    onPressed: () {},
+                                  ),
+                                )
+                              ],
                             ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ))),
+                          ],
+                        ),
+                      )),
+                )),
       ),
     );
   }

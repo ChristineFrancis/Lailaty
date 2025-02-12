@@ -21,7 +21,8 @@ class AppKeys {
   static const String editingCarPage = '/EditingCar';
 
   //pages
-  static const String searchOrderPage = '/';
+  static const String searchOrderPage = '/searchOrderPage';
+  static const String profileOfcaptainFleet = '/CaptainFleetProfile';
 
   static const String personalInformationPageKey =
       '/personalInformationPage'; //'/personalInformationPage';
@@ -29,7 +30,7 @@ class AppKeys {
   static const String loginPromptPageKey = '/login_prompt_page';
 
   static String carInfoPath = "/carInfoView";
-  static String fleetHomePageViewPath = "/fleetHomePageView";
+  static String fleetHomePageViewPath = "/";
   static String motorInfoPath = "/MotorInfoView";
   static String showCategoryPath = "/CategoryView";
   static String noticeToDriverPath = "/NoticeToDriverView";

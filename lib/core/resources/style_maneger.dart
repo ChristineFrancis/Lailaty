@@ -57,7 +57,7 @@ class StyleManager {
   static TextStyle normalText18({
     Color color = ColorManager.black,
     double size = 18,
-    FontWeight fontWeight = FontWeight.normal,
+    FontWeight fontWeight = FontWeight.w700,
   }) {
     return TextStyle(
         color: color,

@@ -28,6 +28,7 @@ import 'package:lailaty/main.dart';
 
 import 'package:provider/provider.dart';
 
+import '../../feature/fleet_pages/captain_fleet_profile/presentaition/captain_fleet_profile.dart';
 import '../../feature/home_page/presentaion/view/home_page/home_page.dart';
 
 class Routes {
@@ -74,6 +75,14 @@ class Routes {
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child:  fleetHomePageView(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.profileOfcaptainFleet,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child:  CaptainFleetProfile(),
           transitionsBuilder: _fadeTransition,
         ),
       ),
