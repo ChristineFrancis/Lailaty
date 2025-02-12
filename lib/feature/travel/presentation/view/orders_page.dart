@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/rating_container/editable_button_field.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain/captain_image_and_name_row.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
@@ -25,23 +26,46 @@ class _TravelOrdersPageState extends State<TravelOrdersPage> {
   //   });
   // }
 
+  final TextEditingController _textEditingController = TextEditingController();
+
   void _showDetailsSheet(
       {required ClientTripDetailsModel clientTripDetailsModel}) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return BottomSheetContainer(
-          isTravelPage: true,
-          firstButtonFunc: () {},
-          firstBottonText: StringManager.acceptAnOffer,
-          secondBottonText: StringManager.suggestYourPrice,
-          thirdBottonText: StringManager.viewOnMap,
-          secondBottonColor: ColorManager.whiteColor,
-          thirdBottonColor: ColorManager.yellowTextColor,
-          clientTripDetailsModel: clientTripDetailsModel,
-        );
+        bool isTextFieldVisible = false;
+        return StatefulBuilder(builder: (context, setState) {
+          return BottomSheetContainer(
+            secondButtonWidget: EditableButtonField(
+              hintText: '',
+              initialText: StringManager.suggestYourPrice,
+              buttonColor: ColorManager.whiteColor,
+              textEditingController: _textEditingController,
+              isTextFieldVisible: isTextFieldVisible,
+              onToggle: (bool isVisible) {
+                setState(() {
+                  isTextFieldVisible = isVisible;
+                });
+              },
+            ),
+            isTravelPage: true,
+            firstButtonFunc: () {},
+            firstBottonText: StringManager.acceptAnOffer,
+            secondBottonText: StringManager.suggestYourPrice,
+            thirdBottonText: StringManager.viewOnMap,
+            secondBottonColor: ColorManager.whiteColor,
+            thirdBottonColor: ColorManager.yellowTextColor,
+            clientTripDetailsModel: clientTripDetailsModel,
+          );
+        });
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
   }
 
   @override

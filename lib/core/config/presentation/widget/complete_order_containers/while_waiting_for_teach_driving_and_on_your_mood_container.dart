@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/map/presentation/widgets/captain_and_trip_info_row.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/captain_and_trip_info_row.dart';
 
 //! to make the navigate depend on back
-class WhileWaitingContainer extends StatelessWidget {
+class WhileWaitingForTeachDrivingAndOnYourMoodContainer
+    extends StatelessWidget {
   final VoidCallback onAccepted;
   final bool teachDrivingWidget;
-  const WhileWaitingContainer({
+  const WhileWaitingForTeachDrivingAndOnYourMoodContainer({
     super.key,
     required this.onAccepted,
     this.teachDrivingWidget = true,
@@ -15,6 +16,8 @@ class WhileWaitingContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //! change this and like it with back
+    Future.delayed(const Duration(seconds: 3), onAccepted);
     return Container(
       height: context.screenHeight * 0.25,
       width: context.screenWidth,
@@ -25,7 +28,7 @@ class WhileWaitingContainer extends StatelessWidget {
         ),
         color: ColorManager.grey1,
       ),
-      child: CaptainAndTripInfoRow(
+      child: TeachDrivingAndOnYourModeCaptainAndTripInfoRow(
         teachDrivingWidget: teachDrivingWidget,
       ),
     );

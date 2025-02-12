@@ -10,24 +10,27 @@ import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/core/config/presentation/widget/complete_order_containers/have_arrived_or_journey_completed_container.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/request_to_teach_driving_and_on_your_mood_container.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/while_waiting_for_teach_driving_and_on_your_mood_container.dart';
 import 'package:lailaty/core/config/presentation/pages/map_page.dart';
 
-class CompleteTravelOrder extends StatefulWidget {
+class CompleteOnYourMoodOrder extends StatefulWidget {
   final String initialContainerKey;
 
-  const CompleteTravelOrder({
+  const CompleteOnYourMoodOrder({
     super.key,
     required this.initialContainerKey,
   });
 
   @override
-  State<CompleteTravelOrder> createState() => _CompleteTravelOrderState();
+  State<CompleteOnYourMoodOrder> createState() =>
+      _CompleteOnYourMoodOrderState();
 }
 
-class _CompleteTravelOrderState extends State<CompleteTravelOrder>
+class _CompleteOnYourMoodOrderState extends State<CompleteOnYourMoodOrder>
     with SingleTickerProviderStateMixin {
-  final bool justOnePath = false;
-
+  final bool justOnePath = true;
+  final bool teachDrivingWidget = false;
   late final ValueNotifier<String> _currentContainerId;
   late final AnimationController _animationController;
   late final Animation<double> _fadeAnimation;
@@ -89,7 +92,9 @@ class _CompleteTravelOrderState extends State<CompleteTravelOrder>
             return CustomAppbar(
               ispop: false,
               leading: (currentId == AppKeys.journeyCompletedContainer ||
-                      currentId == AppKeys.journeyEndedContainer)
+                      currentId == AppKeys.journeyEndedContainer ||
+                      currentId == AppKeys.iHaveArrivedContainer ||
+                      currentId == AppKeys.startTheJourneyContainer)
                   ? InkWell(
                       onTap: () {
                         // _currentContainerId.value =
@@ -134,9 +139,27 @@ class _CompleteTravelOrderState extends State<CompleteTravelOrder>
     );
   }
 
-//in travel :  jourenycompleted >> journey ended container >> rating <<and>>cancel
   Widget _getContainerForId(String containerId) {
     switch (containerId) {
+      case AppKeys.requestToTeachDrivingAndWithYourModeContainer:
+        return _buildRequestToTeachDrivingAndWithYourModeContainer(
+            () => context.pop(),
+            () => _showContainer(AppKeys.whileWaitingForTeachDrivingAndOnYourMoodContainer));
+      case AppKeys.whileWaitingForTeachDrivingAndOnYourMoodContainer:
+        return _buildWhileWaitingContainerForTeachDrivingAndWithYourMode(
+          () => _showContainer(AppKeys.iHaveArrivedContainer),
+        );
+      case AppKeys.iHaveArrivedContainer:
+        return _buildIHaveArrivedContainer(
+          () => _showContainer(AppKeys.startTheJourneyContainer),
+          justOnePath,
+        );
+      case AppKeys.startTheJourneyContainer:
+        return _buildstartTheJourneyContainer(
+          () => _showContainer(AppKeys.journeyCompletedContainer),
+          justOnePath,
+        );
+
       case AppKeys.journeyCompletedContainer:
         return _buildJourneyCompletedContainer(
           () => _showContainer(AppKeys.journeyEndedContainer),
@@ -162,6 +185,41 @@ class _CompleteTravelOrderState extends State<CompleteTravelOrder>
       default:
         return const SizedBox();
     }
+  }
+
+  Widget _buildRequestToTeachDrivingAndWithYourModeContainer(
+      VoidCallback toThePrivousPage, VoidCallback onAccepted) {
+    return RequestToTeachDrivingAndWithYourModeContainer(
+      toThePrivousPage: toThePrivousPage,
+      onAccepted: onAccepted,
+      teachDrivingWidget: teachDrivingWidget,
+    );
+  }
+
+  Widget _buildWhileWaitingContainerForTeachDrivingAndWithYourMode(
+      VoidCallback onAccepted) {
+    return WhileWaitingForTeachDrivingAndOnYourMoodContainer(
+      onAccepted: onAccepted,
+      teachDrivingWidget: teachDrivingWidget,
+    );
+  }
+
+  Widget _buildIHaveArrivedContainer(
+      VoidCallback haveArrived, bool justOnePath) {
+    return HaveArrivedOrJourneyCompletedContainer(
+      onTap: haveArrived,
+      containerName: StringManager.iHaveArrived,
+      justOnePath: justOnePath,
+    );
+  }
+
+  Widget _buildstartTheJourneyContainer(
+      VoidCallback toJourneyCompleted, bool justOnePath) {
+    return HaveArrivedOrJourneyCompletedContainer(
+      onTap: toJourneyCompleted,
+      containerName: StringManager.startTheJourney,
+      justOnePath: justOnePath,
+    );
   }
 
   Widget _buildJourneyCompletedContainer(

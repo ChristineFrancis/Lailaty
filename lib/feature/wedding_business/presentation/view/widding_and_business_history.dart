@@ -31,10 +31,10 @@ class _WiddingAndBusinessHistoryPageState
           isTravelPage: false,
           firstButtonFunc: () {
             context.push(
-              AppKeys.mapPageKey,
+              AppKeys.completeWiddingAndBusinessOrderPage,
               //   extra: AppKeys.startTheJourneyContainer,
               extra: {
-                AppKeys.initialContainerKey: AppKeys.startTheJourneyContainer,
+                AppKeys.initialContainerKey: AppKeys.journeyCompletedContainer,
               },
             );
           },

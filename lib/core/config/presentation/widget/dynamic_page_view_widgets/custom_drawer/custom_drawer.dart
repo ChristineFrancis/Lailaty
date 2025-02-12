@@ -165,9 +165,39 @@ class CustomDrawer extends StatelessWidget {
                 icon: Icons.directions_car_outlined,
                 text: StringManager.drivingEducation,
                 onTap: () {
-                  // context.push(
-                  //   AppKeys.,
-                  // );
+                  context.push(AppKeys.completeTeachDrivingOrderPage, extra: {
+                    AppKeys.initialContainerKey:
+                        AppKeys.requestToTeachDrivingAndWithYourModeContainer
+                  });
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.directions_car_outlined,
+                text: StringManager.onYourMode,
+                onTap: () {
+                  context.push(AppKeys.completeOnYourMoodOrderPage, extra: {
+                    AppKeys.initialContainerKey:
+                        AppKeys.requestToTeachDrivingAndWithYourModeContainer
+                  });
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.directions_car_outlined,
+                text: StringManager.completeTheOrder,
+                onTap: () {
+                  context.push(
+                    AppKeys.completeOrderInlandTransportationPage,
+                    extra: {
+                      AppKeys.initialContainerKey:
+                          AppKeys.confirmSuggestedPriceForTripAndRideContainer
+                    },
+                  );
                 },
               ),
               SizedBox(

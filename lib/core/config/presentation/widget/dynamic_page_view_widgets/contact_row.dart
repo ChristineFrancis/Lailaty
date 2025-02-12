@@ -19,17 +19,17 @@ class ContactRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         //! change this to a choices?
-        CircleAvatar(
-          radius: context.screenWidth * 0.04,
-          backgroundColor: ColorManager.yellowTextColor,
-          child: const Icon(
-            Icons.group, // change this with : FontAwesomeIcons.whatsapp
-            color: ColorManager.cardColor,
-          ),
-        ),
-        SizedBox(
-          width: context.screenWidth * 0.02,
-        ),
+        // CircleAvatar(
+        //   radius: context.screenWidth * 0.04,
+        //   backgroundColor: ColorManager.yellowTextColor,
+        //   child: const Icon(
+        //     Icons.group, // change this with : FontAwesomeIcons.whatsapp
+        //     color: ColorManager.cardColor,
+        //   ),
+        // ),
+        // SizedBox(
+        //   width: context.screenWidth * 0.02,
+        // ),
         CircleAvatar(
           radius: context.screenWidth * 0.04,
           backgroundColor: ColorManager.yellowTextColor,

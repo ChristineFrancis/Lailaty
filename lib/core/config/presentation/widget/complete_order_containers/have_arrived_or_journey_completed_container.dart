@@ -3,7 +3,7 @@ import 'package:lailaty/core/config/presentation/widget/myButtonWidget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/map/presentation/widgets/journy_details_row.dart';
+import 'package:lailaty/core/config/presentation/widget/journy_details_row.dart';
 
 // this container used in three way :
 //1) have arrived

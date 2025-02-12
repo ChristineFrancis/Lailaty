@@ -253,4 +253,13 @@ class StringManager {
   static const String examplePrice = "88 EGP";
   static const String skip = 'تخطي';
   static const String acceptancefor = 'القبول مقابل';
+  static const String meter = ' متر ';
+  static const String meterExample = '١٣٩';
+  static const String suggestYourFare = 'اقترح اجرتك';
+  static const String suggestedPriceLimit =
+      "السعر المقترح لايمكن ان يزيد عن 100 ج";
+  static const String submitOffer = "تقديم عرض";
+  static const String pleaseEntertheSuggestedPrice = "يرجى إدخال سعر ";
+  static const String yourOfferWasNotAccepted = ' لم يتم قبول عرضك ';
+  static const String offerLessFare = ' اعرض اجرة اقل ';
 }

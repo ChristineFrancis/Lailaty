@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/presentation/widget/bottom_sheet_handle.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/rating_container/editable_button_field.dart';
 import 'package:lailaty/core/config/presentation/widget/myButtonWidget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
@@ -54,62 +54,22 @@ class _RateJourneyContainerState extends State<RateJourneyContainer> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const BottomSheetHandle(),
+          //  const BottomSheetHandle(),
             StarsRatingWidget(onRatingChanged: _onRatingChanged),
             SizedBox(height: context.screenHeight * 0.02),
             RatingGrid(rating: _currentRating),
-            _isNoteFieldVisible
-                ? SizedBox(
-                    width: context.screenWidth * 0.7,
-                    height: context.screenHeight * 0.05,
-                    child: TextField(
-                      controller: _notesController,
-                      textAlign: TextAlign.right,
-                      cursorColor: ColorManager.grey1,
-                      decoration: InputDecoration(
-                        hintText: StringManager.writeYourNotesHere,
-                        hintStyle: const TextStyle(color: ColorManager.grey1),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: const BorderSide(
-                              color: ColorManager.transparentColor),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: const BorderSide(
-                              color: ColorManager.transparentColor),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: ColorManager.whiteColor),
-                        ),
-                        filled: true,
-                        fillColor: ColorManager.whiteColor,
-                      ),
-                      maxLines: 1,
-                    ),
-                  )
-                : MyButtonWidget(
-                    width: context.screenWidth * 0.7,
-                    height: context.screenHeight * 0.05,
-                    radius: 5,
-                    colors: ColorManager.whiteColor,
-                    widget: Center(
-                      child: Text(
-                        StringManager.enterYourNotes,
-                        style: StyleManager.boldTextStyle24(
-                          size: context.screenHeight * 0.02,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    onpress: () {
-                      setState(() {
-                        _isNoteFieldVisible = true;
-                      });
-                    },
-                  ),
+            EditableButtonField(
+              hintText: StringManager.writeYourNotesHere,
+              initialText: StringManager.enterYourNotes,
+              buttonColor: ColorManager.whiteColor,
+              textEditingController: _notesController,
+              isTextFieldVisible: _isNoteFieldVisible,
+              onToggle: (bool isVisible) {
+                setState(() {
+                  _isNoteFieldVisible = isVisible;
+                });
+              },
+            ),
             SizedBox(height: context.screenHeight * 0.01),
             Center(
               child: MyButtonWidget(

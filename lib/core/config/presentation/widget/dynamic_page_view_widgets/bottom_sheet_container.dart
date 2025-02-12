@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain/captain_name_and_rating_widget.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/from_and_to_city_column_widget.dart';
 import 'package:lailaty/core/config/presentation/widget/myButtonWidget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
-import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
 import 'package:lailaty/feature/travel/presentation/widgets/orders_page/cash_and_trip_type_row.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/filter_container/city_row.dart';
 
 class BottomSheetContainer extends StatelessWidget {
   final String firstBottonText;
@@ -18,6 +17,7 @@ class BottomSheetContainer extends StatelessWidget {
   final ClientTripDetailsModel clientTripDetailsModel;
   final bool isTravelPage;
   final void Function() firstButtonFunc;
+  final Widget? secondButtonWidget;
   const BottomSheetContainer({
     super.key,
     required this.clientTripDetailsModel,
@@ -28,6 +28,7 @@ class BottomSheetContainer extends StatelessWidget {
     required this.thirdBottonColor,
     required this.isTravelPage,
     required this.firstButtonFunc,
+    this.secondButtonWidget,
   });
 
   @override
@@ -72,35 +73,18 @@ class BottomSheetContainer extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Flexible(
-                  flex: 2,
-                  child: Column(
-                    children: [
-                      CityRow(
-                        city: clientTripDetailsModel.city1,
-                        letter: StringManager.aLetter,
-                        backGroundColor: ColorManager.blueCircleColor,
-                      ),
-                      SizedBox(
-                        height: context.screenHeight * 0.05,
-                      ),
-                      CityRow(
-                        city: clientTripDetailsModel.city2,
-                        letter: StringManager.bLetter,
-                        backGroundColor: ColorManager.brightGreen,
-                      ),
-                      SizedBox(
-                        height: context.screenHeight * 0.02,
-                      ),
-                      Text(
-                        clientTripDetailsModel.elapsedTimeExample,
-                      )
-                    ],
-                  ),
+                FromAndToCityColumnWidget(
+                  city1: clientTripDetailsModel.city1,
+                  city2: clientTripDetailsModel.city2,
                 ),
-                const Flexible(flex: 1, child: CaptainNameAndRating()),
+                SizedBox(
+                  width: context.screenWidth * 0.04,
+                ),
+                CaptainNameAndRating(
+                    clientTripDetailsModel: clientTripDetailsModel),
               ],
             ),
+
             SizedBox(
               height: context.screenHeight * 0.01,
             ),
@@ -123,22 +107,24 @@ class BottomSheetContainer extends StatelessWidget {
             SizedBox(
               height: context.screenHeight * 0.01,
             ),
+
             Center(
-              child: MyButtonWidget(
-                width: context.screenWidth * 0.7,
-                height: context.screenHeight * 0.05,
-                radius: 5,
-                colors: secondBottonColor,
-                widget: Center(
-                  child: Text(
-                    secondBottonText,
-                    style: StyleManager.boldTextStyle24(
-                      size: context.screenHeight * 0.03,
+              child: secondButtonWidget ??
+                  MyButtonWidget(
+                    width: context.screenWidth * 0.7,
+                    height: context.screenHeight * 0.05,
+                    radius: 5,
+                    colors: secondBottonColor,
+                    widget: Center(
+                      child: Text(
+                        secondBottonText,
+                        style: StyleManager.boldTextStyle24(
+                          size: context.screenHeight * 0.03,
+                        ),
+                      ),
                     ),
+                    onpress: () {},
                   ),
-                ),
-                onpress: () {},
-              ),
             ),
             SizedBox(
               height: context.screenHeight * 0.01,

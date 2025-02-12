@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/rating_container/editable_button_field.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain/captain_image_and_name_row.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/filter_container/filter_container.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/orders_overview_container.dart';
@@ -19,23 +20,48 @@ class WiddingAndBusinessOrderPage extends StatefulWidget {
 
 class _WiddingAndBusinessOrderPageState
     extends State<WiddingAndBusinessOrderPage> {
+  final TextEditingController _textEditingController = TextEditingController();
+
   void _showDetailsSheet(
       {required ClientTripDetailsModel clientTripDetailsModel}) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return BottomSheetContainer(
-          isTravelPage: false,
-          firstButtonFunc: () {},
-          firstBottonText: StringManager.acceptAnOffer,
-          secondBottonText: StringManager.suggestYourPrice,
-          thirdBottonText: StringManager.viewOnMap,
-          secondBottonColor: ColorManager.whiteColor,
-          thirdBottonColor: ColorManager.yellowTextColor,
-          clientTripDetailsModel: clientTripDetailsModel,
+        bool isTextFieldVisible = false;
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return BottomSheetContainer(
+              secondButtonWidget: EditableButtonField(
+                hintText: '',
+                initialText: StringManager.suggestYourPrice,
+                buttonColor: ColorManager.whiteColor,
+                textEditingController: _textEditingController,
+                isTextFieldVisible: isTextFieldVisible,
+                onToggle: (bool isVisible) {
+                  setState(() {
+                    isTextFieldVisible = isVisible;
+                  });
+                },
+              ),
+              isTravelPage: false,
+              firstButtonFunc: () {},
+              firstBottonText: StringManager.acceptAnOffer,
+              secondBottonText: StringManager.suggestYourPrice,
+              thirdBottonText: StringManager.viewOnMap,
+              secondBottonColor: ColorManager.whiteColor,
+              thirdBottonColor: ColorManager.yellowTextColor,
+              clientTripDetailsModel: clientTripDetailsModel,
+            );
+          },
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
   }
 
   @override
@@ -48,8 +74,7 @@ class _WiddingAndBusinessOrderPageState
         ),
         Expanded(
           child: ListView.builder(
-            itemCount: getClientTripDetails()
-                .length,
+            itemCount: getClientTripDetails().length,
             itemBuilder: (context, index) {
               final order = getClientTripDetails()[index];
               return ClientTripDetailsContainer(

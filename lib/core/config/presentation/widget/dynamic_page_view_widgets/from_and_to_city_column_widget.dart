@@ -3,22 +3,24 @@ import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widget
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
 
 class FromAndToCityColumnWidget extends StatelessWidget {
   const FromAndToCityColumnWidget({
     super.key,
-    required this.clientTripDetailsModel,
+    required this.city1,
+    required this.city2,
+    //  this.archivedorder = false,
   });
-
-  final ClientTripDetailsModel clientTripDetailsModel;
+  final String city1;
+  final String city2;
+//  final bool archivedorder;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CityRow(
-          city: clientTripDetailsModel.city1,
+          city: city1,
           letter: StringManager.aLetter,
           backGroundColor: ColorManager.blueCircleColor,
         ),
@@ -26,16 +28,18 @@ class FromAndToCityColumnWidget extends StatelessWidget {
           height: context.screenHeight * 0.02,
         ),
         CityRow(
-          city: clientTripDetailsModel.city2,
+          city: city2,
           letter: StringManager.bLetter,
           backGroundColor: ColorManager.brightGreen,
         ),
         SizedBox(
           height: context.screenHeight * 0.02,
         ),
-        Text(
-          clientTripDetailsModel.elapsedTimeExample,
-        )
+        // archivedorder
+        //     ? const SizedBox.shrink()
+        //     : Text(
+        //         clientTripDetailsModel.elapsedTimeExample,
+        //       )
       ],
     );
   }

@@ -1,89 +1,91 @@
-import 'package:flutter/material.dart';
+//? trying to separate the logic of the containers from the animation , that we used in the maps containers
 
-class AnimatedContainerNavigator extends StatefulWidget {
-  final Map<String, Widget Function(VoidCallback switchTo)> containers;
-  final String initialContainerKey;
+// import 'package:flutter/material.dart';
 
-  const AnimatedContainerNavigator({
-    super.key,
-    required this.containers,
-    required this.initialContainerKey,
-  });
+// class AnimatedContainerNavigator extends StatefulWidget {
+//   final Map<String, Widget Function(VoidCallback switchTo)> containers;
+//   final String initialContainerKey;
 
-  @override
-  State<AnimatedContainerNavigator> createState() =>
-      _AnimatedContainerNavigatorState();
-}
+//   const AnimatedContainerNavigator({
+//     super.key,
+//     required this.containers,
+//     required this.initialContainerKey,
+//   });
 
-class _AnimatedContainerNavigatorState extends State<AnimatedContainerNavigator>
-    with SingleTickerProviderStateMixin {
-  late final ValueNotifier<String> _currentContainerId;
-  late final AnimationController _animationController;
-  late final Animation<double> _fadeAnimation;
-  late final Animation<Offset> _slideAnimation;
+//   @override
+//   State<AnimatedContainerNavigator> createState() =>
+//       _AnimatedContainerNavigatorState();
+// }
 
-  @override
-  void initState() {
-    super.initState();
+// class _AnimatedContainerNavigatorState extends State<AnimatedContainerNavigator>
+//     with SingleTickerProviderStateMixin {
+//   late final ValueNotifier<String> _currentContainerId;
+//   late final AnimationController _animationController;
+//   late final Animation<double> _fadeAnimation;
+//   late final Animation<Offset> _slideAnimation;
 
-    _currentContainerId = ValueNotifier(widget.initialContainerKey);
+//   @override
+//   void initState() {
+//     super.initState();
 
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
-    );
+//     _currentContainerId = ValueNotifier(widget.initialContainerKey);
 
-    _fadeAnimation = CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    );
+//     _animationController = AnimationController(
+//       vsync: this,
+//       duration: const Duration(milliseconds: 300),
+//     );
 
-    _slideAnimation = Tween<Offset>(
-      begin: const Offset(0, 1),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.easeInOut,
-      ),
-    );
+//     _fadeAnimation = CurvedAnimation(
+//       parent: _animationController,
+//       curve: Curves.easeInOut,
+//     );
 
-    _animationController.forward();
-  }
+//     _slideAnimation = Tween<Offset>(
+//       begin: const Offset(0, 1),
+//       end: Offset.zero,
+//     ).animate(
+//       CurvedAnimation(
+//         parent: _animationController,
+//         curve: Curves.easeInOut,
+//       ),
+//     );
 
-  @override
-  void dispose() {
-    _currentContainerId.dispose();
-    _animationController.dispose();
-    super.dispose();
-  }
+//     _animationController.forward();
+//   }
 
-  void _switchContainer(String containerId) async {
-    if (!widget.containers.containsKey(containerId)) return;
+//   @override
+//   void dispose() {
+//     _currentContainerId.dispose();
+//     _animationController.dispose();
+//     super.dispose();
+//   }
 
-    await _animationController.reverse();
-    _currentContainerId.value = containerId;
-    _animationController.forward();
-  }
+//   void _switchContainer(String containerId) async {
+//     if (!widget.containers.containsKey(containerId)) return;
 
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<String>(
-      valueListenable: _currentContainerId,
-      builder: (context, currentId, child) {
-        return FadeTransition(
-          opacity: _fadeAnimation,
-          child: SlideTransition(
-            position: _slideAnimation,
-            child: widget.containers[currentId]?.call(
-                  () => _switchContainer(
-                    currentId,
-                  ),
-                ) ??
-                const SizedBox(),
-          ),
-        );
-      },
-    );
-  }
-}
+//     await _animationController.reverse();
+//     _currentContainerId.value = containerId;
+//     _animationController.forward();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return ValueListenableBuilder<String>(
+//       valueListenable: _currentContainerId,
+//       builder: (context, currentId, child) {
+//         return FadeTransition(
+//           opacity: _fadeAnimation,
+//           child: SlideTransition(
+//             position: _slideAnimation,
+//             child: widget.containers[currentId]?.call(
+//                   () => _switchContainer(
+//                     currentId,
+//                   ),
+//                 ) ??
+//                 const SizedBox(),
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }

@@ -18,6 +18,16 @@ class MyApp extends StatelessWidget {
 }
 
 //! fixing the call us page : >> text <<
-//! editing car in the profile <<
+//! editing car in the profile page in sidebar <<
 
 
+
+//extract EditableButtonField
+//some fixes in travel
+//some fixes in widding
+//suggestYourPrice button and text field
+//complete teach driving order
+//WhileWaitingContainer
+//confirmSuggestedPriceForTripAndRideContainer
+//buildSuggestYourFareContainer
+//fix the PathsRow

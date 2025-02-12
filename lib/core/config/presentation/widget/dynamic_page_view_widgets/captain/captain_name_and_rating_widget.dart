@@ -16,40 +16,48 @@ class CaptainNameAndRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        const CaptainImage(),
-        Text(
-          clientTripDetailsModel != null
-              ? clientTripDetailsModel!.captainName
-              : StringManager.exampleCaptainName,
-          style: StyleManager.semiboldTextStyle20(),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              '5', //! this from where ?
-              style: StyleManager.semiboldTextStyle20(),
-            ),
-            SizedBox(
-              width: context.screenWidth * 0.01,
-            ),
-            const Icon(
-              Icons.star_border,
-              color: ColorManager.yellowTextColor,
-              size: 15,
-            ),
-          ],
-        ),
-        const Text(
-          '(40)', //! what this data means ?
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const CaptainImage(),
+          Text(
+            clientTripDetailsModel != null
+                ? clientTripDetailsModel!.captainName
+                : StringManager.exampleCaptainName,
+            style: StyleManager.semiboldTextStyle20(),
+            textAlign: TextAlign.center,
           ),
-        )
-      ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '5',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: context.screenWidth * 0.035,
+                ),
+              ),
+              SizedBox(
+                width: context.screenWidth * 0.01,
+              ),
+              const Icon(
+                Icons.star_border,
+                color: ColorManager.yellowTextColor,
+                size: 15,
+              ),
+            ],
+          ),
+          Text(
+            '(40)',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: context.screenWidth * 0.035,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

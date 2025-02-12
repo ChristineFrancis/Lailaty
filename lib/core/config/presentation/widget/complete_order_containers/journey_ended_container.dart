@@ -4,7 +4,7 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/map/presentation/widgets/journy_details_row.dart';
+import 'package:lailaty/core/config/presentation/widget/journy_details_row.dart';
 
 class JourneyEndedContainer extends StatelessWidget {
   final VoidCallback toJourneyCompleted;
@@ -20,7 +20,6 @@ class JourneyEndedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //  height: context.screenHeight * 0.4,
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.vertical(

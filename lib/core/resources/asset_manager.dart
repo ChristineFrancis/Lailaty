@@ -49,8 +49,6 @@ class ImageAssetManager {
   static String whatsupPic = "$rootImage/whatsup.svg";
   static String facebookPic = "$rootImage/facebook_logo.svg";
   static String noOrders = "$rootImage/noOrders.svg";
-  static String aLetter = "$rootImage/A.svg";
-  static String bLetter = "$rootImage/B.svg";
   static String profileExample =
       "$rootImage/profileExam.svg"; //! the image has problem
 }

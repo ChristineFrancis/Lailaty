@@ -7,7 +7,6 @@ import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/core/viewmodels/personal_information_view.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/state_managment/car_list_view_model.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/widgets/car_list_widget.dart';
-import 'package:lailaty/feature/side_bar_screens/presentation/widgets/car_dialog.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/widgets/edit_pesonal_image_widget.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/widgets/form_profile_container.dart';
 import 'package:provider/provider.dart';
@@ -162,25 +161,28 @@ class _ProfilePageState extends State<ProfilePage> {
       screenWidth: context.screenWidth,
       screenHeight: context.screenHeight,
       onEdit: (context, viewModel, index) {
-        _showEditDialog(context, viewModel, index);
+//! need to go to the car Info , to update some things
       },
+      // onEdit:(){} (context, viewModel, index) {
+      //   _showEditDialog(context, viewModel, index);
+      // },
     );
   }
 
-  void _showEditDialog(
-      BuildContext context, CarListViewModel viewModel, int index) {
-    final car = viewModel.cars[index];
-    final nameController = TextEditingController(text: car.name);
-    showDialog(
-      context: context,
-      builder: (context) {
-        return CarDialog(
-          nameController: nameController,
-          car: car,
-          viewModel: viewModel,
-          index: index,
-        );
-      },
-    );
-  }
+//   void _showEditDialog(
+//       BuildContext context, CarListViewModel viewModel, int index) {
+//     final car = viewModel.cars[index];
+//     final nameController = TextEditingController(text: car.name);
+//     showDialog(
+//       context: context,
+//       builder: (context) {
+//         return CarDialog(
+//           nameController: nameController,
+//           car: car,
+//           viewModel: viewModel,
+//           index: index,
+//         );
+//       },
+//     );
+//   }
 }

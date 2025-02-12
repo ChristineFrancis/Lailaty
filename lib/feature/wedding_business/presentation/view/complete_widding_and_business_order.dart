@@ -12,19 +12,21 @@ import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/core/config/presentation/widget/complete_order_containers/have_arrived_or_journey_completed_container.dart';
 import 'package:lailaty/core/config/presentation/pages/map_page.dart';
 
-class CompleteTravelOrder extends StatefulWidget {
+class CompleteWiddingAndBusinessOrder extends StatefulWidget {
   final String initialContainerKey;
 
-  const CompleteTravelOrder({
+  const CompleteWiddingAndBusinessOrder({
     super.key,
     required this.initialContainerKey,
   });
 
   @override
-  State<CompleteTravelOrder> createState() => _CompleteTravelOrderState();
+  State<CompleteWiddingAndBusinessOrder> createState() =>
+      _CompleteWiddingAndBusinessOrderState();
 }
 
-class _CompleteTravelOrderState extends State<CompleteTravelOrder>
+class _CompleteWiddingAndBusinessOrderState
+    extends State<CompleteWiddingAndBusinessOrder>
     with SingleTickerProviderStateMixin {
   final bool justOnePath = false;
 
@@ -134,7 +136,6 @@ class _CompleteTravelOrderState extends State<CompleteTravelOrder>
     );
   }
 
-//in travel :  jourenycompleted >> journey ended container >> rating <<and>>cancel
   Widget _getContainerForId(String containerId) {
     switch (containerId) {
       case AppKeys.journeyCompletedContainer:

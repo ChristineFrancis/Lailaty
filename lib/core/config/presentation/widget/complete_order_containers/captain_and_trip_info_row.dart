@@ -6,8 +6,8 @@ import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 
-class CaptainAndTripInfoRow extends StatelessWidget {
-  const CaptainAndTripInfoRow({
+class TeachDrivingAndOnYourModeCaptainAndTripInfoRow extends StatelessWidget {
+  const TeachDrivingAndOnYourModeCaptainAndTripInfoRow({
     super.key,
     required this.teachDrivingWidget,
   });

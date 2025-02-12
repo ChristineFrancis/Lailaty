@@ -4,7 +4,7 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/map/presentation/widgets/captain_and_trip_info_row.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/captain_and_trip_info_row.dart';
 
 class RequestToTeachDrivingAndWithYourModeContainer extends StatelessWidget {
   final VoidCallback toThePrivousPage;
@@ -32,7 +32,7 @@ class RequestToTeachDrivingAndWithYourModeContainer extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            CaptainAndTripInfoRow(teachDrivingWidget: teachDrivingWidget),
+            TeachDrivingAndOnYourModeCaptainAndTripInfoRow(teachDrivingWidget: teachDrivingWidget),
             SizedBox(
               height: context.screenWidth * 0.02,
             ),

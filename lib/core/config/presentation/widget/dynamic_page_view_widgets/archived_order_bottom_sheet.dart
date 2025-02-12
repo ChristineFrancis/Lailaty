@@ -61,7 +61,9 @@ class ArchivedOrderBottomSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FromAndToCityColumnWidget(
-                  clientTripDetailsModel: clientTripDetailsModel,
+                  //  archivedorder: true,
+                  city1: clientTripDetailsModel.city1,
+                  city2: clientTripDetailsModel.city2,
                 ),
                 SizedBox(
                   width: context.screenWidth * 0.04,

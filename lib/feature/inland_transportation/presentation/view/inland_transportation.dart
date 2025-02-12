@@ -1,33 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lailaty/core/config/presentation/widget/complete_order_containers/cancel_journey_container.dart';
-import 'package:lailaty/core/config/presentation/widget/complete_order_containers/rating_container/rate_journey_container.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/suggest_your_fare_container.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/confirm_suggested_price_container.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/while_waiting_container.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/your_offer_was_not_accepted_container.dart';
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
-import 'package:lailaty/core/config/presentation/widget/complete_order_containers/journey_ended_container.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/cancel_journey_container.dart';
 import 'package:lailaty/core/config/presentation/widget/complete_order_containers/have_arrived_or_journey_completed_container.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/journey_ended_container.dart';
+import 'package:lailaty/core/config/presentation/widget/complete_order_containers/rating_container/rate_journey_container.dart';
 import 'package:lailaty/core/config/presentation/pages/map_page.dart';
 
-class CompleteTravelOrder extends StatefulWidget {
+class InlandTransportationCompleteOrder extends StatefulWidget {
   final String initialContainerKey;
-
-  const CompleteTravelOrder({
+  final bool justOnePath;
+  const InlandTransportationCompleteOrder({
     super.key,
     required this.initialContainerKey,
+    this.justOnePath = false,
   });
 
   @override
-  State<CompleteTravelOrder> createState() => _CompleteTravelOrderState();
+  State<InlandTransportationCompleteOrder> createState() =>
+      _InlandTransportationCompleteOrderState();
 }
 
-class _CompleteTravelOrderState extends State<CompleteTravelOrder>
+class _InlandTransportationCompleteOrderState
+    extends State<InlandTransportationCompleteOrder>
     with SingleTickerProviderStateMixin {
-  final bool justOnePath = false;
-
   late final ValueNotifier<String> _currentContainerId;
   late final AnimationController _animationController;
   late final Animation<double> _fadeAnimation;
@@ -89,7 +94,9 @@ class _CompleteTravelOrderState extends State<CompleteTravelOrder>
             return CustomAppbar(
               ispop: false,
               leading: (currentId == AppKeys.journeyCompletedContainer ||
-                      currentId == AppKeys.journeyEndedContainer)
+                      currentId == AppKeys.journeyEndedContainer ||
+                      currentId == AppKeys.iHaveArrivedContainer ||
+                      currentId == AppKeys.startTheJourneyContainer)
                   ? InkWell(
                       onTap: () {
                         // _currentContainerId.value =
@@ -113,7 +120,9 @@ class _CompleteTravelOrderState extends State<CompleteTravelOrder>
       body: Stack(
         children: [
           // the map widget , better to extract it out of this page
-          const Positioned.fill(child: MapWidget()),
+          const Positioned.fill(
+            child: MapWidget(),
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: ValueListenableBuilder<String>(
@@ -134,19 +143,53 @@ class _CompleteTravelOrderState extends State<CompleteTravelOrder>
     );
   }
 
-//in travel :  jourenycompleted >> journey ended container >> rating <<and>>cancel
+//trip and luxury have the same senario but without the price changed option
   Widget _getContainerForId(String containerId) {
     switch (containerId) {
+      case AppKeys.confirmSuggestedPriceForLuxuryContainer:
+        return _buildConfirmSuggestedPriceForLuxuryContainer(
+          () => context.pop(),
+          () => _showContainer(AppKeys.whileWaitingContainer),
+          () => _showContainer(AppKeys.suggestYourFare),
+        );
+
+      case AppKeys.confirmSuggestedPriceForTripAndRideContainer:
+        return _buildConfirmSuggestedPriceForTripAndRideContainer(
+            () => context.pop(),
+            () => _showContainer(AppKeys.whileWaitingContainer),
+            () => _showContainer(AppKeys.suggestYourFare));
+
+      case AppKeys.suggestYourFare:
+        return _buildSuggestYourFareContainer(
+          () => _showContainer(
+              AppKeys.confirmSuggestedPriceForTripAndRideContainer),
+          () => _showContainer(AppKeys.whileWaitingContainer),
+        );
+
+      case AppKeys.whileWaitingContainer:
+        return _buildWhileWaitingContainer(
+            () => _showContainer(AppKeys.iHaveArrivedContainer),
+            () => _showContainer(AppKeys.yourOfferWasNotAcceptedContainer));
+      case AppKeys.iHaveArrivedContainer:
+        return _buildIHaveArrivedContainer(
+          () => _showContainer(AppKeys.startTheJourneyContainer),
+          widget.justOnePath,
+        );
+      case AppKeys.startTheJourneyContainer:
+        return _buildstartTheJourneyContainer(
+          () => _showContainer(AppKeys.journeyCompletedContainer),
+          widget.justOnePath,
+        );
       case AppKeys.journeyCompletedContainer:
         return _buildJourneyCompletedContainer(
           () => _showContainer(AppKeys.journeyEndedContainer),
-          justOnePath,
+          widget.justOnePath,
         );
       case AppKeys.journeyEndedContainer:
         return _buildJourneyEndedContainer(
           () => _showContainer(AppKeys.journeyCompletedContainer),
           () => _showContainer(AppKeys.rateJourneyContainer),
-          justOnePath,
+          widget.justOnePath,
         );
       case AppKeys.rateJourneyContainer:
         return _buildRateJourneyContainer(() {
@@ -155,13 +198,70 @@ class _CompleteTravelOrderState extends State<CompleteTravelOrder>
       case AppKeys.cancelJourneyContainer:
         return _buildCancelJourneyContainer(
           () => _showContainer(
-            AppKeys.journeyCompletedContainer,
-          ),
+              AppKeys.journeyCompletedContainer), //! where this going to go ?
           () => context.pop(),
+        );
+
+      case AppKeys.yourOfferWasNotAcceptedContainer:
+        return _buildYourOfferWasNotAcceptedContainer(
+          () => context.pop(),
+          () => _showContainer(AppKeys.whileWaitingContainer),
         );
       default:
         return const SizedBox();
     }
+  }
+
+  Widget _buildConfirmSuggestedPriceForTripAndRideContainer(
+      VoidCallback toThePrivousPage,
+      VoidCallback onAccepted,
+      VoidCallback toSuggestYourFare) {
+    return ConfirmSuggestedPriceContainer(
+      toSuggestYourFare: toSuggestYourFare,
+      toThePrivousPage: toThePrivousPage,
+      onAccepted: onAccepted,
+      priceOptions: true,
+      //teachDrivingWidget: false, if its onMode : false
+    );
+  }
+
+  Widget _buildConfirmSuggestedPriceForLuxuryContainer(
+      VoidCallback toThePrivousPage,
+      VoidCallback onAccepted,
+      VoidCallback toSuggestYourFare) {
+    return ConfirmSuggestedPriceContainer(
+      toSuggestYourFare: toSuggestYourFare,
+      toThePrivousPage: toThePrivousPage,
+      onAccepted: onAccepted,
+      priceOptions: false,
+      //teachDrivingWidget: false, if its onMode : false
+    );
+  }
+
+  Widget _buildSuggestYourFareContainer(
+      VoidCallback toThePrivousPage, VoidCallback suggest) {
+    return SuggestYourOwnFareContainer(
+      toThePrivousPage: toThePrivousPage,
+      suggest: suggest,
+    );
+  }
+
+  Widget _buildIHaveArrivedContainer(
+      VoidCallback haveArrived, bool justOnePath) {
+    return HaveArrivedOrJourneyCompletedContainer(
+      onTap: haveArrived,
+      containerName: StringManager.iHaveArrived,
+      justOnePath: justOnePath,
+    );
+  }
+
+  Widget _buildstartTheJourneyContainer(
+      VoidCallback toJourneyCompleted, bool justOnePath) {
+    return HaveArrivedOrJourneyCompletedContainer(
+      onTap: toJourneyCompleted,
+      containerName: StringManager.startTheJourney,
+      justOnePath: justOnePath,
+    );
   }
 
   Widget _buildJourneyCompletedContainer(
@@ -193,6 +293,23 @@ class _CompleteTravelOrderState extends State<CompleteTravelOrder>
     return CancelJourneyContainer(
       onClose: toThePrivousPage,
       onChooseCancellationReason: onChooseCancellationReason,
+    );
+  }
+
+  Widget _buildWhileWaitingContainer(
+      VoidCallback onAccepted, VoidCallback refuse) {
+    return WhileWaitingContainer(
+      onAccepted: onAccepted,
+      onRefuse: refuse,
+      //  teachDrivingWidget: false ,
+    );
+  }
+
+  Widget _buildYourOfferWasNotAcceptedContainer(
+      VoidCallback onClose, VoidCallback whenChoosing) {
+    return YourOfferWasNotAcceptedContainer(
+      onClose: onClose,
+      whenChoosing: whenChoosing,
     );
   }
 }
