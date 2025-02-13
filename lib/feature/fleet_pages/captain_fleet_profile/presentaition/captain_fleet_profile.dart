@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:lailaty/feature/fleet_pages/captain_fleet_profile/widget/car_profile.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'package:lailaty/core/config/presentation/widget/Titles.dart';
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
@@ -9,6 +8,7 @@ import 'package:lailaty/core/config/presentation/widget/imageProduct.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/resources/string_manager.dart';
 
 class CaptainFleetProfile extends StatefulWidget {

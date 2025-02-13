@@ -15,6 +15,7 @@ import 'package:lailaty/core/config/presentation/widget/complete_order_container
 import 'package:lailaty/core/config/presentation/widget/complete_order_containers/journey_ended_container.dart';
 import 'package:lailaty/core/config/presentation/widget/complete_order_containers/rating_container/rate_journey_container.dart';
 import 'package:lailaty/core/config/presentation/pages/map_page.dart';
+import 'package:lailaty/feature/inland_transportation/presentation/widgets/select_destination_container.dart';
 
 class InlandTransportationCompleteOrder extends StatefulWidget {
   final String initialContainerKey;
@@ -207,6 +208,10 @@ class _InlandTransportationCompleteOrderState
           () => context.pop(),
           () => _showContainer(AppKeys.whileWaitingContainer),
         );
+
+      case AppKeys.selectDestinationContainerKey:
+        return _buildSelectDestinationContainer(
+            () => _showContainer(AppKeys.journeyCompletedContainer));
       default:
         return const SizedBox();
     }
@@ -310,6 +315,12 @@ class _InlandTransportationCompleteOrderState
     return YourOfferWasNotAcceptedContainer(
       onClose: onClose,
       whenChoosing: whenChoosing,
+    );
+  }
+
+  Widget _buildSelectDestinationContainer(VoidCallback toJourneyCompleted) {
+    return SelectDestinationContainer(
+      toJourneyCompleted: toJourneyCompleted,
     );
   }
 }

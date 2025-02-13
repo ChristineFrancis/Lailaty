@@ -18,6 +18,9 @@ class AppKeys {
   static const String backLecienceCar = 'back_lecience_car';
   static const String licenseBack = 'license_Back';
   static const String certificate = 'certificate';
+  static const String commercialRegistrationImageKey =
+      'commercialRegistrationKey';
+  static const String postcardCopyImageKey = 'postcardCopyKey';
 
   static const String editingCarPage = '/EditingCar';
 
@@ -65,6 +68,8 @@ class AppKeys {
   static const String pagesKey = 'pages';
   static const String initialIndexKey = 'initialIndex';
 
+  static const String fleetInformationPage = 'fleet_info_page';
+
 //map containers :
 
   static const String iHaveArrivedContainer = 'iHaveArrivedContainer';
@@ -88,5 +93,7 @@ class AppKeys {
       'yourOfferWasNotAccepted';
   static const String initialContainerKey = 'initialContainerKey';
   static const String justOnePathKey = 'justOnePathKey';
+  //** what this key?(bellow driving)
   static const String drivingEducationPage = "driving_education";
+  static const String selectDestinationContainerKey = 'select_destination';
 }

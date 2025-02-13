@@ -34,4 +34,6 @@ abstract class ColorManager {
   static const Color transparentColor = Colors.transparent;
   static const Color greyRateContainer = Color(0xff979797);
   static const Color greyStartRating = Color(0xffE0DFC9);
+
+  static var blue;
 }
