@@ -68,7 +68,7 @@ class _SearchWithTextFormFieldState extends State<SearchWithTextFormField> {
       builder: (context) => Positioned(
         height: size.height,
         width: size.width - 10,
-        bottom: /* renderBox.localToGlobal(Offset.zero).dy + 1*/
+        top: /* renderBox.localToGlobal(Offset.zero).dy + 1*/
             MediaQuery.of(context).size.height * 0.3,
         left: MediaQuery.of(context).size.width * 40 / 430,
         child: Material(
@@ -157,14 +157,3 @@ class _SearchWithTextFormFieldState extends State<SearchWithTextFormField> {
     );
   }
 }
-
-// How to Use:
-// Call this widget from any page like this:
-//
-// SearchWithTextFormField(
-//   items: ["Toyota", "Mercedes", "BMW", "Nisan"],
-//   hintText: "ادخل نوع السيارة التي تريدها...",
-//   onItemSelected: (value) {
-//     print("Selected: $value");
-//   },
-// )

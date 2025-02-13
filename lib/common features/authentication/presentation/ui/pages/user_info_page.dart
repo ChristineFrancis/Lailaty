@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lailaty/client%20features/feature1/presentation/ui/pages/map_and_order_details_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_name.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_password.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_with_prefix.dart';
@@ -10,8 +11,9 @@ import 'package:lailaty/common%20features/authentication/presentation/ui/widgets
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/logo_with_laylaty.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/user_info_page/captain_dialogs/ostol_owner_dialog.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/user_info_page/detect_gender_widget.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/user_info_page/ledy_captian_dialog.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/user_info_page/captain_dialogs/ledy_captian_dialog.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
@@ -414,7 +416,14 @@ class _UserInfoPageState extends State<UserInfoPage> {
                               width: screenWidth * 140 / 430,
                               height: screenHeight * 50 / 932,
                               child: CustomButton(
-                                  textButton: 'راكب', onTap: () {}),
+                                  textButton: 'راكب',
+                                  onTap: () {
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                MapAndOrderDetails()),
+                                        (route) => false);
+                                  }),
                             ),
                           ),
                         ),
@@ -434,7 +443,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                     showDialog(
                                         context: context,
                                         builder: (context) =>
-                                            LedyCaptianDialog());
+                                            OstolOwnerDialog());
                                   }),
                             ),
                           ),

@@ -318,6 +318,7 @@ class _MapAndOrderDetailsState extends State<MapAndOrderDetails> {
 
             //! LUXURY
             Visibility(
+              visible: selectedCarIndex == 1,
               child: LuxuryWidget(
                 sizeOfGreySection: sizeOfGreySection,
                 carsType: widget.carsType,

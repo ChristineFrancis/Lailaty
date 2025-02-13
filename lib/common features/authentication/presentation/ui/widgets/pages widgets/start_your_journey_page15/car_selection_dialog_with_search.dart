@@ -37,6 +37,15 @@ class CarSelectionDialogWithSearch extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 5),
+                _filterCars(context),
+                SizedBox(height: 10),
+                SearchWithTextFormField(
+                  items: ["Toyota", "Mercedes", "BMW", "Nisan"],
+                  hintText: "ادخل نوع السيارة التي تريدها...",
+                  onItemSelected: (value) {
+                    print("Selected: $value");
+                  },
+                ),
                 GridView(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -113,15 +122,6 @@ class CarSelectionDialogWithSearch extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 10),
-                _filterCars(context),
-                SizedBox(height: 10),
-                SearchWithTextFormField(
-                  items: ["Toyota", "Mercedes", "BMW", "Nisan"],
-                  hintText: "ادخل نوع السيارة التي تريدها...",
-                  onItemSelected: (value) {
-                    print("Selected: $value");
-                  },
-                ),
               ],
             ),
           )),
