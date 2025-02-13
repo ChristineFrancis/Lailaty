@@ -10,13 +10,22 @@ import 'package:lailaty/core/resources/color_manager.dart';
 class AlaModakWidget extends StatelessWidget {
   final double sizeOfGreySection;
   final List<CarType> carsType;
-  static final TextEditingController notesController = TextEditingController();
-  static final TextEditingController commentsController =
+  final int selectedIndex;
+  final Function(int) onCarSelected;
+
+  //!===============================================
+  final TextEditingController notesController = TextEditingController();
+  final TextEditingController commentsController = TextEditingController();
+  final TextEditingController startingLocationController =
       TextEditingController();
-  static final TextEditingController startingLocationController =
-      TextEditingController();
-  AlaModakWidget(
-      {super.key, required this.sizeOfGreySection, required this.carsType});
+  //!===============================================
+  AlaModakWidget({
+    super.key,
+    required this.sizeOfGreySection,
+    required this.carsType,
+    required this.selectedIndex,
+    required this.onCarSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +56,8 @@ class AlaModakWidget extends StatelessWidget {
               children: [
                 CarSelection(
                   carsType: carsType,
+                  selectedIndex: selectedIndex,
+                  onCarSelected: onCarSelected,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(

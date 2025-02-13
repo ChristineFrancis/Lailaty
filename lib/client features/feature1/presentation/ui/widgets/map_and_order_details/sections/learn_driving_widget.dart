@@ -13,24 +13,27 @@ import 'package:lailaty/core/resources/color_manager.dart';
 class LearnDrivingWidget extends StatelessWidget {
   final double sizeOfGreySection;
   final List<CarType> carsType;
+  final int selectedIndex;
+  final Function(int) onCarSelected;
+
+  //!-----------------------------------------------------------
   final TextEditingController notesController = TextEditingController();
   final TextEditingController commentsController = TextEditingController();
   final TextEditingController numberOfDaysController = TextEditingController();
+  //!-----------------------------------------------------------
 
   bool showPrice = true;
-  LearnDrivingWidget(
-      {super.key, required this.sizeOfGreySection, required this.carsType});
+  LearnDrivingWidget({
+    super.key,
+    required this.sizeOfGreySection,
+    required this.carsType,
+    required this.selectedIndex,
+    required this.onCarSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    List<String> moneyForTime = [
-      '1 ساعة مقابل 300 EGP',
-      '2 ساعة مقابل 300 EGP',
-      '3 ساعة مقابل 300 EGP',
-      '4 ساعة مقابل 300 EGP',
-    ];
-
     return Container(
       margin: EdgeInsets.only(
           top: showPrice
@@ -53,6 +56,8 @@ class LearnDrivingWidget extends StatelessWidget {
               children: [
                 CarSelection(
                   carsType: carsType,
+                  selectedIndex: selectedIndex,
+                  onCarSelected: onCarSelected,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(

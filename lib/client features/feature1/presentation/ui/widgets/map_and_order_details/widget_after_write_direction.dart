@@ -47,7 +47,7 @@ class _WidgetAfterWriteDirectionState extends State<WidgetAfterWriteDirection> {
           Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           CarSelection(carsType: widget.carsType,),
+           //!CarSelection(carsType: widget.carsType,),
            Padding(
             padding: EdgeInsets.only(right:MediaQuery.sizeOf(context).width/10, ),
             child: Column(

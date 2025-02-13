@@ -1,93 +1,119 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/pages/map_and_order_details_page.dart';
-import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/button_like_text_field.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/choose_car.dart';
-import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/current_and_next_location_word.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/pay_search_driver_choices.dart';
-import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/text_field_with_Arabic_prefix.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/select_number_of_hours_custom_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_name.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/Text%20form%20fields/custom_text_form_field_suffix.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
-import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+
 /////////////////20
 class JourneyInCarWidget extends StatelessWidget {
   final double sizeOfGreySection;
-  final List <CarType> carsType;
- final TextEditingController startingLocationController=TextEditingController();
- final TextEditingController destinationLocationController=TextEditingController();
- final TextEditingController notesController=TextEditingController();
- final TextEditingController commentsController=TextEditingController();
- final List<HoursAndPrice> hoursAndPrice=
- [
-  HoursAndPrice(hours: 1 , price: 300),
-  HoursAndPrice(hours: 2 , price: 300),
-  HoursAndPrice(hours: 1 , price: 300), 
+  final List<CarType> carsType;
+  final int selectedIndex;
+  final Function(int) onCarSelected;
 
- ];
+//!-------------------------------------------------------------
+  final TextEditingController startingLocationController =
+      TextEditingController();
+  final TextEditingController destinationLocationController =
+      TextEditingController();
+  final TextEditingController notesController = TextEditingController();
+  final TextEditingController commentsController = TextEditingController();
+  //!-------------------------------------------------------------
+  final List<HoursAndPrice> hoursAndPrice = [
+    HoursAndPrice(hours: 1, price: 300),
+    HoursAndPrice(hours: 2, price: 300),
+    HoursAndPrice(hours: 1, price: 300),
+  ];
 
-
-   JourneyInCarWidget({super.key, required this.sizeOfGreySection, required this.carsType});
+  JourneyInCarWidget(
+      {super.key,
+      required this.sizeOfGreySection,
+      required this.carsType,
+      required this.selectedIndex,
+      required this.onCarSelected});
 
   @override
   Widget build(BuildContext context) {
-    final widthOfScreen=MediaQuery.sizeOf(context).width;
     return Container(
-         margin: EdgeInsets.only(top:MediaQuery.sizeOf(context).height/2 -40 , bottom: 0),
-         decoration: BoxDecoration(
-         borderRadius:  BorderRadius.only(
-         topRight: Radius.circular(20) ,
-         topLeft:Radius.circular(20) ),
-         color: ColorManager.grey,),
-         child: Directionality(
-      textDirection: TextDirection.rtl,
-       child: ListView(
-        //physics : NeverScrollableScrollPhysics(),
-        shrinkWrap: false,
-        children: [
-          Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      margin: EdgeInsets.only(
+          top: MediaQuery.sizeOf(context).height / 2 - 40, bottom: 0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+        color: ColorManager.grey,
+      ),
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: ListView(
+          //physics : NeverScrollableScrollPhysics(),
+          shrinkWrap: false,
           children: [
-           CarSelection(carsType: carsType,),
-           Padding(
-            padding: EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/7, ),
-            child: Column(
-            children: [
-            Directionality(
-            textDirection: TextDirection.rtl,
-              child: CustomTextFormFieldName(hintText:'من', controller:startingLocationController ,hintTextColor: Colors.black,isArabic: true,textAlign: TextAlign.start)),
-            //TextFieldWithArabicPrefix(hintText: '' ,PrefixText:'من' ,),
-             SizedBox(height: sizeOfGreySection/28),
-             Directionality(
-            textDirection: TextDirection.rtl,
-              child: CustomTextFormFieldName(hintText:'الى', controller:destinationLocationController,hintTextColor: Colors.black,isArabic: true,textAlign: TextAlign.start)),
-             //TextFieldWithArabicPrefix(hintText: '' ,PrefixText:'الى' ,),
-             SizedBox(height: sizeOfGreySection/28),
-             SelectNumberOfHoursCustomWidget(hoursAndPrice: hoursAndPrice,),
-             SizedBox(height: sizeOfGreySection/28),
-             CustomTextFormFieldName(hintText:'التعليقات' ,controller:commentsController , hintTextColor: Colors.black,isArabic: true,textAlign: TextAlign.start),
-             SizedBox(height: sizeOfGreySection/26),
-                  ],
-              ),
-          ),
-        PayAndySearchDriverAndChoices(notesController: notesController,),
-         SizedBox(height: sizeOfGreySection/28),
-                      ],
-                    ),
-                  ],
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CarSelection(
+                  carsType: carsType,
+                  selectedIndex: selectedIndex,
+                  onCarSelected: onCarSelected,
                 ),
-              ),
-              
-            );
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.sizeOf(context).width / 7,
+                  ),
+                  child: Column(
+                    children: [
+                      Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: CustomTextFormFieldName(
+                              hintText: 'من',
+                              controller: startingLocationController,
+                              hintTextColor: Colors.black,
+                              isArabic: true,
+                              textAlign: TextAlign.start)),
+                      //TextFieldWithArabicPrefix(hintText: '' ,PrefixText:'من' ,),
+                      SizedBox(height: sizeOfGreySection / 28),
+                      Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: CustomTextFormFieldName(
+                              hintText: 'الى',
+                              controller: destinationLocationController,
+                              hintTextColor: Colors.black,
+                              isArabic: true,
+                              textAlign: TextAlign.start)),
+                      //TextFieldWithArabicPrefix(hintText: '' ,PrefixText:'الى' ,),
+                      SizedBox(height: sizeOfGreySection / 28),
+                      SelectNumberOfHoursCustomWidget(
+                        hoursAndPrice: hoursAndPrice,
+                      ),
+                      SizedBox(height: sizeOfGreySection / 28),
+                      CustomTextFormFieldName(
+                          hintText: 'التعليقات',
+                          controller: commentsController,
+                          hintTextColor: Colors.black,
+                          isArabic: true,
+                          textAlign: TextAlign.start),
+                      SizedBox(height: sizeOfGreySection / 26),
+                    ],
+                  ),
+                ),
+                PayAndySearchDriverAndChoices(
+                  notesController: notesController,
+                ),
+                SizedBox(height: sizeOfGreySection / 28),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
-class HoursAndPrice
-{
+
+class HoursAndPrice {
   final int hours;
   final int price;
 
   HoursAndPrice({required this.hours, required this.price});
-
 }

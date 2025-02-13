@@ -6,9 +6,7 @@ import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_a
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/choose_car.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/current_and_next_location_word.dart';
 import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/pay_search_driver_choices.dart';
-import 'package:lailaty/client%20features/feature1/presentation/ui/widgets/map_and_order_details/text_field_with_Arabic_prefix.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
-
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
@@ -17,11 +15,20 @@ import 'package:lailaty/core/resources/color_manager.dart';
 class RideCarSelectOtherStations extends StatefulWidget {
   final double sizeOfGreySection;
   final List<CarType> carsType;
+  final int selectedIndex;
+  final Function(int) onCarSelected;
+
+  //!===============================================
   final TextEditingController notesController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
+  //!===============================================
 
   RideCarSelectOtherStations(
-      {super.key, required this.sizeOfGreySection, required this.carsType});
+      {super.key,
+      required this.sizeOfGreySection,
+      required this.carsType,
+      required this.selectedIndex,
+      required this.onCarSelected});
 
   @override
   State<RideCarSelectOtherStations> createState() =>
@@ -54,6 +61,8 @@ class _RideCarSelectOtherStationsState
               children: [
                 CarSelection(
                   carsType: widget.carsType,
+                  selectedIndex: widget.selectedIndex,
+                  onCarSelected: widget.onCarSelected,
                 ),
                 Padding(
                   padding: EdgeInsets.only(
