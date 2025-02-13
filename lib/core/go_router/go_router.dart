@@ -6,6 +6,8 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/motor_info.dart';
+import 'package:lailaty/feature/fleet_pages/fleet_home_page/presentaion/fleet_home_page.dart';
+
 import 'package:lailaty/feature/choose_category_page/presentation/view/categoryView.dart';
 import 'package:lailaty/feature/fleet_info/fleet_infromation_page.dart';
 import 'package:lailaty/feature/on_your_mood/presentation/view/complete_on_your_mood_order.dart';
@@ -32,6 +34,7 @@ import 'package:lailaty/feature/side_bar_screens/presentation/view/share_app_pag
 
 import 'package:provider/provider.dart';
 
+import '../../feature/fleet_pages/captain_fleet_profile/presentaition/captain_fleet_profile.dart';
 import '../../feature/home_page/presentaion/view/home_page/home_page.dart';
 
 class Routes {
@@ -70,6 +73,22 @@ class Routes {
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: const EditingCar(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.fleetHomePageViewPath,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child:  fleetHomePageView(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.profileOfcaptainFleet,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child:  CaptainFleetProfile(),
           transitionsBuilder: _fadeTransition,
         ),
       ),

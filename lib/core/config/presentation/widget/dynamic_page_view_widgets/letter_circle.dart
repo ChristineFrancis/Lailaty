@@ -15,7 +15,7 @@ class LetterCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double finalRadius = radius ?? context.screenWidth * 0.04;
+    double finalRadius = radius ?? context.screenWidth * 0.03;
 
     return CircleAvatar(
       radius: finalRadius,

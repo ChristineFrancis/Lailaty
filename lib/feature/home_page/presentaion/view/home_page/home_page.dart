@@ -12,7 +12,7 @@ import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/feature/home_page/presentaion/view/orders/search_orders_page.dart';
 import 'package:lailaty/feature/home_page/presentaion/view/performance_page/performance_page.dart';
 import 'package:lailaty/feature/home_page/presentaion/view/wallet/wallet_page.dart';
-import 'package:lailaty/feature/home_page/widgets/my_bottom_navigation_bar.dart';
+import 'package:lailaty/feature/home_page/widgets/home_page_bottom_bar.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 import '../orders/orders.dart';
@@ -105,7 +105,7 @@ class _HomePageViewState extends State<HomePageView> {
           ),
         ),
         body: pages[widget.currentIndex],
-        bottomNavigationBar: myBottomNavigationBar(
+        bottomNavigationBar: homePageBottomBar(
             context: context,
             currentIndex: widget.currentIndex,
             onTap: (index) {

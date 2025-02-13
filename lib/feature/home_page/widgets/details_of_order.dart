@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/letter_circle.dart';
 
 import '../../../core/config/presentation/widget/Titles.dart';
 import '../../../core/resources/color_manager.dart';
@@ -43,17 +44,28 @@ class detailsOfOrder extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.abc, color: ColorManager.yellowAccent, size: 10),
+              const Padding(
+                padding: EdgeInsets.all(3.0),
+                child: LetterCircle(
+                    backGroundColor: ColorManager.blueCircleColor, letter: "A"),
+              ),
               Expanded(
                 child: HeaderText(
                     text: aPoint, styleOfText: StyleManager.grySmallText12()),
               )
             ],
           ),
+          // SizedBox(
+          //   height: 2,
+          // ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.abc, color: ColorManager.yellowAccent, size: 10),
+              const Padding(
+                padding: EdgeInsets.all(3.0),
+                child: LetterCircle(
+                    backGroundColor: ColorManager.brightGreen, letter: "B"),
+              ),
               Expanded(
                 child: HeaderText(
                     text: bPoint, styleOfText: StyleManager.grySmallText12()),

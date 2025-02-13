@@ -27,7 +27,10 @@ class _MyOrdersState extends State<MyOrders> {
         itemCount: isIconRowVisible.length,
         itemBuilder: (context, index) => Container(
           margin: const EdgeInsets.all(4),
-          color: ColorManager.grey1,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(11),
+            color: ColorManager.grey1,
+          ),
           child: !isIconRowVisible[index]
               ? Padding(
                   padding: const EdgeInsets.all(4.0),

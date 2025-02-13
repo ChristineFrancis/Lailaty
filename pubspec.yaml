@@ -46,6 +46,7 @@ dependencies:
   flutter_svg: ^2.0.16
   lite_rolling_switch: ^1.0.1
   flutter_animate: ^4.5.2
+  smooth_page_indicator: ^1.2.0+3
 
 dev_dependencies:
   flutter_test:

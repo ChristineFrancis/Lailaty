@@ -22,21 +22,24 @@ class AppKeys {
       'commercialRegistrationKey';
   static const String postcardCopyImageKey = 'postcardCopyKey';
 
-  //: ??
   static const String editingCarPage = '/EditingCar';
 
-//pages:
+  //pages
+  static const String searchOrderPage = '/searchOrderPage';
+  static const String profileOfcaptainFleet = '/CaptainFleetProfile';
 
-  static const String searchOrderPage = '/';
+
   static const String personalInformationPageKey =
       '/personalInformationPage'; //'/personalInformationPage';
   static const String securityInformationPageKey = '/security_page';
   static const String loginPromptPageKey = '/login_prompt_page';
-  static const String carInfoPath = "/carInfoView";
-  static const String motorInfoPath = "/MotorInfoView";
-  static const String showCategoryPath = "/CategoryView";
-  static const String noticeToDriverPath = "/NoticeToDriverView";
-  //pages>side bar pages :
+
+  static String carInfoPath = "/carInfoView";
+  static String fleetHomePageViewPath = "/";
+  static String motorInfoPath = "/MotorInfoView";
+  static String showCategoryPath = "/CategoryView";
+  static String noticeToDriverPath = "/NoticeToDriverView";
+
   static const String safetyPageKey = '/safety_page';
   static const String shareAppPageKey = '/share_app_page';
   static const String callUsPageKey = '/callUs_page';
