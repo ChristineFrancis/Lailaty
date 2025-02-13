@@ -28,7 +28,6 @@ class AppKeys {
   static const String searchOrderPage = '/searchOrderPage';
   static const String profileOfcaptainFleet = '/CaptainFleetProfile';
 
-
   static const String personalInformationPageKey =
       '/personalInformationPage'; //'/personalInformationPage';
   static const String securityInformationPageKey = '/security_page';
@@ -67,8 +66,9 @@ class AppKeys {
   static const String appBarTitleKey = 'appBarTitle';
   static const String pagesKey = 'pages';
   static const String initialIndexKey = 'initialIndex';
-
+  //pages > fleet:
   static const String fleetInformationPage = 'fleet_info_page';
+  static const String fleetToJoinPage = 'fleet_to_join';
 
 //map containers :
 
