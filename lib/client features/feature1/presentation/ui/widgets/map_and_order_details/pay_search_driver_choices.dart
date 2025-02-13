@@ -15,55 +15,71 @@ import 'package:lailaty/common%20features/authentication/presentation/ui/widgets
 import 'package:lailaty/core/resources/asset_manager.dart';
 
 class PayAndySearchDriverAndChoices extends StatelessWidget {
-  final  TextEditingController notesController;
+  final TextEditingController notesController;
 
-  const PayAndySearchDriverAndChoices({super.key, required this.notesController});
+  const PayAndySearchDriverAndChoices(
+      {super.key, required this.notesController});
 
   @override
   Widget build(BuildContext context) {
-    final widthOfScreen=MediaQuery.sizeOf(context).width;
+    final widthOfScreen = MediaQuery.sizeOf(context).width;
     return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Spacer(flex: 4,),
-             InkWell(
-              onTap:() async{await waysToPayBottomSheet(context ); } ,
-              child: SvgPicture.asset(ImageAssetManager.moneyIcon)),
-           Spacer(flex: 3,),
-            SizedBox(
-              //height: 50,
-              width:widthOfScreen/3 ,
-              child: CustomButton(textButton: 'بحث عن سائق',textSize: 17,
-                    onTap: ()async{await
-                     searchOnDriverBottomSheet(context , notesController); 
-                    //driverAcceptBottomSheet(context);
-                    //driverWaitingBottomSheet(context) ;
-                    //cancelOrderBottomSheet(context);
-                    //cancelOrderBottomSheet(context);
-                    //timeToArriveAndEvaluteTheTripBottomSheet(context);
-                    //evaluateDriverBottomSheet(context);
-                    }
-                     
-                    
-                          ),
-                  ),
-                  Spacer(flex: 1,),
-            //SizedBox(width: widthOfScreen/12), 
-            SizedBox(
-            width:widthOfScreen/3 ,
-           // height: 50, 
-            child: 
-            CustomButton(
-            textButton: 'بحث عن ليدي',textSize: 17,
-            onTap: () {}, 
-                  ),
-              ),
-              Spacer(flex: 3,),
-            InkWell
-            (onTap:() async{await enterYourPathBottomSheet(context , notesController); } ,
-              child: SvgPicture.asset(ImageAssetManager.choicesIcon)),
-            Spacer(flex: 4,),
-              ],
-           );
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Spacer(
+          flex: 4,
+        ),
+        InkWell(
+            onTap: () async {
+              await waysToPayBottomSheet(context);
+            },
+            child: SvgPicture.asset(ImageAssetManager.moneyIcon)),
+        Spacer(
+          flex: 3,
+        ),
+        SizedBox(
+          //height: 50,
+          width: widthOfScreen / 3,
+          child: CustomButton(
+              textButton: 'بحث عن سائق',
+              textSize: 15,
+              onTap: () async {
+                await searchOnDriverBottomSheet(context, notesController);
+                //driverAcceptBottomSheet(context);
+                //driverWaitingBottomSheet(context) ;
+                //cancelOrderBottomSheet(context);
+                //cancelOrderBottomSheet(context);
+                //timeToArriveAndEvaluteTheTripBottomSheet(context);
+                //evaluateDriverBottomSheet(context);
+              }),
+        ),
+        Spacer(
+          flex: 1,
+        ),
+        //SizedBox(width: widthOfScreen/12),
+        SizedBox(
+          width: widthOfScreen / 3,
+          // height: 50,
+          child: CustomButton(
+            textButton: 'بحث عن ليدي',
+            textSize: 15,
+            onTap: () async {
+              await searchOnDriverBottomSheet(context, notesController);
+            },
+          ),
+        ),
+        Spacer(
+          flex: 3,
+        ),
+        InkWell(
+            onTap: () async {
+              await enterYourPathBottomSheet(context, notesController);
+            },
+            child: SvgPicture.asset(ImageAssetManager.choicesIcon)),
+        Spacer(
+          flex: 4,
+        ),
+      ],
+    );
   }
 }
