@@ -6,7 +6,7 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/birth_date_widget.dart';
-import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/client_service_row.dart';
+import 'package:lailaty/core/config/presentation/widget/client_service_row.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/driver_license_image_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/national_id_photo_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/next_botton_widget.dart';

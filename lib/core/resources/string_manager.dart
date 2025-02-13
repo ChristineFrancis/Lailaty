@@ -262,4 +262,14 @@ class StringManager {
   static const String pleaseEntertheSuggestedPrice = "يرجى إدخال سعر ";
   static const String yourOfferWasNotAccepted = ' لم يتم قبول عرضك ';
   static const String offerLessFare = ' اعرض اجرة اقل ';
+  static const String fleetInformation = 'معلومات الاسطول';
+  static const String company = 'شركة';
+  static const String person = 'فرد';
+  static const String fleetName = 'اسم الاسطول';
+  static const String address = 'العنوان';
+  static const String commercialRegistration = 'صورة السجل التجاري';
+  static const String postcardCopy = 'صورة البطاقة البريدية';
+  static const String fleetValidate = 'يرجى ادخال المعطيات المطلوبة';
+  static const String selectDestination = 'اختر الوجهة';
+  static const String cLetter = 'C';
 }

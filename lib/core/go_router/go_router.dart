@@ -7,6 +7,7 @@ import 'package:lailaty/feature/agree_pages/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/motor_info.dart';
 import 'package:lailaty/feature/choose_category_page/presentation/view/categoryView.dart';
+import 'package:lailaty/feature/fleet_info/fleet_infromation_page.dart';
 import 'package:lailaty/feature/on_your_mood/presentation/view/complete_on_your_mood_order.dart';
 import 'package:lailaty/feature/teach_driving/presentation/view/complete_teach_driving_order.dart';
 import 'package:lailaty/feature/travel/presentation/view/complete_travel_order.dart';
@@ -290,6 +291,19 @@ class Routes {
             child: InlandTransportationCompleteOrder(
               initialContainerKey: initialContainerKey,
             ),
+            transitionsBuilder: _fadeTransition,
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppKeys.fleetInformationPage,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: ChangeNotifierProvider(
+                create: (_) => PersonalInformationView(),
+                child: const FleetInfromationPage()),
             transitionsBuilder: _fadeTransition,
           );
         },
