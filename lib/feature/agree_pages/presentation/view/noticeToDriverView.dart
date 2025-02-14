@@ -4,6 +4,7 @@ import 'package:lailaty/core/config/presentation/widget/Titles.dart';
 
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/config/presentation/widget/my_sized_box.dart';
+import 'package:lailaty/core/resources/color_manager.dart';
 
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
@@ -17,6 +18,7 @@ class NoticeToDriverView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorManager.backGroundColor,
       appBar: CustomAppbar(
         ispop: true,
         title: StringManager.noticeToDriver,

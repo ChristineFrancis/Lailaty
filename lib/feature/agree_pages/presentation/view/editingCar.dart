@@ -19,6 +19,7 @@ class EditingCar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorManager.backGroundColor,
       appBar: CustomAppbar(
         ispop: true,
         title: "معلومات السيارة",

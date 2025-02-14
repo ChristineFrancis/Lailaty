@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/presentation/widget/Titles.dart';
 import 'package:lailaty/core/config/presentation/widget/myButton.dart';
 import 'package:lailaty/core/config/presentation/widget/my_sized_box.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
@@ -132,7 +133,11 @@ class _CategoryViewState extends State<CategoryView> {
                   const sizedBox50(),
                   MyButton(
                       title: StringManager.next,
-                      onpress: () {},
+                      onpress: () {
+                        context.push(
+                          AppKeys.searchOrderPage,
+                        );
+                      },
                       colors: ColorManager.greyTextr,
                       width: widthScreen / 1.6,
                       height: heightScreen / 20,

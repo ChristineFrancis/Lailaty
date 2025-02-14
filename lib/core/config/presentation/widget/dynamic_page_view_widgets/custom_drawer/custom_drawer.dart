@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain/captain_image.dart';
+import 'package:lailaty/core/config/presentation/widget/imageProduct.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
@@ -82,7 +83,7 @@ class CustomDrawer extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const CaptainImage()
+                      ImageProduct(image: "d")
                     ],
                   ),
                 ),

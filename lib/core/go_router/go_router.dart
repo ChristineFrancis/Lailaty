@@ -6,6 +6,7 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/motor_info.dart';
+import 'package:lailaty/feature/agree_pages/presentation/view/personal_information_page.dart';
 import 'package:lailaty/feature/fleet_pages/fleet_home_page/presentaion/fleet_home_page.dart';
 
 import 'package:lailaty/feature/choose_category_page/presentation/view/categoryView.dart';
@@ -80,7 +81,7 @@ class Routes {
         path: AppKeys.fleetHomePageViewPath,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
-          child:  fleetHomePageView(),
+          child: fleetHomePageView(),
           transitionsBuilder: _fadeTransition,
         ),
       ),
@@ -88,7 +89,7 @@ class Routes {
         path: AppKeys.profileOfcaptainFleet,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
-          child:  CaptainFleetProfile(),
+          child: CaptainFleetProfile(),
           transitionsBuilder: _fadeTransition,
         ),
       ),
@@ -119,33 +120,33 @@ class Routes {
           transitionsBuilder: _fadeTransition,
         ),
       ),
-      // GoRoute(
-      //   path: AppKeys.showCategoryPath,
-      //   pageBuilder: (context, state) => CustomTransitionPage(
-      //     key: state.pageKey,
-      //     child: const CategoryView(),
-      //     transitionsBuilder: _fadeTransition,
-      //   ),
-      // ),
+      GoRoute(
+        path: AppKeys.showCategoryPath,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const CategoryView(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
 
-      // GoRoute(
-      //   path: AppKeys.personalInformationPageKey,
-      //   pageBuilder: (context, state) => CustomTransitionPage(
-      //     key: state.pageKey,
-      //     child: MultiProvider(
-      //       providers: [
-      //         ChangeNotifierProvider(
-      //           create: (_) => PersonalInformationView(),
-      //         ),
-      //         ChangeNotifierProvider(
-      //           create: (_) => DateviewModel(),
-      //         ),
-      //       ],
-      //       child: const PersonalInformationPage(),
-      //     ),
-      //     transitionsBuilder: _fadeTransition,
-      //   ),
-      // ),
+      GoRoute(
+        path: AppKeys.personalInformationPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: MultiProvider(
+            providers: [
+              ChangeNotifierProvider(
+                create: (_) => PersonalInformationView(),
+              ),
+              ChangeNotifierProvider(
+                create: (_) => DateviewModel(),
+              ),
+            ],
+            child: const PersonalInformationPage(),
+          ),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
       GoRoute(
         path: AppKeys.securityInformationPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(

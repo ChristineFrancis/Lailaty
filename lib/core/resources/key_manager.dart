@@ -28,16 +28,15 @@ class AppKeys {
   static const String searchOrderPage = '/searchOrderPage';
   static const String profileOfcaptainFleet = '/CaptainFleetProfile';
 
-
   static const String personalInformationPageKey =
-      '/personalInformationPage'; //'/personalInformationPage';
+      '/'; //'/personalInformationPage';
   static const String securityInformationPageKey = '/security_page';
   static const String loginPromptPageKey = '/login_prompt_page';
 
   static String carInfoPath = "/carInfoView";
-  static String fleetHomePageViewPath = "/";
+  static String fleetHomePageViewPath = "/fleetHomePageView";
   static String motorInfoPath = "/MotorInfoView";
-  static String showCategoryPath = "/CategoryView";
+  static String showCategoryPath = "/CategoryView"; //CategoryView
   static String noticeToDriverPath = "/NoticeToDriverView";
 
   static const String safetyPageKey = '/safety_page';

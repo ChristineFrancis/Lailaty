@@ -86,7 +86,7 @@ class _HomePageViewState extends State<HomePageView> {
           title: Center(
             child: SizedBox(
               height: 33,
-              width: MediaQuery.of(context).size.width / 2.3,
+              // width: MediaQuery.of(context).size.width / 2.3,
               child: LiteRollingSwitch(
                 onTap: () {
                   _isConnected();

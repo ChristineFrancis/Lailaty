@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/custom_drawer/custom_bottom_navbar.dart';
+import 'package:lailaty/core/config/presentation/widget/wedding_bottom_nav_bar.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/custom_drawer/custom_drawer.dart';
 
@@ -89,10 +90,8 @@ class _DynamicPageViewState extends State<DynamicPageView> {
       ),
       backgroundColor: ColorManager.backGroundColor,
       body: widget.pages[_selectedIndex],
-      bottomNavigationBar: CustomBottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
-      ),
+      bottomNavigationBar: CustomWeddingBottomNavBar(
+          currentIndex: _selectedIndex, onTap: _onItemTapped, context: context),
       endDrawer: const CustomDrawer(),
     );
   }

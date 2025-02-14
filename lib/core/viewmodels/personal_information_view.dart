@@ -73,7 +73,7 @@ class PersonalInformationView extends ChangeNotifier {
 
     return viewModel.getImage(AppKeys.motorPhoto) != null &&
         viewModel.getImage(AppKeys.frontMotorLicence) != null &&
-        viewModel.getImage(AppKeys.backLecienceCar) != null;
+        viewModel.getImage(AppKeys.backMotorLicence) != null;
   }
 
   bool validateImagesInFleetInfoCompany(BuildContext context) {
