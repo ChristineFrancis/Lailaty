@@ -19,7 +19,7 @@ class WhileWaitingForTeachDrivingAndOnYourMoodContainer
     //! change this and like it with back
     Future.delayed(const Duration(seconds: 3), onAccepted);
     return Container(
-      height: context.screenHeight * 0.25,
+      height: context.screenHeight * 0.28,
       width: context.screenWidth,
       padding: const EdgeInsets.all(8),
       decoration: const BoxDecoration(

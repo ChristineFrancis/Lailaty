@@ -34,7 +34,7 @@ class DateviewModel with ChangeNotifier {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: const ColorScheme.light(
-              primary: ColorManager.grey1,
+              primary: ColorManager.grey2,
               onPrimary: Colors.black,
               onSurface: ColorManager.blackColor,
             ),

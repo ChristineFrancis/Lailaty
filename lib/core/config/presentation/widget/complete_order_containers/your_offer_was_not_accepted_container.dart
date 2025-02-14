@@ -23,50 +23,52 @@ class YourOfferWasNotAcceptedContainer extends StatelessWidget {
         ),
         color: ColorManager.grey1,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: GestureDetector(
-              onTap: onClose,
-              child: Container(
-                width: context.screenWidth * 0.08,
-                height: context.screenWidth * 0.08,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: ColorManager.yellowTextColor,
-                ),
-                child: Icon(
-                  Icons.close,
-                  size: context.screenWidth * 0.05,
-                  color: ColorManager.grey1,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: GestureDetector(
+                onTap: onClose,
+                child: Container(
+                  width: context.screenWidth * 0.08,
+                  height: context.screenWidth * 0.08,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: ColorManager.yellowTextColor,
+                  ),
+                  child: Icon(
+                    Icons.close,
+                    size: context.screenWidth * 0.05,
+                    color: ColorManager.grey1,
+                  ),
                 ),
               ),
             ),
-          ),
-          Text(
-            StringManager.payExample + StringManager.yourOfferWasNotAccepted,
-            style: StyleManager.boldTextStyle24(
-              size: context.screenWidth * 0.05,
-              color: ColorManager.black,
+            Text(
+              StringManager.payExample + StringManager.yourOfferWasNotAccepted,
+              style: StyleManager.boldTextStyle24(
+                size: context.screenWidth * 0.05,
+                color: ColorManager.black,
+              ),
             ),
-          ),
-          SizedBox(
-            height: context.screenHeight * 0.02,
-          ),
-          Text(
-            StringManager.offerLessFare,
-            style: StyleManager.normalText18(
-              color: ColorManager.black,
-              size: context.screenWidth * 0.04,
+            SizedBox(
+              height: context.screenHeight * 0.02,
             ),
-          ),
-          SizedBox(
-            height: context.screenHeight * 0.02,
-          ),
-          HorizontalPriceList()
-        ],
+            Text(
+              StringManager.offerLessFare,
+              style: StyleManager.normalText18(
+                color: ColorManager.black,
+                size: context.screenWidth * 0.04,
+              ),
+            ),
+            SizedBox(
+              height: context.screenHeight * 0.02,
+            ),
+            HorizontalPriceList()
+          ],
+        ),
       ),
     );
   }

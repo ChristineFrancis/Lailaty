@@ -37,33 +37,35 @@ class WhileWaitingContainer extends StatelessWidget {
         ),
         color: ColorManager.grey1,
       ),
-      child: Column(
-        children: [
-          Text(
-            StringManager.meterExample + StringManager.meter,
-            style: StyleManager.normalText18(
-              size: context.screenWidth * 0.05,
-              color: ColorManager.whiteColor,
-            ),
-          ),
-          Text(
-            StringManager.examplePrice,
-            style: StyleManager.semiboldTextStyle20(
-              color: ColorManager.black,
-              size: context.screenWidth * 0.06,
-            ),
-          ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              FromAndToCityColumnWidget(
-                city1: StringManager.alexandriaStreetExample,
-                city2: StringManager.alexandriaStreetExample,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text(
+              StringManager.meterExample + StringManager.meter,
+              style: StyleManager.normalText18(
+                size: context.screenWidth * 0.05,
+                color: ColorManager.whiteColor,
               ),
-              CaptainNameAndRating(),
-            ],
-          ),
-        ],
+            ),
+            Text(
+              StringManager.examplePrice,
+              style: StyleManager.semiboldTextStyle20(
+                color: ColorManager.black,
+                size: context.screenWidth * 0.06,
+              ),
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                FromAndToCityColumnWidget(
+                  city1: StringManager.alexandriaStreetExample,
+                  city2: StringManager.alexandriaStreetExample,
+                ),
+                CaptainNameAndRating(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

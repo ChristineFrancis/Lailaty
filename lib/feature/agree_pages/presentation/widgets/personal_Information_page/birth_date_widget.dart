@@ -44,7 +44,7 @@ class _BirthDateWidgetState extends State<BirthDateWidget> {
           GestureDetector(
             onTap: () => birthDateViewModel.pickDate(context),
             child: Container(
-              width: context.screenWidth * 0.4,
+              width: context.screenWidth * 0.6, // Increase width
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
                 border: Border.all(
@@ -57,13 +57,20 @@ class _BirthDateWidgetState extends State<BirthDateWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    birthDateViewModel.formattedDate,
-                    style: TextStyle(
-                      color: birthDateViewModel.selectedDate != null
-                          ? ColorManager.blackColor
-                          : ColorManager.grey1,
-                      fontSize: 16,
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        birthDateViewModel.formattedDate,
+                        style: TextStyle(
+                          color: birthDateViewModel.selectedDate != null
+                              ? ColorManager.blackColor
+                              : ColorManager.grey1,
+                          fontSize: context.screenWidth * 0.04,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: false,
+                      ),
                     ),
                   ),
                   birthDateViewModel.selectedDate == null
