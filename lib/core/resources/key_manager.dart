@@ -66,8 +66,9 @@ class AppKeys {
   static const String appBarTitleKey = 'appBarTitle';
   static const String pagesKey = 'pages';
   static const String initialIndexKey = 'initialIndex';
-
+  //pages > fleet:
   static const String fleetInformationPage = 'fleet_info_page';
+  static const String fleetToJoinPage = 'fleet_to_join';
 
 //map containers :
 

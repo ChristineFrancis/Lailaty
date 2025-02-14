@@ -56,4 +56,5 @@ class ImageAssetManager {
   static String noOrders = "$rootImage/noOrders.svg";
   static String profileExample =
       "$rootImage/profileExam.svg"; //! the image has problem
+  static String waitingPic = "$rootImage/Waiting.svg";
 }

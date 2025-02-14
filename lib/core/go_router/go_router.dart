@@ -7,6 +7,7 @@ import 'package:lailaty/feature/agree_pages/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/motor_info.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/personal_information_page.dart';
+import 'package:lailaty/feature/fleet_info/fleet_to_join.dart';
 import 'package:lailaty/feature/fleet_pages/fleet_home_page/presentaion/fleet_home_page.dart';
 
 import 'package:lailaty/feature/choose_category_page/presentation/view/categoryView.dart';
@@ -82,6 +83,14 @@ class Routes {
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: fleetHomePageView(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path:AppKeys.fleetToJoinPage,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const FleetToJoinPage(),
           transitionsBuilder: _fadeTransition,
         ),
       ),
@@ -170,7 +179,6 @@ class Routes {
           path: AppKeys.dynamicPageViewKey,
           pageBuilder: (context, state) {
             final extra = state.extra as Map<String, dynamic>?;
-
             return CustomTransitionPage(
               key: state.pageKey,
               child: ChangeNotifierProvider(

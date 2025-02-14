@@ -281,4 +281,9 @@ class StringManager {
   static const String fleetValidate = 'يرجى ادخال المعطيات المطلوبة';
   static const String selectDestination = 'اختر الوجهة';
   static const String cLetter = 'C';
+  static const String waitingForTheFleetOwnerToApproveYourApplication =
+      'بأنتظار موافقة مالك الاسطول\n على طلب انضمامك';
+  static const String enterTheNameOfTheFleetYouWantToJoin =
+      'ادخل اسم الاسطول الذي تريد الانضمام اليه';
+  static const String findTheNameOfTheFleet = 'ابحث عن اسم الاسطول';
 }

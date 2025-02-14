@@ -9,6 +9,7 @@ import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
+import 'package:lailaty/feature/home_page/presentaion/view/home_page/waiting_for_approve.dart';
 import 'package:lailaty/feature/home_page/presentaion/view/orders/search_orders_page.dart';
 import 'package:lailaty/feature/home_page/presentaion/view/performance_page/performance_page.dart';
 import 'package:lailaty/feature/home_page/presentaion/view/wallet/wallet_page.dart';
@@ -51,7 +52,7 @@ class _HomePageViewState extends State<HomePageView> {
       const WalletPage(),
       const PerformancePage(),
       isConnected
-          ? MyOrders()
+          ? MyOrders() //WaitingForApprove()
           : Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -70,6 +71,7 @@ class _HomePageViewState extends State<HomePageView> {
     ];
 
     return Scaffold(
+        backgroundColor: ColorManager.whiteColor,
         endDrawer: const CustomDrawer(),
         appBar: AppBar(
           actions: [

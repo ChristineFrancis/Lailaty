@@ -1,0 +1,31 @@
+[33m3dfd340[m[33m ([m[1;36mHEAD[m[33m)[m HEAD@{0}: commit: merge changes
+[33m4d32cea[m HEAD@{1}: pull origin drivers --rebase (start): checkout 4d32ceaeac1ef397d2742c81fae3013606ecdbdc
+[33m9e10644[m[33m ([m[1;31morigin/drivers[m[33m, [m[1;32mdrivers[m[33m)[m HEAD@{2}: commit: fleetInfo page, selectDestination container
+[33mae3c7a8[m HEAD@{3}: commit: extract EditableButtonField,some fixes in travel,some fixes in widding,suggestYourPrice button and text field,complete teach driving order,WhileWaitingContainer,confirmSuggestedPriceForTripAndRideContainer,buildSuggestYourFareContainer,fix the PathsRow
+[33m996fac5[m HEAD@{4}: commit: some fixes
+[33m2176ca7[m HEAD@{5}: pull origin drivers --rebase (finish): returning to refs/heads/drivers
+[33m2176ca7[m HEAD@{6}: pull origin drivers --rebase (pick): fixed the drawer width, remove the arrow from drawer ,making the NoOrdersWidget singlton, fix the rating container,teach drive container ,and wait container
+[33m1def88a[m HEAD@{7}: pull origin drivers --rebase (pick): fixed the drawer width, remove the arrow from drawer ,making the NoOrdersWidget singlton, fix the rating container,teach drive container ,and wait container
+[33m4f25b05[m HEAD@{8}: pull origin drivers --rebase (start): checkout 4f25b05eb30cc3c304fe3868bcf4f83af4e1a302
+[33m44b4b2c[m HEAD@{9}: commit: fixed the drawer width, remove the arrow from drawer ,making the NoOrdersWidget singlton, fix the rating container,teach drive container ,and wait container
+[33mfa80a37[m HEAD@{10}: commit: fixed the drawer width, remove the arrow from drawer ,making the NoOrdersWidget singlton, fix the rating container,teach drive container ,and wait container
+[33mbdfe90f[m HEAD@{11}: commit: remove test page
+[33mc5b3518[m HEAD@{12}: commit: link the pages togather,add cancel container,just one path map containers
+[33md2782af[m HEAD@{13}: pull --tags origin drivers: Fast-forward
+[33me38f95e[m HEAD@{14}: commit: CancelJourneyContainer
+[33m7a2d40f[m HEAD@{15}: commit: rating container
+[33me1a4993[m HEAD@{16}: commit: adding map containers (arrived,start,complete)
+[33m78e362a[m HEAD@{17}: commit: widding and business pages & fixing the date picker in birthdate & adding new car in profile page
+[33m4938ebb[m HEAD@{18}: commit (merge): Resolved merge conflict in custom_appbar.dart
+[33m159ce9c[m HEAD@{19}: commit: adding the datePicker to travel page,making safety page ui,making share app page ui, change the appbar border in customwidget ,fix the date select in travel, making the ui of profile page
+[33mde71739[m HEAD@{20}: commit: adding archivedOrders bottom sheet
+[33m1fc9829[m HEAD@{21}: commit: adding image to login
+[33m07a9762[m HEAD@{22}: commit: some fixes
+[33mc839163[m HEAD@{23}: commit (merge): OrderHistoryPage
+[33m6d65ced[m HEAD@{24}: commit: OrderHistoryPage
+[33m22c3849[m HEAD@{25}: commit: travel page
+[33mc558d67[m HEAD@{26}: commit: change sizes
+[33mb3bbaac[m HEAD@{27}: commit: SecurityInformationPage
+[33me733f3b[m HEAD@{28}: commit: pesronalInfo & login permition pages
+[33m8af31dd[m HEAD@{29}: checkout: moving from main to drivers
+[33m3db2d82[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{30}: clone: from https://github.com/ChristineFrancis/Lailaty.git
