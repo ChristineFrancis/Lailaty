@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/privacy_and_age_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/on_boarding.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
@@ -45,7 +45,7 @@ class _SplashVideoState extends State<SplashVideo> {
           timer.cancel();
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => PrivacyAndAgePage()),
+            MaterialPageRoute(builder: (context) => OnBoarding()),
           );
         }
       } else {
@@ -56,25 +56,6 @@ class _SplashVideoState extends State<SplashVideo> {
 
   @override
   Widget build(BuildContext context) {
-    /*return  Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(
-            vis.length,
-            (index) => AnimatedContainer(
-              duration: Duration(milliseconds: 500),
-              width: 50,
-              height: 50,
-              margin: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: vis[index] ? Colors.green : Colors.grey,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
-        ),
-      
-    );*/
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 

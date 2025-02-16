@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/privacy_and_age_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
@@ -20,8 +21,13 @@ class _OnBoardingState extends State<OnBoarding> {
   void _nextPage() {
     if (_currentPage < 5) {
       _pageController.nextPage(
-        duration: Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 500),
         curve: Curves.easeInOut,
+      );
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => PrivacyAndAgePage()),
       );
     }
   }
@@ -29,7 +35,7 @@ class _OnBoardingState extends State<OnBoarding> {
   void _previousPage() {
     if (_currentPage > 0) {
       _pageController.previousPage(
-        duration: Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 500),
         curve: Curves.easeInOut,
       );
     }
@@ -42,20 +48,23 @@ class _OnBoardingState extends State<OnBoarding> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        /*appBar: AppBar(
-          backgroundColor: ColorManager.grey,
-          leading: _currentPage > 0
-              ? IconButton(
+        body: Stack(
+          children: [
+            Container(color: ColorManager.grey),
+            Visibility(
+              visible: _currentPage > 0,
+              child: Positioned(
+                top: screenHeight * 34 / 932,
+                right: screenWidth * 15 / 430,
+                child: IconButton(
                   onPressed: _previousPage,
                   icon: Icon(
                     Icons.arrow_back,
                     color: ColorManager.yellow,
-                  ))
-              : null,
-        ),*/
-        body: Stack(
-          children: [
-            Container(color: ColorManager.grey),
+                  ),
+                ),
+              ),
+            ),
             Center(
               child: Container(
                 decoration: BoxDecoration(
@@ -72,14 +81,42 @@ class _OnBoardingState extends State<OnBoarding> {
                   controller: _pageController,
                   onPageChanged: (page) => setState(() => _currentPage = page),
                   children: [
-                    _myFeature(),
-                    _myFeature(),
+                    _myFeature(
+                      'رجال أعمال',
+                      'تبدأ رحلتك باحدث طراز سيارات\nلمشاوير رجال الأعمال',
+                      ImageAssetManager.onBoardingBusinessMen,
+                    ),
+                    _myFeature(
+                      'زفاف',
+                      'اختر سيارتك لليلة العمر\nبنوفرلك افخم سيارات الزفاف وسهولة\nفي الاختيار وراحة وامان وسعر عادل',
+                      ImageAssetManager.onBoardingWedding,
+                    ),
+                    _myFeature(
+                      'تعليم القيادة',
+                      'نبدأ تعليم القيادة بكل سهولة وامان\nوبسعر مناسب للطرفين',
+                      ImageAssetManager.onBoardingLearnDriving,
+                    ),
+                    _myFeature(
+                      'رحلات داخلية',
+                      'يمكنك طلب سيارتك للوصول\nلوجهتك في دقائق بكل سهولة وامان',
+                      ImageAssetManager.onBoardingInnerTrip,
+                    ),
+                    _myFeature(
+                      'على مودك',
+                      'نوفر لك جميع السيارات اكثر راحة\nوذات رفاهية لإتمام مشاويرك للتسوق\nوالتنزه وجميع المشاوير الخاصة',
+                      ImageAssetManager.onBoardingAlaModak,
+                    ),
+                    _myFeature(
+                      'سفر',
+                      'يمكنك طلب سيارتك للتنقل بين المدن\nبراحة وامان وسعر عادل للطرفين',
+                      ImageAssetManager.onBoardingAlaModak,
+                    ),
                   ],
                 ),
               ),
             ),
             Positioned(
-                bottom: screenHeight * 372 / 932,
+                bottom: screenHeight * 320 / 932,
                 left: 0,
                 right: 0,
                 child: Row(
@@ -101,14 +138,22 @@ class _OnBoardingState extends State<OnBoarding> {
     );
   }
 
-  Widget _myFeature() {
+  Widget _myFeature(String title, String text, String picture) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        CustomTextWidget(
-            text: 'تعليم القيادة', fontSize: 36, color: Colors.black),
-        SpcY(y: 80),
-        SvgPicture.asset(ImageAssetManager.onBoardingLearnDriving),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomTextWidget(text: title, fontSize: 37, color: Colors.black),
+            SpcY(y: 75),
+            SvgPicture.asset(
+              picture,
+              height: MediaQuery.of(context).size.height * 200 / 932,
+            ),
+          ],
+        ),
+        CustomTextWidget(text: text, fontSize: 19, color: Colors.black),
       ],
     );
   }

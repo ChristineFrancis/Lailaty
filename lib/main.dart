@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Segeo",
       ),
-      home: OnBoarding(),
+      home: SplashVideo(),
     );
   }
 }
