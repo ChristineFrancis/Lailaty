@@ -13,7 +13,6 @@ import 'package:lailaty/common%20features/authentication/presentation/ui/widgets
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/user_info_page/captain_dialogs/ostol_owner_dialog.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/user_info_page/detect_gender_widget.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/pages%20widgets/user_info_page/captain_dialogs/ledy_captian_dialog.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 

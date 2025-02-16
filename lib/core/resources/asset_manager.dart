@@ -49,10 +49,18 @@ class ImageAssetManager {
   static String carIcon = "$rootImage/car.svg";
   static String timerIcon = "$rootImage/timer.svg";
 
-
   static String facebookLogo = "$rootImage/facebook logo.svg";
   static String instaLogo = "$rootImage/instagram logo.svg";
 
   static String lLetter = "$rootImage/L.svg";
   static String yLetter = "$rootImage/y.svg";
+
+  //!on boarding
+  static String onBoardingAlaModak = "$rootImage/on boarding ala modak.svg";
+  static String onBoardingBusinessMen =
+      "$rootImage/on boarding business men.svg";
+  static String onBoardingInnerTrip = "$rootImage/on boarding inner trip.svg";
+  static String onBoardingLearnDriving =
+      "$rootImage/on boarding learn driving.svg";
+  static String onBoardingWedding = "$rootImage/on boarding wedding.svg";
 }
