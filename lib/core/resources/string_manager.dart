@@ -257,7 +257,7 @@ class StringManager {
   static const String refresh = "تحديث";
   static const String enterYourNotes = "ادخل ملاحظاتك";
   static const String writeYourNotesHere = "..اكتب ملاحظاتك هنا";
-  static const String day = "ايام";
+  static const String days = "ايام";
   static const String hours = "ساعات";
   static const String examplePrice = "88 EGP";
   static const String skip = 'تخطي';
@@ -286,4 +286,11 @@ class StringManager {
   static const String enterTheNameOfTheFleetYouWantToJoin =
       'ادخل اسم الاسطول الذي تريد الانضمام اليه';
   static const String findTheNameOfTheFleet = 'ابحث عن اسم الاسطول';
+  static const String fleetPerformance = 'أداء الاسطول';
+  static const String week = 'أسبوع';
+  static const String day = 'يوم';
+  static const String month = 'شهر';
+  static const String profits = ':الأرباح';
+  static const String numberOfFlights = ':عدد الرحلات';
+  static const String mostActive = ':الأكثر نشاطاً';
 }

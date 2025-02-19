@@ -36,7 +36,7 @@ class TeachDrivingAndOnYourModeCaptainAndTripInfoRow extends StatelessWidget {
             SizedBox(height: context.screenHeight * 0.008),
             (teachDrivingWidget)
                 ? Text(
-                    "٢ ${StringManager.day}",
+                    "٢ ${StringManager.days}",
                     style: StyleManager.normalText18(
                       color: ColorManager.backGroundColor,
                       size: context.screenWidth * 0.04,

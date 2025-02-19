@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/config/presentation/widget/Titles.dart';
+import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
@@ -25,23 +26,27 @@ class _fleetHomePageViewState extends State<fleetHomePageView> {
     ];
 
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            Builder(
-              builder: (context) => IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_forward),
-                color: ColorManager.blackColor,
-              ),
-            )
-          ],
-          backgroundColor: ColorManager.greyTextr,
-          title: Center(
-            child: HeaderText(
-                text: StringManager.fleet,
-                styleOfText: StyleManager.semiboldTextStyle20()),
-          ),
+        appBar: CustomAppbar(
+          ispop: true,
+          title: StringManager.fleet,
         ),
+        // appBar: AppBar(
+        //   actions: [
+        //     Builder(
+        //       builder: (context) => IconButton(
+        //         onPressed: () {},
+        //         icon: const Icon(Icons.arrow_forward),
+        //         color: ColorManager.blackColor,
+        //       ),
+        //     )
+        //   ],
+        //   backgroundColor: ColorManager.greyTextr,
+        //   title: Center(
+        //     child: HeaderText(
+        //         text: StringManager.fleet,
+        //         styleOfText: StyleManager.semiboldTextStyle20()),
+        //   ),
+        // ),
         body: pages[currentIndex],
         bottomNavigationBar: fleetPageBottomBar(
             context: context,

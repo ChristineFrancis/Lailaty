@@ -75,7 +75,11 @@ class CompanyFleetInformationWidget extends StatelessWidget {
             } else if (fleetNameController.text.isEmpty &&
                 addressController.text.isEmpty) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text(StringManager.fleetValidate)),
+                const SnackBar(
+                    content: Text(
+                  StringManager.fleetValidate,
+                  textAlign: TextAlign.right,
+                )),
               );
             } else {
               //! Navigate to the next page

@@ -7,6 +7,8 @@ import 'package:lailaty/feature/agree_pages/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/motor_info.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/personal_information_page.dart';
+import 'package:lailaty/feature/fleet_info/fleet_options.dart';
+import 'package:lailaty/feature/fleet_info/fleet_performance.dart';
 import 'package:lailaty/feature/fleet_info/fleet_to_join.dart';
 import 'package:lailaty/feature/fleet_pages/fleet_home_page/presentaion/fleet_home_page.dart';
 
@@ -87,7 +89,7 @@ class Routes {
         ),
       ),
       GoRoute(
-        path:AppKeys.fleetToJoinPage,
+        path: AppKeys.fleetToJoinPage,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: const FleetToJoinPage(),
@@ -138,24 +140,24 @@ class Routes {
         ),
       ),
 
-      GoRoute(
-        path: AppKeys.personalInformationPageKey,
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: MultiProvider(
-            providers: [
-              ChangeNotifierProvider(
-                create: (_) => PersonalInformationView(),
-              ),
-              ChangeNotifierProvider(
-                create: (_) => DateviewModel(),
-              ),
-            ],
-            child: const PersonalInformationPage(),
-          ),
-          transitionsBuilder: _fadeTransition,
-        ),
-      ),
+      // GoRoute(
+      //   path: AppKeys.personalInformationPageKey,
+      //   pageBuilder: (context, state) => CustomTransitionPage(
+      //     key: state.pageKey,
+      //     child: MultiProvider(
+      //       providers: [
+      //         ChangeNotifierProvider(
+      //           create: (_) => PersonalInformationView(),
+      //         ),
+      //         ChangeNotifierProvider(
+      //           create: (_) => DateviewModel(),
+      //         ),
+      //       ],
+      //       child: const PersonalInformationPage(),
+      //     ),
+      //     transitionsBuilder: _fadeTransition,
+      //   ),
+      // ),
       GoRoute(
         path: AppKeys.securityInformationPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
@@ -335,6 +337,24 @@ class Routes {
             transitionsBuilder: _fadeTransition,
           );
         },
+      ),
+      GoRoute(
+        path: '/', //AppKeys.fleetOptionsPage,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: const FleetOptionsPage(),
+            transitionsBuilder: _fadeTransition,
+          );
+        },
+      ),
+      GoRoute(
+        path: AppKeys.fleetPerformancePage,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child:  FleetPerformancePage(),
+          transitionsBuilder: _fadeTransition,
+        ),
       ),
     ],
   );

@@ -67,9 +67,10 @@ class AppKeys {
   static const String pagesKey = 'pages';
   static const String initialIndexKey = 'initialIndex';
   //pages > fleet:
-  static const String fleetInformationPage = 'fleet_info_page';
-  static const String fleetToJoinPage = 'fleet_to_join';
-
+  static const String fleetInformationPage = '/fleet_info_page';
+  static const String fleetToJoinPage = '/fleet_to_join';
+  static const String fleetOptionsPage = '/fleet_options';
+  static const String fleetPerformancePage = '/fleet_performance';
 //map containers :
 
   static const String iHaveArrivedContainer = 'iHaveArrivedContainer';
