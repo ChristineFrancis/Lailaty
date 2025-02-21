@@ -196,13 +196,15 @@ class CarInfoView extends StatelessWidget {
                     const sizedBox50()
                   ],
                 )),
-                TextWithButtonWidget(
-                    onPress: () {},
-                    text: StringManager.connectToserviceOfClients,
-                    textbutton: StringManager.serviceOfCleints,
-                    styleOfButtonText: StyleManager.smallBlackText16(
-                        color: ColorManager.blueTextColor),
-                    styleOfNormalText: StyleManager.smallBlackText16()),
+                Center(
+                  child: TextWithButtonWidget(
+                      onPress: () {},
+                      text: StringManager.connectToserviceOfClients,
+                      textbutton: StringManager.serviceOfCleints,
+                      styleOfButtonText: StyleManager.smallBlackText16(
+                          color: ColorManager.blueTextColor),
+                      styleOfNormalText: StyleManager.smallBlackText16()),
+                ),
                 const sizedBox50(),
                 acceptButtonCustomer(
                   text: StringManager.tam,

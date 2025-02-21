@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
@@ -46,6 +47,15 @@ class PerformanceContentWidget extends StatelessWidget {
             ),
           ),
           LineChartWidget(spots: chartSpots),
+          Center(
+            child: Text(
+              '$doneValue ${StringManager.payUnit}',
+              style: StyleManager.normalText18(
+                color: ColorManager.grey2,
+                size: context.screenWidth * 0.05,
+              ),
+            ),
+          ),
           Text(
             StringManager.mostActive,
             style: StyleManager.semiboldTextStyle20(

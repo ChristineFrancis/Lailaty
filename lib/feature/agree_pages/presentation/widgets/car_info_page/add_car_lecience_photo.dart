@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:lailaty/core/utils/build_context_extensions.dart';
 import '../../../../../core/resources/key_manager.dart';
 import '../../../../../core/viewmodels/personal_information_view.dart';
 import '../personal_Information_page/image_picker_place_holder.dart';
@@ -27,8 +28,10 @@ class addLeciencePhotoWidget extends StatelessWidget {
         children: [
           ImagePickerPlaceHolder(
             noImgeWidget: const NoImagePlaceholderWidget(),
-            width: MediaQuery.of(context).size.width * 0.26,
-            height: MediaQuery.of(context).size.height * 0.17,
+            width: context.screenWidth * 0.3,
+            height: context.screenWidth * 0.3,
+            // width: MediaQuery.of(context).size.width * 0.26,
+            // height: MediaQuery.of(context).size.height * 0.17,
             hasImage: selectedFrontPhoto == null,
             imageFile: selectedFrontPhoto,
             onTap: () async {
@@ -46,8 +49,10 @@ class addLeciencePhotoWidget extends StatelessWidget {
           ),
           ImagePickerPlaceHolder(
             noImgeWidget: const NoImagePlaceholderWidget(),
-            width: MediaQuery.of(context).size.width * 0.26,
-            height: MediaQuery.of(context).size.height * 0.17,
+            // width: MediaQuery.of(context).size.width * 0.26,
+            // height: MediaQuery.of(context).size.height * 0.17,
+            width: context.screenWidth * 0.3,
+            height: context.screenWidth * 0.3,
             hasImage: selectedBackPhoto == null,
             imageFile: selectedBackPhoto,
             onTap: () async {

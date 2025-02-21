@@ -9,7 +9,7 @@ import 'package:lailaty/feature/fleet_info/widgets/fleet_performance_widgets/mon
 import 'package:lailaty/feature/fleet_info/widgets/fleet_performance_widgets/week_content_widget.dart';
 
 class FleetPerformancePage extends StatelessWidget {
-  final ValueNotifier<int> selectedIndex = ValueNotifier<int>(0);
+  final ValueNotifier<int> selectedIndex = ValueNotifier<int>(2);
 
   final List<String> sections = [
     StringManager.month,
@@ -29,7 +29,7 @@ class FleetPerformancePage extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppbar(
         ispop: true,
-        title: '',
+        title: StringManager.fleetPerformance,
       ),
       backgroundColor: ColorManager.backGroundColor,
       body: Column(

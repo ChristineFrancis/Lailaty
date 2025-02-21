@@ -339,7 +339,7 @@ class Routes {
         },
       ),
       GoRoute(
-        path: '/', //AppKeys.fleetOptionsPage,
+        path: '/', // AppKeys.fleetOptionsPage,
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             key: state.pageKey,
@@ -352,7 +352,7 @@ class Routes {
         path: AppKeys.fleetPerformancePage,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
-          child:  FleetPerformancePage(),
+          child: FleetPerformancePage(),
           transitionsBuilder: _fadeTransition,
         ),
       ),

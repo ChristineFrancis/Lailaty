@@ -293,4 +293,5 @@ class StringManager {
   static const String profits = ':الأرباح';
   static const String numberOfFlights = ':عدد الرحلات';
   static const String mostActive = ':الأكثر نشاطاً';
+  static const String payUnit = 'EGP';
 }
