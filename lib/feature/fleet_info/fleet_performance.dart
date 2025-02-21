@@ -4,10 +4,12 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/fleet_info/widgets/month_content_widget.dart';
+import 'package:lailaty/feature/fleet_info/widgets/fleet_performance_widgets/day_content_widget.dart';
+import 'package:lailaty/feature/fleet_info/widgets/fleet_performance_widgets/month_content_widget.dart';
+import 'package:lailaty/feature/fleet_info/widgets/fleet_performance_widgets/week_content_widget.dart';
 
 class FleetPerformancePage extends StatelessWidget {
-  final ValueNotifier<int> selectedIndex = ValueNotifier<int>(1);
+  final ValueNotifier<int> selectedIndex = ValueNotifier<int>(0);
 
   final List<String> sections = [
     StringManager.month,
@@ -16,8 +18,8 @@ class FleetPerformancePage extends StatelessWidget {
   ];
   final List<Widget> content = const [
     MonthContentWidget(),
-    Center(child: Text("محتوى الأسبوع", style: TextStyle(fontSize: 24))),
-    Center(child: Text("محتوى اليوم", style: TextStyle(fontSize: 24))),
+    WeekContentWidget(),
+    DayContentWidget(),
   ];
 
   FleetPerformancePage({super.key});
@@ -39,45 +41,51 @@ class FleetPerformancePage extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.center,
-            child: Container(
-              decoration: BoxDecoration(
-                color: ColorManager.grey1,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 25),
-              padding: const EdgeInsets.all(2),
-              child: ValueListenableBuilder<int>(
-                valueListenable: selectedIndex,
-                builder: (context, value, _) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(sections.length, (index) {
-                      bool isSelected = value == index;
-                      return GestureDetector(
-                        onTap: () => selectedIndex.value = index,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: isSelected
-                                ? ColorManager.yellowTextColor
-                                : ColorManager.transparentColor,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Center(
-                            child: Text(
-                              sections[index],
-                              style: StyleManager.miniSmallText14(
-                                size: context.screenWidth * 0.045,
-                                color: ColorManager.black,
+            child: FractionallySizedBox(
+              widthFactor: 0.9,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: ColorManager.grey1,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: EdgeInsets.all(context.screenWidth * 0.005),
+                child: ValueListenableBuilder<int>(
+                  valueListenable: selectedIndex,
+                  builder: (context, value, _) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: List.generate(sections.length, (index) {
+                        bool isSelected = value == index;
+                        return Expanded(
+                          child: GestureDetector(
+                            onTap: () => selectedIndex.value = index,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: context.screenWidth * 0.05,
+                                vertical: context.screenHeight * 0.01,
+                              ),
+                              decoration: BoxDecoration(
+                                color: isSelected
+                                    ? ColorManager.yellowTextColor
+                                    : ColorManager.transparentColor,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  sections[index],
+                                  style: StyleManager.miniSmallText14(
+                                    size: context.screenWidth * 0.045,
+                                    color: ColorManager.black,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    }),
-                  );
-                },
+                        );
+                      }),
+                    );
+                  },
+                ),
               ),
             ),
           ),
