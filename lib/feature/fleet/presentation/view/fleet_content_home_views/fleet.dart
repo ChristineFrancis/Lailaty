@@ -5,7 +5,7 @@ import 'package:lailaty/core/config/presentation/widget/imageProduct.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 
-import '../widget/row_of_two_text_with_icon.dart';
+import '../../widgets/fleet_content_home_page_widget/row_of_two_text_with_icon.dart';
 
 class FleetContentView extends StatelessWidget {
   const FleetContentView({super.key});

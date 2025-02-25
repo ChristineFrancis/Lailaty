@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/presentation/widget/client_service_row.dart';
 import 'package:lailaty/core/config/presentation/widget/form_profile_container.dart';
 import 'package:lailaty/core/config/presentation/widget/myButton.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
@@ -56,6 +58,7 @@ class PersonFleetInformationWidget extends StatelessWidget {
             if (fleetNameController.text.isNotEmpty &&
                 addressController.text.isNotEmpty) {
               //!navigate to the next page
+              context.push(AppKeys.fleetOptionsPage);
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text(StringManager.fleetValidate)),
@@ -67,6 +70,9 @@ class PersonFleetInformationWidget extends StatelessWidget {
           height: context.screenHeight * 0.05,
           radius: 5,
           styleOfTExt: StyleManager.semiboldTextStyle20(),
+        ),
+        SizedBox(
+          height: context.screenHeight * 0.02,
         ),
       ],
     );

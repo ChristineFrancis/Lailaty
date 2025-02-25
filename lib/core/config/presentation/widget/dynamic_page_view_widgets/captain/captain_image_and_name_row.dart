@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain/captain_image.dart';
 import 'package:lailaty/core/config/presentation/widget/imageProduct.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';

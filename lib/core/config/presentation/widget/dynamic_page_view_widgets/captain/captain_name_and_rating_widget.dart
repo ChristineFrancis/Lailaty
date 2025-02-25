@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain/captain_image.dart';
 import 'package:lailaty/core/config/presentation/widget/imageProduct.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
@@ -22,12 +21,14 @@ class CaptainNameAndRating extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-     ImageProduct(image:"d"),
+          ImageProduct(image: "d"),
           Text(
             clientTripDetailsModel != null
                 ? clientTripDetailsModel!.captainName
                 : StringManager.exampleCaptainName,
-            style: StyleManager.semiboldTextStyle20(),
+            style: StyleManager.semiboldTextStyle20(
+              size: context.screenWidth * 0.04,
+            ),
             textAlign: TextAlign.center,
           ),
           Row(

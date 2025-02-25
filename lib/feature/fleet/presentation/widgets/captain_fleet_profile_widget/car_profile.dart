@@ -5,14 +5,14 @@ import 'package:lailaty/core/config/presentation/widget/my_sized_box.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 
-class containerOfProfile extends StatelessWidget {
+class ContainerOfProfile extends StatelessWidget {
   String nameCar;
   String colorCar;
   String yearMade;
   String numberCar;
   void Function() onPressAccept;
   void Function() onPressRefuse;
-  containerOfProfile({
+  ContainerOfProfile({
     Key? key,
     required this.nameCar,
     required this.colorCar,

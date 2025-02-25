@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/config/presentation/widget/myButton.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/fleet_info/widgets/custom_dropdown.dart';
-import 'package:lailaty/feature/fleet_info/widgets/search_container.dart';
+import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_to_join_widget/custom_dropdown.dart';
+import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_to_join_widget/search_container.dart';
 
 class FleetToJoinPage extends StatelessWidget {
   const FleetToJoinPage({super.key});
@@ -58,6 +60,7 @@ class FleetToJoinPage extends StatelessWidget {
                 title: StringManager.next,
                 onpress: () {
                   //to navigate
+                  context.push(AppKeys.personalInformationPageKey);
                 },
                 colors: ColorManager.grey1,
                 width: context.screenWidth * 0.7,

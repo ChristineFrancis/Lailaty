@@ -118,7 +118,11 @@ class ConfirmSuggestedPriceContainer extends StatelessWidget {
             priceOptions
                 ? SizedBox(height: context.screenWidth * 0.02)
                 : const SizedBox.shrink(),
-            priceOptions ? HorizontalPriceList() : const SizedBox.shrink(),
+            priceOptions
+                ? HorizontalPriceList(
+                    onTap: onAccepted,
+                  )
+                : const SizedBox.shrink(),
             SizedBox(
               height: context.screenWidth * 0.02,
             ),

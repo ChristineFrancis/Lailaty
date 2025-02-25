@@ -28,8 +28,7 @@ class AppKeys {
   static const String searchOrderPage = '/searchOrderPage';
   static const String profileOfcaptainFleet = '/CaptainFleetProfile';
 
-  static const String personalInformationPageKey =
-      '/'; //'/personalInformationPage';
+  static const String personalInformationPageKey = '/personalInformationPage';
   static const String securityInformationPageKey = '/security_page';
   static const String loginPromptPageKey = '/login_prompt_page';
 

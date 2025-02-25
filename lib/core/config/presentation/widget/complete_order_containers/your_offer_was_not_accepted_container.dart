@@ -66,7 +66,9 @@ class YourOfferWasNotAcceptedContainer extends StatelessWidget {
             SizedBox(
               height: context.screenHeight * 0.02,
             ),
-            HorizontalPriceList()
+            HorizontalPriceList(
+              onTap: whenChoosing,
+            )
           ],
         ),
       ),

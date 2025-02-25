@@ -5,7 +5,7 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/fleet_info/widgets/fleet_option_container.dart';
+import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_options_widget/fleet_option_container.dart';
 
 class FleetOptionsPage extends StatelessWidget {
   const FleetOptionsPage({super.key});
@@ -23,6 +23,10 @@ class FleetOptionsPage extends StatelessWidget {
           SizedBox(
             height: context.screenHeight * 0.02,
           ),
+          const Divider(
+            color: ColorManager.grey1,
+            thickness: 1.5,
+          ),
           FleetOptionContainer(
             onTap: () {
               context.push(AppKeys.fleetHomePageViewPath);
@@ -30,8 +34,9 @@ class FleetOptionsPage extends StatelessWidget {
             optionTitle: StringManager.fleet,
             optionIcon: Icons.directions_car_outlined,
           ),
-          SizedBox(
-            height: context.screenHeight * 0.01,
+          const Divider(
+            color: ColorManager.grey1,
+            thickness: 1.5,
           ),
           FleetOptionContainer(
             onTap: () {
@@ -41,6 +46,10 @@ class FleetOptionsPage extends StatelessWidget {
             },
             optionTitle: StringManager.fleetPerformance,
             optionIcon: Icons.trending_up,
+          ),
+          const Divider(
+            color: ColorManager.grey1,
+            thickness: 1.5,
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/presentation/widget/client_service_row.dart';
 import 'package:lailaty/core/config/presentation/widget/form_profile_container.dart';
 import 'package:lailaty/core/config/presentation/widget/myButton.dart';
@@ -83,6 +84,7 @@ class CompanyFleetInformationWidget extends StatelessWidget {
               );
             } else {
               //! Navigate to the next page
+              context.push(AppKeys.fleetOptionsPage);
             }
           },
           colors: ColorManager.grey1,

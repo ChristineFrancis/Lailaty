@@ -6,8 +6,8 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/core/viewmodels/personal_information_view.dart';
-import 'package:lailaty/feature/fleet_info/widgets/company_fleet_information_widget.dart';
-import 'package:lailaty/feature/fleet_info/widgets/person_fleet_information_widget.dart';
+import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_infromation_widget/company_fleet_information_widget.dart';
+import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_infromation_widget/person_fleet_information_widget.dart';
 import 'package:provider/provider.dart';
 
 class FleetInfromationPage extends StatefulWidget {
@@ -66,6 +66,7 @@ class _FleetInfromationPageState extends State<FleetInfromationPage> {
           Expanded(
               child: _buildDynamicContent(selectedpostcardCopyImage,
                   selectedcommercialRegistrationImage, viewModel)),
+
         ],
       ),
     );
