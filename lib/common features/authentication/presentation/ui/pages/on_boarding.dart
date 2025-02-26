@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lailaty/common%20features/default%20feature/presentation/ui/pages/login_with_email_page.dart';
-import 'package:lailaty/common%20features/default%20feature/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
-import 'package:lailaty/common%20features/default%20feature/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
-import 'package:lailaty/common%20features/default%20feature/presentation/ui/widgets/custom_button.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/login_with_email_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
