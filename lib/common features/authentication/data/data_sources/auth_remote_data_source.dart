@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:lailaty/core/resources/url_manager.dart';
 import '../../../../core/error_manager/exception.dart';
 import '../../domain/entities/verify_email_request.dart';
 import '../models/email_registration_response_model.dart';
@@ -11,13 +12,6 @@ abstract class AuthRemoteDataSource {
   Future<VerifyEmailResponseModel> verifyEmail(VerifyEmailRequest request);
 }
 
-//!------------------------MY_URLs---------------------------
-const baseURL = 'https://laylaty.almowafraty.com/api/v1/auth';
-
-const emailRegisterURL = '$baseURL/emailRegistration';
-const verifyEmailURL = '$baseURL/verifyEmail';
-
-//!----------------------------------------------------------
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final http.Client client;
@@ -25,7 +19,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<EmailRegistrationResponseModel> register(AuthRequest request) async {
-    final url = Uri.parse(emailRegisterURL);
+    final url = Uri.parse(UrlManager.emailRegisterURL);
 
     final response = await client.post(
       url,
@@ -49,7 +43,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<VerifyEmailResponseModel> verifyEmail(
       VerifyEmailRequest request) async {
-    final url = Uri.parse(verifyEmailURL);
+    final url = Uri.parse(UrlManager.verifyEmailURL);
     final response = await client.post(
       url,
       headers: {
