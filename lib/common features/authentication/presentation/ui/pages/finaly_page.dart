@@ -5,8 +5,10 @@ class FinalyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('FINALLLLLYYYY!!!'),
+    return Scaffold(
+      body: const Center(
+        child: Text('FINALLLLLYYYY!!!'),
+      ),
     );
   }
 }

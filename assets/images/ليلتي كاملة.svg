@@ -1,0 +1,29 @@
+<svg id="Group_18" data-name="Group 18" xmlns="http://www.w3.org/2000/svg" width="178.747" height="65.192" viewBox="0 0 178.747 65.192">
+  <rect id="Rectangle_11" data-name="Rectangle 11" width="8.3" height="29.632" transform="translate(157.444 33.572) rotate(90)"/>
+  <g id="Group_10" data-name="Group 10" transform="translate(170.416)">
+    <rect id="Rectangle_12" data-name="Rectangle 12" width="8.331" height="22.589"/>
+  </g>
+  <g id="Group_11" data-name="Group 11" transform="translate(134.301 24.043)">
+    <rect id="Rectangle_13" data-name="Rectangle 13" width="8.328" height="9.197" transform="translate(0 31.953)"/>
+    <path id="Path_5" data-name="Path 5" d="M614.666,278.935l-.461,41.15H595.225v-9.2H606.46l-.124-1.456h-21.3V288.464h8.328v11.775h12.973v-21.3Z" transform="translate(-570.22 -278.935)" fill="#fffc01"/>
+  </g>
+  <g id="Group_12" data-name="Group 12" transform="translate(144.952 55.996)">
+    <rect id="Rectangle_14" data-name="Rectangle 14" width="8.328" height="9.197" transform="translate(0 0)"/>
+  </g>
+  <g id="Group_13" data-name="Group 13" transform="translate(42.605)">
+    <path id="Path_6" data-name="Path 6" d="M341.522,248.206V257.4H298.947V268.05H269.316V257.4H256.343V268.05h-8.327V248.206h29.632v10.65H290.62v-10.65h21.3V202.859h8.331v45.347h12.97l0-10.654h8.331l0,10.654Z" transform="translate(-248.015 -202.859)"/>
+  </g>
+  <g id="Group_14" data-name="Group 14" transform="translate(79.709 34.693)">
+    <rect id="Rectangle_15" data-name="Rectangle 15" width="8.331" height="9.197" transform="translate(0 0)" fill="#1d1d1b"/>
+  </g>
+  <g id="Group_15" data-name="Group 15" transform="translate(69.059 34.693)">
+    <rect id="Rectangle_16" data-name="Rectangle 16" width="8.331" height="9.197" transform="translate(0 0)" fill="#1d1d1b"/>
+  </g>
+  <g id="Group_16" data-name="Group 16" transform="translate(10.65 23.879)">
+    <path id="Path_7" data-name="Path 7" d="M176.536,310.535v9.193H146.9V278.417h8.331v32.118Z" transform="translate(-146.905 -278.417)" fill="#fffc01"/>
+  </g>
+  <g id="Group_17" data-name="Group 17" transform="translate(0 24.043)">
+    <rect id="Rectangle_17" data-name="Rectangle 17" width="8.331" height="9.197" transform="translate(0 0)"/>
+    <rect id="Rectangle_18" data-name="Rectangle 18" width="8.331" height="9.197" transform="translate(0 10.65)"/>
+  </g>
+</svg>
