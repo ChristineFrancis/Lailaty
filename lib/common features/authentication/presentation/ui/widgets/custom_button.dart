@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
+// ignore: must_be_immutable
 class CustomButton extends StatelessWidget {
   final String textButton;
   final Function() onTap;
@@ -13,7 +14,6 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       height:50,           
       decoration:  BoxDecoration(
