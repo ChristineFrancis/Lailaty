@@ -9,12 +9,13 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import '../widgets/pages widgets/verification_code_page/countdown_timer.dart';
 
 class VerificationCodePage extends StatelessWidget {
+  final String email;
   final TextEditingController _verificatoinCodeController =
       TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
-  VerificationCodePage({super.key});
+  VerificationCodePage({super.key, required this.email});
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
