@@ -5,9 +5,9 @@ import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
-import 'package:lailaty/feature/fleet_info/presentation/view/fleet_content_home_views/fleet.dart';
-import 'package:lailaty/feature/fleet_info/presentation/view/fleet_content_home_views/new_order.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_home_page_widget/fleet_page_bottom_bar.dart';
+import 'package:lailaty/feature/fleet/presentation/view/fleet_content_home_views/fleet.dart';
+import 'package:lailaty/feature/fleet/presentation/view/fleet_content_home_views/new_order.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_home_page_widget/fleet_page_bottom_bar.dart';
 
 class fleetHomePageView extends StatefulWidget {
   fleetHomePageView({super.key});

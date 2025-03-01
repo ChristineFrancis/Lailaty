@@ -4,10 +4,10 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/fleet_info/captain_model.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_performance_widgets/captain_info_card.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_performance_widgets/circular_progress_widget.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_performance_widgets/line_chart_widget.dart';
+import 'package:lailaty/feature/fleet/captain_model.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_performance_widgets/captain_info_card.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_performance_widgets/circular_progress_widget.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_performance_widgets/line_chart_widget.dart';
 
 class PerformanceContentWidget extends StatelessWidget {
   final double doneValue;

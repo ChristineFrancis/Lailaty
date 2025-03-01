@@ -5,7 +5,7 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_options_widget/fleet_option_container.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_options_widget/fleet_option_container.dart';
 
 class FleetOptionsPage extends StatelessWidget {
   const FleetOptionsPage({super.key});

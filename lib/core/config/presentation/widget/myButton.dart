@@ -42,6 +42,7 @@ class MyButton extends StatelessWidget {
               child: Text(
                 title,
                 style: styleOfTExt,
+                textAlign: TextAlign.center,
               ),
             ),
           ),

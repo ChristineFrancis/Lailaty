@@ -1,8 +1,8 @@
 class ImageAssetManager {
   static const String rootImage = 'assets/images';
   static String lailatyArabic = "$rootImage/ليلتي كاملة.svg";
-  static String lettersLY = "$rootImage/LY.svg";
-  static String lailaty = "$rootImage/laylaty.svg";
+ // static String lettersLY = "$rootImage/LY.svg";
+ // static String lailaty = "$rootImage/laylaty.svg";
   static String loginAmico = "$rootImage/Login-amico.svg";
   static String privacyLock = "$rootImage/Privacy policy-bro.svg";
   static String city = "$rootImage/المدينة.svg";
@@ -15,7 +15,7 @@ class ImageAssetManager {
   static String bLetter = "$rootImage/B.svg";
   static String passengerPic = "$rootImage/راكب.svg";
   static String captainPic = "$rootImage/كابتن.svg";
-  static String carPic = "$rootImage/سيارة.svg";
+  static String carPic = '$rootImage/ride سيارة.svg'; //"$rootImage/سيارة.svg";
   static String carNormal = "$rootImage/normal.svg";
   static String noConnectImage = "$rootImage/Order ahead-bro.svg";
   static String motor = "$rootImage/دراجة.svg";

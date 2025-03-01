@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_performance_widgets/circular_progress_painter.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_performance_widgets/circular_progress_painter.dart';
 
 class CircularProgressWidget extends StatefulWidget {
   final double doneValue;

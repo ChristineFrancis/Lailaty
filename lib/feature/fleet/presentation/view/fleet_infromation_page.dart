@@ -6,8 +6,8 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/core/viewmodels/personal_information_view.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_infromation_widget/company_fleet_information_widget.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_infromation_widget/person_fleet_information_widget.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_infromation_widget/company_fleet_information_widget.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_infromation_widget/person_fleet_information_widget.dart';
 import 'package:provider/provider.dart';
 
 class FleetInfromationPage extends StatefulWidget {
@@ -25,12 +25,19 @@ class _FleetInfromationPageState extends State<FleetInfromationPage> {
   TextEditingController personFleetNameController = TextEditingController();
   TextEditingController personAddressController = TextEditingController();
 
+  FocusNode _companyFocusNode = FocusNode();
+  FocusNode _personFocusNode = FocusNode();
+
   @override
   void dispose() {
-    companyAddressController.dispose();
-    companyAddressController.dispose();
-    personAddressController.dispose();
-    personFleetNameController.dispose();
+    if (_companyFocusNode.hasFocus) companyFleetNameController.dispose();
+    if (_companyFocusNode.hasFocus) companyAddressController.dispose();
+    if (_personFocusNode.hasFocus) personFleetNameController.dispose();
+    if (_personFocusNode.hasFocus) personAddressController.dispose();
+
+    _companyFocusNode.dispose();
+    _personFocusNode.dispose();
+
     super.dispose();
   }
 
@@ -66,7 +73,6 @@ class _FleetInfromationPageState extends State<FleetInfromationPage> {
           Expanded(
               child: _buildDynamicContent(selectedpostcardCopyImage,
                   selectedcommercialRegistrationImage, viewModel)),
-
         ],
       ),
     );
