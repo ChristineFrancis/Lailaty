@@ -5,6 +5,7 @@ import 'package:lailaty/common%20features/authentication/presentation/bloc/regis
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/verification_code_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20form%20fields/custom_text_field.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
@@ -54,18 +55,6 @@ class _LoginWithEmailPageState extends State<LoginWithEmailPage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        appBar: AppBar(
-          backgroundColor: ColorManager.grey,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: Icon(
-              Icons.arrow_back,
-              color: ColorManager.yellow,
-            ),
-          ),
-        ),
         backgroundColor: ColorManager.grey,
         body: BlocProvider(
           create: (_) => sl<RegisterBloc>(),
@@ -93,7 +82,7 @@ class _LoginWithEmailPageState extends State<LoginWithEmailPage> {
                 ),
                 child: Column(
                   children: [
-                    const SpcY(y: 20),
+                    const SpcY(y: 45),
                     const LoginWord(),
                     const SpcY(y: 75),
                     LayoutBuilder(
@@ -121,29 +110,61 @@ class _LoginWithEmailPageState extends State<LoginWithEmailPage> {
                         );
                       },
                     ),
-                    CustomTextField(
-                      controller: emailController,
-                      labelText: 'Email',
-                      textInputAction: TextInputAction.next,
-                    ),
-                    const SpcY(y: 15),
-                    CustomTextField(
-                      controller: passwordController,
-                      labelText: 'Password',
-                      obscureText: true,
-                      textInputAction: TextInputAction.done,
-                      onEditingComplete: () => _submit(context),
-                    ),
-                    BlocBuilder<RegisterBloc, RegisterState>(
-                      builder: (context, state) {
-                        if (state is RegisterLoading) {
-                          return const CircularProgressIndicator();
-                        }
-                        return CustomButton(
-                          textButton: 'تسجيل الدخول',
-                          onTap: () => _submit(context),
-                        );
-                      },
+                    SpcY(y: 40),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal:
+                              MediaQuery.of(context).size.width * 50 / 430),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTextWidget(
+                              text: 'الرجاء إدخال الايميل',
+                              fontSize: 18,
+                              color: Colors.black),
+                          SpcY(y: 15),
+                          Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: CustomTextField(
+                              controller: emailController,
+                              labelText: 'Email',
+                              textInputAction: TextInputAction.next,
+                              isEmail: true,
+                            ),
+                          ),
+                          SpcY(y: 30),
+                          CustomTextWidget(
+                              text: 'الرجاء إدخال كلمة المرور',
+                              fontSize: 18,
+                              color: Colors.black),
+                          const SpcY(y: 15),
+                          Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: CustomTextField(
+                              controller: passwordController,
+                              labelText: 'Password',
+                              obscureText: true,
+                              textInputAction: TextInputAction.done,
+                              onEditingComplete: () => _submit(context),
+                            ),
+                          ),
+                          SpcY(y: 55),
+                          BlocBuilder<RegisterBloc, RegisterState>(
+                            builder: (context, state) {
+                              if (state is RegisterLoading) {
+                                return Container(
+                                    alignment: Alignment.center,
+                                    child: CircularProgressIndicator(
+                                        color: ColorManager.yellow));
+                              }
+                              return CustomButton(
+                                textButton: 'تسجيل الدخول',
+                                onTap: () => _submit(context),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -155,3 +176,6 @@ class _LoginWithEmailPageState extends State<LoginWithEmailPage> {
     );
   }
 }
+
+
+/**/
