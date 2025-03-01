@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/common%20features/authentication/presentation/bloc/register_bloc/register_state.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/verification_code_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20form%20fields/custom_text_field.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text_fields/custom_text_field.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';

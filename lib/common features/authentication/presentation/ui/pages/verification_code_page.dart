@@ -5,22 +5,35 @@ import 'package:lailaty/common%20features/authentication/presentation/bloc/verif
 import 'package:lailaty/common%20features/authentication/presentation/bloc/verify_email_bloc/verify_email_state.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/finaly_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20form%20fields/custom_text_field.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../../core/config/storage/dependency_injection.dart';
 import '../widgets/pages widgets/verification_code_page/countdown_timer.dart';
 
-class VerificationCodePage extends StatelessWidget {
+class VerificationCodePage extends StatefulWidget {
   final String email;
   const VerificationCodePage({super.key, required this.email});
 
   @override
+  State<VerificationCodePage> createState() => _VerificationCodePageState();
+}
+
+class _VerificationCodePageState extends State<VerificationCodePage> {
+  final TextEditingController codeController = TextEditingController();
+  bool isTimerFinished = false;
+
+  @override
+  void dispose() {
+    codeController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController codeController = TextEditingController();
     double screenWidth = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -44,7 +57,7 @@ class VerificationCodePage extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SpcY(y: 80),
+                    SpcY(y: 100),
                     LailatyArabicAndEnglish(),
                     SpcY(y: 30),
                     CustomTextWidget(
@@ -57,21 +70,53 @@ class VerificationCodePage extends StatelessWidget {
                         fontSize: 16,
                         color: Colors.black),
                     CustomTextWidget(
-                        text: email, fontSize: 16, color: Colors.black),
+                        text: widget.email, fontSize: 16, color: Colors.black),
                     SpcY(y: 55),
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: screenWidth * 80 / 430),
-                      child: CustomTextField(
-                        controller: codeController,
-                        labelText: ' 5  5  5  5  5  5 ',
-                        centered: true,
-                        hinted: true,
-                        isNumbers: true,
+                      child: Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: PinCodeTextField(
+                          appContext: context,
+                          length: 6,
+                          controller: codeController,
+                          onChanged: (value) {},
+                          onCompleted: (value) {
+                            FocusScope.of(context).unfocus();
+                            //TODO: ما عميعمل سبمت لحالو لما كمل ادخال
+                            Future.delayed(const Duration(seconds: 1), () {
+                              context.read<VerifyEmailBloc>().add(
+                                    VerifyEmailSubmitted(
+                                      email: widget.email,
+                                      verificationCode: value,
+                                    ),
+                                  );
+                            });
+                          },
+                          pinTheme: PinTheme(
+                            shape: PinCodeFieldShape.box,
+                            borderRadius: BorderRadius.circular(8),
+                            fieldHeight: 50,
+                            fieldWidth: screenWidth * 42 / 430,
+                            activeColor: Colors.black,
+                            selectedColor: ColorManager.yellow,
+                            inactiveColor: ColorManager.yellow,
+                          ),
+                          autoDismissKeyboard: true,
+                          keyboardType: TextInputType.number,
+                        ),
                       ),
                     ),
                     SpcY(y: 30),
-                    const CountdownTimer(),
+                    CountdownTimer(
+                      maxTime: 600, // 10 minutes in seconds
+                      onTimerComplete: () {
+                        setState(() {
+                          isTimerFinished = true;
+                        });
+                      },
+                    ),
                     SpcY(y: 130),
                     BlocBuilder<VerifyEmailBloc, VerifyEmailState>(
                       builder: (context, state) {
@@ -83,14 +128,26 @@ class VerificationCodePage extends StatelessWidget {
                             padding: EdgeInsets.symmetric(
                                 horizontal: screenWidth * 50 / 430),
                             child: CustomButton(
-                              textButton: 'تحقق',
+                              textButton: isTimerFinished
+                                  ? 'إعادة إرسال الرمز'
+                                  : 'تحقق',
                               onTap: () {
-                                final verificationCode =
-                                    codeController.text.trim();
-                                context.read<VerifyEmailBloc>().add(
-                                    VerifyEmailSubmitted(
-                                        email: email,
-                                        verificationCode: verificationCode));
+                                if (isTimerFinished) {
+                                  // TODO: Connect your resend verification code API here.
+                                  // For now, you might print or trigger an event:
+                                  print('Resend verification code pressed');
+                                } else {
+                                  final verificationCode =
+                                      codeController.text.trim();
+                                  if (verificationCode.length == 6) {
+                                    context.read<VerifyEmailBloc>().add(
+                                          VerifyEmailSubmitted(
+                                            email: widget.email,
+                                            verificationCode: verificationCode,
+                                          ),
+                                        );
+                                  }
+                                }
                               },
                             ),
                           );
