@@ -4,10 +4,10 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_performance_widgets/day_content_widget.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_performance_widgets/month_content_widget.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_performance_widgets/week_content_widget.dart';
 
-import '../widgets/fleet_performance_widgets/day_content_widget.dart';
-import '../widgets/fleet_performance_widgets/month_content_widget.dart';
-import '../widgets/fleet_performance_widgets/week_content_widget.dart';
 class FleetPerformancePage extends StatelessWidget {
   final ValueNotifier<int> selectedIndex = ValueNotifier<int>(2);
 

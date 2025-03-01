@@ -2,9 +2,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
-
-import '../../../captain_model.dart';
-import 'performance_content_widget.dart';
+import 'package:lailaty/feature/fleet/captain_model.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_performance_widgets/performance_content_widget.dart';
 
 class DayContentWidget extends StatelessWidget {
   const DayContentWidget({super.key});

@@ -294,4 +294,16 @@ class StringManager {
   static const String numberOfFlights = ':عدد الرحلات';
   static const String mostActive = ':الأكثر نشاطاً';
   static const String payUnit = 'EGP';
+  static const String welcomeToLadyCaptainInLaylatyApp =
+      'اهلا بك في ليدي كابتن في تطبيق ليلتي';
+  static const String captainForAFleetOwner = 'كابتن لدى مالك أسطول';
+  static const String fleetOwner = 'مالك أسطول';
+  static const String carCaptain = 'كابتن سيارة';
+  static const String areYou = 'هل انت؟';
+  static const String welcomeToLaylatyApp = 'اهلا بك في تطبيق ليلتي';
+  static const String ladyCaptian = 'ليدي كابتن';
+  static const String captian = 'كابتن';
+  static const String allCustomers = 'كل العملاء';
+  static const String femalesOnly = 'الإناث فقط';
+  static const String doYouWantToShowUp = 'هل تودين الظهور';
 }

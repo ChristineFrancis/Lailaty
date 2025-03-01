@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/captain_fleet_profile_widget/car_profile.dart';
+
 import 'package:lailaty/core/config/presentation/widget/Titles.dart';
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/config/presentation/widget/imageProduct.dart';
