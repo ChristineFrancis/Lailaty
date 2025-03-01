@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/presentation/widget/Titles.dart';
+
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 
-import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
-import 'package:lailaty/core/resources/style_maneger.dart';
-import 'package:lailaty/feature/fleet_info/presentation/view/fleet_content_home_views/fleet.dart';
-import 'package:lailaty/feature/fleet_info/presentation/view/fleet_content_home_views/new_order.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_home_page_widget/fleet_page_bottom_bar.dart';
+
+import '../widgets/fleet_home_page_widget/fleet_page_bottom_bar.dart';
+import 'fleet_content_home_views/fleet.dart';
+import 'fleet_content_home_views/new_order.dart';
 
 class fleetHomePageView extends StatefulWidget {
   fleetHomePageView({super.key});

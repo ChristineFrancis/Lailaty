@@ -6,9 +6,10 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/core/viewmodels/personal_information_view.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_infromation_widget/company_fleet_information_widget.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_infromation_widget/person_fleet_information_widget.dart';
 import 'package:provider/provider.dart';
+
+import '../widgets/fleet_infromation_widget/company_fleet_information_widget.dart';
+import '../widgets/fleet_infromation_widget/person_fleet_information_widget.dart';
 
 class FleetInfromationPage extends StatefulWidget {
   const FleetInfromationPage({super.key});

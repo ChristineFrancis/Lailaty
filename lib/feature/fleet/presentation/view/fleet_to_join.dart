@@ -7,8 +7,9 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_to_join_widget/custom_dropdown.dart';
-import 'package:lailaty/feature/fleet_info/presentation/widgets/fleet_to_join_widget/search_container.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_to_join_widget/search_container.dart';
+
+import '../widgets/fleet_to_join_widget/custom_dropdown.dart';
 
 class FleetToJoinPage extends StatelessWidget {
   const FleetToJoinPage({super.key});
