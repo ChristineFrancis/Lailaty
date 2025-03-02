@@ -52,6 +52,14 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (_) => const FinalyPage()),
                   );
+                } else if (state is VerifyEmailResendSuccess) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(state.message)),
+                  );
+                  setState(() {
+                    isTimerFinished = false;
+                    //!  برست التايمر و بفضي التيكست فيلد
+                  });
                 }
               },
               child: SingleChildScrollView(
@@ -84,7 +92,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                           onChanged: (value) {},
                           onCompleted: (value) {
                             FocusScope.of(context).unfocus();
-                            //TODO: ما عميعمل سبمت لحالو لما كمل ادخال
+                            //todo: ما عميعمل سبمت لحالو لما كمل ادخال
                             Future.delayed(const Duration(seconds: 1), () {
                               context.read<VerifyEmailBloc>().add(
                                     VerifyEmailSubmitted(
@@ -110,7 +118,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                     ),
                     SpcY(y: 30),
                     CountdownTimer(
-                      maxTime: 600, // 10 minutes in seconds
+                      maxTime: 600,
                       onTimerComplete: () {
                         setState(() {
                           isTimerFinished = true;
@@ -133,9 +141,11 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                                   : 'تحقق',
                               onTap: () {
                                 if (isTimerFinished) {
-                                  // TODO: Connect your resend verification code API here.
-                                  // For now, you might print or trigger an event:
-                                  print('Resend verification code pressed');
+                                  // todo : resend verification code is not working
+                                  context.read<VerifyEmailBloc>().add(
+                                        ResendVerificationCodeSubmitted(
+                                            email: widget.email.trim()),
+                                      );
                                 } else {
                                   final verificationCode =
                                       codeController.text.trim();

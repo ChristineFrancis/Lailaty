@@ -3,6 +3,8 @@ import '../../../../core/error_manager/exception.dart';
 import '../../../../core/error_manager/failures.dart';
 import '../../domain/entities/auth_request.dart';
 import '../../domain/entities/auth_response.dart';
+import '../../domain/entities/resend_verification_request.dart';
+import '../../domain/entities/resend_verification_response.dart';
 import '../../domain/entities/verify_email_request.dart';
 import '../../domain/entities/verify_email_response.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -27,6 +29,17 @@ class AuthRepositoryImpl implements AuthRepository {
       VerifyEmailRequest request) async {
     try {
       final response = await remoteDataSource.verifyEmail(request);
+      return Right(response);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ResendVerificationResponse>> resendVerificationCode(
+      ResendVerificationRequest request) async {
+    try {
+      final response = await remoteDataSource.resendVerificationCode(request);
       return Right(response);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));

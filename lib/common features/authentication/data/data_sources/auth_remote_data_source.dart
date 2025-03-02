@@ -2,16 +2,19 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:lailaty/core/resources/url_manager.dart';
 import '../../../../core/error_manager/exception.dart';
+import '../../domain/entities/resend_verification_request.dart';
 import '../../domain/entities/verify_email_request.dart';
 import '../models/email_registration_response_model.dart';
 import '../../domain/entities/auth_request.dart';
+import '../models/resend_verification_response_model.dart';
 import '../models/verify_email_response_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<EmailRegistrationResponseModel> register(AuthRequest request);
   Future<VerifyEmailResponseModel> verifyEmail(VerifyEmailRequest request);
+  Future<ResendVerificationResponseModel> resendVerificationCode(
+      ResendVerificationRequest request);
 }
-
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final http.Client client;
@@ -61,6 +64,32 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       return VerifyEmailResponseModel.fromJson(jsonMap);
     } else {
       throw ServerException('Failed to verify email: ${response.body}');
+    }
+  }
+
+  @override
+  Future<ResendVerificationResponseModel> resendVerificationCode(
+      ResendVerificationRequest request) async {
+    final url = Uri.parse(UrlManager.resendVerificationCodeURL);
+    final response = await client.post(
+      url,
+      headers: {'Accept': 'application/json'},
+      body: {
+        'email': request.email.trim(),
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final jsonMap = json.decode(response.body);
+      return ResendVerificationResponseModel.fromJson(jsonMap);
+    } else {
+      final jsonMap = json.decode(response.body);
+      String errorMessage =
+          jsonMap['message'] ?? 'Failed to resend verification code';
+      if (jsonMap['errors'] != null && jsonMap['errors']['email'] != null) {
+        errorMessage += ": " + (jsonMap['errors']['email'] as List).join(', ');
+      }
+      throw ServerException(errorMessage);
     }
   }
 }
