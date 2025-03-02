@@ -20,9 +20,5 @@ class LoginWord extends StatelessWidget {
       ),
     );
 
-    // const Text(
-    //           'تسجيل الدخول',
-    //           style: TextStyle(fontWeight: FontWeight.w900, fontSize: 35),
-    //         );
   }
 }

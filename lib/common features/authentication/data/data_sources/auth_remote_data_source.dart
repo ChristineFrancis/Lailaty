@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:lailaty/core/resources/url_manager.dart';
 import '../../../../core/error_manager/exception.dart';
+import '../../domain/entities/login_request.dart';
 import '../../domain/entities/resend_verification_request.dart';
 import '../../domain/entities/verify_email_request.dart';
 import '../models/email_registration_response_model.dart';
 import '../../domain/entities/auth_request.dart';
+import '../models/login_response_model.dart';
 import '../models/resend_verification_response_model.dart';
 import '../models/verify_email_response_model.dart';
 
@@ -14,6 +16,7 @@ abstract class AuthRemoteDataSource {
   Future<VerifyEmailResponseModel> verifyEmail(VerifyEmailRequest request);
   Future<ResendVerificationResponseModel> resendVerificationCode(
       ResendVerificationRequest request);
+  Future<LoginResponseModel> login(LoginRequest request);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -92,4 +95,24 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       throw ServerException(errorMessage);
     }
   }
+
+  @override
+  Future<LoginResponseModel> login(LoginRequest request) async {
+    final url = Uri.parse(UrlManager.loginURL);
+    final response = await client.post(
+      url,
+      headers: {'Accept': 'application/json'},
+      body: {
+        'email': request.email.trim(),
+        'password': request.password,
+      },
+    );
+    if (response.statusCode == 200) {
+      final jsonMap = json.decode(response.body);
+      return LoginResponseModel.fromJson(jsonMap);
+    } else {
+      throw ServerException('Failed to login: ${response.body}');
+    }
+  }
+
 }
