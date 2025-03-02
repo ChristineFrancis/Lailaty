@@ -44,9 +44,6 @@ class NoticeToDriverView extends StatelessWidget {
                         TextSpan(
                             text: StringManager.noticeContentFirstPart,
                             style: StyleManager.smallBlackText16()),
-                        TextSpan(
-                            text: StringManager.noticeContentSecondPart,
-                            style: StyleManager.smallBlackText16()),
                       ],
                     ),
                   ),

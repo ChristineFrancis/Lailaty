@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/captain/captain_image.dart';
 import 'package:lailaty/core/config/presentation/widget/imageProduct.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
@@ -26,7 +25,7 @@ class CustomDrawer extends StatelessWidget {
     return SizedBox(
       width: context.screenWidth * 0.6,
       child: Drawer(
-        backgroundColor: ColorManager.grey1,
+        backgroundColor: ColorManager.whiteColor,
         child: SafeArea(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -61,22 +60,22 @@ class CustomDrawer extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.star_border,
-                                color: ColorManager.yellowAccent,
+                                color: ColorManager.grey2,
                                 size: context.screenWidth * 0.04,
                               ),
                               Icon(
                                 Icons.star_border,
-                                color: ColorManager.yellowAccent,
+                                color: ColorManager.grey2,
                                 size: context.screenWidth * 0.04,
                               ),
                               Icon(
                                 Icons.star_border,
-                                color: ColorManager.yellowAccent,
+                                color: ColorManager.grey2,
                                 size: context.screenWidth * 0.04,
                               ),
                               Icon(
                                 Icons.star_border,
-                                color: ColorManager.yellowAccent,
+                                color: ColorManager.grey2,
                                 size: context.screenWidth * 0.04,
                               ),
                             ],
@@ -209,6 +208,26 @@ class CustomDrawer extends StatelessWidget {
                 text: StringManager.safety,
                 onTap: () {
                   context.push(AppKeys.safetyPageKey);
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.inbox,
+                text: StringManager.inbox,
+                onTap: () {
+                  context.push(AppKeys.inboxPagePath);
+                },
+              ),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              DrawerOption(
+                icon: Icons.timer_outlined,
+                text: StringManager.ordesRecord,
+                onTap: () {
+                  context.push(AppKeys.orderHistoryPagePath);
                 },
               ),
               SizedBox(

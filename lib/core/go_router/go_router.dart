@@ -14,6 +14,8 @@ import 'package:lailaty/feature/fleet/presentation/view/fleet_home_page.dart';
 
 import 'package:lailaty/feature/fleet/presentation/view/fleet_infromation_page.dart';
 import 'package:lailaty/feature/on_your_mood/presentation/view/complete_on_your_mood_order.dart';
+import 'package:lailaty/feature/side_bar_screens/presentation/view/inbox_page.dart';
+import 'package:lailaty/feature/side_bar_screens/presentation/view/order_history_page.dart';
 import 'package:lailaty/feature/splash/page/user_info_page.dart';
 import 'package:lailaty/feature/teach_driving/presentation/view/complete_teach_driving_order.dart';
 import 'package:lailaty/feature/travel/presentation/view/complete_travel_order.dart';
@@ -184,6 +186,22 @@ class Routes {
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: const SettingsPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.inboxPagePath,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const InboxPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.orderHistoryPagePath,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const OrderHistoryPage(),
           transitionsBuilder: _fadeTransition,
         ),
       ),

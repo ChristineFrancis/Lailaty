@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/presentation/widget/Titles.dart';
 import 'package:lailaty/core/config/presentation/widget/imageProduct.dart';
 
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 
 import '../../widgets/fleet_content_home_page_widget/row_of_two_text_with_icon.dart';
@@ -59,7 +61,9 @@ class FleetContentView extends StatelessWidget {
                                   alignment: Alignment.topRight,
                                   child: IconButton(
                                     icon: Icon(Icons.arrow_forward_ios_sharp),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      context.push(AppKeys.profileOfcaptainFleet);
+                                    },
                                   ),
                                 )
                               ],

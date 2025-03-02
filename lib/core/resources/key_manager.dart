@@ -33,10 +33,12 @@ class AppKeys {
   static const String loginPromptPageKey = '/login_prompt_page';
 
   static String carInfoPath = "/carInfoView";
-  static String fleetHomePageViewPath = "/";
+  static String inboxPagePath = "/InboxPage";
+  static String orderHistoryPagePath = "/OrderHistoryPage";
+  static String fleetHomePageViewPath = "/fleetHomePageView";
   static String motorInfoPath = "/MotorInfoView";
   static String showCategoryPath = "/CategoryView"; //CategoryView
-  static String noticeToDriverPath = "/NoticeToDriverView";
+  static String noticeToDriverPath = "/";//NoticeToDriverView
 
   static const String safetyPageKey = '/safety_page';
   static const String shareAppPageKey = '/share_app_page';

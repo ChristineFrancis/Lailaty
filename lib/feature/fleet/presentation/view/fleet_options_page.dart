@@ -16,7 +16,7 @@ class FleetOptionsPage extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppbar(
         ispop: false,
-        title: '',
+        title: 'قسم الاسطول',
       ),
       backgroundColor: ColorManager.backGroundColor,
       body: Column(

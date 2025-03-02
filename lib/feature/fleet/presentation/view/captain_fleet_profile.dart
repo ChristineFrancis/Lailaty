@@ -28,7 +28,7 @@ class _CaptainFleetProfileState extends State<CaptainFleetProfile> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: ColorManager.backGroundColor,
-        appBar: CustomAppbar(title: StringManager.profileTitle, ispop: false),
+        appBar: CustomAppbar(title: StringManager.profileTitle, ispop: true),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(

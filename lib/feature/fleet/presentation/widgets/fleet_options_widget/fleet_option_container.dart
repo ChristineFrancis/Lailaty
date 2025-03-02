@@ -16,27 +16,31 @@ class FleetOptionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Text(
-            optionTitle,
-            style: StyleManager.normalText18(size: context.screenWidth * 0.045),
-          ),
-          SizedBox(
-            width: context.screenWidth * 0.02,
-          ),
-          Icon(
-            optionIcon,
-            color: ColorManager.black,
-            size: context.screenWidth * 0.08,
-          ),
-          SizedBox(
-            width: context.screenWidth * 0.05,
-          ),
-        ],
+    return SizedBox(
+      height: context.screenHeight / 12,
+      child: InkWell(
+        onTap: onTap,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              optionTitle,
+              style:
+                  StyleManager.normalText18(size: context.screenWidth * 0.045),
+            ),
+            SizedBox(
+              width: context.screenWidth * 0.02,
+            ),
+            Icon(
+              optionIcon,
+              color: ColorManager.black,
+              size: context.screenWidth * 0.08,
+            ),
+            SizedBox(
+              width: context.screenWidth * 0.05,
+            ),
+          ],
+        ),
       ),
     );
   }
