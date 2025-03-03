@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/finaly_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/register_with_email_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/user_info_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
@@ -16,77 +16,6 @@ import '../widgets/custom widgets/custom spaces/spc_y.dart';
 import '../widgets/custom widgets/text_fields/custom_text_field.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/lailaty_arabic_and_english.dart';
-
-/*
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-  
-  @override
-  Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-   // double screenWidth = MediaQuery.of(context).size.width;
-    
-    return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: BlocProvider(
-        create: (_) => sl<LoginBloc>(),
-        child: BlocListener<LoginBloc, LoginState>(
-          listener: (context, state) {
-            if (state is LoginError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.message),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            } else if (state is LoginLoaded) {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_) => const FinalyPage()),
-              );
-            }
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                TextField(
-                  controller: emailController,
-                  decoration: const InputDecoration(labelText: 'Email'),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: passwordController,
-                  decoration: const InputDecoration(labelText: 'Password'),
-                  obscureText: true,
-                ),
-                const SizedBox(height: 16),
-                BlocBuilder<LoginBloc, LoginState>(
-                  builder: (context, state) {
-                    if (state is LoginLoading) {
-                      return const CircularProgressIndicator();
-                    }
-                    return ElevatedButton(
-                      onPressed: () {
-                        final email = emailController.text.trim();
-                        final password = passwordController.text;
-                        context.read<LoginBloc>().add(
-                          LoginSubmitted(email: email, password: password),
-                        );
-                      },
-                      child: const Text('Login'),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-*/
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -141,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                 );
               } else if (state is LoginLoaded) {
                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (_) => const FinalyPage()),
+                  MaterialPageRoute(builder: (_) => const UserInfoPage()),
                 );
               }
             },
@@ -219,7 +148,14 @@ class _LoginPageState extends State<LoginPage> {
                               onEditingComplete: () => _submit(context),
                             ),
                           ),
-                          SpcY(y: 70),//55
+                          SpcY(y: 5),
+                          InkWell(
+                            child: CustomTextWidget(
+                                text: 'نسيت كلمة المرور',
+                                fontSize: 10,
+                                color: ColorManager.yellow),
+                          ),
+                          SpcY(y: 45), //55
                           BlocBuilder<LoginBloc, LoginState>(
                               builder: (context, state) {
                             if (state is LoginLoading) {

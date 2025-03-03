@@ -1,8 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/login_page.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/register_with_email_page.dart';
 import 'package:lailaty/core/ui/splash_video/splash_video.dart';
 import 'package:lailaty/core/config/storage/dependency_injection.dart' as di;
 
@@ -48,7 +46,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Segeo",
       ),
-      home: RegisterWithEmailPage(),
+      home: SplashVideo(),
     );
   }
 }
