@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:lailaty/common%20features/authentication/data/models/forgot_password_response_model.dart';
+import 'package:lailaty/common%20features/authentication/domain/entities/forgot_password_request.dart';
 import 'package:lailaty/core/resources/url_manager.dart';
 import '../../../../core/error_manager/exception.dart';
 import '../../domain/entities/login_request.dart';
@@ -17,6 +19,8 @@ abstract class AuthRemoteDataSource {
   Future<ResendVerificationResponseModel> resendVerificationCode(
       ResendVerificationRequest request);
   Future<LoginResponseModel> login(LoginRequest request);
+  Future<ForgotPasswordResponseModel> forgotPassword(
+      ForgotPasswordRequest request);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -115,4 +119,23 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     }
   }
 
+  @override
+  Future<ForgotPasswordResponseModel> forgotPassword(
+      ForgotPasswordRequest request) async {
+    final url = Uri.parse(UrlManager.forgotPasswordURL);
+    final response = await client.post(
+      url,
+      headers: {'Accept': 'application/json'},
+      body: {
+        'email': request.email.trim(),
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final jsonMap = json.decode(response.body);
+      return ForgotPasswordResponseModel.fromJson(jsonMap);
+    } else {
+      throw ServerException('Failed to send reset link: ${response.body}');
+    }
+  }
 }

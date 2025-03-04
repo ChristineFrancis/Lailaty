@@ -7,7 +7,7 @@ class ResendVerificationResponseModel extends ResendVerificationResponse {
     return ResendVerificationResponseModel(
       message: json['message'] as String,
     );
-  }
+  } 
 
   Map<String, dynamic> toJson() {
     return {

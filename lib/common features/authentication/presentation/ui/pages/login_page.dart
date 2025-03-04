@@ -6,9 +6,11 @@ import 'package:lailaty/common%20features/authentication/presentation/ui/pages/u
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
-
-import '../../../../../core/config/storage/dependency_injection.dart';
-import '../../../../../core/resources/asset_manager.dart';
+import 'package:lailaty/core/config/storage/dependency_injection.dart';
+import 'package:lailaty/core/resources/asset_manager.dart';
+import '../../bloc/forgot_password_bloc/forgot_password_bloc.dart';
+import '../../bloc/forgot_password_bloc/forgot_password_event.dart';
+import '../../bloc/forgot_password_bloc/forgot_password_state.dart';
 import '../../bloc/login_bloc/login_bloc.dart';
 import '../../bloc/login_bloc/login_event.dart';
 import '../../bloc/login_bloc/login_state.dart';
@@ -42,12 +44,28 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _submit(BuildContext context) {
+  void _submitLogin(BuildContext context) {
     final email = emailController.text.trim();
     final password = passwordController.text;
     context
         .read<LoginBloc>()
         .add(LoginSubmitted(email: email, password: password));
+  }
+
+  void _submitForgotPassword(BuildContext context) {
+    final email = emailController.text.trim();
+    if (email.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("الرجاء إدخال الإيميل لاعادة ضبط كلمة السر"),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      context
+          .read<ForgotPasswordBloc>()
+          .add(ForgotPasswordSubmitted(email: email));
+    }
   }
 
   @override
@@ -57,23 +75,50 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: ColorManager.grey,
-        body: BlocProvider(
-          create: (_) => sl<LoginBloc>(),
-          child: BlocListener<LoginBloc, LoginState>(
-            listener: (context, state) {
-              if (state is LoginError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.message),
-                    backgroundColor: Colors.red,
-                  ),
-                );
-              } else if (state is LoginLoaded) {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (_) => const UserInfoPage()),
-                );
-              }
-            },
+        body: MultiBlocProvider(
+          providers: [
+            BlocProvider<LoginBloc>(create: (_) => sl<LoginBloc>()),
+            BlocProvider<ForgotPasswordBloc>(
+                create: (_) => sl<ForgotPasswordBloc>()),
+          ],
+          child: MultiBlocListener(
+            listeners: [
+              BlocListener<LoginBloc, LoginState>(
+                listener: (context, state) {
+                  if (state is LoginError) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(state.message),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  } else if (state is LoginLoaded) {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (_) => const UserInfoPage()),
+                    );
+                  }
+                },
+              ),
+              BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
+                listener: (context, state) {
+                  if (state is ForgotPasswordError) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(state.message),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  } else if (state is ForgotPasswordLoaded) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(state.response.message),
+                        backgroundColor: Colors.green,
+                      ),
+                    );
+                  }
+                },
+              ),
+            ],
             child: Builder(builder: (context) {
               return SingleChildScrollView(
                 padding: EdgeInsets.symmetric(
@@ -110,11 +155,12 @@ class _LoginPageState extends State<LoginPage> {
                         );
                       },
                     ),
-                    SpcY(y: 40),
+                    const SpcY(y: 40),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal:
-                              MediaQuery.of(context).size.width * 50 / 430),
+                        horizontal:
+                            MediaQuery.of(context).size.width * 50 / 430,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -122,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                               text: 'الرجاء إدخال البريد الالكتروني',
                               fontSize: 18,
                               color: Colors.black),
-                          SpcY(y: 15),
+                          const SpcY(y: 15),
                           Directionality(
                             textDirection: TextDirection.ltr,
                             child: CustomTextField(
@@ -132,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                               isEmail: true,
                             ),
                           ),
-                          SpcY(y: 30),
+                          const SpcY(y: 30),
                           CustomTextWidget(
                               text: 'الرجاء إدخال كلمة المرور',
                               fontSize: 18,
@@ -145,31 +191,34 @@ class _LoginPageState extends State<LoginPage> {
                               labelText: 'Password',
                               obscureText: true,
                               textInputAction: TextInputAction.done,
-                              onEditingComplete: () => _submit(context),
+                              onEditingComplete: () => _submitLogin(context),
                             ),
                           ),
-                          SpcY(y: 5),
+                          const SpcY(y: 5),
                           InkWell(
+                            onTap: () => _submitForgotPassword(context),
                             child: CustomTextWidget(
-                                text: 'نسيت كلمة المرور',
-                                fontSize: 10,
-                                color: ColorManager.yellow),
+                              text: 'نسيت كلمة المرور',
+                              fontSize: 10,
+                              color: ColorManager.yellow,
+                            ),
                           ),
-                          SpcY(y: 45), //55
+                          const SpcY(y: 45),
                           BlocBuilder<LoginBloc, LoginState>(
-                              builder: (context, state) {
-                            if (state is LoginLoading) {
-                              return Container(
-                                  alignment: Alignment.center,
-                                  child: CircularProgressIndicator(
-                                      color: ColorManager.yellow));
-                            }
-                            return CustomButton(
-                              textButton: 'تسجيل الدخول',
-                              onTap: () => _submit(context),
-                            );
-                          }),
-                          SpcY(y: 10),
+                            builder: (context, state) {
+                              if (state is LoginLoading) {
+                                return Container(
+                                    alignment: Alignment.center,
+                                    child: CircularProgressIndicator(
+                                        color: ColorManager.yellow));
+                              }
+                              return CustomButton(
+                                textButton: 'تسجيل الدخول',
+                                onTap: () => _submitLogin(context),
+                              );
+                            },
+                          ),
+                          const SpcY(y: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -186,7 +235,7 @@ class _LoginPageState extends State<LoginPage> {
                                   Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              RegisterWithEmailPage()),
+                                              const RegisterWithEmailPage()),
                                       (route) => false);
                                 },
                               ),

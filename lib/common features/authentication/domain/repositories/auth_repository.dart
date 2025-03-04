@@ -3,6 +3,8 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/error_manager/failures.dart';
 import '../entities/auth_request.dart';
 import '../entities/auth_response.dart';
+import '../entities/forgot_password_request.dart';
+import '../entities/forgot_password_response.dart';
 import '../entities/login_request.dart';
 import '../entities/login_response.dart';
 import '../entities/resend_verification_request.dart';
@@ -17,4 +19,6 @@ abstract class AuthRepository {
   Future<Either<Failure, ResendVerificationResponse>> resendVerificationCode(
       ResendVerificationRequest request);
   Future<Either<Failure, LoginResponse>> login(LoginRequest request);
+  Future<Either<Failure, ForgotPasswordResponse>> forgotPassword(
+      ForgotPasswordRequest request);
 }

@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:lailaty/common%20features/authentication/domain/entities/forgot_password_request.dart';
+import 'package:lailaty/common%20features/authentication/domain/entities/forgot_password_response.dart';
 import '../../../../core/error_manager/exception.dart';
 import '../../../../core/error_manager/failures.dart';
 import '../../domain/entities/auth_request.dart';
@@ -52,6 +54,17 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, LoginResponse>> login(LoginRequest request) async {
     try {
       final response = await remoteDataSource.login(request);
+      return Right(response);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ForgotPasswordResponse>> forgotPassword(
+      ForgotPasswordRequest request) async {
+    try {
+      final response = await remoteDataSource.forgotPassword(request);
       return Right(response);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
