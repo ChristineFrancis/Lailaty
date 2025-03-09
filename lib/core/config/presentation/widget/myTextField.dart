@@ -28,14 +28,14 @@ class myTextFieldName extends StatelessWidget {
       keyboardType: TextInputType.name,
       cursorColor: primaryColor,
       decoration: InputDecoration(
-        errorStyle:  TextStyle(color: primaryColor),
+        errorStyle: TextStyle(color: primaryColor),
         errorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: primaryColor),
             borderRadius: BorderRadius.circular(12)),
         focusedErrorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: primaryColor),
             borderRadius: BorderRadius.circular(12)),
-        fillColor: Colors.grey[200],
+        fillColor: Colors.white,
         filled: true,
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: primaryColor),
@@ -43,8 +43,7 @@ class myTextFieldName extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: primaryColor),
             borderRadius: BorderRadius.circular(12)),
-        border: OutlineInputBorder(
-            borderSide: BorderSide(color: primaryColor)),
+        border: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
         hintText: nameText,
         labelText: label,
         floatingLabelBehavior: FloatingLabelBehavior.always,

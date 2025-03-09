@@ -7,6 +7,7 @@ import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/config/presentation/widget/my_sized_box.dart';
 
 import 'package:lailaty/core/config/presentation/widget/textWithButon.dart';
+import 'package:lailaty/core/config/presentation/widget/text_with_textfield.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
@@ -17,16 +18,17 @@ import 'package:lailaty/core/viewmodels/personal_information_view.dart';
 
 import 'package:provider/provider.dart';
 
-import '../../../../core/config/presentation/widget/accept_button_customer.dart';
-import '../../../../core/config/presentation/widget/textWithExpansionTile.dart';
-import '../../../../core/resources/key_manager.dart';
-import '../widgets/motor_info_page/add_photo_licence_motor.dart';
+import '../../../../../core/config/presentation/widget/accept_button_customer.dart';
+import '../../../../../core/config/presentation/widget/textWithExpansionTile.dart';
+import '../../../../../core/resources/key_manager.dart';
+import '../../../presentation/widgets/motor_info_page/add_photo_licence_motor.dart';
 
 class MotorInfoView extends StatelessWidget {
   const MotorInfoView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController plateNumber = TextEditingController();
     final viewModel = context.watch<PersonalInformationView>();
     return Scaffold(
       backgroundColor: ColorManager.backGroundColor,
@@ -47,6 +49,10 @@ class MotorInfoView extends StatelessWidget {
                   text: StringManager.yearMade,
                   textOfOption: "1970",
                 ),
+                TextWithTextfield(
+                    controller: plateNumber,
+                    text: StringManager.plateNumber,
+                    textOfOption: "12324"),
                 myContainerWithBottomBorder(
                   contentWidget: Column(
                     children: [
@@ -101,12 +107,12 @@ class MotorInfoView extends StatelessWidget {
                 acceptButtonCustomer(
                   text: StringManager.tam,
                   onPress: () {
-                   if(viewModel.validateImagesInMotorInfoView(context)){
-                     context.push(AppKeys.noticeToDriverPath);
-                   }else{
+                    if (viewModel.validateImagesInMotorInfoView(context)) {
+                      context.push(AppKeys.noticeToDriverPath);
+                    } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text(StringManager.uploadAllImages)));
-                   }
+                    }
                   },
                 ),
               ],

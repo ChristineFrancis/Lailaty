@@ -6,11 +6,12 @@ import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/config/presentation/widget/myButton.dart';
 import 'package:lailaty/core/config/presentation/widget/my_sized_box.dart';
 import 'package:lailaty/core/config/presentation/widget/textWithButon.dart';
+import 'package:lailaty/core/config/presentation/widget/text_with_textfield.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
-import 'package:lailaty/feature/agree_pages/presentation/view/editingCar.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/add_back_car_photo_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/add_car_lecience_photo.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/add_inner_car_photo_widget.dart';
@@ -18,11 +19,11 @@ import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/a
 import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/add_right_car_photo_widget%20copy.dart';
 
 import 'package:provider/provider.dart';
-import '../../../../core/config/presentation/widget/accept_button_customer.dart';
-import '../../../../core/config/presentation/widget/textWithExpansionTile.dart';
-import '../../../../core/viewmodels/personal_information_view.dart';
-import '../widgets/car_info_page/add_front_car_photo_widget copy 2.dart';
-import '../widgets/car_info_page/my_container_with_bottom_border.dart';
+import '../../../../../core/config/presentation/widget/accept_button_customer.dart';
+import '../../../../../core/config/presentation/widget/textWithExpansionTile.dart';
+import '../../../../../core/viewmodels/personal_information_view.dart';
+import '../../../presentation/widgets/car_info_page/add_front_car_photo_widget copy 2.dart';
+import '../../../presentation/widgets/car_info_page/my_container_with_bottom_border.dart';
 
 class CarInfoView extends StatelessWidget {
   final VoidCallback? onNavigate;
@@ -33,6 +34,8 @@ class CarInfoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController colorController = TextEditingController();
+    TextEditingController plateController = TextEditingController();
     final viewModel = context.watch<PersonalInformationView>();
     return Scaffold(
       backgroundColor: ColorManager.backGroundColor,
@@ -63,6 +66,14 @@ class CarInfoView extends StatelessWidget {
                   text: StringManager.numberOfChairsInCars,
                   textOfOption: StringManager.fourChairs,
                 ),
+                TextWithTextfield(
+                    controller: plateController,
+                    text: StringManager.plateNumber,
+                    textOfOption: "12324"),
+                TextWithTextfield(
+                    controller: colorController,
+                    text: StringManager.carColor,
+                    textOfOption: " أبيض"),
                 myContainerWithBottomBorder(
                   contentWidget: Column(
                     children: [

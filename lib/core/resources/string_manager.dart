@@ -1,6 +1,8 @@
 class StringManager {
   static const String withoutCost = "بدون \nعمولة";
   static const String suvCar = "SUV سيارة";
+  static const String plateNumber = "رقم اللوحة :";
+  static const String carColor = "لون السيارة :";
   static const String serviceRules = 
    'قواعد الخدمة';
   static const String ordesRecord = 'سجل الطلبات';
