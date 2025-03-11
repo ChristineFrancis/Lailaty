@@ -5,6 +5,7 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
 import 'package:lailaty/core/viewmodels/personal_information_view.dart';
 import 'package:lailaty/feature/fleet/presentation/widgets/fleet_infromation_widget/company_fleet_information_widget.dart';
 import 'package:lailaty/feature/fleet/presentation/widgets/fleet_infromation_widget/person_fleet_information_widget.dart';
@@ -46,7 +47,7 @@ class _FleetInfromationPageState extends State<FleetInfromationPage> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<PersonalInformationView>();
+    final viewModel = context.watch<PersonalInformationCubit>();
     final selectedpostcardCopyImage =
         viewModel.getImage(AppKeys.postcardCopyImageKey);
     final selectedcommercialRegistrationImage =
@@ -116,7 +117,7 @@ class _FleetInfromationPageState extends State<FleetInfromationPage> {
   Widget _buildDynamicContent(
       File? selectedpostcardCopyImage,
       File? selectedcommercialRegistrationImage,
-      PersonalInformationView viewModel) {
+      PersonalInformationCubit viewModel) {
     if (selectedIndex == 0) {
       return PersonFleetInformationWidget(
         context: context,

@@ -13,7 +13,7 @@ class LoginPromptPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.backGroundColor,
-      appBar: CustomAppbar(ispop: false),
+      appBar: CustomAppbar(ispop: true),
       body: Center(
         child: SingleChildScrollView(
           child: Column(

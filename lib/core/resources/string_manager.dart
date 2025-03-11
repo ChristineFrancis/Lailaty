@@ -3,8 +3,7 @@ class StringManager {
   static const String suvCar = "SUV سيارة";
   static const String plateNumber = "رقم اللوحة :";
   static const String carColor = "لون السيارة :";
-  static const String serviceRules = 
-   'قواعد الخدمة';
+  static const String serviceRules = 'قواعد الخدمة';
   static const String ordesRecord = 'سجل الطلبات';
   static const String inbox = 'الصندوق الوارد';
   static const String sidanBigOrMiddle = "سيدان متوسطة او كبيرة";
@@ -122,8 +121,8 @@ class StringManager {
   static const String birthDate = ':تاريخ الميلاد';
   static const String select = 'اختر';
   static const String uploadAllImages =
-      'يرجى رفع جميع الصور المطلوبة قبل المتابعة.';
-  static const String selectBirthDate = 'يرجى اختيار تاريخ الميلاد.';
+      'يرجى رفع جميع الصور المطلوبة قبل المتابعة';
+  static const String selectBirthDate = 'يرجى اختيار تاريخ الميلاد';
 
   static const String securityInformation = 'معلومات الامان';
   static const String declarationAndCommitment = 'إقرار وعهد';

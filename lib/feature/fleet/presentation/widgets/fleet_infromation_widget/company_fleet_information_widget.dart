@@ -9,6 +9,7 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
 import 'package:lailaty/core/viewmodels/personal_information_view.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/image_picker_place_holder.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/no_image_placeholder_widget.dart';
@@ -19,7 +20,7 @@ class CompanyFleetInformationWidget extends StatelessWidget {
   final TextEditingController addressController;
   final File? selectedpostcardCopyImage;
   final File? selectedcommercialRegistrationImage;
-  final PersonalInformationView viewModel;
+  final PersonalInformationCubit viewModel;
 
   const CompanyFleetInformationWidget({
     super.key,
@@ -54,22 +55,28 @@ class CompanyFleetInformationWidget extends StatelessWidget {
         _buildImageSection(
           context,
           StringManager.commercialRegistration,
-          selectedcommercialRegistrationImage,
-          () async =>
-              await viewModel.pickImage(AppKeys.commercialRegistrationImageKey),
+          AppKeys.postcardCopyImageKey,
+          // selectedcommercialRegistrationImage,
+          // () async =>
+          //     await viewModel.pickImage(AppKeys.commercialRegistrationImageKey),
         ),
         _buildImageSection(
           context,
           StringManager.postcardCopy,
-          selectedpostcardCopyImage,
-          () async => await viewModel.pickImage(AppKeys.postcardCopyImageKey),
+          AppKeys.postcardCopyImageKey,
+          // selectedpostcardCopyImage,
+          // () async => await viewModel.pickImage(AppKeys.postcardCopyImageKey),
         ),
         const ClientServiceRow(),
         SizedBox(height: context.screenHeight * 0.02),
         MyButton(
           title: StringManager.next,
           onpress: () {
-            if (!viewModel.validateImagesInFleetInfoCompany(context)) {
+            if (
+                //!viewModel.validateImagesInFleetInfoCompany(context)
+                viewModel.getImage(AppKeys.commercialRegistrationImageKey) !=
+                        null ||
+                    viewModel.getImage(AppKeys.postcardCopyImageKey) != null) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text(StringManager.uploadAllImages)),
               );
@@ -99,7 +106,7 @@ class CompanyFleetInformationWidget extends StatelessWidget {
   }
 
   Widget _buildImageSection(
-      BuildContext context, String title, File? imageFile, VoidCallback onTap) {
+      BuildContext context, String title, String imageKey) {
     return Container(
       margin: const EdgeInsets.all(20),
       width: context.screenWidth,
@@ -117,12 +124,17 @@ class CompanyFleetInformationWidget extends StatelessWidget {
           TitleForDetailsWidget(title: title),
           SizedBox(height: context.screenHeight * 0.02),
           ImagePickerPlaceHolder(
-            noImgeWidget: const NoImagePlaceholderWidget(),
+            noImageWidget: const NoImagePlaceholderWidget(),
             width: context.screenWidth * 0.3,
+
             height: context.screenWidth * 0.3,
-            hasImage: imageFile == null,
-            imageFile: imageFile,
-            onTap: onTap,
+            imageKey: imageKey,
+            onImageSelected: (key, image) {
+              viewModel.updateImage(key, image);
+            },
+            // hasImage: imageFile == null,
+            // imageFile: imageFile,
+            // onTap: onTap,
           ),
           SizedBox(height: context.screenHeight * 0.02),
         ],

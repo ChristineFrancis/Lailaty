@@ -4,6 +4,7 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
 import 'package:lailaty/core/viewmodels/personal_information_view.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/state_managment/car_list_view_model.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/widgets/car_list_widget.dart';
@@ -44,14 +45,14 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<CarListViewModel>();
-    final personalImageViewModel = context.watch<PersonalInformationView>();
+    final personalImageViewModel = context.watch<PersonalInformationCubit>();
     final selectedImage =
         personalImageViewModel.getImage(AppKeys.personalPhotoEdit);
 
     return Scaffold(
       backgroundColor: ColorManager.backGroundColor,
       appBar: CustomAppbar(
-        ispop: false,
+        ispop: true,
         title: StringManager.profileTitle,
       ),
       body: Column(

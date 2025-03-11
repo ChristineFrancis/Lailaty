@@ -1,8 +1,8 @@
 class ImageAssetManager {
   static const String rootImage = 'assets/images';
   static String lailatyArabic = "$rootImage/ليلتي كاملة.svg";
- // static String lettersLY = "$rootImage/LY.svg";
- // static String lailaty = "$rootImage/laylaty.svg";
+  // static String lettersLY = "$rootImage/LY.svg";
+  // static String lailaty = "$rootImage/laylaty.svg";
   static String loginAmico = "$rootImage/Login-amico.svg";
   static String privacyLock = "$rootImage/Privacy policy-bro.svg";
   static String city = "$rootImage/المدينة.svg";
@@ -57,4 +57,13 @@ class ImageAssetManager {
   static String profileExample =
       "$rootImage/profileExam.svg"; //! the image has problem
   static String waitingPic = "$rootImage/Waiting.svg";
+  static String onBoardingAlaModak = "$rootImage/on boarding ala modak.svg";
+  static String onBoardingInnerTrip = "$rootImage/on boarding inner trip.svg";
+  static String onBoardingLearnDriving =
+      "$rootImage/on boarding learn driving.svg";
+  static String onBoardingWedding = "$rootImage/on boarding wedding.svg";
+  static String onBoardingBusinessMen =
+      "$rootImage/on boarding business men.svg";
+  static String lettersLY = "$rootImage/LY.svg";
+  static String lailaty = "$rootImage/laylaty.svg";
 }

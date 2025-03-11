@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
 import '../../../../../core/resources/key_manager.dart';
 import '../../../../../core/viewmodels/personal_information_view.dart';
 import '../personal_Information_page/image_picker_place_holder.dart';
@@ -14,7 +16,7 @@ class addLecienceMotorPhotoWidget extends StatelessWidget {
     required this.selectedBackPhoto,
   });
 
-  final PersonalInformationView viewModel;
+  final PersonalInformationCubit viewModel;
   final File? selectedFrontPhoto;
   final File? selectedBackPhoto;
 
@@ -26,39 +28,47 @@ class addLecienceMotorPhotoWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           ImagePickerPlaceHolder(
-            noImgeWidget: const NoImagePlaceholderWidget(),
-            width: MediaQuery.of(context).size.width * 0.26,
-            height: MediaQuery.of(context).size.height * 0.17,
-            hasImage: selectedFrontPhoto == null,
-            imageFile: selectedFrontPhoto,
-            onTap: () async {
-              try {
-                await viewModel.pickImage(AppKeys.frontMotorLicence);
-              } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Failed to pick an image: $e')),
-                );
-              }
+            noImageWidget: const NoImagePlaceholderWidget(),
+            width: context.screenWidth * 0.3,
+            height: context.screenWidth * 0.3,
+            imageKey: AppKeys.frontMotorLicence,
+            onImageSelected: (key, image) {
+              viewModel.updateImage(key, image);
             },
+            // hasImage: selectedFrontPhoto == null,
+            // imageFile: selectedFrontPhoto,
+            // onTap: () async {
+            //   try {
+            //     await viewModel.pickImage(AppKeys.frontMotorLicence);
+            //   } catch (e) {
+            //     ScaffoldMessenger.of(context).showSnackBar(
+            //       SnackBar(content: Text('Failed to pick an image: $e')),
+            //     );
+            //   }
+            // },
           ),
           const SizedBox(
             width: 3,
           ),
           ImagePickerPlaceHolder(
-            noImgeWidget: const NoImagePlaceholderWidget(),
-            width: MediaQuery.of(context).size.width * 0.26,
-            height: MediaQuery.of(context).size.height * 0.17,
-            hasImage: selectedBackPhoto == null,
-            imageFile: selectedBackPhoto,
-            onTap: () async {
-              try {
-                await viewModel.pickImage(AppKeys.backMotorLicence);
-              } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Failed to pick an image: $e')),
-                );
-              }
+            noImageWidget: const NoImagePlaceholderWidget(),
+            width: context.screenWidth * 0.3,
+            height: context.screenWidth * 0.3,
+            imageKey: AppKeys.backMotorLicence,
+            onImageSelected: (key, image) {
+              viewModel.updateImage(key, image);
             },
+            // hasImage: selectedBackPhoto == null,
+            // imageFile: selectedBackPhoto,
+            // onTap: () async {
+            //   try {
+            //     await viewModel.pickImage(AppKeys.backMotorLicence);
+            //   } catch (e) {
+            //     ScaffoldMessenger.of(context).showSnackBar(
+            //       SnackBar(content: Text('Failed to pick an image: $e')),
+            //     );
+            //   }
+            // },
           ),
         ],
       ),

@@ -5,7 +5,9 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
 import 'package:lailaty/core/viewmodels/personal_information_view.dart';
+import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/image_picker_place_holder.dart';
 
 class EditPesonalImageWidget extends StatelessWidget {
   const EditPesonalImageWidget({
@@ -14,7 +16,7 @@ class EditPesonalImageWidget extends StatelessWidget {
     required this.selectedImage,
   });
 
-  final PersonalInformationView personalImageViewModel;
+  final PersonalInformationCubit personalImageViewModel;
   final File? selectedImage;
 
   @override
@@ -47,35 +49,47 @@ class EditPesonalImageWidget extends StatelessWidget {
           SizedBox(
             width: context.screenWidth * 0.02,
           ),
-          GestureDetector(
-            onTap: () async {
-              try {
-                await personalImageViewModel
-                    .pickImage(AppKeys.personalPhotoEdit);
-              } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Failed to pick an image: $e'),
-                  ),
-                );
-              }
+          ImagePickerPlaceHolder(
+            imageKey: AppKeys.personalPhotoEdit,
+            width: context.screenWidth * 0.3,
+            height: context.screenWidth * 0.3,
+            noImageWidget: Icon(
+              Icons.image_outlined,
+              size: context.screenWidth * 0.3,
+            ),
+            onImageSelected: (key, image) {
+              personalImageViewModel.updateImage(key, image);
             },
-            child: selectedImage == null
-                ? Icon(
-                    Icons.image_outlined,
-                    size: context.screenWidth * 0.3,
-                  )
-                : SizedBox(
-                    width: context.screenWidth * 0.3,
-                    height: context.screenWidth * 0.3,
-                    child: Image.file(
-                      selectedImage!,
-                      fit: BoxFit.fill,
-                      width: double.infinity,
-                      height: double.infinity,
-                    ),
-                  ),
-          ),
+          )
+          // GestureDetector(
+          //   onTap: () async {
+          //     try {
+          //       await personalImageViewModel
+          //           .pickImage(AppKeys.personalPhotoEdit);
+          //     } catch (e) {
+          //       ScaffoldMessenger.of(context).showSnackBar(
+          //         SnackBar(
+          //           content: Text('Failed to pick an image: $e'),
+          //         ),
+          //       );
+          //     }
+          //   },
+          //   child: selectedImage == null
+          //       ? Icon(
+          //           Icons.image_outlined,
+          //           size: context.screenWidth * 0.3,
+          //         )
+          //       : SizedBox(
+          //           width: context.screenWidth * 0.3,
+          //           height: context.screenWidth * 0.3,
+          //           child: Image.file(
+          //             selectedImage!,
+          //             fit: BoxFit.fill,
+          //             width: double.infinity,
+          //             height: double.infinity,
+          //           ),
+          //         ),
+          // ),
         ],
       ),
     );
