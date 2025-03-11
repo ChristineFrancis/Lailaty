@@ -5,11 +5,13 @@ import 'package:lailaty/common%20features/authentication/domain/entities/forgot_
 import 'package:lailaty/core/resources/url_manager.dart';
 import '../../../../core/error_manager/exception.dart';
 import '../../domain/entities/login_request.dart';
+import '../../domain/entities/logout_request.dart';
 import '../../domain/entities/resend_verification_request.dart';
 import '../../domain/entities/verify_email_request.dart';
 import '../models/email_registration_response_model.dart';
 import '../../domain/entities/auth_request.dart';
 import '../models/login_response_model.dart';
+import '../models/logout_response_model.dart';
 import '../models/resend_verification_response_model.dart';
 import '../models/verify_email_response_model.dart';
 
@@ -21,6 +23,7 @@ abstract class AuthRemoteDataSource {
   Future<LoginResponseModel> login(LoginRequest request);
   Future<ForgotPasswordResponseModel> forgotPassword(
       ForgotPasswordRequest request);
+  Future<LogoutResponseModel> logout(LogoutRequest request);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -136,6 +139,25 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       return ForgotPasswordResponseModel.fromJson(jsonMap);
     } else {
       throw ServerException('Failed to send reset link: ${response.body}');
+    }
+  }
+
+  @override
+  Future<LogoutResponseModel> logout(LogoutRequest request) async {
+    final url = Uri.parse(UrlManager.logoutURL);
+    final response = await client.post(
+      url,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${request.token}',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final jsonMap = json.decode(response.body);
+      return LogoutResponseModel.fromJson(jsonMap);
+    } else {
+      throw ServerException('Failed to logout: ${response.body}');
     }
   }
 }

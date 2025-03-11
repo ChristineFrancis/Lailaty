@@ -7,6 +7,8 @@ import '../entities/forgot_password_request.dart';
 import '../entities/forgot_password_response.dart';
 import '../entities/login_request.dart';
 import '../entities/login_response.dart';
+import '../entities/logout_request.dart';
+import '../entities/logout_response.dart';
 import '../entities/resend_verification_request.dart';
 import '../entities/resend_verification_response.dart';
 import '../entities/verify_email_request.dart';
@@ -21,4 +23,5 @@ abstract class AuthRepository {
   Future<Either<Failure, LoginResponse>> login(LoginRequest request);
   Future<Either<Failure, ForgotPasswordResponse>> forgotPassword(
       ForgotPasswordRequest request);
+  Future<Either<Failure, LogoutResponse>> logout(LogoutRequest request);
 }

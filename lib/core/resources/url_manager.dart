@@ -7,6 +7,6 @@ class UrlManager {
   static String resendVerificationCodeURL =
       '$baseAuthUrl/resendVerificationCode';
   static String loginURL = '$baseAuthUrl/login';
-  static String forgotPasswordURL =
-      '$baseAuthUrl/forgot-password';
+  static String forgotPasswordURL = '$baseAuthUrl/forgot-password';
+  static String logoutURL = '$baseAuthUrl/logout';
 }
