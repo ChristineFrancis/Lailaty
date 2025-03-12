@@ -30,7 +30,7 @@ class AppKeys {
 
   static const String personalInformationPageKey = '/personalInformationPage';//personalInformationPage
   static const String securityInformationPageKey = '/security_page';
-  static const String loginPromptPageKey = '/loginPromptPageKey';
+  static const String loginPromptPageKey = '/';
 
   static String carInfoPath = "/carInfoView";//
   static String inboxPagePath = "/InboxPage";

@@ -1,7 +1,15 @@
 import 'package:flutter/widgets.dart';
+import 'package:http/http.dart'as http;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lailaty/core/config/presentation/pages/dynamic_page_view.dart';
+import 'package:lailaty/core/network/network_connection.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/data/data_source/remote_data_source.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/data/repo/agree_pages_repo_impl.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/domain/use_case/add_car_usecase.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/bloc/add_veicle_bloc.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/motor_info.dart';
@@ -51,11 +59,19 @@ class Routes {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              // child: ChangeNotifierProvider(
-              //   create: (context) => PersonalInformationView(),
-              child: CarInfoView(
-                onNavigate: state.extra as VoidCallback?,
-                //  ),
+       
+              child: BlocProvider(
+                create: (context) =>  AddVeicleBloc(AddCarUsecase(
+          repo: AgreePagesRepoImpl(
+              agreePagesRemoteDateSource:
+                  AgreePagesRemoteDateSourceImpl(client: http.Client()),
+              networkInfo: NetworkInfoImplement(
+                  isConnect: InternetConnectionChecker.instance)),
+        )),
+                child: CarInfoView(
+                  onNavigate: state.extra as VoidCallback?,
+                  //  ),
+                ),
               ),
               transitionsBuilder: _fadeTransition,
             );
@@ -104,7 +120,8 @@ class Routes {
         ),
       ),
       GoRoute(
-        path: '/', //AppKeys.personalInformationPageKey,
+        path: AppKeys
+            .personalInformationPageKey, //AppKeys.personalInformationPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: MultiProvider(

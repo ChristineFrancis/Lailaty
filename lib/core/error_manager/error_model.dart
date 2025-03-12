@@ -1,8 +1,13 @@
-// abstract class Failure {}
+class ErrorModel {
+  
+  final String errorMessage;
+  ErrorModel({
+    required this.errorMessage,
+  });
 
-// class NoConnectionFailure extends Failure {}
-
-// class ServerFailure extends Failure {}
-
-// class EmptyCashFailure extends Failure {}
-// //! to change it
+  factory ErrorModel.fromJson(Map jsonData) {
+    return ErrorModel(
+      errorMessage: jsonData['message'],
+    );
+  }
+}

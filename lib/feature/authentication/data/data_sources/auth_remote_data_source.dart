@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:lailaty/core/error_manager/error_model.dart';
 import 'package:lailaty/core/resources/url_manager.dart';
 import 'package:lailaty/feature/authentication/data/models/forgot_password_response_model.dart';
 import 'package:lailaty/feature/authentication/domain/entities/forgot_password_request.dart';
@@ -46,7 +47,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final jsonMap = json.decode(response.body);
       return EmailRegistrationResponseModel.fromJson(jsonMap);
     } else {
-      throw const ServerException('Failed to register email');
+      throw  ServerException(errorModel: ErrorModel(errorMessage: 'Failed to send reset link: ${response.body}'));
     }
   }
 
@@ -70,7 +71,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final jsonMap = json.decode(response.body);
       return VerifyEmailResponseModel.fromJson(jsonMap);
     } else {
-      throw ServerException('Failed to verify email: ${response.body}');
+      throw ServerException(errorModel: ErrorModel(errorMessage: 'Failed to verify email: ${response.body}'));
     }
   }
 
@@ -96,7 +97,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (jsonMap['errors'] != null && jsonMap['errors']['email'] != null) {
         errorMessage += ": " + (jsonMap['errors']['email'] as List).join(', ');
       }
-      throw ServerException(errorMessage);
+      throw ServerException(errorModel: ErrorModel(errorMessage: errorMessage));
     }
   }
 
@@ -115,7 +116,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final jsonMap = json.decode(response.body);
       return LoginResponseModel.fromJson(jsonMap);
     } else {
-      throw ServerException('Failed to login: ${response.body}');
+      throw ServerException(errorModel: ErrorModel(errorMessage:  'Failed to login: ${response.body}'));
     }
   }
 
@@ -135,7 +136,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final jsonMap = json.decode(response.body);
       return ForgotPasswordResponseModel.fromJson(jsonMap);
     } else {
-      throw ServerException('Failed to send reset link: ${response.body}');
+      throw ServerException(errorModel: ErrorModel(errorMessage: 'Failed to send reset link: ${response.body}'));
     }
   }
 }

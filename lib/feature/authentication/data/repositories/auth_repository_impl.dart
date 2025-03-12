@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:lailaty/core/error_manager/error_model.dart';
+
 import 'package:lailaty/feature/authentication/domain/entities/forgot_password_request.dart';
 import 'package:lailaty/feature/authentication/domain/entities/forgot_password_response.dart';
 
@@ -26,7 +26,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final response = await remoteDataSource.register(request);
       return Right(response);
     } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
+      return Left(ServerFailure(e.errorModel.errorMessage));
     }
   }
 
@@ -37,7 +37,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final response = await remoteDataSource.verifyEmail(request);
       return Right(response);
     } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
+      return Left(ServerFailure(e.errorModel.errorMessage));
     }
   }
 
@@ -48,7 +48,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final response = await remoteDataSource.resendVerificationCode(request);
       return Right(response);
     } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
+      return Left(ServerFailure(e.errorModel.errorMessage));
     }
   }
 
@@ -58,7 +58,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final response = await remoteDataSource.login(request);
       return Right(response);
     } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
+      return Left(ServerFailure(e.errorModel.errorMessage));
     }
   }
 
@@ -69,7 +69,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final response = await remoteDataSource.forgotPassword(request);
       return Right(response);
     } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
+      return Left(ServerFailure(e.errorModel.errorMessage));
     }
   }
 }

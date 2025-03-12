@@ -8,6 +8,6 @@ class UrlManager {
       '$baseAuthUrl/auth/resendVerificationCode';
   static String loginURL = '$baseAuthUrl/auth/login';
   static String getBrandUrl = '$baseAuthUrl/captain/vehicles/brand';
-  static String addVeicleUrl = '$baseAuthUrl/captain/vehicles/create/';
+  static String addVeicleUrl = '$baseAuthUrl/captain/vehicles/create';
   static String forgotPasswordURL = '$baseAuthUrl/auth/forgot-password';
 }
