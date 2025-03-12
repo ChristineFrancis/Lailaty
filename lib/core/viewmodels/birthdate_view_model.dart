@@ -13,7 +13,7 @@ class DateviewModel with ChangeNotifier {
     final month = _selectedDate!.month.toString().padLeft(2, '0');
     final year = _selectedDate!.year.toString();
 
-    return '$day/$month/$year';
+    return '$year/$month/$day';
   }
 
   Future<void> pickDate(BuildContext context,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 
 class DetailsText extends StatelessWidget {
@@ -13,11 +14,11 @@ class DetailsText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(
-        fontSize: context.screenWidth * 0.032,
-        fontWeight: FontWeight.w400,
-        color: ColorManager.blackColor,
+      style: StyleManager.smallBlackText16(
+        size: context.screenWidth * 0.035,
+        color: ColorManager.black,
       ),
+      textAlign: TextAlign.center,
     );
   }
 }

@@ -11,6 +11,7 @@ import 'package:lailaty/core/config/presentation/widget/text_with_textfield.dart
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
+import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
 
 import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/my_container_with_bottom_border.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/motor_info_page/add_motor_photo_widget.dart';
@@ -29,7 +30,7 @@ class MotorInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController plateNumber = TextEditingController();
-    final viewModel = context.watch<PersonalInformationView>();
+    final viewModel = context.watch<PersonalInformationCubit>();
     return Scaffold(
       backgroundColor: ColorManager.backGroundColor,
       appBar: CustomAppbar(
@@ -107,11 +108,21 @@ class MotorInfoView extends StatelessWidget {
                 acceptButtonCustomer(
                   text: StringManager.tam,
                   onPress: () {
-                    if (viewModel.validateImagesInMotorInfoView(context)) {
+                    if (
+                        //viewModel.validateImagesInMotorInfoView(context)
+
+                        viewModel.getImage(AppKeys.motorPhoto) != null &&
+                            viewModel.getImage(AppKeys.frontMotorLicence) !=
+                                null &&
+                            viewModel.getImage(AppKeys.backMotorLicence) !=
+                                null) {
                       context.push(AppKeys.noticeToDriverPath);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text(StringManager.uploadAllImages)));
+                          content: Text(
+                        StringManager.uploadAllImages,
+                        textAlign: TextAlign.right,
+                      )));
                     }
                   },
                 ),

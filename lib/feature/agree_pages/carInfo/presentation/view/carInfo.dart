@@ -11,6 +11,7 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
+import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/add_back_car_photo_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/add_car_lecience_photo.dart';
@@ -36,7 +37,7 @@ class CarInfoView extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController colorController = TextEditingController();
     TextEditingController plateController = TextEditingController();
-    final viewModel = context.watch<PersonalInformationView>();
+    final viewModel = context.watch<PersonalInformationCubit>();
     return Scaffold(
       backgroundColor: ColorManager.backGroundColor,
       appBar: CustomAppbar(
@@ -220,15 +221,31 @@ class CarInfoView extends StatelessWidget {
                 acceptButtonCustomer(
                   text: StringManager.tam,
                   onPress: () {
-                    if (viewModel.validateImagesInCarInfoView(context)) {
+                    if (
+
+                        //viewModel.validateImagesInCarInfoView(context)
+                        viewModel.getImage(AppKeys.frontLecienceCar) != null &&
+                            viewModel.getImage(AppKeys.backLecienceCar) !=
+                                null &&
+                            viewModel.getImage(AppKeys.carBack) != null &&
+                            viewModel.getImage(AppKeys.carFront) != null &&
+                            viewModel.getImage(AppKeys.carInner) != null &&
+                            viewModel.getImage(AppKeys.carRight) != null &&
+                            viewModel.getImage(AppKeys.carleft) != null) {
                       if (onNavigate != null) {
                         onNavigate!();
                       } else {
                         context.push(AppKeys.noticeToDriverPath);
                       }
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text(StringManager.uploadAllImages)));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            StringManager.uploadAllImages,
+                            textAlign: TextAlign.right,
+                          ),
+                        ),
+                      );
                     }
                   },
                 ),

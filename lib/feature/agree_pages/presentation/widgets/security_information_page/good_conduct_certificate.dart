@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
 
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/details_text_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/image_picker_place_holder.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/no_image_placeholder_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/title_for_details_widget.dart';
 import 'package:lailaty/core/viewmodels/personal_information_view.dart';
-
 
 class GoodConductCertificateContainer extends StatelessWidget {
   const GoodConductCertificateContainer({
@@ -20,7 +20,7 @@ class GoodConductCertificateContainer extends StatelessWidget {
   });
 
   final File? selectedImage;
-  final PersonalInformationView viewModel;
+  final PersonalInformationCubit viewModel;
   final String sectionId;
 
   @override
@@ -53,20 +53,24 @@ class GoodConductCertificateContainer extends StatelessWidget {
             height: context.screenHeight * 0.02,
           ),
           ImagePickerPlaceHolder(
-            noImgeWidget: const NoImagePlaceholderWidget(),
+            noImageWidget: const NoImagePlaceholderWidget(),
             width: context.screenWidth * 0.3,
             height: context.screenWidth * 0.3, //context.screenHeight * 0.18,
-            hasImage: selectedImage == null,
-            imageFile: selectedImage,
-            onTap: () async {
-              try {
-                await viewModel.pickImage(sectionId);
-              } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Failed to pick an image: $e')),
-                );
-              }
+            imageKey: sectionId,
+            onImageSelected: (key, image) {
+              viewModel.updateImage(key, image);
             },
+            // hasImage: selectedImage == null,
+            // imageFile: selectedImage,
+            // onTap: () async {
+            //   try {
+            //     await viewModel.pickImage(sectionId);
+            //   } catch (e) {
+            //     ScaffoldMessenger.of(context).showSnackBar(
+            //       SnackBar(content: Text('Failed to pick an image: $e')),
+            //     );
+            //   }
+            // },
           ),
           SizedBox(
             height: context.screenHeight * 0.03,

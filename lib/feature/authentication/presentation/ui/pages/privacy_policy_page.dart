@@ -1,0 +1,122 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:lailaty/core/resources/asset_manager.dart';
+import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/choose_city_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom_button.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/widgets/login_word.dart';
+
+import '../widgets/custom widgets/check_box/custom_check_box.dart';
+
+// ignore: must_be_immutable
+class PrivacyPolicyPage extends StatelessWidget {
+  bool statusAge = false;
+  bool statusprivacy = false;
+  PrivacyPolicyPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: ColorManager.grey1,
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.sizeOf(context).width / 45,
+        ),
+        child: Column(
+          children: [
+            Spacer(
+              flex: 3,
+            ),
+            LoginWord(),
+            Spacer(
+              flex: 3,
+            ),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final imageHeight = constraints.maxWidth / 2.3;
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LailatyArabicAndEnglish(),
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Container(
+                      width: 3, // Width of the yellow line
+                      height: imageHeight, // Match the height of the image
+                      color: ColorManager.yellowTextColor,
+                    ),
+                    SvgPicture.asset(
+                      ImageAssetManager.privacyLock,
+                      width: imageHeight, // Set the width of the image
+                    ),
+                  ],
+                );
+              },
+            ),
+            Spacer(
+              flex: 6,
+            ),
+            CustomCheckBox(
+              status: statusprivacy,
+              textwidget: RichText(
+                textAlign:
+                    TextAlign.right, // Ensure text aligns properly in RTL
+                text: TextSpan(
+                  text: 'أوافق على  ',
+                  style: TextStyle(
+                    fontSize: getResponsiveText(18, context),
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: 'شروط الخصوصية و الاستخدام ',
+                      style: TextStyle(
+                        fontSize: getResponsiveText(18, context),
+                        color: ColorManager.yellowTextColor,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'الخاصة بتطبيق ليلتي',
+                      style: TextStyle(
+                        fontSize: getResponsiveText(18, context),
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Spacer(
+              flex: 2,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.sizeOf(context).width / 7,
+              ),
+              child: CustomButton(
+                textButton: 'التالي',
+                textSize: 27,
+                fontWeight: FontWeight.w900,
+                onTap: () {
+                  Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        ChooseCityPage(),
+                  ));
+                },
+              ),
+            ),
+            Spacer(
+              flex: 2,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
