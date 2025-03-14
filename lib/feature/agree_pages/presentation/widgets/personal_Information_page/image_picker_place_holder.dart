@@ -10,7 +10,7 @@ class ImagePickerPlaceHolder extends StatefulWidget {
   final double height;
   final Widget noImageWidget;
   final Function(String key, File? image) onImageSelected;
-
+  final File? initialImage;
   const ImagePickerPlaceHolder({
     super.key,
     required this.imageKey,
@@ -18,6 +18,7 @@ class ImagePickerPlaceHolder extends StatefulWidget {
     required this.height,
     required this.noImageWidget,
     required this.onImageSelected,
+    this.initialImage,
   });
 
   @override
@@ -27,20 +28,28 @@ class ImagePickerPlaceHolder extends StatefulWidget {
 class _ImagePickerPlaceHolderState extends State<ImagePickerPlaceHolder> {
   File? _selectedImage;
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedImage = widget.initialImage;
+  }
+
   Future<void> _pickImage() async {
     try {
       File? imageFile;
 
       if (Platform.isAndroid || Platform.isIOS) {
         final ImagePicker picker = ImagePicker();
-        final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+        final XFile? image =
+            await picker.pickImage(source: ImageSource.gallery);
         if (image != null) {
           imageFile = File(image.path);
         }
       } else if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
         final XFile? image = await openFile(
           acceptedTypeGroups: [
-            const XTypeGroup(label: 'images', extensions: ['jpg', 'png', 'jpeg']),
+            const XTypeGroup(
+                label: 'images', extensions: ['jpg', 'png', 'jpeg']),
           ],
         );
         if (image != null) {
@@ -73,9 +82,8 @@ class _ImagePickerPlaceHolderState extends State<ImagePickerPlaceHolder> {
           borderRadius: BorderRadius.circular(20),
           color: ColorManager.whiteColor,
         ),
-        child: _selectedImage == null
-            ? widget.noImageWidget
-            : ClipRRect(
+        child: _selectedImage != null
+            ? ClipRRect(
                 borderRadius: BorderRadius.circular(17),
                 child: Image.file(
                   _selectedImage!,
@@ -83,7 +91,8 @@ class _ImagePickerPlaceHolderState extends State<ImagePickerPlaceHolder> {
                   width: double.infinity,
                   height: double.infinity,
                 ),
-              ),
+              )
+            : widget.noImageWidget,
       ),
     );
   }

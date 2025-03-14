@@ -5,8 +5,11 @@ import 'package:lailaty/core/error_manager/exception.dart';
 import 'package:lailaty/core/error_manager/failures.dart';
 import 'package:lailaty/core/network/network_connection.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/data_source/remote_data_source.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/data/models/captain_registration_documents_request_model.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/models/car_info_model.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/domain/entities/brands_car_entity.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/domain/entities/captain_registration_documents_request.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/domain/entities/captain_registration_documents_response_message.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/domain/entities/car_veicle_entity.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/domain/entities/motor_viecle_entity.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/domain/repositories/agree_page_repository.dart';
@@ -64,5 +67,29 @@ class AgreePagesRepoImpl implements AgreePageRepository {
   Future<Either<Failure, List<BrandsCarEntity>>> getCarBrands() {
     // TODO: implement getCarBrands
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, CaptainRegistrationDocumentsResponseMessage>>
+      captainRegister(CaptainRegistrationDocumentsRequest request) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await agreePagesRemoteDateSource
+            .captainRegister(CaptainRegistrationDocumentsModel(
+          personalImage: request.personalImage,
+          driverLicenseFrontFace: request.driverLicenseFrontFace,
+          driverLicenseBackFace: request.driverLicenseBackFace,
+          personalCardFrontFace: request.personalCardFrontFace,
+          personalCardBackFace: request.personalCardBackFace,
+          birthDate: request.birthDate,
+        ));
+        return Right(response);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.errorModel.errorMessage));
+      }
+    } else {
+      print("no connection");
+      return left(NoConnectionFailure("لا يوجد اتصال بالانترنت"));
+    }
   }
 }

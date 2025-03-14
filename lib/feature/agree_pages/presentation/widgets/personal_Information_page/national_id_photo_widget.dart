@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
-
+import 'package:lailaty/core/state_managments/image_picker_cubit/image_pick_cubit.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/details_text_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/image_picker_place_holder.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/title_for_details_widget.dart';
-import 'package:lailaty/core/viewmodels/personal_information_view.dart';
 
 class NationalIdPhotoWidget extends StatelessWidget {
   final PersonalInformationCubit viewModel;
@@ -24,8 +22,8 @@ class NationalIdPhotoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedFrontImage = viewModel.getImage(sectionIdFront);
-    final selectedBackImage = viewModel.getImage(sectionIdBack);
+    // final selectedFrontImage = viewModel.getImage(sectionIdFront);
+    // final selectedBackImage = viewModel.getImage(sectionIdBack);
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -61,6 +59,7 @@ class NationalIdPhotoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ImagePickerPlaceHolder(
+                initialImage: viewModel.getImage(sectionIdFront),
                 noImageWidget: Icon(
                   Icons.photo_camera_back,
                   size: context.screenWidth * 0.08,
@@ -86,6 +85,7 @@ class NationalIdPhotoWidget extends StatelessWidget {
                 // },
               ),
               ImagePickerPlaceHolder(
+                initialImage: viewModel.getImage(sectionIdBack),
                 noImageWidget: Icon(
                   Icons.photo_camera_back,
                   size: context.screenWidth * 0.08,

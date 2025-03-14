@@ -13,4 +13,4 @@ class NetworkInfoImplement implements NetworkInfo {
   @override
   Future<bool> get isConnected => isConnect.hasConnection;
 }
-// get is a way to dont 
+// get is a way to dont

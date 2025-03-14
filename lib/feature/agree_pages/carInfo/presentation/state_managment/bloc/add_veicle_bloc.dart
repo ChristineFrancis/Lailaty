@@ -6,9 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lailaty/core/error_manager/failures.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/domain/entities/car_veicle_entity.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/domain/entities/motor_viecle_entity.dart';
-
 import 'package:lailaty/feature/agree_pages/carInfo/domain/use_case/add_car_usecase.dart';
-import 'package:lailaty/feature/agree_pages/carInfo/domain/use_case/get_all_brands.dart';
 
 part 'add_veicle_event.dart';
 part 'add_veicle_state.dart';

@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lailaty/core/go_router/go_router.dart';
-import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
-
+import 'package:lailaty/core/state_managments/image_picker_cubit/image_pick_cubit.dart';
+import 'package:lailaty/core/state_managments/network_bloc/net_work_bloc.dart';
 
 void main() async {
   //  WidgetsFlutterBinding.ensureInitialized();
   //  await di.init();
   runApp(
-    // MultiProvider(
-    //   providers: [
-    //     ChangeNotifierProvider(create: (context) => PersonalInformationView()),
-    //   ],
-    BlocProvider(
-      create: (context) => PersonalInformationCubit(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => PersonalInformationCubit(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              NetWorkBloc(InternetConnectionChecker.createInstance()),
+        ),
+      ],
       child: const MyApp(),
     ),
   );
@@ -24,12 +29,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: Routes().router,
-      debugShowCheckedModeBanner: false,
+    return BlocListener<NetWorkBloc, NetWorkState>(
+      listener: (context, state) {
+        if (state is NetWorkOffline) {
+          print('no internet');
+        } else if (state is NetWorkOnline) {
+          print('internet back');
+        }
+      },
+      child: MaterialApp.router(
+        routerConfig: Routes().router,
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }
 
 //! fixing the call us page : >> text <<
 //! editing car in the profile page in sidebar <<
+
+

@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -9,11 +9,13 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/data_source/remote_data_source.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/repo/agree_pages_repo_impl.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/domain/use_case/add_car_usecase.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/domain/use_case/captain_registration_usecase.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/bloc/add_veicle_bloc.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/captain_register_bloc/captain_register_bloc.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/motor_info.dart';
-import 'package:lailaty/feature/agree_pages/presentation/view/personal_information_page.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/captain_register_pages/personal_information_page.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/pages/on_boarding.dart';
 import 'package:lailaty/feature/choose_category_page/presentation/view/categoryView.dart';
 import 'package:lailaty/feature/fleet/presentation/view/fleet_options_page.dart';
@@ -33,11 +35,11 @@ import 'package:lailaty/feature/wedding_business/presentation/view/complete_widd
 import '../../feature/agree_pages/presentation/view/noticeToDriverView.dart';
 import 'package:lailaty/feature/agree_pages/presentation/view/login_prompt_page.dart';
 
-import 'package:lailaty/feature/agree_pages/presentation/view/security_information_page.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/captain_register_pages/security_information_page.dart';
 
 import 'package:lailaty/core/resources/string_manager.dart';
-import 'package:lailaty/core/viewmodels/birthdate_view_model.dart';
-import 'package:lailaty/core/viewmodels/personal_information_view.dart';
+import 'package:lailaty/core/state_managments/birthdate_view_model.dart';
+import 'package:lailaty/core/state_managments/personal_information_view.dart';
 
 import 'package:lailaty/feature/inland_transportation/presentation/view/inland_transportation.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/state_managment/car_list_view_model.dart';
@@ -59,15 +61,14 @@ class Routes {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-       
               child: BlocProvider(
-                create: (context) =>  AddVeicleBloc(AddCarUsecase(
-          repo: AgreePagesRepoImpl(
-              agreePagesRemoteDateSource:
-                  AgreePagesRemoteDateSourceImpl(client: http.Client()),
-              networkInfo: NetworkInfoImplement(
-                  isConnect: InternetConnectionChecker.instance)),
-        )),
+                create: (context) => AddVeicleBloc(AddCarUsecase(
+                  repo: AgreePagesRepoImpl(
+                      agreePagesRemoteDateSource:
+                          AgreePagesRemoteDateSourceImpl(client: http.Client()),
+                      networkInfo: NetworkInfoImplement(
+                          isConnect: InternetConnectionChecker.instance)),
+                )),
                 child: CarInfoView(
                   onNavigate: state.extra as VoidCallback?,
                   //  ),
@@ -120,8 +121,8 @@ class Routes {
         ),
       ),
       GoRoute(
-        path: AppKeys
-            .personalInformationPageKey, //AppKeys.personalInformationPageKey,
+        path:
+            '/', // AppKeys.personalInformationPageKey, //AppKeys.personalInformationPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: MultiProvider(
@@ -140,14 +141,29 @@ class Routes {
       ),
       GoRoute(
         path: AppKeys.securityInformationPageKey,
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          // child: ChangeNotifierProvider(
-          //   create: (context) => PersonalInformationView(),
-          child: const SecurityInformationPage(),
-          // ),
-          transitionsBuilder: _fadeTransition,
-        ),
+        pageBuilder: (context, state) {
+          final extra = state.extra as String;
+
+          return CustomTransitionPage(
+            key: state.pageKey,
+            // child: BlocProvider(
+            //   create: (context) => CaptainRegisterBloc(
+            //     captainRegisterUseCase: CaptainRegistrationUsecase(
+            //       repo: AgreePagesRepoImpl(
+            //         agreePagesRemoteDateSource:
+            //             AgreePagesRemoteDateSourceImpl(client: http.Client()),
+            //         networkInfo: NetworkInfoImplement(
+            //             isConnect: InternetConnectionChecker.instance),
+            //       ),
+            //     ),
+            //   ),
+            child: SecurityInformationPage(
+              birthDate: extra,
+            ),
+            // ),
+            transitionsBuilder: _fadeTransition,
+          );
+        },
       ),
       GoRoute(
         path: AppKeys.loginPromptPageKey,

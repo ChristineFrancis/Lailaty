@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
-
+import 'package:lailaty/core/state_managments/image_picker_cubit/image_pick_cubit.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/details_text_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/image_picker_place_holder.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/title_for_details_widget.dart';
-import 'package:lailaty/core/viewmodels/personal_information_view.dart';
 
 class DriverLicenseImageWidget extends StatelessWidget {
   final PersonalInformationCubit viewModel;
@@ -60,6 +58,7 @@ class DriverLicenseImageWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ImagePickerPlaceHolder(
+                initialImage: viewModel.getImage(sectionIdFront),
                 imageKey: sectionIdFront,
                 noImageWidget: Icon(
                   Icons.photo_camera_back,
@@ -85,6 +84,7 @@ class DriverLicenseImageWidget extends StatelessWidget {
                 // },
               ),
               ImagePickerPlaceHolder(
+                initialImage: viewModel.getImage(sectionIdBack),
                 noImageWidget: Icon(
                   Icons.photo_camera_back,
                   size: context.screenWidth * 0.08,

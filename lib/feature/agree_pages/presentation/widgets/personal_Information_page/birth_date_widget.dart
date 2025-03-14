@@ -3,7 +3,7 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/title_for_details_widget.dart';
-import 'package:lailaty/core/viewmodels/birthdate_view_model.dart';
+import 'package:lailaty/core/state_managments/birthdate_view_model.dart';
 import 'package:provider/provider.dart';
 
 class BirthDateWidget extends StatefulWidget {

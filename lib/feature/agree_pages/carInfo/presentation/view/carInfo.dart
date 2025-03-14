@@ -15,7 +15,7 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
-import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
+import 'package:lailaty/core/state_managments/image_picker_cubit/image_pick_cubit.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/domain/entities/car_veicle_entity.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/bloc/add_veicle_bloc.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/add_back_car_photo_widget.dart';

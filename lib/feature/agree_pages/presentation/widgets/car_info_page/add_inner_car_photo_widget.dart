@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
+import 'package:lailaty/core/state_managments/image_picker_cubit/image_pick_cubit.dart';
 import '../../../../../core/resources/key_manager.dart';
-import '../../../../../core/viewmodels/personal_information_view.dart';
+import '../../../../../core/state_managments/personal_information_view.dart';
 import '../personal_Information_page/image_picker_place_holder.dart';
 import '../personal_Information_page/no_image_placeholder_widget.dart';
 

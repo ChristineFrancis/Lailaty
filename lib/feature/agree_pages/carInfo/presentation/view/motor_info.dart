@@ -11,11 +11,11 @@ import 'package:lailaty/core/config/presentation/widget/text_with_textfield.dart
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
-import 'package:lailaty/core/viewmodels/image_picker_cubit/image_pick_cubit.dart';
+import 'package:lailaty/core/state_managments/image_picker_cubit/image_pick_cubit.dart';
 
 import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/my_container_with_bottom_border.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/motor_info_page/add_motor_photo_widget.dart';
-import 'package:lailaty/core/viewmodels/personal_information_view.dart';
+import 'package:lailaty/core/state_managments/personal_information_view.dart';
 
 import 'package:provider/provider.dart';
 

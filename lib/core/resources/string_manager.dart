@@ -311,4 +311,8 @@ class StringManager {
   static const String allCustomers = 'كل العملاء';
   static const String femalesOnly = 'الإناث فقط';
   static const String doYouWantToShowUp = 'هل تودين الظهور';
+  static const String makeSureYouAreConnectedToTheInternet =
+      'تأكد من اتصالك بالانترنت';
+  static const String ok = 'حسنا';
+  static const String noInternetConnection = "لا يوجد اتصال بالانترنت";
 }

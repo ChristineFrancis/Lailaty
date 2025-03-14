@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:lailaty/core/error_manager/error_model.dart';
 import 'package:lailaty/core/error_manager/exception.dart';
+import 'package:lailaty/core/resources/api_key_manager.dart';
 import 'package:lailaty/core/resources/url_manager.dart';
-
+import 'package:lailaty/feature/agree_pages/carInfo/data/models/captain_registration_documents_request_model.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/data/models/captain_registration_documents_response_message_model.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/models/car_brand_model.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/models/car_info_model.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/models/motor_info_model.dart';
@@ -15,6 +16,8 @@ abstract class AgreePagesRemoteDateSource {
   Future<List<CarBrandModel>> getBrandsCar();
   Future<Unit> addCar(CarInfoModel car, String param);
   Future<Unit> addMotor(MotorInfoModel motor, String param);
+  Future<CaptainRegistrationDocumentsResponseModel> captainRegister(
+      CaptainRegistrationDocumentsModel request);
 }
 
 class AgreePagesRemoteDateSourceImpl implements AgreePagesRemoteDateSource {
@@ -101,6 +104,69 @@ class AgreePagesRemoteDateSourceImpl implements AgreePagesRemoteDateSource {
     // TODO: implement getBrandsCar
     throw UnimplementedError();
   }
+
+  @override
+  Future<CaptainRegistrationDocumentsResponseModel> captainRegister(
+      CaptainRegistrationDocumentsModel request) async {
+    final Uri url = Uri.parse(UrlManager.captianRegisterUrl);
+    var requestBody = http.MultipartRequest('POST', url);
+
+    requestBody.headers.addAll(getHeader(true)!);
+    requestBody.fields[ApiKeyManager.birthDate] = request.birthDate;
+    requestBody.files.add(await http.MultipartFile.fromPath(
+        ApiKeyManager.personalImage, request.personalImage.path));
+    requestBody.files.add(await http.MultipartFile.fromPath(
+        ApiKeyManager.driverLicenseFrontFace,
+        request.driverLicenseFrontFace.path));
+    requestBody.files.add(await http.MultipartFile.fromPath(
+        ApiKeyManager.driverLicenseBackFace,
+        request.driverLicenseBackFace.path));
+    requestBody.files.add(await http.MultipartFile.fromPath(
+        ApiKeyManager.personalCardFrontFace,
+        request.personalCardFrontFace.path));
+    requestBody.files.add(await http.MultipartFile.fromPath(
+        ApiKeyManager.personalCardBackFace, request.personalCardBackFace.path));
+    //the optional file :
+    if (request.criminalRecord != null) {
+      requestBody.files.add(await http.MultipartFile.fromPath(
+          ApiKeyManager.criminalRecord, request.criminalRecord!.path));
+    }
+
+    try {
+      final streamedResponse = await requestBody.send();
+      final response = await http.Response.fromStream(streamedResponse);
+      print("response body "+jsonEncode(response.body));
+      print(response.statusCode);
+      //    handleHttpExceptions(response);
+      if (response.statusCode == 200) {
+        final decodedJson = json.decode(response.body);
+        return CaptainRegistrationDocumentsResponseModel.fromJson(decodedJson);
+      } else {
+        final Map<String, dynamic> errorJson = jsonDecode(response.body);
+        final String errorMessage =
+            errorJson['message'] ?? 'Unknown error occurred';
+
+        throw ServerException(
+            errorModel: ErrorModel(errorMessage: errorMessage));
+      }
+    } catch (e) {
+      print('Exception Caught: $e');
+
+      if (e is SocketException) {
+        throw ServerException(
+            errorModel: ErrorModel(errorMessage: "No Internet Connection"));
+      } else if (e is FormatException) {
+        throw ServerException(
+            errorModel: ErrorModel(errorMessage: "Invalid response format"));
+      } else if (e is ServerException) {
+        throw e;
+      } else {
+        throw ServerException(
+            errorModel:
+                ErrorModel(errorMessage: "Unexpected error: ${e.toString()}"));
+      }
+    }
+  }
 }
 
 Map<String, String>? getHeader(bool hasToken) {
@@ -111,7 +177,7 @@ Map<String, String>? getHeader(bool hasToken) {
   } else {
     return {
       'Accept': 'application/json',
-      "Token": "77|LErEic0XF73xGCS2DXIebGJIstqhwjjSPKQAJNpV9e489425"
+      'Authorization': 'Bearer 85|UZ5YdmKwWNfJ1HyC5pw6Y68Dj1qOlaI6iri60LkDa810efc9',
     };
   }
 }

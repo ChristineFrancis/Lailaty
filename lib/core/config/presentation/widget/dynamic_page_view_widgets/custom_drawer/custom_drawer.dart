@@ -7,7 +7,7 @@ import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
-import 'package:lailaty/core/viewmodels/filter_order_view_model.dart';
+import 'package:lailaty/core/state_managments/filter_order_view_model.dart';
 import 'package:lailaty/feature/travel/presentation/view/order_history.dart';
 import 'package:lailaty/feature/travel/presentation/view/orders_page.dart';
 import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/custom_drawer/drawer_option.dart';
