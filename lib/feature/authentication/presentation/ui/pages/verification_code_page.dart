@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lailaty/core/config/storage/service_locator.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/feature/authentication/presentation/bloc/verify_email_bloc/verify_email_bloc.dart';
 import 'package:lailaty/feature/authentication/presentation/bloc/verify_email_bloc/verify_email_event.dart';

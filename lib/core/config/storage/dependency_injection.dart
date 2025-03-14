@@ -1,6 +1,4 @@
-
-import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' as http;
+import 'package:lailaty/core/config/storage/service_locator.dart';
 import 'package:lailaty/feature/authentication/data/data_sources/auth_remote_data_source.dart';
 import 'package:lailaty/feature/authentication/data/repositories/auth_repository_impl.dart';
 import 'package:lailaty/feature/authentication/domain/repositories/auth_repository.dart';
@@ -14,9 +12,9 @@ import 'package:lailaty/feature/authentication/presentation/bloc/login_bloc/logi
 import 'package:lailaty/feature/authentication/presentation/bloc/register_bloc/register_bloc.dart';
 import 'package:lailaty/feature/authentication/presentation/bloc/verify_email_bloc/verify_email_bloc.dart';
 
-final sl = GetIt.instance;
+// final sl = GetIt.instance;
 
-Future<void> init() async {
+Future<void> initAuthFeature() async {
   //! -----------------------Bloc------------------------------
   sl.registerFactory(() => RegisterBloc(registerUseCase: sl()));
   sl.registerFactory(() => VerifyEmailBloc(
@@ -44,5 +42,5 @@ Future<void> init() async {
   );
 
   //! -------------------------External---------------------------
-  sl.registerLazySingleton(() => http.Client());
+  //sl.registerLazySingleton(() => sl());
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/config/presentation/widget/offline_dialog_widget.dart';
-import 'package:lailaty/core/network/network_connection.dart';
+import 'package:lailaty/core/config/storage/service_locator.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
@@ -12,18 +11,15 @@ import 'package:lailaty/core/state_managments/network_bloc/net_work_bloc.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/core/config/presentation/widget/client_service_row.dart';
 import 'package:lailaty/core/state_managments/image_picker_cubit/image_pick_cubit.dart';
-import 'package:lailaty/feature/agree_pages/carInfo/data/data_source/remote_data_source.dart';
-import 'package:lailaty/feature/agree_pages/carInfo/data/repo/agree_pages_repo_impl.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/domain/entities/captain_registration_documents_request.dart';
-import 'package:lailaty/feature/agree_pages/carInfo/domain/use_case/captain_registration_usecase.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/captain_register_bloc/captain_register_bloc.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/captain_register_bloc/captain_register_event.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/captain_register_bloc/captain_register_state.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/service_locator.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/details_text_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/next_botton_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/title_for_details_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/security_information_page/good_conduct_certificate.dart';
-import 'package:http/http.dart' as http;
 
 class SecurityInformationPage extends StatelessWidget {
   final String birthDate;
@@ -36,18 +32,18 @@ class SecurityInformationPage extends StatelessWidget {
     final selectedImage = viewModel.getImage(sectionId);
 
     return BlocProvider(
-      create: (context) {
-        return CaptainRegisterBloc(
-          captainRegisterUseCase: CaptainRegistrationUsecase(
-            repo: AgreePagesRepoImpl(
-              agreePagesRemoteDateSource:
-                  AgreePagesRemoteDateSourceImpl(client: http.Client()),
-              networkInfo: NetworkInfoImplement(
-                  isConnect: InternetConnectionChecker.instance),
-            ),
-          ),
-        );
-      },
+      create: (context) => sl<CaptainRegisterBloc>(), //{
+      // return CaptainRegisterBloc(
+      //   captainRegisterUseCase: CaptainRegistrationUsecase(
+      //     repo: AgreePagesRepoImpl(
+      //       agreePagesRemoteDateSource:
+      //           AgreePagesRemoteDateSourceImpl(client: http.Client()),
+      //       networkInfo: NetworkInfoImplement(
+      //           isConnect: InternetConnectionChecker.instance),
+      //     ),
+      //   ),
+      // );
+      // },
       child: BlocListener<CaptainRegisterBloc, CaptainRegisterState>(
         listener: (context, state) {
           if (state is CaptainRegisterSuccess) {
