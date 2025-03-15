@@ -4,6 +4,7 @@ import 'package:lailaty/core/error_manager/exception.dart';
 
 import 'package:lailaty/core/error_manager/failures.dart';
 import 'package:lailaty/core/network/network_connection.dart';
+import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/data_source/remote_data_source.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/models/captain_registration_documents_request_model.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/models/car_info_model.dart';
@@ -89,7 +90,7 @@ class AgreePagesRepoImpl implements AgreePageRepository {
       }
     } else {
       print("no connection");
-      return left(NoConnectionFailure("لا يوجد اتصال بالانترنت"));
+      return left(NoConnectionFailure(StringManager.noInternetConnection));
     }
   }
 }

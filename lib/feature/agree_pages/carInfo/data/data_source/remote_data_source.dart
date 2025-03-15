@@ -135,7 +135,7 @@ class AgreePagesRemoteDateSourceImpl implements AgreePagesRemoteDateSource {
     try {
       final streamedResponse = await requestBody.send();
       final response = await http.Response.fromStream(streamedResponse);
-      print("response body "+jsonEncode(response.body));
+      print("response body " + jsonEncode(response.body));
       print(response.statusCode);
       //    handleHttpExceptions(response);
       if (response.statusCode == 200) {
@@ -177,7 +177,8 @@ Map<String, String>? getHeader(bool hasToken) {
   } else {
     return {
       'Accept': 'application/json',
-      'Authorization': 'Bearer 85|UZ5YdmKwWNfJ1HyC5pw6Y68Dj1qOlaI6iri60LkDa810efc9',
+      'Authorization':
+          'Bearer 87|xuxq0Q9yQ5dRymqL6V7DO7dyKj5GWhQe2c0qZtNT5532130b',
     };
   }
 }
