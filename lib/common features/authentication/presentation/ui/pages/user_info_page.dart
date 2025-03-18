@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/home_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
@@ -10,10 +10,13 @@ import 'package:lailaty/common%20features/authentication/presentation/ui/widgets
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
+import '../../../../../core/config/storage/dependency_injection.dart';
+import '../../bloc/logout_bloc/logout_bloc.dart';
 import '../widgets/logo_with_laylaty.dart';
 import '../widgets/temporary_widgets/custom_text_form_field_name.dart';
 import '../widgets/temporary_widgets/custom_text_form_field_with_prefix.dart';
 import '../widgets/temporary_widgets/detect_gender_widget.dart';
+import 'home_page.dart';
 
 class UserInfoPage extends StatefulWidget {
   const UserInfoPage({super.key});
@@ -365,9 +368,15 @@ class _UserInfoPageState extends State<UserInfoPage> {
                     showCar = true;
                     backArrowScale = 0;
                     Timer(Duration(seconds: 3), () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                          (route) => false);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BlocProvider<LogoutBloc>(
+                            create: (_) => sl<LogoutBloc>(),
+                            child: HomePage(),
+                          ),
+                        ),
+                      );
                     });
                   });
                 });

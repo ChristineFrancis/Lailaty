@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/on_boarding.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/decider_page.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
@@ -45,7 +45,7 @@ class _SplashVideoState extends State<SplashVideo> {
           timer.cancel();
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => OnBoarding()),
+            MaterialPageRoute(builder: (context) => DeciderPage()),
           );
         }
       } else {

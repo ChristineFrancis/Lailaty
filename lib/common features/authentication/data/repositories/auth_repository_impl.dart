@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
+import 'package:lailaty/common%20features/authentication/data/models/user_model.dart';
 import 'package:lailaty/common%20features/authentication/domain/entities/forgot_password_request.dart';
 import 'package:lailaty/common%20features/authentication/domain/entities/forgot_password_response.dart';
+import 'package:lailaty/core/services/secure_storage_service.dart';
 import '../../../../core/error_manager/exception.dart';
 import '../../../../core/error_manager/failures.dart';
 import '../../domain/entities/auth_request.dart';
@@ -18,7 +20,9 @@ import '../data_sources/auth_remote_data_source.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
-  AuthRepositoryImpl({required this.remoteDataSource});
+  final SecureStorageService secureStorageService;
+  AuthRepositoryImpl(
+      {required this.remoteDataSource, required this.secureStorageService});
 
   @override
   Future<Either<Failure, AuthResponse>> register(AuthRequest request) async {
@@ -35,6 +39,9 @@ class AuthRepositoryImpl implements AuthRepository {
       VerifyEmailRequest request) async {
     try {
       final response = await remoteDataSource.verifyEmail(request);
+      final user = UserModel.fromJson(response.user);
+      await secureStorageService.cacheAuthData(
+          user, response.accessToken, response.refreshToken);
       return Right(response);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -56,6 +63,9 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, LoginResponse>> login(LoginRequest request) async {
     try {
       final response = await remoteDataSource.login(request);
+      final user = UserModel.fromJson(response.user);
+      await secureStorageService.cacheAuthData(
+          user, response.accessToken, response.refreshToken);
       return Right(response);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -77,6 +87,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, LogoutResponse>> logout(LogoutRequest request) async {
     try {
       final response = await remoteDataSource.logout(request);
+      await secureStorageService.clearAuthData();
       return Right(response);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
