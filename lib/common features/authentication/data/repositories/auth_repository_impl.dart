@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:lailaty/common%20features/authentication/data/models/user_model.dart';
 import 'package:lailaty/common%20features/authentication/domain/entities/forgot_password_request.dart';
 import 'package:lailaty/common%20features/authentication/domain/entities/forgot_password_response.dart';
+import 'package:lailaty/common%20features/authentication/domain/entities/info_register_request.dart';
 import 'package:lailaty/core/services/secure_storage_service.dart';
 import '../../../../core/error_manager/exception.dart';
 import '../../../../core/error_manager/failures.dart';
@@ -17,6 +17,7 @@ import '../../domain/entities/verify_email_request.dart';
 import '../../domain/entities/verify_email_response.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../data_sources/auth_remote_data_source.dart';
+import '../models/user_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
@@ -89,6 +90,40 @@ class AuthRepositoryImpl implements AuthRepository {
       final response = await remoteDataSource.logout(request);
       await secureStorageService.clearAuthData();
       return Right(response);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> informationRegister(
+      InfoRegisterRequest request) async {
+    try {
+      //!get the token from storage
+      final cachedData = await secureStorageService.getCachedAuthData();
+      final token = cachedData.fold(
+          (l) => null, (data) => data?['access_token'] as String?);
+      if (token == null) {
+        return Left(ServerFailure('No toke found'));
+      }
+
+      final responseMap =
+          await remoteDataSource.informationRegister(request, token: token);
+
+      final updatedUser = UserModel.fromJson(responseMap['user']);
+
+      final refreshToken = (await secureStorageService.getCachedAuthData())
+          .fold((l) => '', (data) => data?['refresh_token'] as String? ?? '');
+
+      await secureStorageService.cacheAuthData(updatedUser, token, refreshToken);
+
+     /* await secureStorageService.cacheAuthData(
+          updatedUser,
+          token,
+          (await secureStorageService.getCachedAuthData()).fold(
+              (l) => '', (data) => data?['refresh_token'] as String? ?? ''));*/
+
+      return Right(updatedUser);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }

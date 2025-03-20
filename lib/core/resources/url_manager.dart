@@ -9,4 +9,5 @@ class UrlManager {
   static String loginURL = '$baseAuthUrl/login';
   static String forgotPasswordURL = '$baseAuthUrl/forgot-password';
   static String logoutURL = '$baseAuthUrl/logout';
+  static String infoRegisterURL = '$baseAuthUrl/informationRegistration';
 }

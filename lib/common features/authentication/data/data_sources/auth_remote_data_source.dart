@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:lailaty/common%20features/authentication/data/models/forgot_password_response_model.dart';
 import 'package:lailaty/common%20features/authentication/domain/entities/forgot_password_request.dart';
+import 'package:lailaty/common%20features/authentication/domain/entities/info_register_request.dart';
 import 'package:lailaty/core/resources/url_manager.dart';
 import '../../../../core/error_manager/exception.dart';
 import '../../domain/entities/login_request.dart';
@@ -24,6 +25,8 @@ abstract class AuthRemoteDataSource {
   Future<ForgotPasswordResponseModel> forgotPassword(
       ForgotPasswordRequest request);
   Future<LogoutResponseModel> logout(LogoutRequest request);
+  Future<Map<String, dynamic>> informationRegister(InfoRegisterRequest request,
+      {required String token});
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -158,6 +161,37 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       return LogoutResponseModel.fromJson(jsonMap);
     } else {
       throw ServerException('Failed to logout: ${response.body}');
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> informationRegister(InfoRegisterRequest request,
+      {required String token}) async {
+    final url = Uri.parse(UrlManager.infoRegisterURL);
+    final response = await client.post(
+      url,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      body: {
+        'first_name': request.firstName,
+        'last_name': request.lastName,
+        'phone_number': request.phoneNumber,
+        'gender': request.gender,
+        'birth_date': request.birthDate,
+        'city': request.city,
+        'role': request.role,//TODO:
+        'deviceToken': request.deviceToken,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body) as Map<String, dynamic>;
+    } else {
+      print("Informationnnnnnn Registration Error: ${response.body}");
+      throw ServerException(
+          'Failed to complete information registration: ${response.body}');//TODO:
     }
   }
 }

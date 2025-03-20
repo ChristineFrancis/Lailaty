@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/information_register_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/register_with_email_page.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/user_info_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
@@ -94,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   } else if (state is LoginLoaded) {
                     Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (_) => const UserInfoPage()),
+                      MaterialPageRoute(builder: (_) =>  InformationRegisterPage(email: emailController.text)),
                     );
                   }
                 },

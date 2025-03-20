@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lailaty/common%20features/authentication/presentation/bloc/information_register_bloc/information_register_bloc.dart';
+import 'package:lailaty/common%20features/authentication/presentation/bloc/logout_bloc/logout_bloc.dart';
 import 'package:lailaty/core/config/storage/dependency_injection.dart' as di;
 import 'package:lailaty/core/ui/splash_video/splash_video.dart';
 
@@ -36,17 +39,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //  print('the widthhhhhhhhhhhhhhhhhhh');
     //   print(MediaQuery.sizeOf(context).width);
-    return MaterialApp(
-      // ignore: deprecated_member_use
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
-      // locale: const Locale('ar'),
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: "Segeo",
-      ),
-      home: SplashVideo(),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => di.sl<LogoutBloc>(),
+          ),
+          BlocProvider(
+            create: (_) => di.sl<InformationRegisterBloc>(),
+          ),
+        ],
+        child: MaterialApp(
+          // ignore: deprecated_member_use
+          useInheritedMediaQuery: true,
+          locale: DevicePreview.locale(context),
+          builder: DevicePreview.appBuilder,
+          // locale: const Locale('ar'),
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            fontFamily: "Segeo",
+          ),
+          home: SplashVideo(),
+        ));
   }
 }
+
+/*
+*/

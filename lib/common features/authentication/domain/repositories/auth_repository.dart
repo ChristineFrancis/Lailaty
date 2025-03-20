@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:lailaty/common%20features/authentication/data/models/user_model.dart';
+import 'package:lailaty/common%20features/authentication/domain/entities/info_register_request.dart';
 
 import '../../../../core/error_manager/failures.dart';
 import '../entities/auth_request.dart';
@@ -24,4 +26,6 @@ abstract class AuthRepository {
   Future<Either<Failure, ForgotPasswordResponse>> forgotPassword(
       ForgotPasswordRequest request);
   Future<Either<Failure, LogoutResponse>> logout(LogoutRequest request);
+  Future<Either<Failure, UserModel>> informationRegister(
+      InfoRegisterRequest request);
 }

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lailaty/common%20features/authentication/presentation/bloc/register_bloc/register_state.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/login_page.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/verification_code_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text_fields/custom_text_field.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
@@ -15,6 +14,7 @@ import '../../../../../core/config/storage/dependency_injection.dart';
 import '../../bloc/register_bloc/register_bloc.dart';
 import '../../bloc/register_bloc/register_event.dart';
 import '../widgets/custom_button.dart';
+import 'verification_code_page.dart';
 
 class RegisterWithEmailPage extends StatefulWidget {
   const RegisterWithEmailPage({super.key});

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lailaty/common%20features/authentication/presentation/bloc/verify_email_bloc/verify_email_bloc.dart';
 import 'package:lailaty/common%20features/authentication/presentation/bloc/verify_email_bloc/verify_email_event.dart';
 import 'package:lailaty/common%20features/authentication/presentation/bloc/verify_email_bloc/verify_email_state.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/user_info_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/information_register_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
@@ -50,7 +50,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                   );
                 } else if (state is VerifyEmailLoaded) {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (_) => const UserInfoPage()),
+                    MaterialPageRoute(builder: (_) => InformationRegisterPage(email: widget.email,)),
                   );
                 } else if (state is VerifyEmailResendSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(

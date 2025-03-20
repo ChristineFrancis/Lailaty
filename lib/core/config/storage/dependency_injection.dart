@@ -7,12 +7,14 @@ import '../../../common features/authentication/data/data_sources/auth_remote_da
 import '../../../common features/authentication/data/repositories/auth_repository_impl.dart';
 import '../../../common features/authentication/domain/repositories/auth_repository.dart';
 import '../../../common features/authentication/domain/use_cases/forgot_password.dart';
+import '../../../common features/authentication/domain/use_cases/information_register.dart';
 import '../../../common features/authentication/domain/use_cases/login.dart';
 import '../../../common features/authentication/domain/use_cases/logout.dart';
 import '../../../common features/authentication/domain/use_cases/register.dart';
 import '../../../common features/authentication/domain/use_cases/resend_verification_code.dart';
 import '../../../common features/authentication/domain/use_cases/verify_email.dart';
 import '../../../common features/authentication/presentation/bloc/forgot_password_bloc/forgot_password_bloc.dart';
+import '../../../common features/authentication/presentation/bloc/information_register_bloc/information_register_bloc.dart';
 import '../../../common features/authentication/presentation/bloc/login_bloc/login_bloc.dart';
 import '../../../common features/authentication/presentation/bloc/logout_bloc/logout_bloc.dart';
 import '../../../common features/authentication/presentation/bloc/register_bloc/register_bloc.dart';
@@ -30,6 +32,8 @@ Future<void> init() async {
   sl.registerFactory(() => LoginBloc(loginUseCase: sl()));
   sl.registerFactory(() => ForgotPasswordBloc(forgotPasswordUseCase: sl()));
   sl.registerFactory(() => LogoutBloc(logoutUseCase: sl()));
+  sl.registerFactory(
+      () => InformationRegisterBloc(informationRegisterUseCase: sl()));
 
   //! -----------------------Use Cases---------------------------
   sl.registerLazySingleton(() => Register(repository: sl()));
@@ -38,6 +42,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => Login(repository: sl()));
   sl.registerLazySingleton(() => ForgotPassword(repository: sl()));
   sl.registerLazySingleton(() => Logout(repository: sl()));
+  sl.registerLazySingleton(() => InformationRegister(repository: sl()));
 
   //! ----------------------Repository----------------------------
   sl.registerLazySingleton<AuthRepository>(

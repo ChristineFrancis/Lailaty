@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -8,8 +9,11 @@ class CustomTextField extends StatelessWidget {
   final VoidCallback? onEditingComplete;
   final bool isEmail;
   final bool isNumbers;
+  final bool isPhone;
   final bool hinted;
   final bool centered;
+  final bool hasPrefix;
+  final String prefixText;
 
   const CustomTextField({
     super.key,
@@ -20,8 +24,11 @@ class CustomTextField extends StatelessWidget {
     this.onEditingComplete,
     this.isEmail = false,
     this.isNumbers = false,
+    this.isPhone = false,
     this.hinted = false,
     this.centered = false,
+    this.hasPrefix = false,
+    this.prefixText = '',
   });
 
   @override
@@ -36,8 +43,12 @@ class CustomTextField extends StatelessWidget {
           ? TextInputType.emailAddress
           : isNumbers
               ? TextInputType.number
-              : TextInputType.text,
+              : isPhone
+                  ? TextInputType.phone
+                   : TextInputType.text,
       decoration: InputDecoration(
+        fillColor: Colors.white,
+        filled: true,
         labelText: hinted ? null : labelText,
         hintText: hinted ? labelText : null,
         labelStyle: TextStyle(color: Colors.grey[600]),
@@ -53,8 +64,21 @@ class CustomTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           borderSide: const BorderSide(color: Colors.black, width: 2),
         ),
-        fillColor: Colors.white,
-        filled: true,
+        //!------------prefix
+        prefixIcon: hasPrefix ? _prefixWidget(context) : null,
+      ),
+    );
+  }
+
+  Widget _prefixWidget(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.sizeOf(context).width * 60 / 430,
+      child: Center(
+        child: CustomTextWidget(
+          text: prefixText,
+          fontSize: 16,
+          color: Colors.black,
+        ),
       ),
     );
   }
