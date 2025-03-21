@@ -9,6 +9,8 @@ import 'package:lailaty/common%20features/authentication/presentation/ui/widgets
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/ui/alerts/problem_dialog.dart';
+import 'package:lailaty/core/ui/alerts/success_dialog.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../../core/config/storage/dependency_injection.dart';
@@ -45,17 +47,22 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
             child: BlocListener<VerifyEmailBloc, VerifyEmailState>(
               listener: (context, state) {
                 if (state is VerifyEmailError) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.message)),
-                  );
+                  showDialog(
+                      context: context,
+                      builder: (context) =>
+                          ProblemDialog(message: state.message));
                 } else if (state is VerifyEmailLoaded) {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (_) => InformationRegisterPage(email: widget.email,)),
+                    MaterialPageRoute(
+                        builder: (_) => InformationRegisterPage(
+                              email: widget.email,
+                            )),
                   );
                 } else if (state is VerifyEmailResendSuccess) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.message)),
-                  );
+                  showDialog(
+                      context: context,
+                      builder: (context) =>
+                          SuccessDialog(message: state.message));
                   setState(() {
                     isTimerFinished = false;
                     //!  برست التايمر و بفضي التيكست فيلد

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/user_details_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
 import 'package:lailaty/core/config/storage/dependency_injection.dart';
 import 'package:lailaty/core/services/secure_storage_service.dart';
 import '../../bloc/logout_bloc/logout_bloc.dart';
@@ -57,12 +59,23 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text('Home Page ^_^'),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => const UserDetailsPage()));
+                },
+                child: const Text('show user details'),
+              ),
+              SpcY(y: 40),
+              Text('logout'),
               IconButton(
                 icon: const Icon(Icons.logout),
                 onPressed: () async {
                   final token = await _getAccessToken();
                   if (token != null) {
-                    context.read<LogoutBloc>().add(LogoutSubmitted(token: token));
+                    context
+                        .read<LogoutBloc>()
+                        .add(LogoutSubmitted(token: token));
                   } else {
                     await _showErrorDialog(context, 'Failed to retrieve token');
                   }

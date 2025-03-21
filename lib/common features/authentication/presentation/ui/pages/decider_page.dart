@@ -12,11 +12,11 @@ class DeciderPage extends StatelessWidget {
   Future<Widget> _determineStartPage() async {
     final secureStorageService = sl<SecureStorageService>();
 
-    // Check if it's the first time launching the app.
+    //! if first time in app
     final isFirstTimeEither = await secureStorageService.getIsFirstTime();
     bool isFirstTime = isFirstTimeEither.fold((_) => true, (val) => val);
     if (isFirstTime) {
-      // Mark as not first time.
+      //! Mark as not first time.
       await secureStorageService.setIsFirstTime(false);
       return const OnBoarding();
     } else {

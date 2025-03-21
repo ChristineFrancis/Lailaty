@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lailaty/common%20features/authentication/presentation/ui/pages/information_register_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/home_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/pages/register_with_email_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/login_word.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/config/storage/dependency_injection.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
+import 'package:lailaty/core/ui/alerts/problem_dialog.dart';
+import 'package:lailaty/core/ui/alerts/success_dialog.dart';
 import '../../bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import '../../bloc/forgot_password_bloc/forgot_password_event.dart';
 import '../../bloc/forgot_password_bloc/forgot_password_state.dart';
@@ -86,15 +88,13 @@ class _LoginPageState extends State<LoginPage> {
               BlocListener<LoginBloc, LoginState>(
                 listener: (context, state) {
                   if (state is LoginError) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.message),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
+                    showDialog(
+                        context: context,
+                        builder: (context) =>
+                            ProblemDialog(message: state.message));
                   } else if (state is LoginLoaded) {
                     Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (_) =>  InformationRegisterPage(email: emailController.text)),
+                      MaterialPageRoute(builder: (_) => HomePage()),
                     );
                   }
                 },
@@ -102,18 +102,15 @@ class _LoginPageState extends State<LoginPage> {
               BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
                 listener: (context, state) {
                   if (state is ForgotPasswordError) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.message),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
+                    showDialog(
+                        context: context,
+                        builder: (context) =>
+                            ProblemDialog(message: state.message));
                   } else if (state is ForgotPasswordLoaded) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.response.message),
-                        backgroundColor: Colors.green,
-                      ),
+                    showDialog(
+                      context: context,
+                      builder: (context) =>
+                          SuccessDialog(message: state.response.message),
                     );
                   }
                 },
@@ -130,31 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                     const SpcY(y: 30),
                     const LoginWord(),
                     const SpcY(y: 50),
-                    LayoutBuilder(
-                      builder: (context, constraints) {
-                        final imageHeight = constraints.maxWidth / 2.3;
-                        return Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const LailatyArabicAndEnglish(),
-                              const SizedBox(width: 6),
-                              Container(
-                                width: 3,
-                                height: imageHeight,
-                                color: ColorManager.yellow,
-                              ),
-                              const SizedBox(width: 6),
-                              SvgPicture.asset(
-                                ImageAssetManager.loginAmico,
-                                width: imageHeight,
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
+                    _myLayout(context),
                     const SpcY(y: 40),
                     Padding(
                       padding: EdgeInsets.symmetric(
@@ -199,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                             onTap: () => _submitForgotPassword(context),
                             child: CustomTextWidget(
                               text: 'نسيت كلمة المرور',
-                              fontSize: 10,
+                              fontSize: 12,
                               color: ColorManager.yellow,
                             ),
                           ),
@@ -218,29 +191,8 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             },
                           ),
-                          const SpcY(y: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CustomTextWidget(
-                                  text: 'ليس لديك حساب؟   ',
-                                  fontSize: 10,
-                                  color: Colors.black),
-                              InkWell(
-                                child: CustomTextWidget(
-                                    text: 'إنشاء حساب',
-                                    fontSize: 12,
-                                    color: ColorManager.yellow),
-                                onTap: () {
-                                  Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const RegisterWithEmailPage()),
-                                      (route) => false);
-                                },
-                              ),
-                            ],
-                          ),
+                          const SpcY(y: 15),
+                          _doNotHaveAccount(),
                         ],
                       ),
                     ),
@@ -251,6 +203,58 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+    );
+  }
+
+  //! -------------MY widgets------------------------
+  Widget _myLayout(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final imageHeight = constraints.maxWidth / 2.3;
+        return Directionality(
+          textDirection: TextDirection.ltr,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const LailatyArabicAndEnglish(),
+              const SizedBox(width: 6),
+              Container(
+                width: 3,
+                height: imageHeight,
+                color: ColorManager.yellow,
+              ),
+              const SizedBox(width: 6),
+              SvgPicture.asset(
+                ImageAssetManager.loginAmico,
+                width: imageHeight,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _doNotHaveAccount() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CustomTextWidget(
+            text: 'ليس لديك حساب؟   ', fontSize: 10, color: Colors.black),
+        InkWell(
+          child: Container(
+            padding: EdgeInsets.all(3),
+            child: CustomTextWidget(
+                text: 'إنشاء حساب', fontSize: 12, color: ColorManager.yellow),
+          ),
+          onTap: () {
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(
+                    builder: (context) => const RegisterWithEmailPage()),
+                (route) => false);
+          },
+        ),
+      ],
     );
   }
 }

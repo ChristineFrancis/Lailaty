@@ -11,6 +11,7 @@ import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
 import '../../../../../core/config/storage/dependency_injection.dart';
+import '../../../../../core/ui/alerts/problem_dialog.dart';
 import '../../bloc/register_bloc/register_bloc.dart';
 import '../../bloc/register_bloc/register_event.dart';
 import '../widgets/custom_button.dart';
@@ -61,8 +62,11 @@ class _RegisterWithEmailPageState extends State<RegisterWithEmailPage> {
           child: BlocListener<RegisterBloc, RegisterState>(
             listener: (context, state) {
               if (state is RegisterError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
+                showDialog(
+                  context: context,
+                  builder: (context) => ProblemDialog(
+                    message: state.message,
+                  ),
                 );
               } else if (state is RegisterLoaded) {
                 Navigator.pushReplacement(
@@ -82,34 +86,10 @@ class _RegisterWithEmailPageState extends State<RegisterWithEmailPage> {
                 ),
                 child: Column(
                   children: [
-                    const SpcY(y: 30),
+                    SpcY(y: 30),
                     _registerWord(),
-                    const SpcY(y: 50),
-                    LayoutBuilder(
-                      builder: (context, constraints) {
-                        final imageHeight = constraints.maxWidth / 2.3;
-                        return Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const LailatyArabicAndEnglish(),
-                              const SizedBox(width: 6),
-                              Container(
-                                width: 3,
-                                height: imageHeight,
-                                color: ColorManager.yellow,
-                              ),
-                              const SizedBox(width: 6),
-                              SvgPicture.asset(
-                                ImageAssetManager.loginAmico,
-                                width: imageHeight,
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
+                    SpcY(y: 50),
+                    _myLayout(context),
                     SpcY(y: 40),
                     Padding(
                       padding: EdgeInsets.symmetric(
@@ -163,28 +143,8 @@ class _RegisterWithEmailPageState extends State<RegisterWithEmailPage> {
                               );
                             },
                           ),
-                          SpcY(y: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CustomTextWidget(
-                                  text: 'هل لديك حساب مسبقاً؟   ',
-                                  fontSize: 10,
-                                  color: Colors.black),
-                              InkWell(
-                                child: CustomTextWidget(
-                                    text: 'تسجيل الدخول',
-                                    fontSize: 12,
-                                    color: ColorManager.yellow),
-                                onTap: () {
-                                  Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginPage()),
-                                      (route) => false);
-                                },
-                              ),
-                            ],
-                          ),
+                          SpcY(y: 15),
+                          _haveAccount(),
                         ],
                       ),
                     ),
@@ -197,23 +157,75 @@ class _RegisterWithEmailPageState extends State<RegisterWithEmailPage> {
       ),
     );
   }
-}
 
-Widget _registerWord() {
-  return Text(
-    'إنشاء حساب',
-    style: TextStyle(
-      fontWeight: FontWeight.w900,
-      fontSize: 35,
-      shadows: [
-        Shadow(
-          offset: Offset(0.9, 0.9),
-          blurRadius: 0.5,
-          color: Colors.black.withOpacity(0.5),
+  //!----------------MY WIDGETS---------------
+
+  Widget _myLayout(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final imageHeight = constraints.maxWidth / 2.3;
+        return Directionality(
+          textDirection: TextDirection.ltr,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const LailatyArabicAndEnglish(),
+              const SizedBox(width: 6),
+              Container(
+                width: 3,
+                height: imageHeight,
+                color: ColorManager.yellow,
+              ),
+              const SizedBox(width: 6),
+              SvgPicture.asset(
+                ImageAssetManager.loginAmico,
+                width: imageHeight,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _registerWord() {
+    return Text(
+      'إنشاء حساب',
+      style: TextStyle(
+        fontWeight: FontWeight.w900,
+        fontSize: 35,
+        shadows: [
+          Shadow(
+            offset: Offset(0.9, 0.9),
+            blurRadius: 0.5,
+            color: Colors.black.withOpacity(0.5),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _haveAccount() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CustomTextWidget(
+            text: 'هل لديك حساب مسبقاً؟   ', fontSize: 10, color: Colors.black),
+        InkWell(
+          child: Container(
+            padding: EdgeInsets.all(3),
+            child: CustomTextWidget(
+                text: 'تسجيل الدخول', fontSize: 12, color: ColorManager.yellow),
+          ),
+          onTap: () {
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => LoginPage()),
+                (route) => false);
+          },
         ),
       ],
-    ),
-  );
+    );
+  }
 }
 
 

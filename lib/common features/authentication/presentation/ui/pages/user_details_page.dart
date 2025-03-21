@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/information_register_page.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/core/services/secure_storage_service.dart';
 import 'package:lailaty/core/config/storage/dependency_injection.dart';
-import 'package:lailaty/core/resources/color_manager.dart';
 import '../../../data/models/user_model.dart';
-import 'home_page.dart';
 
 class UserDetailsPage extends StatelessWidget {
   const UserDetailsPage({super.key});
@@ -28,6 +28,8 @@ class UserDetailsPage extends StatelessWidget {
             return const Center(child: Text("No user data found."));
           }
           final user = snapshot.data!;
+          String DOB =
+              user.birthDate.toLocal().toIso8601String().split('T').first;
           return Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -35,35 +37,38 @@ class UserDetailsPage extends StatelessWidget {
               children: [
                 Text("ID: ${user.id}", style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 8),
-                Text("Email: ${user.email}", style: const TextStyle(fontSize: 16)),
+                Text("Email: ${user.email}",
+                    style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 8),
-                Text("First Name: ${user.firstName}", style: const TextStyle(fontSize: 16)),
+                Text("First Name: ${user.firstName}",
+                    style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 8),
-                Text("Last Name: ${user.lastName}", style: const TextStyle(fontSize: 16)),
+                Text("Last Name: ${user.lastName}",
+                    style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 8),
-                Text("Phone Number: ${user.phoneNumber}", style: const TextStyle(fontSize: 16)),
+                Text("Phone Number: ${user.phoneNumber}",
+                    style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 8),
-                Text("Gender: ${user.gender}", style: const TextStyle(fontSize: 16)),
+                Text("Gender: ${user.gender}",
+                    style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 8),
-                Text("Birth Date: ${user.birthDate.toLocal().toIso8601String().split('T').first}", style: const TextStyle(fontSize: 16)),
+                Text("Birth Date: ${DOB}",
+                    style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 8),
-                Text("City: ${user.city}", style: const TextStyle(fontSize: 16)),
+                Text("City: ${user.city}",
+                    style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 8),
-                Text("Role: ${user.role}", style: const TextStyle(fontSize: 16)),
+                Text("Role: ${user.role}",
+                    style: const TextStyle(fontSize: 16)),
                 const Spacer(),
-                Center(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorManager.yellow,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (_) => const HomePage()),
-                      );
-                    },
-                    child: const Text("Go to Home", style: TextStyle(fontSize: 18)),
-                  ),
-                ),
+                if (DOB == '1970-01-01')
+                  CustomButton(
+                      textButton: 'Please Complete your Info',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) =>
+                                InformationRegisterPage(email: user.email)));
+                      })
               ],
             ),
           );

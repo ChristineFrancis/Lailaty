@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lailaty/common%20features/authentication/presentation/ui/pages/home_page.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/custom%20widgets/text_fields/custom_text_field.dart';
 import 'package:lailaty/common%20features/authentication/presentation/ui/widgets/date_picker_widget.dart';
+import 'package:lailaty/core/ui/alerts/problem_dialog.dart';
 import '../../../../../core/resources/asset_manager.dart';
 import '../../../../../core/resources/color_manager.dart';
 import '../../../domain/entities/info_register_request.dart';
@@ -15,7 +17,6 @@ import '../../bloc/information_register_bloc/information_register_state.dart';
 import '../widgets/custom widgets/text widgets/custom_text_widget.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/logo_with_laylaty.dart';
-import 'user_details_page.dart';
 
 class InformationRegisterPage extends StatefulWidget {
   final String email;
@@ -41,8 +42,8 @@ class _InformationRegisterPageState extends State<InformationRegisterPage> {
   //!---------------------ANIMATION VARIABLES---------------------------
   int _clickCount = 0;
   bool showCar = false;
-  double backArrowScale = 1; 
-  List vis = [true, false, false, false]; 
+  double backArrowScale = 1;
+  List vis = [true, false, false, false];
 
   @override
   void dispose() {
@@ -108,17 +109,15 @@ class _InformationRegisterPageState extends State<InformationRegisterPage> {
       body: BlocListener<InformationRegisterBloc, InformationRegisterState>(
         listener: (context, state) {
           if (state is InformationRegisterError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                  content: Text(state.message), backgroundColor: Colors.red),
-            );
+            showDialog(
+                context: context,
+                builder: (context) => ProblemDialog(message: state.message));
           } else if (state is InformationRegisterLoaded) {
-            Timer(Duration(milliseconds: 1500), () {
+            Timer(Duration(seconds: 1), () {
               setState(() {
                 _clickCount = 2;
                 vis[2] = true;
                 vis[1] = false;
-
 
                 Timer(Duration(milliseconds: 1500), () {
                   setState(() {
@@ -126,8 +125,7 @@ class _InformationRegisterPageState extends State<InformationRegisterPage> {
                     backArrowScale = 0;
                     Timer(Duration(seconds: 5), () {
                       Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => UserDetailsPage()),
+                          MaterialPageRoute(builder: (context) => HomePage()),
                           (route) => false);
                     });
                   });

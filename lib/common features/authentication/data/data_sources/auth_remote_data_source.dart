@@ -52,7 +52,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final jsonMap = json.decode(response.body);
       return EmailRegistrationResponseModel.fromJson(jsonMap);
     } else {
-      throw const ServerException('Failed to register email');
+      final jsonMap = json.decode(response.body);
+      String errorMessage =
+          jsonMap['message'] + ': ' + jsonMap['errors']['email'][0];
+      if (jsonMap['errors']['password'] != null) {
+        errorMessage += jsonMap['errors']['password'][0];
+      }
+      throw ServerException(errorMessage);
     }
   }
 
@@ -76,7 +82,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final jsonMap = json.decode(response.body);
       return VerifyEmailResponseModel.fromJson(jsonMap);
     } else {
-      throw ServerException('Failed to verify email: ${response.body}');
+      final errorString = json.decode(response.body)['message'];
+      throw ServerException('Failed to verify email: $errorString');
     }
   }
 
@@ -100,7 +107,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       String errorMessage =
           jsonMap['message'] ?? 'Failed to resend verification code';
       if (jsonMap['errors'] != null && jsonMap['errors']['email'] != null) {
-        errorMessage += ": " + (jsonMap['errors']['email'] as List).join(', ');
+        errorMessage += ": ${(jsonMap['errors']['email'] as List).join(', ')}";
       }
       throw ServerException(errorMessage);
     }
@@ -121,7 +128,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final jsonMap = json.decode(response.body);
       return LoginResponseModel.fromJson(jsonMap);
     } else {
-      throw ServerException('Failed to login: ${response.body}');
+      throw ServerException(
+          'Failed to login: ${json.decode(response.body)['message']}');
     }
   }
 
@@ -141,7 +149,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final jsonMap = json.decode(response.body);
       return ForgotPasswordResponseModel.fromJson(jsonMap);
     } else {
-      throw ServerException('Failed to send reset link: ${response.body}');
+      String errorMessage = json.decode(response.body)['errors']['email'][0];
+      throw ServerException('Failed to send reset link: $errorMessage');
     }
   }
 
@@ -181,7 +190,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         'gender': request.gender,
         'birth_date': request.birthDate,
         'city': request.city,
-        'role': request.role,//TODO:
+        'role': request.role,
         'deviceToken': request.deviceToken,
       },
     );
@@ -189,9 +198,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     if (response.statusCode == 200) {
       return json.decode(response.body) as Map<String, dynamic>;
     } else {
-      print("Informationnnnnnn Registration Error: ${response.body}");
+      String errorMessage = json.decode(response.body)['message'];
       throw ServerException(
-          'Failed to complete information registration: ${response.body}');//TODO:
+          'Failed to complete information registration: $errorMessage');
     }
   }
 }

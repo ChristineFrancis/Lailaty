@@ -17,17 +17,30 @@ class NotificationPage extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-            backgroundColor: ColorManager.grey,
-            leading: IconButton(onPressed: () {Navigator.of(context).pop();}, 
-            icon: Icon(Icons.arrow_back ,color: ColorManager.yellow, )),),
+          backgroundColor: ColorManager.grey,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: ColorManager.yellow,
+              )),
+        ),
         backgroundColor: ColorManager.grey,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/45, ),
+          padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.sizeOf(context).width / 45,
+          ),
           child: Column(
             children: [
-             Spacer(flex: 1,),
+              Spacer(
+                flex: 1,
+              ),
               LoginWord(),
-              Spacer(flex: 3,),
+              Spacer(
+                flex: 3,
+              ),
               LayoutBuilder(
                 builder: (context, constraints) {
                   final imageHeight = constraints.maxWidth / 2.3;
@@ -37,7 +50,9 @@ class NotificationPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         LailatyArabicAndEnglish(),
-                        SizedBox(width: 6,),
+                        SizedBox(
+                          width: 6,
+                        ),
                         Container(
                           width: 3, // Width of the yellow line
                           height: imageHeight, // Match the height of the image
@@ -52,39 +67,55 @@ class NotificationPage extends StatelessWidget {
                   );
                 },
               ),
-              Spacer(flex: 3,),
-              Padding(
-                padding:  EdgeInsets.symmetric(horizontal: MediaQuery.sizeOf(context).width/20),
-                child:CustomTextWidget(text:'هل تود السماح لتطبيق ليلتي بارسال الاشعارات' , color: Colors.black,fontSize: 25,) 
-                // Text('هل تود السماح لتطبيق ليلتي بارسال الاشعارات',
-                // textAlign: TextAlign.center,
-                // style: const TextStyle( fontWeight: FontWeight.w600 , fontSize: 23,)),
+              Spacer(
+                flex: 3,
               ),
+              Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.sizeOf(context).width / 20),
+                  child: CustomTextWidget(
+                    text: 'هل تود السماح لتطبيق ليلتي بارسال الاشعارات',
+                    color: Colors.black,
+                    fontSize: 25,
+                  )
+                  // Text('هل تود السماح لتطبيق ليلتي بارسال الاشعارات',
+                  // textAlign: TextAlign.center,
+                  // style: const TextStyle( fontWeight: FontWeight.w600 , fontSize: 23,)),
+                  ),
               //SizedBox(height: 20,),
               //Spacer(flex: 1,),
-              
+
               //CityDropdown(),
-          
-      
-          Spacer(flex: 3,),
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/7, ),
-            child: 
-            CustomButton(textButton: 'السماح', textSize: 25,
-            onTap: () {
-              Navigator.of(context).push(
-        PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => LocationPage(),));
-            }, ),
-          ),
-          TextButton(child: CustomTextWidget(text:'تخطي', color: ColorManager.yellow , fontSize: 27,) , 
-          onPressed: () {
-            
-          }, ),
-          Spacer(flex: 2,),
-          
-          
-              
+
+              Spacer(
+                flex: 3,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.sizeOf(context).width / 7,
+                ),
+                child: CustomButton(
+                  textButton: 'السماح',
+                  textSize: 25,
+                  onTap: () {
+                    Navigator.of(context).push(PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          LocationPage(),
+                    ));
+                  },
+                ),
+              ),
+              TextButton(
+                child: CustomTextWidget(
+                  text: 'تخطي',
+                  color: ColorManager.yellow,
+                  fontSize: 27,
+                ),
+                onPressed: () {},
+              ),
+              Spacer(
+                flex: 2,
+              ),
             ],
           ),
         ),

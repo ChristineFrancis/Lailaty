@@ -17,17 +17,30 @@ class LocationPage extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-            backgroundColor: ColorManager.grey,
-            leading: IconButton(onPressed: () {Navigator.of(context).pop();}, 
-            icon: Icon(Icons.arrow_back ,color: ColorManager.yellow, )),),
+          backgroundColor: ColorManager.grey,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: ColorManager.yellow,
+              )),
+        ),
         backgroundColor: ColorManager.grey,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/45, ),
+          padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.sizeOf(context).width / 45,
+          ),
           child: Column(
             children: [
-             Spacer(flex: 1,),
+              Spacer(
+                flex: 1,
+              ),
               LoginWord(),
-              Spacer(flex: 3,),
+              Spacer(
+                flex: 3,
+              ),
               LayoutBuilder(
                 builder: (context, constraints) {
                   final imageHeight = constraints.maxWidth / 2.3;
@@ -37,51 +50,68 @@ class LocationPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         LailatyArabicAndEnglish(),
-                        SizedBox(width: 6,),
+                        SizedBox(
+                          width: 6,
+                        ),
                         Container(
-                          width: 3, // Width of the yellow line
-                          height: imageHeight, // Match the height of the image
+                          width: 3,
+                          height: imageHeight,
                           color: ColorManager.yellow,
                         ),
-                        SizedBox(width: 6,),
+                        SizedBox(
+                          width: 6,
+                        ),
                         SvgPicture.asset(
                           ImageAssetManager.location,
-                          width: imageHeight, // Set the width of the image
+                          width: imageHeight,
                         ),
                       ],
                     ),
                   );
                 },
               ),
-              Spacer(flex: 3,),
+              Spacer(
+                flex: 3,
+              ),
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: MediaQuery.sizeOf(context).width/20),
-                child: CustomTextWidget(text: 'هل تود السماح لتطبيق ليلتي بتتبع موقعك',color: Colors.black,fontSize: 26,),
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.sizeOf(context).width / 20),
+                child: CustomTextWidget(
+                  text: 'هل تود السماح لتطبيق ليلتي بتتبع موقعك',
+                  color: Colors.black,
+                  fontSize: 26,
+                ),
               ),
               //SizedBox(height: 20,),
               //Spacer(flex: 1,),
-              
+
               //CityDropdown(),
-          
-      
-          Spacer(flex: 3,),
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal:MediaQuery.sizeOf(context).width/7, ),
-            child: CustomButton(textButton: 'السماح', textSize: 25,
-            onTap: () {
-              Navigator.of(context).push(
-        PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => RegisterWithEmailPage(),));
-            }),
-          ),
-          TextButton(child:CustomTextWidget(text:'ليس الان',color: ColorManager.yellow , fontSize: 25) , 
-          onPressed: () {
-            
-          }, ),
-          Spacer(flex: 2,),
-          
-          
-              
+
+              Spacer(
+                flex: 3,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.sizeOf(context).width / 7,
+                ),
+                child: CustomButton(
+                    textButton: 'السماح',
+                    textSize: 25,
+                    onTap: () {
+                      Navigator.of(context).push(PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            RegisterWithEmailPage(),
+                      ));
+                    }),
+              ),
+              TextButton(
+                child: CustomTextWidget(
+                    text: 'ليس الان', color: ColorManager.yellow, fontSize: 25),
+                onPressed: () {},
+              ),
+              Spacer(
+                flex: 2,
+              ),
             ],
           ),
         ),

@@ -34,7 +34,7 @@ class UserModel extends Equatable {
       gender: json['gender'] as String? ?? '',
       birthDate: json['birth_date'] != null
           ? DateTime.parse(json['birth_date'] as String)
-          : DateTime(1970, 1, 1),
+          : DateTime(1900, 1, 1),
       city: json['city'] as String? ?? 'egypt',
       role: json['role_name'] as String? ?? 'client',
       deviceToken: json['deviceToken'] as String? ?? '',

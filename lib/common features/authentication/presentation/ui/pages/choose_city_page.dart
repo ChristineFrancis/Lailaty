@@ -41,13 +41,13 @@ class ChooseCityPage extends StatelessWidget {
                         LailatyArabicAndEnglish(),
                         SizedBox(width: 6,),
                         Container(
-                          width: 3, // Width of the yellow line
-                          height: imageHeight, // Match the height of the image
+                          width: 3, 
+                          height: imageHeight, 
                           color: ColorManager.yellow,
                         ),
                         SvgPicture.asset(
                           ImageAssetManager.city,
-                          width: imageHeight, // Set the width of the image
+                          width: imageHeight, 
                         ),
                       ],
                     ),
