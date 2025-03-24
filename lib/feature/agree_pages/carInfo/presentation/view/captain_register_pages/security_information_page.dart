@@ -15,7 +15,6 @@ import 'package:lailaty/feature/agree_pages/carInfo/domain/entities/captain_regi
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/captain_register_bloc/captain_register_bloc.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/captain_register_bloc/captain_register_event.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/captain_register_bloc/captain_register_state.dart';
-import 'package:lailaty/feature/agree_pages/carInfo/service_locator.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/details_text_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/next_botton_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/title_for_details_widget.dart';

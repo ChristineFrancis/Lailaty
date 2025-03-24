@@ -1,18 +1,13 @@
-// getHeader(bool userToken) {
-//   if (userToken) {
-//     return Options(headers: {
-//       'Authorization': 'Bearer ${config.get<SharedPreferences>().getString(
-//             'token',
-//           )}',
-//       "contentType": "application/json",
-//     });
-//   } else {
-//     return Options(headers: {
-//       "contentType": "application/json",
-//     });
-//   }
-// }
-//? using it with dio
-    // options: getHeader(true).copyWith(validateStatus: (int? status) {
-    //         return status != null && status < 500;
-    //       }),
+Map<String, String>? getHeader(bool hasToken) {
+  if (hasToken == false) {
+    return {
+      'Accept': 'application/json',
+    };
+  } else {
+    return {
+      'Accept': 'application/json',
+      'Authorization':
+          'Bearer 173|5rzNhelOPn0WKBWEM99XH9Hcvw9KZHhdtAnepOTu8dc7e8cd',
+    };
+  }
+}

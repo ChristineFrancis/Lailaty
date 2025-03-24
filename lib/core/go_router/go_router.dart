@@ -121,8 +121,8 @@ class Routes {
         ),
       ),
       GoRoute(
-        path:
-            '/', // AppKeys.personalInformationPageKey, //AppKeys.personalInformationPageKey,
+        path: AppKeys
+            .personalInformationPageKey, //AppKeys.personalInformationPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: MultiProvider(
@@ -349,13 +349,13 @@ class Routes {
       ),
 //for fleet owner :
       GoRoute(
-        path: AppKeys.fleetInformationPage,
+        path: '/', //AppKeys.fleetInformationPage,
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             key: state.pageKey,
             // child: ChangeNotifierProvider(
             //     create: (_) => PersonalInformationView(),
-            child: const FleetInfromationPage()
+            child: const FleetInformationPage()
             //)
             ,
             transitionsBuilder: _fadeTransition,

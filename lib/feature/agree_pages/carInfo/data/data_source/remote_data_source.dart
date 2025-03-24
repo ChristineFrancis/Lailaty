@@ -6,6 +6,7 @@ import 'package:lailaty/core/error_manager/error_model.dart';
 import 'package:lailaty/core/error_manager/exception.dart';
 import 'package:lailaty/core/resources/api_key_manager.dart';
 import 'package:lailaty/core/resources/url_manager.dart';
+import 'package:lailaty/core/utils/header_fun.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/models/captain_registration_documents_request_model.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/models/captain_registration_documents_response_message_model.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/models/car_brand_model.dart';
@@ -166,19 +167,5 @@ class AgreePagesRemoteDateSourceImpl implements AgreePagesRemoteDateSource {
                 ErrorModel(errorMessage: "Unexpected error: ${e.toString()}"));
       }
     }
-  }
-}
-
-Map<String, String>? getHeader(bool hasToken) {
-  if (hasToken == false) {
-    return {
-      'Accept': 'application/json',
-    };
-  } else {
-    return {
-      'Accept': 'application/json',
-      'Authorization':
-          'Bearer 87|xuxq0Q9yQ5dRymqL6V7DO7dyKj5GWhQe2c0qZtNT5532130b',
-    };
   }
 }

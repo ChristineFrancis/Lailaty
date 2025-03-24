@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
 import 'package:lailaty/core/error_manager/exception.dart';
-
 import 'package:lailaty/core/error_manager/failures.dart';
 import 'package:lailaty/core/network/network_connection.dart';
 import 'package:lailaty/core/resources/string_manager.dart';

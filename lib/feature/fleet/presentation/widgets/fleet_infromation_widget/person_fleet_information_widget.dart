@@ -8,6 +8,7 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:lailaty/feature/fleet/presentation/widgets/fleet_infromation_widget/fleet_address.dart';
 
 class PersonFleetInformationWidget extends StatelessWidget {
   const PersonFleetInformationWidget({
@@ -15,12 +16,13 @@ class PersonFleetInformationWidget extends StatelessWidget {
     required this.context,
     required this.fleetNameController,
     required this.addressController,
+    required this.personPhoneNumberController,
   });
 
   final BuildContext context;
   final TextEditingController fleetNameController;
   final TextEditingController addressController;
-
+  final TextEditingController personPhoneNumberController;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -39,14 +41,28 @@ class PersonFleetInformationWidget extends StatelessWidget {
           height: context.screenHeight * 0.02,
         ),
         Center(
-          child: FormProfileContainer(
+          child: FleetAddressContainer(
+            onLocationSelected: (lat, lng) {
+              print("Selected Latitude: $lat, Longitude: $lng");
+            },
             controller: addressController,
             title: StringManager.address,
             hintText: '',
           ),
         ),
         SizedBox(
-          height: context.screenHeight * 0.4,
+          height: context.screenHeight * 0.02,
+        ),
+        Center(
+          child: FormProfileContainer(
+            controller: personPhoneNumberController,
+            title: StringManager.phoneNumber,
+            hintText: '',
+            keyboardType: TextInputType.number,
+          ),
+        ),
+        SizedBox(
+          height: context.screenHeight * 0.2,
         ),
         const ClientServiceRow(),
         SizedBox(
@@ -61,7 +77,11 @@ class PersonFleetInformationWidget extends StatelessWidget {
               context.push(AppKeys.fleetOptionsPage);
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text(StringManager.fleetValidate)),
+                const SnackBar(
+                    content: Text(
+                  StringManager.fleetValidate,
+                  textAlign: TextAlign.right,
+                )),
               );
             }
           },

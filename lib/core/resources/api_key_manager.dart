@@ -7,4 +7,15 @@ class ApiKeyManager {
   static const String personalCardBackFace = "personal_card_backFace";
   static const String criminalRecord = "criminal_record";
   static const String birthDate = "birth_date";
+
+//fleet company request key:
+  static const String name = "name";
+  static const String phoneNumber = "phone_number";
+  static const String latitude = "latitude";
+  static const String longitude = "longitude";
+  static const String commercialRegistrationCard =
+      "commercial_registration_card";
+  static const String taxCard = "tax_card";
+
+
 }
