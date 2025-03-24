@@ -1,6 +1,6 @@
 //! change these keys :
 
-import 'package:lailaty/feature/fleet/domain/entities/fleet_create_company_response_entity.dart';
+import 'package:lailaty/feature/fleet/domain/entities/company_fleet/fleet_create_company_response_entity.dart';
 
 class FleetCreateCompanyResponseModel {
   final int id;

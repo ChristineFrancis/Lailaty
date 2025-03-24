@@ -1,33 +1,26 @@
-import 'dart:io';
 import 'package:lailaty/core/resources/api_key_manager.dart';
-import 'package:lailaty/feature/fleet/domain/entities/fleet_create_company_request_entity.dart';
+import 'package:lailaty/feature/fleet/domain/entities/personal_fleet/fleet_create_person_request.dart';
 
-class FleetCreateCompanyRequestModel {
+class FleetCreatePersonRequestModel {
   final String name;
   final double latitude;
   final double longitude;
   final String phoneNumber;
-  final File commercialRegistrationCard;
-  final File taxCard;
 
-  const FleetCreateCompanyRequestModel({
+  const FleetCreatePersonRequestModel({
     required this.name,
     required this.latitude,
     required this.longitude,
     required this.phoneNumber,
-    required this.commercialRegistrationCard,
-    required this.taxCard,
   });
 
   /// Convert from JSON to Model
-  factory FleetCreateCompanyRequestModel.fromJson(Map<String, dynamic> json) {
-    return FleetCreateCompanyRequestModel(
+  factory FleetCreatePersonRequestModel.fromJson(Map<String, dynamic> json) {
+    return FleetCreatePersonRequestModel(
       name: json[ApiKeyManager.name],
       latitude: double.parse(json[ApiKeyManager.latitude].toString()),
       longitude: double.parse(json[ApiKeyManager.longitude].toString()),
       phoneNumber: json[ApiKeyManager.phoneNumber],
-      commercialRegistrationCard: File(json[ApiKeyManager.commercialRegistrationCard]),
-      taxCard: File(json[ApiKeyManager.taxCard]),
     );
   }
 
@@ -38,33 +31,27 @@ class FleetCreateCompanyRequestModel {
       ApiKeyManager.latitude: latitude.toString(),
       ApiKeyManager.longitude: longitude.toString(),
       ApiKeyManager.phoneNumber: phoneNumber,
-      ApiKeyManager.commercialRegistrationCard: commercialRegistrationCard.path,
-      ApiKeyManager.taxCard: taxCard.path,
     };
   }
 
   /// Convert Model to Entity
-  FleetCreateCompanyRequestEntity toEntity() {
-    return FleetCreateCompanyRequestEntity(
+  FleetCreatePersonRequest toEntity() {
+    return FleetCreatePersonRequest(
       name: name,
       latitude: latitude,
       longitude: longitude,
       phoneNumber: phoneNumber,
-      commercialRegistrationCard: commercialRegistrationCard,
-      taxCard: taxCard,
     );
   }
 
   /// Convert Entity to Model
-  static FleetCreateCompanyRequestModel fromEntity(FleetCreateCompanyRequestEntity entity) {
-    return FleetCreateCompanyRequestModel(
+  static FleetCreatePersonRequestModel fromEntity(
+      FleetCreatePersonRequest entity) {
+    return FleetCreatePersonRequestModel(
       name: entity.name,
       latitude: entity.latitude,
       longitude: entity.longitude,
       phoneNumber: entity.phoneNumber,
-      commercialRegistrationCard: entity.commercialRegistrationCard,
-      taxCard: entity.taxCard,
     );
   }
 }
-

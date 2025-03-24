@@ -14,5 +14,5 @@ class UrlManager {
   static const String createFleetCompany =
       '$baseAuthUrl/captain/offices/create/company';
   static const String createFleetPersonal =
-      '$baseAuthUrl/captain/offices/create/company';
+      '$baseAuthUrl/captain/offices/create/personal';
 }

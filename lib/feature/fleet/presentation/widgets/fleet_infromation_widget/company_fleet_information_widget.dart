@@ -15,7 +15,7 @@ import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/image_picker_place_holder.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/no_image_placeholder_widget.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/title_for_details_widget.dart';
-import 'package:lailaty/feature/fleet/domain/entities/fleet_create_company_request_entity.dart';
+import 'package:lailaty/feature/fleet/domain/entities/company_fleet/fleet_create_company_request_entity.dart';
 import 'package:lailaty/feature/fleet/presentation/state_manager/fleet_company/fleet_company_bloc.dart';
 import 'package:lailaty/feature/fleet/presentation/widgets/fleet_infromation_widget/fleet_address.dart';
 import 'package:provider/provider.dart';

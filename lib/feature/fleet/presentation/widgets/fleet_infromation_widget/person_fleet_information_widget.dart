@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/presentation/widget/client_service_row.dart';
 import 'package:lailaty/core/config/presentation/widget/form_profile_container.dart';
 import 'package:lailaty/core/config/presentation/widget/myButton.dart';
+import 'package:lailaty/core/config/presentation/widget/offline_dialog_widget.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
+import 'package:lailaty/core/state_managments/network_bloc/net_work_bloc.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:lailaty/feature/fleet/domain/entities/personal_fleet/fleet_create_person_request.dart';
+import 'package:lailaty/feature/fleet/presentation/state_manager/fleet_company/fleet_company_bloc.dart';
+import 'package:lailaty/feature/fleet/presentation/state_manager/personal_fleet/personal_fleet_bloc.dart';
 import 'package:lailaty/feature/fleet/presentation/widgets/fleet_infromation_widget/fleet_address.dart';
 
-class PersonFleetInformationWidget extends StatelessWidget {
+class PersonFleetInformationWidget extends StatefulWidget {
   const PersonFleetInformationWidget({
     super.key,
     required this.context,
@@ -23,6 +29,17 @@ class PersonFleetInformationWidget extends StatelessWidget {
   final TextEditingController fleetNameController;
   final TextEditingController addressController;
   final TextEditingController personPhoneNumberController;
+
+  @override
+  State<PersonFleetInformationWidget> createState() =>
+      _PersonFleetInformationWidgetState();
+}
+
+class _PersonFleetInformationWidgetState
+    extends State<PersonFleetInformationWidget> {
+  double? latitude;
+  double? longitude;
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -32,7 +49,7 @@ class PersonFleetInformationWidget extends StatelessWidget {
         ),
         Center(
           child: FormProfileContainer(
-            controller: fleetNameController,
+            controller: widget.fleetNameController,
             title: StringManager.fleetName,
             hintText: '',
           ),
@@ -43,9 +60,13 @@ class PersonFleetInformationWidget extends StatelessWidget {
         Center(
           child: FleetAddressContainer(
             onLocationSelected: (lat, lng) {
+              setState(() {
+                latitude = lat;
+                longitude = lng;
+              });
               print("Selected Latitude: $lat, Longitude: $lng");
             },
-            controller: addressController,
+            controller: widget.addressController,
             title: StringManager.address,
             hintText: '',
           ),
@@ -55,7 +76,7 @@ class PersonFleetInformationWidget extends StatelessWidget {
         ),
         Center(
           child: FormProfileContainer(
-            controller: personPhoneNumberController,
+            controller: widget.personPhoneNumberController,
             title: StringManager.phoneNumber,
             hintText: '',
             keyboardType: TextInputType.number,
@@ -68,33 +89,81 @@ class PersonFleetInformationWidget extends StatelessWidget {
         SizedBox(
           height: context.screenHeight * 0.02,
         ),
-        MyButton(
-          title: StringManager.next,
-          onpress: () {
-            if (fleetNameController.text.isNotEmpty &&
-                addressController.text.isNotEmpty) {
-              //!navigate to the next page
-              context.push(AppKeys.fleetOptionsPage);
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                    content: Text(
-                  StringManager.fleetValidate,
-                  textAlign: TextAlign.right,
-                )),
+        BlocBuilder<PersonalFleetBloc, PersonalFleetState>(
+          builder: (context, state) {
+            if (state is PersonalFleetLoading) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: ColorManager.grey1,
+                ),
               );
             }
+            return MyButton(
+              title: StringManager.next,
+              onpress: () {
+                _validateAndSubmit(context);
+              },
+              colors: ColorManager.grey1,
+              width: context.screenWidth * 0.7,
+              height: context.screenHeight * 0.05,
+              radius: 5,
+              styleOfTExt: StyleManager.semiboldTextStyle20(),
+            );
           },
-          colors: ColorManager.grey1,
-          width: context.screenWidth * 0.7,
-          height: context.screenHeight * 0.05,
-          radius: 5,
-          styleOfTExt: StyleManager.semiboldTextStyle20(),
         ),
         SizedBox(
           height: context.screenHeight * 0.02,
         ),
       ],
     );
+  }
+
+  void _validateAndSubmit(BuildContext context) {
+    if (widget.fleetNameController.text.isEmpty ||
+        widget.addressController.text.isEmpty ||
+        widget.addressController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            StringManager.fleetValidate,
+            textAlign: TextAlign.right,
+          ),
+        ),
+      );
+      return;
+      //!navigate to the next page
+      //  context.push(AppKeys.fleetOptionsPage);
+    }
+    if (latitude == null || longitude == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "يرجى تحديد الموقع قبل المتابعة.",
+            textAlign: TextAlign.right,
+          ),
+        ),
+      );
+      return;
+    }
+
+    final networkState = context.read<NetWorkBloc>().state;
+    if (networkState is NetWorkOffline) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return const OfflineDialogWidget();
+        },
+      );
+      return;
+    }
+
+    final request = FleetCreatePersonRequest(
+      latitude: latitude!,
+      longitude: longitude!,
+      phoneNumber: widget.personPhoneNumberController.text,
+      name: widget.fleetNameController.text,
+    );
+
+    context.read<PersonalFleetBloc>().add(SubmitPersonalFleet(request));
   }
 }

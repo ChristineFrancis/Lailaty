@@ -3,8 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:lailaty/core/error_manager/failures.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
-import 'package:lailaty/feature/fleet/domain/entities/fleet_create_company_request_entity.dart';
-import 'package:lailaty/feature/fleet/domain/entities/fleet_create_company_response_entity.dart';
+import 'package:lailaty/feature/fleet/domain/entities/company_fleet/fleet_create_company_request_entity.dart';
+import 'package:lailaty/feature/fleet/domain/entities/company_fleet/fleet_create_company_response_entity.dart';
 import 'package:lailaty/feature/fleet/domain/usecases/create_fleet_company_usecase.dart';
 
 part 'fleet_company_event.dart';
