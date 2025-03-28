@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:http/http.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
-import 'package:lailaty/core/network/network_connection.dart';
+import 'package:lailaty/core/config/storage/service_locator.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/state_managments/image_picker_cubit/image_pick_cubit.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/feature/fleet/data/datasources/remote_fleet_datasource.dart';
-import 'package:lailaty/feature/fleet/data/repo/fleet_repo_impl.dart';
-import 'package:lailaty/feature/fleet/domain/usecases/create_fleet_company_usecase.dart';
-import 'package:lailaty/feature/fleet/domain/usecases/create_personal_fleet_usecase.dart';
 import 'package:lailaty/feature/fleet/presentation/state_manager/fleet_company/fleet_company_bloc.dart';
 import 'package:lailaty/feature/fleet/presentation/state_manager/personal_fleet/personal_fleet_bloc.dart';
 import 'package:lailaty/feature/fleet/presentation/widgets/fleet_infromation_widget/company_fleet_information_widget.dart';
@@ -60,28 +54,34 @@ class _FleetInformationPageState extends State<FleetInformationPage> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        // BlocProvider(
+        //   create: (context) => FleetCompanyBloc(
+        //       fleetCompanyUsecase: CreateFleetCompanyUsecase(
+        //           repo: FleetRepoImpl(
+        //               remoteFleetDatasource:
+        //                   RemoteFleetDatasourceImpl(client: Client()),
+        //               networkInfo: NetworkInfoImplement(
+        //                   isConnect:
+        //                       InternetConnectionChecker.createInstance())))),
+        // ),
+        // BlocProvider(
+        //   create: (context) => PersonalFleetBloc(
+        //     CreatePersonalFleetUsecase(
+        //       repo: FleetRepoImpl(
+        //         remoteFleetDatasource:
+        //             RemoteFleetDatasourceImpl(client: Client()),
+        //         networkInfo: NetworkInfoImplement(
+        //           isConnect: InternetConnectionChecker.createInstance(),
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
         BlocProvider(
-          create: (context) => FleetCompanyBloc(
-              fleetCompanyUsecase: CreateFleetCompanyUsecase(
-                  repo: FleetRepoImpl(
-                      remoteFleetDatasource:
-                          RemoteFleetDatasourceImpl(client: Client()),
-                      networkInfo: NetworkInfoImplement(
-                          isConnect:
-                              InternetConnectionChecker.createInstance())))),
+          create: (context) => sl<FleetCompanyBloc>(),
         ),
         BlocProvider(
-          create: (context) => PersonalFleetBloc(
-            CreatePersonalFleetUsecase(
-              repo: FleetRepoImpl(
-                remoteFleetDatasource:
-                    RemoteFleetDatasourceImpl(client: Client()),
-                networkInfo: NetworkInfoImplement(
-                  isConnect: InternetConnectionChecker.createInstance(),
-                ),
-              ),
-            ),
-          ),
+          create: (context) => sl<PersonalFleetBloc>(),
         ),
       ],
       child: MultiBlocListener(
@@ -94,7 +94,7 @@ class _FleetInformationPageState extends State<FleetInformationPage> {
                   const SnackBar(
                     backgroundColor: ColorManager.green,
                     content: Text(
-                      "تم انشاء الاسطول ",
+                      StringManager.theFleetHasBeenEstablished,
                       textAlign: TextAlign.right,
                     ),
                   ),
@@ -121,7 +121,7 @@ class _FleetInformationPageState extends State<FleetInformationPage> {
                   const SnackBar(
                     backgroundColor: ColorManager.green,
                     content: Text(
-                      "تم انشاء الاسطول الشخصي",
+                      StringManager.theFleetHasBeenEstablished,
                       textAlign: TextAlign.right,
                     ),
                   ),

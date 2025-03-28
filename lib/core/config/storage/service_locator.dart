@@ -4,6 +4,7 @@ import 'package:lailaty/core/config/storage/dependency_injection.dart';
 import 'package:lailaty/core/network/network_connection.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/service_locator.dart';
 import 'package:http/http.dart' as http;
+import 'package:lailaty/feature/fleet/service_locator.dart';
 
 final sl = GetIt.instance;
 
@@ -16,4 +17,5 @@ Future<void> initDependencies() async {
 // -------------------------Feature Modules---------------------------
   await initAuthFeature();
   await initCaptainRegisterFeature();
+  await initFleetFeature();
 }

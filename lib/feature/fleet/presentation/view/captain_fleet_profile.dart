@@ -10,7 +10,6 @@ import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/resources/string_manager.dart';
-import '../widgets/captain_fleet_profile_widget/car_profile.dart';
 
 class CaptainFleetProfile extends StatefulWidget {
   const CaptainFleetProfile({super.key});

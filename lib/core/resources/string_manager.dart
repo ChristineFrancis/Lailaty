@@ -315,4 +315,9 @@ class StringManager {
       'تأكد من اتصالك بالانترنت';
   static const String ok = 'حسنا';
   static const String noInternetConnection = "لا يوجد اتصال بالانترنت";
+  static const String pleaseSelectALocationBeforeProceeding =
+      "يرجى تحديد الموقع قبل المتابعة.";
+  static const String enterAnAddressFirst = "أدخل العنوان أولاً!";
+  static const String fleetSection = 'قسم الاسطول';
+  static const String theFleetHasBeenEstablished = "تم انشاء الاسطول ";
 }

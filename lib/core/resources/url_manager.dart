@@ -15,4 +15,6 @@ class UrlManager {
       '$baseAuthUrl/captain/offices/create/company';
   static const String createFleetPersonal =
       '$baseAuthUrl/captain/offices/create/personal';
+  static const String openStreetMapSearch =
+      "https://nominatim.openstreetmap.org/search?format=json&q=";
 }
