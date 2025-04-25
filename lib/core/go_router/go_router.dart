@@ -4,19 +4,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lailaty/core/config/presentation/pages/dynamic_page_view.dart';
+import 'package:lailaty/core/config/presentation/widget/splash_video/splash_video.dart';
 import 'package:lailaty/core/network/network_connection.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/data_source/remote_data_source.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/repo/agree_pages_repo_impl.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/domain/use_case/add_car_usecase.dart';
-import 'package:lailaty/feature/agree_pages/carInfo/domain/use_case/captain_registration_usecase.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/bloc/add_veicle_bloc.dart';
-import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/captain_register_bloc/captain_register_bloc.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/carInfo.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/editingCar.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/motor_info.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/captain_register_pages/personal_information_page.dart';
-import 'package:lailaty/feature/authentication/presentation/ui/pages/on_boarding.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/choose_city_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/decider_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/home_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/information_register_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/location_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/login_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/notification_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/privacy_policy_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/register_with_email_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/user_details_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/verification_code_page.dart';
 import 'package:lailaty/feature/choose_category_page/presentation/view/categoryView.dart';
 import 'package:lailaty/feature/fleet/presentation/view/fleet_options_page.dart';
 import 'package:lailaty/feature/fleet/presentation/view/fleet_performance.dart';
@@ -27,7 +36,8 @@ import 'package:lailaty/feature/fleet/presentation/view/fleet_infromation_page.d
 import 'package:lailaty/feature/on_your_mood/presentation/view/complete_on_your_mood_order.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/inbox_page.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/order_history_page.dart';
-import 'package:lailaty/feature/splash/page/user_info_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/user_info_page.dart';
+import 'package:lailaty/feature/side_bar_screens/presentation/view/rules_page.dart';
 import 'package:lailaty/feature/teach_driving/presentation/view/complete_teach_driving_order.dart';
 import 'package:lailaty/feature/travel/presentation/view/complete_travel_order.dart';
 import 'package:lailaty/feature/wedding_business/presentation/view/complete_widding_and_business_order.dart';
@@ -39,7 +49,6 @@ import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/captain_re
 
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/state_managments/birthdate_view_model.dart';
-import 'package:lailaty/core/state_managments/personal_information_view.dart';
 
 import 'package:lailaty/feature/inland_transportation/presentation/view/inland_transportation.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/state_managment/car_list_view_model.dart';
@@ -349,7 +358,7 @@ class Routes {
       ),
 //for fleet owner :
       GoRoute(
-        path: '/', //AppKeys.fleetInformationPage,
+        path: AppKeys.fleetInformationPage,
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             key: state.pageKey,
@@ -401,14 +410,14 @@ class Routes {
       ),
 
 //
-      GoRoute(
-        path: AppKeys.profileOfcaptainFleet,
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: const UserInfoPage(),
-          transitionsBuilder: _fadeTransition,
-        ),
-      ),
+      // GoRoute(
+      //   path: AppKeys.profileOfcaptainFleet,
+      //   pageBuilder: (context, state) => CustomTransitionPage(
+      //     key: state.pageKey,
+      //     child: const UserInfoPage(),
+      //     transitionsBuilder: _fadeTransition,
+      //   ),
+      // ),
 //!
       //  GoRoute(
       //     path: '/' ,//AppKeys.profileOfcaptainFleet,
@@ -418,6 +427,136 @@ class Routes {
       //       transitionsBuilder: _fadeTransition,
       //     ),
       //   ),
+//auth :
+      GoRoute(
+        path: '/', // AppKeys.userInfoPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const SplashVideo(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+
+      GoRoute(
+        path: AppKeys.deciderPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const DeciderPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+
+      GoRoute(
+        path: AppKeys.privacyPolicyPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const PrivacyPolicyPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.loginPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const LoginPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.registerWithEmailPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const RegisterWithEmailPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      // GoRoute(
+      //   path: AppKeys.homePagekey,
+      //   pageBuilder: (context, state) => CustomTransitionPage(
+      //     key: state.pageKey,
+      //     child: const HomePage(),
+      //     transitionsBuilder: _fadeTransition,
+      //   ),
+      // ),
+      GoRoute(
+        path: AppKeys.rulesPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const RulesPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+
+      GoRoute(
+        path: AppKeys.userInfoPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const UserInfoPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+
+      GoRoute(
+        path: AppKeys.informationRegisterPageKey,
+        pageBuilder: (context, state) {
+          //  final extra = state.extra as String;
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: InformationRegisterPage(
+                //  email: extra,
+                ),
+            transitionsBuilder: _fadeTransition,
+          );
+        },
+      ),
+      GoRoute(
+        path: AppKeys.verificationCodePageKey,
+        pageBuilder: (context, state) {
+          final extra = state.extra as String;
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: VerificationCodePage(
+              email: extra,
+            ),
+            transitionsBuilder: _fadeTransition,
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppKeys.chooseCityPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const ChooseCityPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+      GoRoute(
+        path: AppKeys.locationPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const LocationPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+
+      GoRoute(
+        path: AppKeys.userDetailsPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const UserDetailsPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
+
+      GoRoute(
+        path: AppKeys.notificationPageKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const NotificationPage(),
+          transitionsBuilder: _fadeTransition,
+        ),
+      ),
     ],
   );
 

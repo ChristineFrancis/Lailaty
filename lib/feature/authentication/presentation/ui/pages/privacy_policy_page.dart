@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lailaty/core/config/presentation/widget/alerts/problem_dialog.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/pages/choose_city_page.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/login_word.dart';
-
 import '../widgets/custom widgets/check_box/custom_check_box.dart';
 
-// ignore: must_be_immutable
-class PrivacyPolicyPage extends StatelessWidget {
-  bool statusAge = false;
-  bool statusprivacy = false;
-  PrivacyPolicyPage({super.key});
+class PrivacyPolicyPage extends StatefulWidget {
+  const PrivacyPolicyPage({super.key});
+
+  @override
+  State<PrivacyPolicyPage> createState() => _PrivacyPolicyPageState();
+}
+
+class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
+  bool statusPrivacy = false; // state for the checkbox
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +28,13 @@ class PrivacyPolicyPage extends StatelessWidget {
       backgroundColor: ColorManager.grey1,
       body: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.sizeOf(context).width / 45,
+          horizontal: MediaQuery.of(context).size.width / 45,
         ),
         child: Column(
           children: [
-            Spacer(
-              flex: 3,
-            ),
+            const Spacer(flex: 3),
             LoginWord(),
-            Spacer(
-              flex: 3,
-            ),
+            const Spacer(flex: 3),
             LayoutBuilder(
               builder: (context, constraints) {
                 final imageHeight = constraints.maxWidth / 2.3;
@@ -40,30 +42,30 @@ class PrivacyPolicyPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     LailatyArabicAndEnglish(),
-                    SizedBox(
-                      width: 6,
-                    ),
+                    const SizedBox(width: 6),
                     Container(
-                      width: 3, // Width of the yellow line
-                      height: imageHeight, // Match the height of the image
+                      width: 3,
+                      height: imageHeight,
                       color: ColorManager.yellowTextColor,
                     ),
                     SvgPicture.asset(
                       ImageAssetManager.privacyLock,
-                      width: imageHeight, // Set the width of the image
+                      width: imageHeight,
                     ),
                   ],
                 );
               },
             ),
-            Spacer(
-              flex: 6,
-            ),
+            const Spacer(flex: 6),
             CustomCheckBox(
-              status: statusprivacy,
+              status: statusPrivacy,
+              onChanged: (bool? value) {
+                setState(() {
+                  statusPrivacy = value ?? false;
+                });
+              },
               textwidget: RichText(
-                textAlign:
-                    TextAlign.right, // Ensure text aligns properly in RTL
+                textAlign: TextAlign.right, // Ensure proper RTL alignment
                 text: TextSpan(
                   text: 'أوافق على  ',
                   style: TextStyle(
@@ -92,28 +94,38 @@ class PrivacyPolicyPage extends StatelessWidget {
                 ),
               ),
             ),
-            Spacer(
-              flex: 2,
-            ),
+            const Spacer(flex: 2),
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.sizeOf(context).width / 7,
+                horizontal: MediaQuery.of(context).size.width / 7,
               ),
               child: CustomButton(
                 textButton: 'التالي',
                 textSize: 27,
                 fontWeight: FontWeight.w900,
                 onTap: () {
-                  Navigator.of(context).push(PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        ChooseCityPage(),
-                  ));
+                  if (!statusPrivacy) {
+                    // If the checkbox is not checked, show the problem dialog
+                    showDialog(
+                      context: context,
+                      builder: (context) => const ProblemDialog(
+                        message: 'يجب عليك الموافقة على سياسة الخصوصية للإكمال',
+                      ),
+                    );
+                  } else {
+                    // Navigate if the checkbox is checked
+                    // Navigator.of(context).push(
+                    //   PageRouteBuilder(
+                    //     pageBuilder: (context, animation, secondaryAnimation) =>
+                    //         const ChooseCityPage(),
+                    //   ),
+                    // );
+                    context.push(AppKeys.chooseCityPageKey);
+                  }
                 },
               ),
             ),
-            Spacer(
-              flex: 2,
-            ),
+            const Spacer(flex: 2),
           ],
         ),
       ),

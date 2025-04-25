@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/pages/register_with_email_page.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom_button.dart';
@@ -20,7 +22,8 @@ class LocationPage extends StatelessWidget {
           backgroundColor: ColorManager.grey1,
           leading: IconButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                //    Navigator.of(context).pop();
+                context.pop();
               },
               icon: Icon(
                 Icons.arrow_back,
@@ -54,8 +57,8 @@ class LocationPage extends StatelessWidget {
                           width: 6,
                         ),
                         Container(
-                          width: 3, // Width of the yellow line
-                          height: imageHeight, // Match the height of the image
+                          width: 3,
+                          height: imageHeight,
                           color: ColorManager.yellowTextColor,
                         ),
                         SizedBox(
@@ -63,7 +66,7 @@ class LocationPage extends StatelessWidget {
                         ),
                         SvgPicture.asset(
                           ImageAssetManager.location,
-                          width: imageHeight, // Set the width of the image
+                          width: imageHeight,
                         ),
                       ],
                     ),
@@ -98,15 +101,18 @@ class LocationPage extends StatelessWidget {
                     textButton: 'السماح',
                     textSize: 25,
                     onTap: () {
-                      Navigator.of(context).push(PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) =>
-                            RegisterWithEmailPage(),
-                      ));
+                      // Navigator.of(context).push(PageRouteBuilder(
+                      //   pageBuilder: (context, animation, secondaryAnimation) =>
+                      //       RegisterWithEmailPage(),
+                      // ));
+                      context.push(AppKeys.registerWithEmailPageKey);
                     }),
               ),
               TextButton(
                 child: CustomTextWidget(
-                    text: 'ليس الان', color: ColorManager.yellowTextColor, fontSize: 25),
+                    text: 'ليس الان',
+                    color: ColorManager.yellowTextColor,
+                    fontSize: 25),
                 onPressed: () {},
               ),
               Spacer(

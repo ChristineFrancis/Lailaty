@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/config/presentation/widget/offline_dialog_widget.dart';
+import 'package:lailaty/core/config/storage/secure_storage_service.dart';
 import 'package:lailaty/core/config/storage/service_locator.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
@@ -29,7 +30,7 @@ class SecurityInformationPage extends StatelessWidget {
     const sectionId = AppKeys.certificate;
     final viewModel = context.watch<PersonalInformationCubit>();
     final selectedImage = viewModel.getImage(sectionId);
-
+    final secureStorageService = sl<SecureStorageService>();
     return BlocProvider(
       create: (context) => sl<CaptainRegisterBloc>(), //{
       // return CaptainRegisterBloc(
@@ -44,7 +45,7 @@ class SecurityInformationPage extends StatelessWidget {
       // );
       // },
       child: BlocListener<CaptainRegisterBloc, CaptainRegisterState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is CaptainRegisterSuccess) {
             print('Captain registration success: ${state.message}');
             context.push(AppKeys.loginPromptPageKey);
@@ -57,6 +58,7 @@ class SecurityInformationPage extends StatelessWidget {
                 ),
               ),
             );
+            await secureStorageService.setLocalBool('documents_valid', true);
           } else if (state is CaptainRegisterFailure) {
             print('Captain registration failed: ${state.errorMessage}');
             ScaffoldMessenger.of(context).showSnackBar(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
+import 'package:lailaty/core/config/storage/secure_storage_service.dart';
 import 'package:lailaty/core/config/storage/service_locator.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
@@ -52,31 +53,10 @@ class _FleetInformationPageState extends State<FleetInformationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final secureStorageService = sl<SecureStorageService>();
+
     return MultiBlocProvider(
       providers: [
-        // BlocProvider(
-        //   create: (context) => FleetCompanyBloc(
-        //       fleetCompanyUsecase: CreateFleetCompanyUsecase(
-        //           repo: FleetRepoImpl(
-        //               remoteFleetDatasource:
-        //                   RemoteFleetDatasourceImpl(client: Client()),
-        //               networkInfo: NetworkInfoImplement(
-        //                   isConnect:
-        //                       InternetConnectionChecker.createInstance())))),
-        // ),
-        // BlocProvider(
-        //   create: (context) => PersonalFleetBloc(
-        //     CreatePersonalFleetUsecase(
-        //       repo: FleetRepoImpl(
-        //         remoteFleetDatasource:
-        //             RemoteFleetDatasourceImpl(client: Client()),
-        //         networkInfo: NetworkInfoImplement(
-        //           isConnect: InternetConnectionChecker.createInstance(),
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
         BlocProvider(
           create: (context) => sl<FleetCompanyBloc>(),
         ),
@@ -87,7 +67,7 @@ class _FleetInformationPageState extends State<FleetInformationPage> {
       child: MultiBlocListener(
         listeners: [
           BlocListener<FleetCompanyBloc, FleetCompanyState>(
-            listener: (context, state) {
+            listener: (context, state) async {
               if (state is FleetCompanySuccess) {
                 context.go(AppKeys.fleetOptionsPage);
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -99,6 +79,7 @@ class _FleetInformationPageState extends State<FleetInformationPage> {
                     ),
                   ),
                 );
+                await secureStorageService.setLocalBool('fleet_created', true);
               } else if (state is FleetCompanyFailure) {
                 print('Captain registration failed: ////${state.errorMessage}');
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -114,7 +95,7 @@ class _FleetInformationPageState extends State<FleetInformationPage> {
             },
           ),
           BlocListener<PersonalFleetBloc, PersonalFleetState>(
-            listener: (context, state) {
+            listener: (context, state) async {
               if (state is PersonalFleetSuccess) {
                 context.go(AppKeys.fleetOptionsPage);
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -126,6 +107,7 @@ class _FleetInformationPageState extends State<FleetInformationPage> {
                     ),
                   ),
                 );
+                await secureStorageService.setLocalBool('fleet_created', true);
               } else if (state is PersonalFleetFailure) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

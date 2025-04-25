@@ -55,6 +55,9 @@ dependencies:
   get_it: ^8.0.3
   geocoding: ^3.0.0
   google_maps_flutter: ^2.12.0
+  flutter_secure_storage: ^9.2.4
+  pin_code_fields: ^8.0.1
+  flutter_native_splash: ^2.4.4
 
 dev_dependencies:
   flutter_test:
@@ -94,13 +97,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
+  fonts:
+    - family: Segeo
+      fonts:
+        - asset: assets/fonts/segoeuithis.ttf
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
@@ -108,3 +108,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+
+flutter_native_splash:
+  color: "#b2b1ad"
+  android: true
+  ios: true
+  fullscreen: true

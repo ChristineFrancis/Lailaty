@@ -8,6 +8,7 @@ import 'package:lailaty/feature/fleet/data/models/fleet_company_models/fleet_cre
 import 'package:lailaty/feature/fleet/data/models/personal_fleet_models/create_personal_fleet_request.dart';
 import 'package:lailaty/feature/fleet/domain/entities/company_fleet/fleet_create_company_request_entity.dart';
 import 'package:lailaty/feature/fleet/domain/entities/company_fleet/fleet_create_company_response_entity.dart';
+import 'package:lailaty/feature/fleet/domain/entities/fleet_to_join/fleets_entity.dart';
 import 'package:lailaty/feature/fleet/domain/entities/personal_fleet/fleet_create_person_request.dart';
 import 'package:lailaty/feature/fleet/domain/entities/personal_fleet/fleet_create_person_response.dart';
 import 'package:lailaty/feature/fleet/domain/repo/fleet_repo.dart';
@@ -59,6 +60,47 @@ class FleetRepoImpl implements FleetRepo {
         );
 
         return Right(response.toEntity());
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.errorModel.errorMessage));
+      }
+    } else {
+      print("No Internet Connection");
+      return Left(NoConnectionFailure(StringManager.noInternetConnection));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<GetAllFleetEntity>>> getAllFleets() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await remoteFleetDatasource.getAllFleets();
+
+        // Convert list of models to list of entities
+        final List<GetAllFleetEntity> entityList =
+            response.map((model) => model.toEntity()).toList();
+
+        return Right(entityList);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(e.errorModel.errorMessage));
+      }
+    } else {
+      print("No Internet Connection");
+      return Left(NoConnectionFailure(StringManager.noInternetConnection));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<GetAllFleetEntity>>> getSearchedFleet(
+      String parameter) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await remoteFleetDatasource.getSearchedFleet(parameter);
+
+        final List<GetAllFleetEntity> entityList =
+            response.map((model) => model.toEntity()).toList();
+
+        return Right(entityList);
       } on ServerException catch (e) {
         return Left(ServerFailure(e.errorModel.errorMessage));
       }

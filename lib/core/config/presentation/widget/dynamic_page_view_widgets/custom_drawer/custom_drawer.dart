@@ -25,7 +25,7 @@ class CustomDrawer extends StatelessWidget {
     return SizedBox(
       width: context.screenWidth * 0.6,
       child: Drawer(
-        backgroundColor: ColorManager.whiteColor,
+        backgroundColor: ColorManager.grey1,
         child: SafeArea(
           child: ListView(
             padding: EdgeInsets.zero,

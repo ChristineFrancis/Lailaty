@@ -279,7 +279,7 @@ class StringManager {
   static const String fleetInformation = 'معلومات الاسطول';
   static const String company = 'شركة';
   static const String person = 'فرد';
-  static const String fleetName = 'اسم الاسطول';
+  static const String fleetName = ':اسم الاسطول';
   static const String address = 'العنوان';
   static const String commercialRegistration = 'صورة السجل التجاري';
   static const String postcardCopy = 'صورة البطاقة البريدية';
@@ -320,4 +320,7 @@ class StringManager {
   static const String enterAnAddressFirst = "أدخل العنوان أولاً!";
   static const String fleetSection = 'قسم الاسطول';
   static const String theFleetHasBeenEstablished = "تم انشاء الاسطول ";
+  static const String connectionError = "خطأ في الاتصال، يرجى المحاولة لاحقًا";
+  static const String searchFailed =
+      "فشل البحث، تحقق من اتصال الإنترنت وحاول مرة أخرى.";
 }

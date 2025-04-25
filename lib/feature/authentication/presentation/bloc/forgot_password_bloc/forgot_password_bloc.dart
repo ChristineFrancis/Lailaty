@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import '../../../../../core/error_manager/failures.dart';
+import 'package:lailaty/core/error_manager/failures.dart';
 import '../../../domain/entities/forgot_password_request.dart';
 import '../../../domain/entities/forgot_password_response.dart';
 import '../../../domain/use_cases/forgot_password.dart';

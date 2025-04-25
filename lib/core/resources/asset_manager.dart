@@ -15,7 +15,8 @@ class ImageAssetManager {
   static String bLetter = "$rootImage/B.svg";
   static String passengerPic = "$rootImage/راكب.svg";
   static String captainPic = "$rootImage/كابتن.svg";
-  static String carPic = '$rootImage/ride سيارة.svg'; //"$rootImage/سيارة.svg";
+  static String carPic = '$rootImage/ride سيارة.svg';
+  //"$rootImage/سيارة.svg";
   static String carNormal = "$rootImage/normal.svg";
   static String noConnectImage = "$rootImage/Order ahead-bro.svg";
   static String motor = "$rootImage/دراجة.svg";
@@ -66,4 +67,17 @@ class ImageAssetManager {
       "$rootImage/on boarding business men.svg";
   static String lettersLY = "$rootImage/LY.svg";
   static String lailaty = "$rootImage/laylaty.svg";
+  static String lLetter = "$rootImage/L.svg";
+  static String yLetter = "$rootImage/y.svg";
+
+  static String closeIcon = "$rootImage/Group 708.svg";
+
+  static String safetyIcon = "$rootImage/safety.svg";
+  static String politIcon = "$rootImage/polit.svg";
+  static String timerIcon = "$rootImage/timer.svg";
+
+  static String facebookLogo = "$rootImage/facebook logo.svg";
+  static String instaLogo = "$rootImage/instagram logo.svg";
+
+  static String captainBackGroundCar = "$rootImage/سيارة.svg";
 }

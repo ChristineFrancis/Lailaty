@@ -1,4 +1,18 @@
 class AppKeys {
+  static const String deciderPageKey = '/deciderPageKey';
+  static const String privacyPolicyPageKey = '/privacyPolicyPageKey';
+  static const String loginPageKey = '/LoginPage';
+  static const String registerWithEmailPageKey = '/registerWithEmailPage';
+ // static const String homePagekey = '/HomePage';
+  static const String rulesPageKey = '/RulesPage';
+  static const String userInfoPageKey = '/UserInfoPage';
+  static const String informationRegisterPageKey = '/InformationRegisterPage';
+  static const String verificationCodePageKey = '/VerificationCodePage';
+  static const String chooseCityPageKey = '/ChooseCityPage';
+  static const String locationPageKey = '/LocationPage';
+  static const String userDetailsPageKey = '/UserDetailsPage';
+  static const String notificationPageKey = '/NotificationPage';
+
 //photos :
 
   static const String personalPhoto = 'personal_photo';
@@ -25,20 +39,21 @@ class AppKeys {
   static const String editingCarPage = '/EditingCar';
 
   //pages
-  static const String searchOrderPage = '/searchOrderPage';
+ static const String searchOrderPage = '/searchOrderPage';
   static const String profileOfcaptainFleet = '/CaptainFleetProfile';
 
-  static const String personalInformationPageKey = '/personalInformationPage';//personalInformationPage
+  static const String personalInformationPageKey =
+      '/personalInformationPage'; //personalInformationPage
   static const String securityInformationPageKey = '/security_page';
   static const String loginPromptPageKey = '/loginPromptPageKey';
 
-  static String carInfoPath = "/carInfoView";//
+  static String carInfoPath = "/carInfoView"; //
   static String inboxPagePath = "/InboxPage";
   static String orderHistoryPagePath = "/OrderHistoryPage";
   static String fleetHomePageViewPath = "/fleetHomePageView";
   static String motorInfoPath = "/MotorInfoView";
   static String showCategoryPath = "/CategoryView"; //CategoryView
-  static String noticeToDriverPath = "/NoticeToDriverView";//NoticeToDriverView
+  static String noticeToDriverPath = "/NoticeToDriverView"; //NoticeToDriverView
 
   static const String safetyPageKey = '/safety_page';
   static const String shareAppPageKey = '/share_app_page';

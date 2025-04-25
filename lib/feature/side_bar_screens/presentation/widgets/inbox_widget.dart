@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
-import 'package:lailaty/feature/splash/widgets/custom_text_widget.dart';
+import 'package:lailaty/feature/old_splash/widgets/custom_text_widget.dart';
 
 class InboxWidget extends StatelessWidget {
   final String service;

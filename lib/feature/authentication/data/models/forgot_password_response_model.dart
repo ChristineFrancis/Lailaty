@@ -1,4 +1,5 @@
-import '../../domain/entities/forgot_password_response.dart';
+
+import 'package:lailaty/feature/authentication/domain/entities/forgot_password_response.dart';
 
 class ForgotPasswordResponseModel extends ForgotPasswordResponse {
   const ForgotPasswordResponseModel({required String message})

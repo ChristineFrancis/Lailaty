@@ -34,7 +34,8 @@ class AgreePagesRemoteDateSourceImpl implements AgreePagesRemoteDateSource {
       var request = http.MultipartRequest("POST", url);
 
       // Add Headers
-      request.headers.addAll(getHeader(true)!);
+      final headers = await getHeader(true);
+      request.headers.addAll(headers);
 
       //  Add Non-File Fields as Text
       request.fields["model_year"] = car.model_year;
@@ -111,8 +112,9 @@ class AgreePagesRemoteDateSourceImpl implements AgreePagesRemoteDateSource {
       CaptainRegistrationDocumentsModel request) async {
     final Uri url = Uri.parse(UrlManager.captianRegisterUrl);
     var requestBody = http.MultipartRequest('POST', url);
-
-    requestBody.headers.addAll(getHeader(true)!);
+    final headers = await getHeader(true);
+    requestBody.headers.addAll(headers);
+    //  getHeader(true)!);
     requestBody.fields[ApiKeyManager.birthDate] = request.birthDate;
     requestBody.files.add(await http.MultipartFile.fromPath(
         ApiKeyManager.personalImage, request.personalImage.path));

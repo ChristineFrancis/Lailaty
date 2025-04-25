@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/pages/privacy_policy_page.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
@@ -25,10 +27,11 @@ class _OnBoardingState extends State<OnBoarding> {
         curve: Curves.easeInOut,
       );
     } else {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => PrivacyPolicyPage()),
-      );
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => PrivacyPolicyPage()),
+      // );
+      context.pushReplacement(AppKeys.privacyPolicyPageKey);
     }
   }
 
@@ -68,7 +71,7 @@ class _OnBoardingState extends State<OnBoarding> {
             Center(
               child: Container(
                 decoration: BoxDecoration(
-                  color: ColorManager.backGroundColor, //grey200,
+                  color: ColorManager.grey200,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 margin: EdgeInsets.only(
@@ -167,7 +170,7 @@ class _OnBoardingState extends State<OnBoarding> {
       decoration: BoxDecoration(
           color: _currentPage == index
               ? ColorManager.yellowTextColor
-              : ColorManager.greyStartRating,
+              : ColorManager.grey100,
           borderRadius: BorderRadius.circular(5)),
     );
   }

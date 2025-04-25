@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/resources/url_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
@@ -49,6 +50,7 @@ class _FleetAddressContainerState extends State<FleetAddressContainer> {
     });
   }
 
+//TODO: another solution
   Future<void> _searchLocation(String query) async {
     setState(() => _isLoading = true);
 
@@ -64,10 +66,10 @@ class _FleetAddressContainerState extends State<FleetAddressContainer> {
         });
       } else {
         print(response.statusCode);
-        _showError("خطأ في الاتصال، يرجى المحاولة لاحقًا");
+        _showError(StringManager.connectionError);
       }
     } catch (e) {
-      _showError("فشل البحث، تحقق من اتصال الإنترنت وحاول مرة أخرى.");
+      _showError(StringManager.searchFailed);
     }
 
     setState(() => _isLoading = false);

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import '../../../../../core/error_manager/failures.dart';
+import 'package:lailaty/core/error_manager/failures.dart';
 import '../../../domain/entities/auth_request.dart';
 import '../../../domain/entities/auth_response.dart';
 import '../../../domain/use_cases/register.dart';

@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lailaty/core/config/presentation/widget/alerts/problem_dialog.dart';
+import 'package:lailaty/core/config/presentation/widget/alerts/success_dialog.dart';
+import 'package:lailaty/core/config/storage/secure_storage_service.dart';
 import 'package:lailaty/core/config/storage/service_locator.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/authentication/presentation/bloc/verify_email_bloc/verify_email_bloc.dart';
 import 'package:lailaty/feature/authentication/presentation/bloc/verify_email_bloc/verify_email_event.dart';
 import 'package:lailaty/feature/authentication/presentation/bloc/verify_email_bloc/verify_email_state.dart';
-import 'package:lailaty/feature/authentication/presentation/ui/pages/user_info_page.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/information_register_page.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom%20widgets/custom%20spaces/spc_y.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom_button.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/lailaty_arabic_and_english.dart';
-import '../../../../../core/config/storage/dependency_injection.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import '../widgets/pages widgets/verification_code_page/countdown_timer.dart';
 
 class VerificationCodePage extends StatefulWidget {
@@ -44,17 +49,29 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
             child: BlocListener<VerifyEmailBloc, VerifyEmailState>(
               listener: (context, state) {
                 if (state is VerifyEmailError) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.message)),
-                  );
+                  showDialog(
+                      context: context,
+                      builder: (context) =>
+                          ProblemDialog(message: state.message));
                 } else if (state is VerifyEmailLoaded) {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (_) => const UserInfoPage()),
-                  );
+                  // Navigator.of(context).pushReplacement(
+                  //   MaterialPageRoute(
+                  //     builder: (_) => InformationRegisterPage(
+                  //       email: widget.email,
+                  //     ),
+                  //   ), );
+                  final email = widget.email;
+                  final secureStorageService = sl<SecureStorageService>();
+                  secureStorageService.saveEmail(email);
+                  // context.pushReplacement(
+                  //   AppKeys.informationRegisterPageKey,
+                  // );
+                  context.pushReplacement(AppKeys.userInfoPageKey);
                 } else if (state is VerifyEmailResendSuccess) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.message)),
-                  );
+                  showDialog(
+                      context: context,
+                      builder: (context) =>
+                          SuccessDialog(message: state.message));
                   setState(() {
                     isTimerFinished = false;
                     //!  برست التايمر و بفضي التيكست فيلد
@@ -79,42 +96,42 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                     CustomTextWidget(
                         text: widget.email, fontSize: 16, color: Colors.black),
                     SpcY(y: 55),
-                    // Padding(
-                    //   padding: EdgeInsets.symmetric(
-                    //       horizontal: screenWidth * 80 / 430),
-                    //   child: Directionality(
-                    //     textDirection: TextDirection.ltr,
-                    //     child: PinCodeTextField(
-                    //       appContext: context,
-                    //       length: 6,
-                    //       controller: codeController,
-                    //       onChanged: (value) {},
-                    //       onCompleted: (value) {
-                    //         FocusScope.of(context).unfocus();
-                    //         //todo: ما عميعمل سبمت لحالو لما كمل ادخال
-                    //         Future.delayed(const Duration(seconds: 1), () {
-                    //           context.read<VerifyEmailBloc>().add(
-                    //                 VerifyEmailSubmitted(
-                    //                   email: widget.email,
-                    //                   verificationCode: value,
-                    //                 ),
-                    //               );
-                    //         });
-                    //       },
-                    //       pinTheme: PinTheme(
-                    //         shape: PinCodeFieldShape.box,
-                    //         borderRadius: BorderRadius.circular(8),
-                    //         fieldHeight: 50,
-                    //         fieldWidth: screenWidth * 42 / 430,
-                    //         activeColor: Colors.black,
-                    //         selectedColor: ColorManager.yellowTextColor,
-                    //         inactiveColor: ColorManager.yellowTextColor,
-                    //       ),
-                    //       autoDismissKeyboard: true,
-                    //       keyboardType: TextInputType.number,
-                    //     ),
-                    //   ),
-                    // ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: screenWidth * 80 / 430),
+                      child: Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: PinCodeTextField(
+                          appContext: context,
+                          length: 6,
+                          controller: codeController,
+                          onChanged: (value) {},
+                          onCompleted: (value) {
+                            FocusScope.of(context).unfocus();
+                            //todo: ما عميعمل سبمت لحالو لما كمل ادخال
+                            Future.delayed(const Duration(seconds: 1), () {
+                              context.read<VerifyEmailBloc>().add(
+                                    VerifyEmailSubmitted(
+                                      email: widget.email,
+                                      verificationCode: value,
+                                    ),
+                                  );
+                            });
+                          },
+                          pinTheme: PinTheme(
+                            shape: PinCodeFieldShape.box,
+                            borderRadius: BorderRadius.circular(8),
+                            fieldHeight: 50,
+                            fieldWidth: screenWidth * 42 / 430,
+                            activeColor: Colors.black,
+                            selectedColor: ColorManager.yellowTextColor,
+                            inactiveColor: ColorManager.yellowTextColor,
+                          ),
+                          autoDismissKeyboard: true,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ),
                     SpcY(y: 30),
                     CountdownTimer(
                       maxTime: 600,

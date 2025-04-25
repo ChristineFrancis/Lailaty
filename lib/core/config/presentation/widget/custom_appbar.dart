@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -41,7 +42,8 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                 padding: const EdgeInsets.only(right: 10),
                 child: IconButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    //  Navigator.of(context).pop();
+                    context.pop();
                   },
                   color: ColorManager.black,
                   icon: Icon(Icons.arrow_back),

@@ -2,15 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as http;
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lailaty/core/config/presentation/widget/Titles.dart';
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/config/presentation/widget/myButton.dart';
 import 'package:lailaty/core/config/presentation/widget/my_sized_box.dart';
 import 'package:lailaty/core/config/presentation/widget/textWithButon.dart';
 import 'package:lailaty/core/config/presentation/widget/text_with_textfield.dart';
-import 'package:lailaty/core/network/network_connection.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
@@ -24,7 +21,6 @@ import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/a
 import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/add_left_car_photo_widget%20copy%203.dart';
 import 'package:lailaty/feature/agree_pages/presentation/widgets/car_info_page/add_right_car_photo_widget%20copy.dart';
 
-import 'package:provider/provider.dart';
 import '../../../../../core/config/presentation/widget/accept_button_customer.dart';
 import '../../../../../core/config/presentation/widget/textWithExpansionTile.dart';
 

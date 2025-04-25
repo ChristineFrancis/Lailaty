@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/pages/notification_page.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom_button.dart';
@@ -22,7 +24,8 @@ class ChooseCityPage extends StatelessWidget {
           backgroundColor: ColorManager.grey1,
           leading: IconButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                //  Navigator.of(context).pop();
+                context.pop();
               },
               icon: Icon(
                 Icons.arrow_back,
@@ -56,13 +59,13 @@ class ChooseCityPage extends StatelessWidget {
                           width: 6,
                         ),
                         Container(
-                          width: 3, // Width of the yellow line
-                          height: imageHeight, // Match the height of the image
+                          width: 3,
+                          height: imageHeight,
                           color: ColorManager.yellowTextColor,
                         ),
                         SvgPicture.asset(
                           ImageAssetManager.city,
-                          width: imageHeight, // Set the width of the image
+                          width: imageHeight,
                         ),
                       ],
                     ),
@@ -100,10 +103,11 @@ class ChooseCityPage extends StatelessWidget {
                   textSize: 27,
                   fontWeight: FontWeight.w900,
                   onTap: () {
-                    Navigator.of(context).push(PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) =>
-                          NotificationPage(),
-                    ));
+                    // Navigator.of(context).push(PageRouteBuilder(
+                    //   pageBuilder: (context, animation, secondaryAnimation) =>
+                    //       NotificationPage(),
+                    // ));
+                    context.push(AppKeys.notificationPageKey);
                   },
                 ),
               ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
-import 'package:lailaty/feature/side_bar_screens/presentation/view/rules_page.dart';
-import 'package:lailaty/feature/splash/widgets/custom_text_widget.dart';
+import 'package:lailaty/core/resources/key_manager.dart';
+import 'package:lailaty/feature/old_splash/widgets/custom_text_widget.dart';
 
 class AboutAppPage extends StatelessWidget {
   const AboutAppPage({super.key});
@@ -22,8 +23,9 @@ class AboutAppPage extends StatelessWidget {
           children: [
             InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => RulesPage()));
+                  // Navigator.of(context).push(
+                  //     MaterialPageRoute(builder: (context) => RulesPage()));
+                  context.push(AppKeys.rulesPageKey);
                 },
                 child: CustomTextWidget(
                     text: 'قواعد الخدمة', fontSize: 34, color: Colors.black)),

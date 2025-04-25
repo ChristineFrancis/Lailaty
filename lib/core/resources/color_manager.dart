@@ -12,6 +12,9 @@ abstract class ColorManager {
   static const Color black = Colors.black;
   static const greyTextr = Color(0xffA0A0A0);
   static const boldgrey = Color(0xff5A5A5A);
+  static const Color greyForSwitch = Color(0xffC7C7C7);
+  static const Color grey200 = Color(0xffBCBBB8);
+  static const Color grey100 = Color(0xfff5f5f5);
 
   static const greyWithMoreOpacity = Color(0xffB8B8B8);
   static const greyWithOpacity = Color(0xffB2B1AD);

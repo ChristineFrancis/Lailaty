@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:lailaty/core/error_manager/error_model.dart';
-import '../../../../../core/error_manager/failures.dart';
+import 'package:lailaty/core/error_manager/failures.dart';
 import '../../../domain/entities/verify_email_request.dart';
 import '../../../domain/entities/verify_email_response.dart';
 import '../../../domain/entities/resend_verification_request.dart';
