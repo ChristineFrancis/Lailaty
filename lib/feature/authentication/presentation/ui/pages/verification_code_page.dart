@@ -110,6 +110,8 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                             FocusScope.of(context).unfocus();
                             //todo: ما عميعمل سبمت لحالو لما كمل ادخال
                             Future.delayed(const Duration(seconds: 1), () {
+                              if (!mounted)
+                                return; // تأكد إن الودجت لساتها شغالة
                               context.read<VerifyEmailBloc>().add(
                                     VerifyEmailSubmitted(
                                       email: widget.email,

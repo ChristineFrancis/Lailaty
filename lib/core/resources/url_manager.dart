@@ -1,5 +1,5 @@
 class UrlManager {
-  static const String baseUrl = 'https://laylaty.almowafraty.com/api/v1';
+  static const String baseUrl = 'https://lailatybackend.fawruneg.com/api/v1';
   // static String emailRegisterURL = '$baseAuthUrl/auth/emailRegistration';
   // static String verifyEmailURL = '$baseAuthUrl/auth/verifyEmail';
   // static String resendVerificationCodeURL =
@@ -11,8 +11,7 @@ class UrlManager {
   static const String captianRegisterUrl = '$baseUrl/captain/Documents';
   //!new auth :
 
-  static const String baseAuthUrl =
-      'https://laylaty.almowafraty.com/api/v1/auth';
+  static const String baseAuthUrl = '$baseUrl/auth';
   static String emailRegisterURL = '$baseAuthUrl/emailRegistration';
   static String verifyEmailURL = '$baseAuthUrl/verifyEmail';
   static String resendVerificationCodeURL =

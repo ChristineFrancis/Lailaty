@@ -7,6 +7,7 @@ import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/captain_re
 import 'package:lailaty/feature/agree_pages/presentation/view/login_prompt_page.dart';
 import 'package:lailaty/feature/authentication/data/models/user_model.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/pages/on_boarding.dart';
+import 'package:lailaty/feature/authentication/presentation/ui/pages/user_info_page.dart';
 import 'package:lailaty/feature/fleet/presentation/view/fleet_infromation_page.dart';
 import 'package:lailaty/feature/fleet/presentation/view/fleet_options_page.dart';
 import 'package:lailaty/feature/fleet/presentation/view/fleet_to_join.dart';
@@ -149,6 +150,17 @@ Future<Widget> determineNextPage() async {
   final user = authData['user'] as UserModel;
   print("[determineNextPage] User model: ${user.toJson()}");
 
+  // 🟰 CHECK IF USER INFO IS INCOMPLETE
+  if (user.firstName.isEmpty ||
+      user.lastName.isEmpty ||
+      user.phoneNumber.isEmpty ||
+      user.gender.isEmpty ||
+      user.city.isEmpty) {
+    print(
+        "[determineNextPage] Incomplete user profile detected. Navigating to UserInfoPage");
+    return const UserInfoPage();
+  }
+
   // Helper function to read local booleans.
   Future<bool> getLocalBool(String key) async {
     final val = await secureStorageService.secureStorage.read(key: key);
@@ -166,7 +178,7 @@ Future<Widget> determineNextPage() async {
       "[determineNextPage] fleetCreated: $fleetCreated, documentsValid: $documentsValid, carDocValid: $carDocValid, joinRequestValid: $joinRequestValid");
   final userRole =
       await secureStorageService.secureStorage.read(key: 'user_role');
-
+//! the userRole can be deleted form the storage
   print('user role :$userRole');
   print('use role form back: ${user.role}');
   switch (user.role) {
@@ -226,7 +238,7 @@ Future<Widget> determineNextPage() async {
           } else {
             print(
                 "[determineNextPage] employeeDriver: Car doc is invalid. Navigating to LoginPromptPage");
-            return const LoginPromptPage();
+            return const LoginPromptPage(); //! no need, delete it :)
           }
         }
       }

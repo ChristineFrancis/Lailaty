@@ -85,15 +85,7 @@ class MyApp extends StatelessWidget {
 //ToDO:
 //!! don't forget to use the decider values
 //__________________________________________________
-//done :
-//merge with client auth pages
-//change navigation into router naviagation
-//use the token form the saved token
-//fix the decider page , and make the condition of the naviation
-//get all fleets api , search fleet api
-//fixes the search and custom drop widgets in the join fleet page
-//fixes the dialog navigation and text align
-//change the native splash into another one
-//TODO :
 
+//TODO :
+// if the network status change we have to update the decider page
 

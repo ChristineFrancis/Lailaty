@@ -34,7 +34,7 @@ class InformationRegisterPage extends StatefulWidget {
 class _InformationRegisterPageState extends State<InformationRegisterPage> {
 //!______________________ for user role______________________________
   String? userRole;
-  String role = 'client'; // will be updated after reading from storage
+  String role = ''; // will be updated after reading from storage
 
   Future<void> _getUserRole() async {
     final secureStorageService = sl<SecureStorageService>();

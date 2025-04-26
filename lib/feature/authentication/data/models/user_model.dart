@@ -31,7 +31,7 @@ class UserModel extends Equatable {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     // Check both keys for role.
-    final roleValue = json['role_name'] ?? json['role'] ?? 'client';
+    final roleValue = json['role_name'] ?? json['role'] ?? '';
 
     // Handle has_documents whether it is sent as a bool or a string.
     final hasDocumentsValue = json['has_documents'];
