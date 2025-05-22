@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lailaty/core/config/presentation/widget/Titles.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/custom_drawer/custom_drawer.dart';
-import 'package:lailaty/core/config/presentation/widget/myButton.dart';
+import 'package:lailaty/core/presentation/widget/Titles.dart';
+import 'package:lailaty/core/presentation/widget/dynamic_page_view_widgets/custom_drawer/custom_drawer.dart';
+import 'package:lailaty/core/presentation/widget/myButton.dart';
 // import 'package:lailaty/core/config/widget/Titles.dart';
 
 import 'package:lailaty/core/resources/asset_manager.dart';

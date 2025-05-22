@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/presentation/widget/imageProduct.dart';
+import 'package:lailaty/core/presentation/widget/imageProduct.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';

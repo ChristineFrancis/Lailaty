@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
+import 'package:lailaty/core/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/config/storage/secure_storage_service.dart';
 import 'package:lailaty/core/config/storage/service_locator.dart';
 import 'package:lailaty/core/resources/color_manager.dart';

@@ -5,9 +5,10 @@ class UrlManager {
   // static String resendVerificationCodeURL =
   //     '$baseAuthUrl/auth/resendVerificationCode';
   // static String loginURL = '$baseAuthUrl/auth/login';
-  // static String getBrandUrl = '$baseAuthUrl/captain/vehicles/brand';
-  static String addVeicleUrl = '$baseUrl/captain/vehicles/create';
+   static String getBrandUrl = '$baseUrl/captain/vehicles/brand';
   // static String forgotPasswordURL = '$baseAuthUrl/auth/forgot-password';
+
+  static String addVeicleUrl = '$baseUrl/captain/vehicles/create';
   static const String captianRegisterUrl = '$baseUrl/captain/Documents';
   //!new auth :
 
@@ -29,4 +30,10 @@ class UrlManager {
   static const String openStreetMapSearch =
       "https://nominatim.openstreetmap.org/search?format=json&q=";
   static const String getAllFleets = '$baseUrl/captain/works/fleet-owner/index';
+
+  static String createWorkRequest(int id) {
+    return "$baseUrl/captain/works/request/create/$id";
+  }
+
+  static String refreshTokenUrl = '${UrlManager.baseAuthUrl}/refreshToken';
 }

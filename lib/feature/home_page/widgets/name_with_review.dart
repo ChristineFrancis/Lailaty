@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/presentation/widget/imageProduct.dart';
+import 'package:lailaty/core/presentation/widget/imageProduct.dart';
 
-import '../../../core/config/presentation/widget/Titles.dart';
+import '../../../core/presentation/widget/Titles.dart';
 import '../../../core/resources/asset_manager.dart';
 import '../../../core/resources/color_manager.dart';
 import '../../../core/resources/style_maneger.dart';

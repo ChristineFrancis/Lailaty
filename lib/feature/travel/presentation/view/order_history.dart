@@ -6,10 +6,10 @@ import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/travel/data/models/client_trip_details.dart';
 import 'package:lailaty/core/state_managments/filter_order_view_model.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/bottom_sheet_container.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/archived_order_bottom_sheet.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/contact_row.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/client_trip_details.dart';
+import 'package:lailaty/core/presentation/widget/dynamic_page_view_widgets/bottom_sheet_container.dart';
+import 'package:lailaty/core/presentation/widget/dynamic_page_view_widgets/archived_order_bottom_sheet.dart';
+import 'package:lailaty/core/presentation/widget/dynamic_page_view_widgets/contact_row.dart';
+import 'package:lailaty/core/presentation/widget/dynamic_page_view_widgets/client_trip_details.dart';
 import 'package:provider/provider.dart';
 
 class TravelOrderHistoryPage extends StatefulWidget {

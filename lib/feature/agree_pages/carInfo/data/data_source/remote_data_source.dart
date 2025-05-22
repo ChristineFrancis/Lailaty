@@ -2,171 +2,347 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
+import 'package:lailaty/core/auth/auth_service.dart';
 import 'package:lailaty/core/error_manager/error_model.dart';
 import 'package:lailaty/core/error_manager/exception.dart';
 import 'package:lailaty/core/resources/api_key_manager.dart';
 import 'package:lailaty/core/resources/url_manager.dart';
-import 'package:lailaty/core/utils/header_fun.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/models/captain_registration_documents_request_model.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/models/captain_registration_documents_response_message_model.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/models/car_brand_model.dart';
-import 'package:lailaty/feature/agree_pages/carInfo/data/models/car_info_model.dart';
-import 'package:lailaty/feature/agree_pages/carInfo/data/models/motor_info_model.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/data/models/car_registration_request_model.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/data/models/car_registration_response_model.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/data/models/motorcycle_registration_request_model.dart';
 
 abstract class AgreePagesRemoteDateSource {
-  Future<List<CarBrandModel>> getBrandsCar();
-  Future<Unit> addCar(CarInfoModel car, String param);
-  Future<Unit> addMotor(MotorInfoModel motor, String param);
+  Future<List<BrandsCarModel>> getBrandsCar();
+  Future<VehicleRegistrationResponseModel> addCar(
+      CarRegistrationRequestModel car, String param);
+  Future<VehicleRegistrationResponseModel> addMotor(
+      MotorcycleRegistrationRequestModel motor, String param);
   Future<CaptainRegistrationDocumentsResponseModel> captainRegister(
       CaptainRegistrationDocumentsModel request);
 }
 
 class AgreePagesRemoteDateSourceImpl implements AgreePagesRemoteDateSource {
-  final http.Client client;
-  AgreePagesRemoteDateSourceImpl({required this.client});
+  final ApiClient _apiClient;
+  AgreePagesRemoteDateSourceImpl({
+    required ApiClient apiClient,
+  }) : _apiClient = apiClient;
 
+//new way :
   @override
-  Future<Unit> addCar(CarInfoModel car, String param) async {
+  Future<VehicleRegistrationResponseModel> addCar(
+      CarRegistrationRequestModel request, String param) async {
     try {
-      print("before");
-      final url = Uri.parse("${UrlManager.addVeicleUrl}/$param");
+      print('try sending data ');
+      //  Prepare files outside of buildRequest
+      final image1 =
+          await http.MultipartFile.fromPath("image_1", request.image1.path);
+      final image2 =
+          await http.MultipartFile.fromPath("image_2", request.image2.path);
+      final image3 =
+          await http.MultipartFile.fromPath("image_3", request.image3.path);
+      final image4 =
+          await http.MultipartFile.fromPath("image_4", request.image4.path);
+      final image5 =
+          await http.MultipartFile.fromPath("image_5", request.image5.path);
+      final face1 =
+          await http.MultipartFile.fromPath("face_1", request.face1.path);
+      final face2 =
+          await http.MultipartFile.fromPath("face_2", request.face2.path);
 
-      var request = http.MultipartRequest("POST", url);
+      final response = await _apiClient.multipartRequest(
+        "${UrlManager.addVeicleUrl}/$param",
+        buildRequest: () {
+          final multipart = http.MultipartRequest(
+            'POST',
+            Uri.parse("${UrlManager.addVeicleUrl}/$param"),
+          );
 
-      // Add Headers
-      final headers = await getHeader(true);
-      request.headers.addAll(headers);
+          //  Add headers
+          // getHeader(true).then((headers) {
+          //   multipart.headers.addAll(headers);
+          // });
 
-      //  Add Non-File Fields as Text
-      request.fields["model_year"] = car.model_year;
-      request.fields["car_brand_id"] = car.car_brand_id;
-      request.fields["colore"] = car.colore;
-      request.fields["is_modified"] = car.is_modified;
-      request.fields["gear_type"] = car.gear_type;
-      request.fields["license_plate"] = car.license_plate;
-      request.fields["more_than_four_seats"] = car.more_than_four_seats;
-      request.fields["original_car_brand_id"] = car.original_car_brand_id ?? "";
+          //Add fields
+          multipart.fields["model_year"] = request.modelYear;
+          multipart.fields["car_brand_id"] = request.carBrandId.toString();
+          multipart.fields["colore"] = request.color;
+          multipart.fields["is_modified"] = request.isModified ? "1" : "0";
+          multipart.fields["gear_type"] = request.gearType;
+          multipart.fields["license_plate"] = request.licensePlate;
+          multipart.fields["more_than_four_seats"] =
+              request.moreThanFourSeats ? "1" : "0";
 
-      //  Add Files (if they exist)
-      await _addFileIfNotNull(request, "image_1", car.image_1);
-      await _addFileIfNotNull(request, "image_2", car.image_2);
-      await _addFileIfNotNull(request, "image_3", car.image_3);
-      await _addFileIfNotNull(request, "image_4", car.image_4);
-      await _addFileIfNotNull(request, "image_5", car.image_5);
-      await _addFileIfNotNull(request, "face_1", car.face_1);
-      await _addFileIfNotNull(request, "face_2", car.face_2);
+          if (request.originalCarBrandId != null) {
+            multipart.fields["original_car_brand_id"] =
+                request.originalCarBrandId.toString();
+          }
 
-      // Send Request
-      final streamedResponse = await request.send();
-      final response = await http.Response.fromStream(streamedResponse);
-      print(jsonEncode(response.body));
-      if (response.statusCode == 201) {
-        print("201");
+          // Add files
+          multipart.files.addAll([
+            image1,
+            image2,
+            image3,
+            image4,
+            image5,
+            face1,
+            face2,
+          ]);
 
-        return unit;
-      } else {
-        print("else");
-        // مسؤولة عن التعامل مع الأخطاء التي ترجعها استجابة الـ API نفسها
-        //. أي أنها تفحص كود الحالة (statusCode) الذي أرسله السيرفر وتقوم برمي ServerException عند حدوث أي خطأ.
-        handleHttpExceptions(response);
-      }
-      // عالج الأخطاء المتعلقة بانقطاع الاتصال بالإنترنت أو تعذر الوصول إلى السيرفرj
-    } on HttpException {
-      throw ServerException(
-          errorModel: ErrorModel(errorMessage: "خطأ في الاتصال بالخادم"));
-    } catch (e) {
-      throw ServerException(
-          errorModel:
-              ErrorModel(errorMessage: "حدث خطأ غير متوقع: ${e.toString()}"));
-    }
-    throw ServerException(
-        errorModel: ErrorModel(errorMessage: "حدث خطأ غير متوقع"));
-  }
+          // if (extraImage != null) {
+          //   multipart.files.add(extraImage);
+          // }
 
-  Future<void> _addFileIfNotNull(
-      http.MultipartRequest request, String fieldName, File? file) async {
-    if (file != null) {
-      request.files.add(
-        await http.MultipartFile.fromPath(
-          fieldName,
-          file.path,
-        ),
+          return multipart;
+        },
       );
-    }
-  }
 
-  @override
-  Future<Unit> addMotor(MotorInfoModel motor, String param) {
-    // TODO: implement addMotor
-    throw UnimplementedError();
-  }
+      print("📥 Response Body: ${response.body}");
+      print("📡 Status Code: ${response.statusCode}");
 
-  @override
-  Future<List<CarBrandModel>> getBrandsCar() {
-    // TODO: implement getBrandsCar
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<CaptainRegistrationDocumentsResponseModel> captainRegister(
-      CaptainRegistrationDocumentsModel request) async {
-    final Uri url = Uri.parse(UrlManager.captianRegisterUrl);
-    var requestBody = http.MultipartRequest('POST', url);
-    final headers = await getHeader(true);
-    requestBody.headers.addAll(headers);
-    //  getHeader(true)!);
-    requestBody.fields[ApiKeyManager.birthDate] = request.birthDate;
-    requestBody.files.add(await http.MultipartFile.fromPath(
-        ApiKeyManager.personalImage, request.personalImage.path));
-    requestBody.files.add(await http.MultipartFile.fromPath(
-        ApiKeyManager.driverLicenseFrontFace,
-        request.driverLicenseFrontFace.path));
-    requestBody.files.add(await http.MultipartFile.fromPath(
-        ApiKeyManager.driverLicenseBackFace,
-        request.driverLicenseBackFace.path));
-    requestBody.files.add(await http.MultipartFile.fromPath(
-        ApiKeyManager.personalCardFrontFace,
-        request.personalCardFrontFace.path));
-    requestBody.files.add(await http.MultipartFile.fromPath(
-        ApiKeyManager.personalCardBackFace, request.personalCardBackFace.path));
-    //the optional file :
-    if (request.criminalRecord != null) {
-      requestBody.files.add(await http.MultipartFile.fromPath(
-          ApiKeyManager.criminalRecord, request.criminalRecord!.path));
-    }
-
-    try {
-      final streamedResponse = await requestBody.send();
-      final response = await http.Response.fromStream(streamedResponse);
-      print("response body " + jsonEncode(response.body));
-      print(response.statusCode);
-      //    handleHttpExceptions(response);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         final decodedJson = json.decode(response.body);
-        return CaptainRegistrationDocumentsResponseModel.fromJson(decodedJson);
+        return VehicleRegistrationResponseModel.fromJson(decodedJson);
       } else {
-        final Map<String, dynamic> errorJson = jsonDecode(response.body);
-        final String errorMessage =
-            errorJson['message'] ?? 'Unknown error occurred';
+        final errorJson = jsonDecode(response.body);
+        final errorMessage = errorJson['message'] ?? 'حدث خطأ غير معروف';
 
         throw ServerException(
-            errorModel: ErrorModel(errorMessage: errorMessage));
+          errorModel: ErrorModel(errorMessage: errorMessage),
+        );
       }
     } catch (e) {
-      print('Exception Caught: $e');
+      print('❌ Exception Caught: $e');
 
       if (e is SocketException) {
         throw ServerException(
-            errorModel: ErrorModel(errorMessage: "No Internet Connection"));
+          errorModel: ErrorModel(errorMessage: "لا يوجد اتصال بالإنترنت"),
+        );
       } else if (e is FormatException) {
         throw ServerException(
-            errorModel: ErrorModel(errorMessage: "Invalid response format"));
+          errorModel: ErrorModel(errorMessage: "تنسيق الاستجابة غير صالح"),
+        );
       } else if (e is ServerException) {
         throw e;
       } else {
         throw ServerException(
-            errorModel:
-                ErrorModel(errorMessage: "Unexpected error: ${e.toString()}"));
+          errorModel:
+              ErrorModel(errorMessage: "حدث خطأ غير متوقع: ${e.toString()}"),
+        );
+      }
+    }
+  }
+
+//________________________________________________________________________________
+@override
+Future<VehicleRegistrationResponseModel> addMotor(
+    MotorcycleRegistrationRequestModel request, String param) async {
+  try {
+    print('🚀 Trying to send motorcycle registration data');
+
+    // Prepare files!!
+    final image1 =
+        await http.MultipartFile.fromPath("image_1", request.image1.path);
+    final face1 =
+        await http.MultipartFile.fromPath("face_1", request.face1.path);
+    final face2 =
+        await http.MultipartFile.fromPath("face_2", request.face2.path);
+
+    final response = await _apiClient.multipartRequest(
+      "${UrlManager.addVeicleUrl}/$param",
+      buildRequest: () {
+        final multipart = http.MultipartRequest(
+          'POST',
+          Uri.parse("${UrlManager.addVeicleUrl}/$param"),
+        );
+
+        // Add fields
+        multipart.fields["model_year"] = request.modelYear;
+        multipart.fields["license_plate"] = request.licensePlate;
+
+        // Add files
+        multipart.files.addAll([
+          image1,
+          face1,
+          face2,
+        ]);
+
+        return multipart;
+      },
+    );
+
+    print("📥 Motorcycle Response Body: ${response.body}");
+    print("📡 Status Code: ${response.statusCode}");
+
+    if (response.statusCode == 201) {
+      final decodedJson = json.decode(response.body);
+      return VehicleRegistrationResponseModel.fromJson(decodedJson);
+    } else {
+      final errorJson = jsonDecode(response.body);
+      final errorMessage = errorJson['message'] ?? 'حدث خطأ غير معروف';
+
+      throw ServerException(
+        errorModel: ErrorModel(errorMessage: errorMessage),
+      );
+    }
+  } catch (e) {
+    print('❌ Exception Caught: $e');
+
+    if (e is SocketException) {
+      throw ServerException(
+        errorModel: ErrorModel(errorMessage: "لا يوجد اتصال بالإنترنت"),
+      );
+    } else if (e is FormatException) {
+      throw ServerException(
+        errorModel: ErrorModel(errorMessage: "تنسيق الاستجابة غير صالح"),
+      );
+    } else if (e is ServerException) {
+      throw e;
+    } else {
+      throw ServerException(
+        errorModel:
+            ErrorModel(errorMessage: "حدث خطأ غير متوقع: ${e.toString()}"),
+      );
+    }
+  }
+}
+
+//__________________________________________________________________________________
+  @override
+  Future<List<BrandsCarModel>> getBrandsCar() async {
+    try {
+      final response = await _apiClient.get(
+        UrlManager.getBrandUrl,
+      );
+
+      print("📥 Response Body: ${response.body}");
+      print("📡 Status Code: ${response.statusCode}");
+
+      //  في حالة نجاح الاستجابة
+      if (response.statusCode == 200) {
+        final decodedJson = jsonDecode(response.body);
+        final List<dynamic> brandsJson = decodedJson['brands'];
+        final List<BrandsCarModel> brands = brandsJson
+            .map((jsonItem) => BrandsCarModel.fromJson(jsonItem))
+            .toList();
+
+        return brands;
+      } else {
+        final errorJson = jsonDecode(response.body);
+        final errorMessage = errorJson['message'] ?? 'Unknown error occurred';
+
+        throw ServerException(
+          errorModel: ErrorModel(errorMessage: errorMessage),
+        );
+      }
+    } catch (e) {
+      print('❌ Exception Caught: $e');
+
+      if (e is SocketException) {
+        throw ServerException(
+          errorModel: ErrorModel(errorMessage: "لا يوجد اتصال بالإنترنت"),
+        );
+      } else if (e is FormatException) {
+        throw ServerException(
+          errorModel: ErrorModel(errorMessage: "تنسيق الاستجابة غير صالح"),
+        );
+      } else if (e is ServerException) {
+        throw e;
+      } else {
+        throw ServerException(
+          errorModel:
+              ErrorModel(errorMessage: "حدث خطأ غير متوقع: ${e.toString()}"),
+        );
+      }
+    }
+  }
+
+//*_____________________________________________________________________________
+  @override
+  Future<CaptainRegistrationDocumentsResponseModel> captainRegister(
+      CaptainRegistrationDocumentsModel request) async {
+    try {
+      final personalImage = await http.MultipartFile.fromPath(
+          ApiKeyManager.personalImage, request.personalImage.path);
+      final driverLicenseFrontFace = await http.MultipartFile.fromPath(
+          ApiKeyManager.driverLicenseFrontFace,
+          request.driverLicenseFrontFace.path);
+      final driverLicenseBackFace = await http.MultipartFile.fromPath(
+          ApiKeyManager.driverLicenseBackFace,
+          request.driverLicenseBackFace.path);
+      final personalCardFrontFace = await http.MultipartFile.fromPath(
+          ApiKeyManager.personalCardFrontFace,
+          request.personalCardFrontFace.path);
+      final personalCardBackFace = await http.MultipartFile.fromPath(
+          ApiKeyManager.personalCardBackFace,
+          request.personalCardBackFace.path);
+
+      http.MultipartFile? criminalRecord;
+      if (request.criminalRecord != null) {
+        criminalRecord = await http.MultipartFile.fromPath(
+            ApiKeyManager.criminalRecord, request.criminalRecord!.path);
+      }
+
+      final response = await _apiClient.multipartRequest(
+        UrlManager.captianRegisterUrl,
+        buildRequest: () {
+          final multipart = http.MultipartRequest(
+            'POST',
+            Uri.parse(UrlManager.captianRegisterUrl),
+          );
+
+          multipart.fields[ApiKeyManager.birthDate] = request.birthDate;
+
+          multipart.files.addAll([
+            personalImage,
+            driverLicenseFrontFace,
+            driverLicenseBackFace,
+            personalCardFrontFace,
+            personalCardBackFace,
+          ]);
+
+          if (criminalRecord != null) {
+            multipart.files.add(criminalRecord);
+          }
+
+          return multipart;
+        },
+      );
+
+      print("📥 Response Body: ${response.body}");
+      print("📡 Status Code: ${response.statusCode}");
+
+      if (response.statusCode == 200) {
+        final decodedJson = json.decode(response.body);
+        return CaptainRegistrationDocumentsResponseModel.fromJson(decodedJson);
+      } else {
+        final errorJson = jsonDecode(response.body);
+        final errorMessage = errorJson['message'] ?? 'Unknown error occurred';
+
+        throw ServerException(
+          errorModel: ErrorModel(errorMessage: errorMessage),
+        );
+      }
+    } catch (e) {
+      print('❌ Exception Caught: $e');
+
+      if (e is SocketException) {
+        throw ServerException(
+          errorModel: ErrorModel(errorMessage: "لا يوجد اتصال بالإنترنت"),
+        );
+      } else if (e is FormatException) {
+        throw ServerException(
+          errorModel: ErrorModel(errorMessage: "تنسيق الاستجابة غير صالح"),
+        );
+      } else if (e is ServerException) {
+        throw e;
+      } else {
+        throw ServerException(
+          errorModel:
+              ErrorModel(errorMessage: "حدث خطأ غير متوقع: ${e.toString()}"),
+        );
       }
     }
   }

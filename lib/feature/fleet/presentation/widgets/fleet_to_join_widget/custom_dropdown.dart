@@ -1,14 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lailaty/core/config/presentation/widget/alerts/problem_dialog.dart';
+import 'package:lailaty/core/config/storage/service_locator.dart';
+import 'package:lailaty/core/network/network_connection.dart';
+import 'package:lailaty/core/presentation/widget/alerts/problem_dialog.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:lailaty/feature/fleet/domain/entities/fleet_to_join/fleets_entity.dart';
 import 'package:lailaty/feature/fleet/presentation/state_manager/get_all_fleets/get_all_fleets_bloc.dart';
 
 class CustomDropdown extends StatefulWidget {
   final String? selectedFleetName;
-  final void Function(String)? onSelect;
+  final void Function(String, int)? onSelect;
   const CustomDropdown({super.key, this.selectedFleetName, this.onSelect});
 
   @override
@@ -16,12 +21,35 @@ class CustomDropdown extends StatefulWidget {
 }
 
 class _CustomDropdownState extends State<CustomDropdown> {
+  late final NetworkInfo _networkInfo;
+  StreamSubscription<bool>? _connectionSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _networkInfo = sl<NetworkInfo>();
+
+    _connectionSubscription = _networkInfo.connectionStream.listen((connected) {
+      if (connected && (_fleets.isEmpty || _hasError)) {
+        context.read<GetAllFleetsBloc>().add(RequestAllFleets());
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _removeOverlay();
+    _connectionSubscription?.cancel();
+    super.dispose();
+  }
+
   String? _selectedItem;
   bool _isDropdownOpen = false;
   OverlayEntry? _overlayEntry;
   final LayerLink _layerLink = LayerLink();
   bool _isLoading = false;
   bool _hasError = false;
+  List<GetAllFleetEntity> _fleets = [];
 
   @override
   void didUpdateWidget(CustomDropdown oldWidget) {
@@ -34,50 +62,70 @@ class _CustomDropdownState extends State<CustomDropdown> {
     }
   }
 
-  void _toggleDropdown(List<String> items) {
+  void _toggleDropdown() {
     if (_isDropdownOpen) {
-      _overlayEntry?.remove();
-      _overlayEntry = null;
+      _removeOverlay();
     } else {
-      _overlayEntry = _createOverlayEntry(items);
-      Overlay.of(context).insert(_overlayEntry!);
+      _showOverlay();
     }
     setState(() {
       _isDropdownOpen = !_isDropdownOpen;
     });
   }
 
-  OverlayEntry _createOverlayEntry(List<String> items) {
+  void _removeOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  void _showOverlay() {
+    _overlayEntry = _createOverlayEntry();
+    Overlay.of(context).insert(_overlayEntry!);
+  }
+
+  OverlayEntry _createOverlayEntry() {
     double offsetX = context.screenWidth * 0.1;
     double offsetY = context.screenHeight * 0.09;
     return OverlayEntry(
-      builder: (context) => Positioned(
-        width: context.screenWidth * 0.8,
-        child: CompositedTransformFollower(
-          link: _layerLink,
-          offset: Offset(offsetX, offsetY),
-          child: Material(
-            elevation: 4.0,
-            borderRadius: BorderRadius.circular(8),
-            color: ColorManager.whiteColor,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: items.map((item) {
-                return ListTile(
-                  title: Text(item, textAlign: TextAlign.right),
-                  onTap: () {
-                    setState(() {
-                      _selectedItem = item;
-                      _toggleDropdown(items);
-                    });
-                    if (widget.onSelect != null) {
-                      widget.onSelect!(item);
-                    }
-                  },
-                );
-              }).toList(),
+      builder: (context) => GestureDetector(
+        onTap: () {
+          _toggleDropdown();
+        },
+        behavior: HitTestBehavior.translucent,
+        child: Stack(
+          children: [
+            Positioned(
+              width: context.screenWidth * 0.8,
+              child: CompositedTransformFollower(
+                link: _layerLink,
+                offset: Offset(offsetX, offsetY),
+                showWhenUnlinked: false,
+                child: Material(
+                  elevation: 4.0,
+                  borderRadius: BorderRadius.circular(8),
+                  color: ColorManager.whiteColor,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: _fleets.map((item) {
+                      return ListTile(
+                        title:
+                            Text(item.office.name, textAlign: TextAlign.right),
+                        onTap: () {
+                          setState(() {
+                            _selectedItem = item.office.name;
+                            _toggleDropdown();
+                          });
+                          if (widget.onSelect != null) {
+                            widget.onSelect!(item.office.name, item.office.id);
+                          }
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -93,19 +141,11 @@ class _CustomDropdownState extends State<CustomDropdown> {
   }
 
   @override
-  void dispose() {
-    _overlayEntry?.remove();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return CompositedTransformTarget(
       link: _layerLink,
       child: BlocBuilder<GetAllFleetsBloc, GetAllFleetsState>(
         builder: (context, state) {
-          List<String> fleetNames = [];
-
           if (state is GetAllFleetsLoading) {
             _isLoading = true;
             _hasError = false;
@@ -116,8 +156,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
               _showProblemDialog(state.errorMessage);
             });
           } else if (state is GetAllFleetsSuccess) {
-            fleetNames =
-                state.getAllFleetEntity.map((e) => e.office.name).toList();
+            _fleets = state.getAllFleetEntity;
             _isLoading = false;
             _hasError = false;
           }
@@ -125,8 +164,8 @@ class _CustomDropdownState extends State<CustomDropdown> {
           return GestureDetector(
             onTap: () {
               if (_isLoading) return;
-              if (fleetNames.isNotEmpty) {
-                _toggleDropdown(fleetNames);
+              if (_fleets.isNotEmpty) {
+                _toggleDropdown();
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -157,9 +196,9 @@ class _CustomDropdownState extends State<CustomDropdown> {
                   ),
                   Expanded(
                     child: _isLoading
-                        ? const Text('جارٍ تحميل...',
+                        ? const Text('جارٍ التحميل...',
                             textAlign: TextAlign.center)
-                        : _hasError || fleetNames.isEmpty
+                        : _hasError || _fleets.isEmpty
                             ? const SizedBox()
                             : Text(
                                 _selectedItem ?? "اختر اسم الأسطول",

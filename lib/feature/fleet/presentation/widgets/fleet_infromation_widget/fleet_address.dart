@@ -7,6 +7,7 @@ import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/resources/url_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:geocoding/geocoding.dart';
 
 class FleetAddressContainer extends StatefulWidget {
   final TextEditingController controller;
@@ -50,29 +51,58 @@ class _FleetAddressContainerState extends State<FleetAddressContainer> {
     });
   }
 
-//TODO: another solution
+  // البحث عن الموقع باستخدام OpenStreetMap أولاً وإذا فشل استخدام geocoding كبديل.
   Future<void> _searchLocation(String query) async {
     setState(() => _isLoading = true);
 
     try {
+      // محاولة البحث باستخدام OpenStreetMap
       final response = await http.get(
         Uri.parse("${UrlManager.openStreetMapSearch}$query"),
       );
 
       if (response.statusCode == 200) {
         List<dynamic> results = jsonDecode(response.body);
+        if (results.isNotEmpty) {
+          // إذا تم العثور على نتائج من OpenStreetMap
+          setState(() {
+            searchResults = results;
+          });
+        } else {
+          // إذا لم يتم العثور على نتائج من OpenStreetMap، استخدم geocoding كبديل
+          _searchLocationWithGeocoding(query);
+        }
+      } else {
+        // في حال فشل البحث في OpenStreetMap
+        _searchLocationWithGeocoding(query);
+      }
+    } catch (e) {
+      // في حال فشل الاتصال بـ OpenStreetMap، نستخدم geocoding كبديل
+      _searchLocationWithGeocoding(query);
+    }
+
+    setState(() => _isLoading = false);
+  }
+
+  Future<void> _searchLocationWithGeocoding(String query) async {
+    try {
+      List<Location> locations = await locationFromAddress(query);
+      if (locations.isNotEmpty) {
         setState(() {
-          searchResults = results.isNotEmpty ? results : [];
+          searchResults = locations.map((location) {
+            return {
+              'display_name': query,
+              'lat': location.latitude.toString(),
+              'lon': location.longitude.toString(),
+            };
+          }).toList();
         });
       } else {
-        print(response.statusCode);
-        _showError(StringManager.connectionError);
+        _showError(StringManager.searchFailed);
       }
     } catch (e) {
       _showError(StringManager.searchFailed);
     }
-
-    setState(() => _isLoading = false);
   }
 
   void _onSelectLocation(dynamic result) {
@@ -88,8 +118,11 @@ class _FleetAddressContainerState extends State<FleetAddressContainer> {
   void _showError(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(message,
-            style: const TextStyle(color: ColorManager.whiteColor)),
+        content: Text(
+          message,
+          style: const TextStyle(color: ColorManager.whiteColor),
+          textAlign: TextAlign.right,
+        ),
         backgroundColor: ColorManager.red,
       ),
     );

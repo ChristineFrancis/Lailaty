@@ -5,49 +5,16 @@ import 'package:lailaty/core/error_manager/error_model.dart';
 
 class NoConnectionExecption implements Exception {}
 
-//class ServerExecption implements Exception {}
-// class ServerException implements Exception {
-//   final String message;
-//   const ServerException([this.message = 'Server Exception Occurred']);
-// }
-
 class ServerException implements Exception {
   final ErrorModel errorModel;
 
   ServerException({required this.errorModel});
 
-  String get errorMessage =>
-      errorModel.errorMessage;
+  String get errorMessage => errorModel.errorMessage;
 }
 
 class EmptyCashExecption implements Exception {}
 
-
-// void handleHttpExceptions(http.Response response) {
-//   switch (response.statusCode) {
-//     case 400: // Bad request
-//     case 401: // Unauthorized
-//     case 403: // Forbidden
-//     case 404: // Not Found
-//     case 409: // Conflict
-//     case 422: // Unprocessable Entity
-//     case 429: // Too Many Requests
-//       throw ServerException(
-//           errorModel: ErrorModel.fromJson(jsonDecode(response.body)));
-
-//     case 500: // Internal Server Error
-//     case 502: // Bad Gateway
-//     case 503: // Service Unavailable
-//     case 504: // Gateway Timeout
-//       throw ServerException(
-//           errorModel: ErrorModel(errorMessage: "خطأ داخلي في الخادم"));
-
-//     default:
-//       throw ServerException(
-//           errorModel: ErrorModel(
-//               errorMessage: "خطأ غير متوقع: ${response.statusCode}"));
-//   }
-// }
 
 void handleHttpExceptions(http.Response response) {
   switch (response.statusCode) {
@@ -102,63 +69,78 @@ void handleHttpExceptions(http.Response response) {
 
 void _handleBadRequest(http.Response response) {
   throw ServerException(
-    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ?? {
-      'errorMessage': 'Bad Request - Please check your input or try again.'
-    }),
+    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ??
+        {
+          'errorMessage': 'Bad Request - Please check your input or try again.'
+        }),
   );
 }
 
 void _handleUnauthorized(http.Response response) {
   throw ServerException(
-    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ?? {
-      'errorMessage': 'Unauthorized - Please check your credentials or login.'
-    }),
+    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ??
+        {
+          'errorMessage':
+              'Unauthorized - Please check your credentials or login.'
+        }),
   );
 }
 
 void _handleForbidden(http.Response response) {
   throw ServerException(
-    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ?? {
-      'errorMessage': 'Forbidden - You do not have permission to access this resource.'
-    }),
+    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ??
+        {
+          'errorMessage':
+              'Forbidden - You do not have permission to access this resource.'
+        }),
   );
 }
 
 void _handleNotFound(http.Response response) {
   throw ServerException(
-    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ?? {
-      'errorMessage': 'Not Found - The resource you are looking for could not be found.'
-    }),
+    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ??
+        {
+          'errorMessage':
+              'Not Found - The resource you are looking for could not be found.'
+        }),
   );
 }
 
 void _handleConflict(http.Response response) {
   throw ServerException(
-    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ?? {
-      'errorMessage': 'Conflict - There is a conflict with the current state of the resource.'
-    }),
+    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ??
+        {
+          'errorMessage':
+              'Conflict - There is a conflict with the current state of the resource.'
+        }),
   );
 }
 
 void _handleUnprocessableEntity(http.Response response) {
   throw ServerException(
-    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ?? {
-      'errorMessage': 'Unprocessable Entity - Please check your input and try again.'
-    }),
+    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ??
+        {
+          'errorMessage':
+              'Unprocessable Entity - Please check your input and try again.'
+        }),
   );
 }
 
 void _handleTooManyRequests(http.Response response) {
   throw ServerException(
-    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ?? {
-      'errorMessage': 'Too Many Requests - You have exceeded the rate limit. Please try again later.'
-    }),
+    errorModel: ErrorModel.fromJson(jsonDecode(response.body) ??
+        {
+          'errorMessage':
+              'Too Many Requests - You have exceeded the rate limit. Please try again later.'
+        }),
   );
 }
 
 void _handleServerError(http.Response response) {
   throw ServerException(
-    errorModel: ErrorModel(errorMessage: 'Internal Server Error - Something went wrong on the server side.'),
+    errorModel: ErrorModel(
+        errorMessage:
+            'Internal Server Error - Something went wrong on the server side.'),
   );
 }
 

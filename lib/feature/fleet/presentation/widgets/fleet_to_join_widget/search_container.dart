@@ -1,13 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lailaty/core/config/presentation/widget/alerts/problem_dialog.dart';
+import 'package:lailaty/core/config/storage/service_locator.dart';
+import 'package:lailaty/core/network/network_connection.dart';
+import 'package:lailaty/core/presentation/widget/alerts/problem_dialog.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
+import 'package:lailaty/feature/fleet/domain/entities/fleet_to_join/fleets_entity.dart';
 import 'package:lailaty/feature/fleet/presentation/state_manager/bloc/get_searched_fleet_bloc.dart';
 
 class SearchContainer extends StatefulWidget {
-  final void Function(String) onSearchSuccess;
+  final void Function(String, int) onSearchSuccess;
   final String searchText;
   final void Function(String) onTextChange;
 
@@ -23,15 +28,32 @@ class SearchContainer extends StatefulWidget {
 }
 
 class _SearchContainerState extends State<SearchContainer> {
+  late final NetworkInfo _networkInfo;
+  StreamSubscription<bool>? _subscription;
+  bool _isDialogShown = false;
+
   late TextEditingController _controller;
   final LayerLink _layerLink = LayerLink();
   OverlayEntry? _overlayEntry;
-  List<String> _suggestions = [];
+  List<GetAllFleetEntity> _suggestions = [];
 
   @override
   void initState() {
-    _controller = TextEditingController(text: widget.searchText);
     super.initState();
+    _controller = TextEditingController(text: widget.searchText);
+    _networkInfo = sl<NetworkInfo>();
+
+    _subscription = _networkInfo.connectionStream.listen((connected) {
+      if (!mounted) return;
+      if (connected) {
+        // Retry search automatically
+        if (_controller.text.trim().isNotEmpty) {
+          context.read<GetSearchedFleetBloc>().add(
+                RequestForSearchFleet(parameter: _controller.text.trim()),
+              );
+        }
+      }
+    });
   }
 
   @override
@@ -46,21 +68,34 @@ class _SearchContainerState extends State<SearchContainer> {
   void dispose() {
     _controller.dispose();
     _removeOverlay();
+    _subscription?.cancel();
     super.dispose();
   }
 
-  void _performSearch() {
+  void _performSearch() async {
     final text = _controller.text.trim();
-    if (text.isNotEmpty) {
-      context.read<GetSearchedFleetBloc>().add(
-            RequestForSearchFleet(parameter: text),
-          );
+    if (text.isEmpty) return;
+    final isConnected = await _networkInfo.isConnected;
+    if (!isConnected) {
+      if (!_isDialogShown) {
+        _isDialogShown = true;
+        showDialog(
+          context: context,
+          builder: (_) => const ProblemDialog(
+            message: StringManager.noInternetConnection,
+          ),
+        );
+      }
+      return;
     }
+
+    context.read<GetSearchedFleetBloc>().add(
+          RequestForSearchFleet(parameter: text),
+        );
   }
 
-  void _showOverlay(List<String> suggestions) {
+  void _showOverlay(List<GetAllFleetEntity> suggestions) {
     _suggestions = suggestions;
-
     _overlayEntry = _createOverlayEntry(suggestions);
     Overlay.of(context).insert(_overlayEntry!);
   }
@@ -70,37 +105,51 @@ class _SearchContainerState extends State<SearchContainer> {
     _overlayEntry = null;
   }
 
-  void _selectFleet(String name) {
-    widget.onSearchSuccess(name);
+  void _selectFleet(String name, int id) {
+    widget.onSearchSuccess(name, id);
     _controller.clear();
     _removeOverlay();
   }
 
-  OverlayEntry _createOverlayEntry(List<String> suggestions) {
+  OverlayEntry _createOverlayEntry(List<GetAllFleetEntity> suggestions) {
     double offsetX = context.screenWidth * 0.1;
     double offsetY = context.screenHeight * 0.09;
 
     return OverlayEntry(
-      builder: (context) => Positioned(
-        width: context.screenWidth * 0.8,
-        child: CompositedTransformFollower(
-          link: _layerLink,
-          offset: Offset(offsetX, offsetY),
-          showWhenUnlinked: false,
-          child: Material(
-            elevation: 4.0,
-            borderRadius: BorderRadius.circular(8),
-            color: ColorManager.whiteColor,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: suggestions.map((item) {
-                return ListTile(
-                  title: Text(item, textAlign: TextAlign.right),
-                  onTap: () => _selectFleet(item),
-                );
-              }).toList(),
+      builder: (context) => GestureDetector(
+        onTap: () {
+          _removeOverlay();
+        },
+        behavior: HitTestBehavior.translucent,
+        child: Stack(
+          children: [
+            Positioned(
+              width: context.screenWidth * 0.8,
+              child: CompositedTransformFollower(
+                link: _layerLink,
+                offset: Offset(offsetX, offsetY),
+                showWhenUnlinked: false,
+                child: Material(
+                  elevation: 4.0,
+                  borderRadius: BorderRadius.circular(8),
+                  color: ColorManager.whiteColor,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: suggestions.map((item) {
+                      return ListTile(
+                        title:
+                            Text(item.office.name, textAlign: TextAlign.right),
+                        onTap: () => _selectFleet(
+                          item.office.name,
+                          item.office.id,
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -118,8 +167,7 @@ class _SearchContainerState extends State<SearchContainer> {
           );
         } else if (state is GetSearchedFleetSuccess) {
           _removeOverlay();
-          _showOverlay(
-              state.getAllFleetEntity.map((e) => e.office.name).toList());
+          _showOverlay(state.getAllFleetEntity);
         }
       },
       builder: (context, state) {

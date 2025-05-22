@@ -88,10 +88,10 @@ Future<void> initAuthFeature() async {
   );
 
   //!-----------------Flutter secure storage----------------------
-  final secureStorage = FlutterSecureStorage();
-  sl.registerLazySingleton<FlutterSecureStorage>(() => secureStorage);
-  sl.registerLazySingleton<SecureStorageService>(
-      () => SecureStorageService(secureStorage: sl()));
+  // final secureStorage = FlutterSecureStorage();
+  // sl.registerLazySingleton<FlutterSecureStorage>(() => secureStorage);
+  // sl.registerLazySingleton<SecureStorageService>(
+  //     () => SecureStorageService(secureStorage: sl()));
 
   //! -------------------------External---------------------------
 //  sl.registerLazySingleton(() => http.Client());

@@ -3,7 +3,7 @@ import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/core/config/presentation/widget/dynamic_page_view_widgets/letter_circle.dart';
+import 'package:lailaty/core/presentation/widget/dynamic_page_view_widgets/letter_circle.dart';
 
 class PathsRow extends StatefulWidget {
   final bool isTravelPage;

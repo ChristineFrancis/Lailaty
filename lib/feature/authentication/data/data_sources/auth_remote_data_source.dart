@@ -130,6 +130,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     );
     if (response.statusCode == 200) {
       final jsonMap = json.decode(response.body);
+      print(jsonMap);
+      print('auth log in ${response.statusCode}');
       return LoginResponseModel.fromJson(jsonMap);
     } else {
       throw ServerException(

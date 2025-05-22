@@ -322,5 +322,8 @@ class StringManager {
   static const String theFleetHasBeenEstablished = "تم انشاء الاسطول ";
   static const String connectionError = "خطأ في الاتصال، يرجى المحاولة لاحقًا";
   static const String searchFailed =
-      "فشل البحث، تحقق من اتصال الإنترنت وحاول مرة أخرى.";
+      "فشل .. تحقق من اتصال الإنترنت وحاول مرة أخرى.";
+  static const String emptyFleetName =
+      'يرجى اختيار الأسطول الذي تريد الانضمام له';
+  static const String loading = 'جار التحميل ... ';
 }

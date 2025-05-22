@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
-import 'package:lailaty/core/config/presentation/widget/offline_dialog_widget.dart';
+import 'package:lailaty/core/presentation/widget/custom_appbar.dart';
+import 'package:lailaty/core/presentation/widget/offline_dialog_widget.dart';
 import 'package:lailaty/core/config/storage/secure_storage_service.dart';
 import 'package:lailaty/core/config/storage/service_locator.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
@@ -10,16 +10,16 @@ import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/state_managments/network_bloc/net_work_bloc.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/core/config/presentation/widget/client_service_row.dart';
+import 'package:lailaty/core/presentation/widget/client_service_row.dart';
 import 'package:lailaty/core/state_managments/image_picker_cubit/image_pick_cubit.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/domain/entities/captain_registration_documents_request.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/captain_register_bloc/captain_register_bloc.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/captain_register_bloc/captain_register_event.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/captain_register_bloc/captain_register_state.dart';
-import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/details_text_widget.dart';
-import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/next_botton_widget.dart';
-import 'package:lailaty/feature/agree_pages/presentation/widgets/personal_Information_page/title_for_details_widget.dart';
-import 'package:lailaty/feature/agree_pages/presentation/widgets/security_information_page/good_conduct_certificate.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/widgets/personal_Information_page/details_text_widget.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/widgets/personal_Information_page/next_botton_widget.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/widgets/personal_Information_page/title_for_details_widget.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/widgets/security_information_page/good_conduct_certificate.dart';
 
 class SecurityInformationPage extends StatelessWidget {
   final String birthDate;

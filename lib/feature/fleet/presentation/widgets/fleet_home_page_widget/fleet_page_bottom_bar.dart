@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lailaty/core/config/presentation/widget/set_container_in_bottom_bar.dart';
+import 'package:lailaty/core/presentation/widget/set_container_in_bottom_bar.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';

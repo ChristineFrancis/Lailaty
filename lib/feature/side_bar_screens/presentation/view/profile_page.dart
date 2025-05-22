@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
+import 'package:lailaty/core/presentation/widget/custom_appbar.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
@@ -9,7 +9,7 @@ import 'package:lailaty/core/state_managments/personal_information_view.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/state_managment/car_list_view_model.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/widgets/car_list_widget.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/widgets/edit_pesonal_image_widget.dart';
-import 'package:lailaty/core/config/presentation/widget/form_profile_container.dart';
+import 'package:lailaty/core/presentation/widget/form_profile_container.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {

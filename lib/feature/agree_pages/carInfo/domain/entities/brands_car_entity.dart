@@ -1,12 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-class BrandsCarEntity extends Equatable{
+class BrandsCarEntity extends Equatable {
   final String name;
   final int id;
 
-  BrandsCarEntity({required this.name, required this.id});
-  
-  @override
+  const BrandsCarEntity({required this.name, required this.id});
 
-  List<Object?> get props =>[name,id];
+  @override
+  List<Object?> get props => [name, id];
 }

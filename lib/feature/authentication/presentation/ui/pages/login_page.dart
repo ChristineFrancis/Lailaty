@@ -1,18 +1,15 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lailaty/core/config/presentation/widget/alerts/problem_dialog.dart';
-import 'package:lailaty/core/config/presentation/widget/alerts/success_dialog.dart';
+import 'package:lailaty/core/auth/auth_service.dart';
+import 'package:lailaty/core/presentation/widget/alerts/problem_dialog.dart';
+import 'package:lailaty/core/presentation/widget/alerts/success_dialog.dart';
 import 'package:lailaty/core/config/storage/secure_storage_service.dart';
 import 'package:lailaty/core/config/storage/service_locator.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/asset_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
-import 'package:lailaty/feature/authentication/presentation/ui/pages/home_page.dart';
-import 'package:lailaty/feature/authentication/presentation/ui/pages/register_with_email_page.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/custom%20widgets/text%20widgets/custom_text_widget.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/widgets/login_word.dart';
 import '../../bloc/forgot_password_bloc/forgot_password_bloc.dart';
@@ -105,9 +102,14 @@ class _LoginPageState extends State<LoginPage> {
                     //     builder: (_) => HomePage(),
                     //   ),
                     // );
-                    context.go(AppKeys.deciderPageKey);
-
                     //  context.pushReplacement(AppKeys.searchOrderPage);
+                    // Debugging: Check if LoginLoaded is triggered
+                    print("Login successful, navigating...");
+
+                    // context.go(AppKeys.deciderPageKey);
+                    Future.microtask(() {
+                      navigatorKey.currentContext?.go(AppKeys.deciderPageKey);
+                    });
                   }
                 },
               ),
@@ -193,9 +195,11 @@ class _LoginPageState extends State<LoginPage> {
                             builder: (context, state) {
                               if (state is LoginLoading) {
                                 return Container(
-                                    alignment: Alignment.center,
-                                    child: CircularProgressIndicator(
-                                        color: ColorManager.yellowTextColor));
+                                  alignment: Alignment.center,
+                                  child: const CircularProgressIndicator(
+                                    color: ColorManager.yellowTextColor,
+                                  ),
+                                );
                               }
                               return CustomButton(
                                 textButton: 'تسجيل الدخول',

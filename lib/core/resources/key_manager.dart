@@ -3,7 +3,7 @@ class AppKeys {
   static const String privacyPolicyPageKey = '/privacyPolicyPageKey';
   static const String loginPageKey = '/LoginPage';
   static const String registerWithEmailPageKey = '/registerWithEmailPage';
- // static const String homePagekey = '/HomePage';
+  // static const String homePagekey = '/HomePage';
   static const String rulesPageKey = '/RulesPage';
   static const String userInfoPageKey = '/UserInfoPage';
   static const String informationRegisterPageKey = '/InformationRegisterPage';
@@ -12,6 +12,7 @@ class AppKeys {
   static const String locationPageKey = '/LocationPage';
   static const String userDetailsPageKey = '/UserDetailsPage';
   static const String notificationPageKey = '/NotificationPage';
+  static const String splashVideoPageKey = '/';
 
 //photos :
 
@@ -39,7 +40,7 @@ class AppKeys {
   static const String editingCarPage = '/EditingCar';
 
   //pages
- static const String searchOrderPage = '/searchOrderPage';
+  static const String searchOrderPage = '/searchOrderPage';
   static const String profileOfcaptainFleet = '/CaptainFleetProfile';
 
   static const String personalInformationPageKey =

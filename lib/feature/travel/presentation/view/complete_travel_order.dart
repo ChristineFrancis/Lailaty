@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lailaty/core/config/presentation/widget/complete_order_containers/cancel_journey_container.dart';
-import 'package:lailaty/core/config/presentation/widget/complete_order_containers/rating_container/rate_journey_container.dart';
-import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
-import 'package:lailaty/core/config/presentation/widget/complete_order_containers/journey_ended_container.dart';
+import 'package:lailaty/core/presentation/widget/complete_order_containers/cancel_journey_container.dart';
+import 'package:lailaty/core/presentation/widget/complete_order_containers/rating_container/rate_journey_container.dart';
+import 'package:lailaty/core/presentation/widget/custom_appbar.dart';
+import 'package:lailaty/core/presentation/widget/complete_order_containers/journey_ended_container.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
-import 'package:lailaty/core/config/presentation/widget/complete_order_containers/have_arrived_or_journey_completed_container.dart';
-import 'package:lailaty/core/config/presentation/pages/map_page.dart';
+import 'package:lailaty/core/presentation/widget/complete_order_containers/have_arrived_or_journey_completed_container.dart';
+import 'package:lailaty/core/presentation/pages/map_page.dart';
 
 class CompleteTravelOrder extends StatefulWidget {
   final String initialContainerKey;

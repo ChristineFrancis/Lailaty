@@ -1,23 +1,23 @@
 import 'package:flutter/widgets.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:lailaty/core/config/presentation/pages/dynamic_page_view.dart';
-import 'package:lailaty/core/config/presentation/widget/splash_video/splash_video.dart';
+import 'package:lailaty/core/auth/auth_service.dart';
+import 'package:lailaty/core/config/storage/service_locator.dart';
+import 'package:lailaty/core/presentation/pages/dynamic_page_view.dart';
+import 'package:lailaty/core/presentation/widget/splash_video/splash_video.dart';
 import 'package:lailaty/core/network/network_connection.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/data_source/remote_data_source.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/data/repo/agree_pages_repo_impl.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/domain/use_case/add_car_usecase.dart';
-import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/bloc/add_veicle_bloc.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/presentation/state_managment/add_car_bloc/add_veicle_bloc.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/carInfo.dart';
-import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/editingCar.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/editing_car.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/motor_info.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/captain_register_pages/personal_information_page.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/pages/choose_city_page.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/pages/decider_page.dart';
-import 'package:lailaty/feature/authentication/presentation/ui/pages/home_page.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/pages/information_register_page.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/pages/location_page.dart';
 import 'package:lailaty/feature/authentication/presentation/ui/pages/login_page.dart';
@@ -31,7 +31,6 @@ import 'package:lailaty/feature/fleet/presentation/view/fleet_options_page.dart'
 import 'package:lailaty/feature/fleet/presentation/view/fleet_performance.dart';
 import 'package:lailaty/feature/fleet/presentation/view/fleet_to_join.dart';
 import 'package:lailaty/feature/fleet/presentation/view/fleet_home_page.dart';
-
 import 'package:lailaty/feature/fleet/presentation/view/fleet_infromation_page.dart';
 import 'package:lailaty/feature/on_your_mood/presentation/view/complete_on_your_mood_order.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/inbox_page.dart';
@@ -41,15 +40,11 @@ import 'package:lailaty/feature/side_bar_screens/presentation/view/rules_page.da
 import 'package:lailaty/feature/teach_driving/presentation/view/complete_teach_driving_order.dart';
 import 'package:lailaty/feature/travel/presentation/view/complete_travel_order.dart';
 import 'package:lailaty/feature/wedding_business/presentation/view/complete_widding_and_business_order.dart';
-
-import '../../feature/agree_pages/presentation/view/noticeToDriverView.dart';
-import 'package:lailaty/feature/agree_pages/presentation/view/login_prompt_page.dart';
-
+import '../../feature/agree_pages/carInfo/presentation/view/noticeToDriverView.dart';
+import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/login_prompt_page.dart';
 import 'package:lailaty/feature/agree_pages/carInfo/presentation/view/captain_register_pages/security_information_page.dart';
-
 import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/state_managments/birthdate_view_model.dart';
-
 import 'package:lailaty/feature/inland_transportation/presentation/view/inland_transportation.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/state_managment/car_list_view_model.dart';
 import 'package:lailaty/feature/side_bar_screens/presentation/view/call_us_page.dart';
@@ -59,41 +54,49 @@ import 'package:lailaty/feature/side_bar_screens/presentation/view/settings_page
 import 'package:lailaty/feature/side_bar_screens/presentation/view/share_app_page.dart';
 import 'package:provider/provider.dart';
 import '../../feature/fleet/presentation/view/captain_fleet_profile.dart';
-
 import '../../feature/home_page/presentaion/view/home_page/home_page.dart';
 
 class Routes {
   GoRouter router = GoRouter(
+    navigatorKey: navigatorKey,
     routes: [
       GoRoute(
           path: AppKeys.carInfoPath,
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: BlocProvider(
-                create: (context) => AddVeicleBloc(AddCarUsecase(
-                  repo: AgreePagesRepoImpl(
-                      agreePagesRemoteDateSource:
-                          AgreePagesRemoteDateSourceImpl(client: http.Client()),
-                      networkInfo: NetworkInfoImplement(
-                          isConnect: InternetConnectionChecker.instance)),
-                )),
-                child: CarInfoView(
-                  onNavigate: state.extra as VoidCallback?,
-                  //  ),
-                ),
+              // child: BlocProvider(
+              //   create: (context) => AddVeicleBloc(
+              //       addCarUsecase: AddCarUsecase(
+              //     repo: AgreePagesRepoImpl(
+              //         agreePagesRemoteDateSource:
+              //             AgreePagesRemoteDateSourceImpl(
+              //                 client: sl(), apiClient: sl()), //! must fix this
+              //         networkInfo: NetworkInfoImplement(
+              //             isConnect: InternetConnectionChecker.instance)),
+              //   )),
+              child: CarInfoView(
+                onNavigate: state.extra as VoidCallback?,
+                //  ),
               ),
+              //  ),
               transitionsBuilder: _fadeTransition,
             );
           }),
       GoRoute(
-        path: AppKeys.editingCarPage,
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: const EditingCar(),
-          transitionsBuilder: _fadeTransition,
-        ),
-      ),
+          path: AppKeys.editingCarPage,
+          pageBuilder: (context, state) {
+            final args = state.extra as Map<String, dynamic>;
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: EditingCar(
+                initialNewCar: args['new'],
+                initialOriginalCar: args['original'],
+                carOptions: List<String>.from(args['carOptions']),
+              ),
+              transitionsBuilder: _fadeTransition,
+            );
+          }),
       GoRoute(
         path: AppKeys.motorInfoPath,
         pageBuilder: (context, state) => CustomTransitionPage(
@@ -130,8 +133,7 @@ class Routes {
         ),
       ),
       GoRoute(
-        path: AppKeys
-            .personalInformationPageKey, //AppKeys.personalInformationPageKey,
+        path: AppKeys.personalInformationPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: MultiProvider(
@@ -175,7 +177,7 @@ class Routes {
         },
       ),
       GoRoute(
-        path: AppKeys.loginPromptPageKey,
+        path: AppKeys.splashVideoPageKey, // AppKeys.loginPromptPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: const LoginPromptPage(),
@@ -429,7 +431,7 @@ class Routes {
       //   ),
 //auth :
       GoRoute(
-        path: '/', // AppKeys.userInfoPageKey,
+        path: AppKeys.loginPromptPageKey, //
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: const SplashVideo(),
@@ -438,6 +440,7 @@ class Routes {
       ),
 
       GoRoute(
+        name: 'decider',
         path: AppKeys.deciderPageKey,
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,

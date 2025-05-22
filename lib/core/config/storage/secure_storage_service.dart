@@ -116,4 +116,20 @@ class SecureStorageService {
       return Left(StorageFailure(e.toString()));
     }
   }
+
+//?  token :
+  Future<String?> getAccessToken() async {
+    return await secureStorage.read(key: _accessTokenKey);
+  }
+
+  Future<String?> getRefreshToken() async {
+    return await secureStorage.read(key: _refreshTokenKey);
+  }
+
+  Future<void> saveTokensData(Map<String, dynamic> data) async {
+    await secureStorage.write(
+        key: _accessTokenKey, value: data['access_token']);
+    await secureStorage.write(
+        key: _refreshTokenKey, value: data['refresh_token']);
+  }
 }

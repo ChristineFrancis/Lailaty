@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
-import 'package:lailaty/core/config/presentation/widget/myButton.dart';
+import 'package:lailaty/core/network/network_connection.dart';
+import 'package:lailaty/core/presentation/widget/alerts/problem_dialog.dart';
+import 'package:lailaty/core/presentation/widget/custom_appbar.dart';
+import 'package:lailaty/core/presentation/widget/myButton.dart';
 import 'package:lailaty/core/config/storage/service_locator.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/key_manager.dart';
@@ -10,6 +11,7 @@ import 'package:lailaty/core/resources/string_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
 import 'package:lailaty/feature/fleet/presentation/state_manager/bloc/get_searched_fleet_bloc.dart';
+import 'package:lailaty/feature/fleet/presentation/state_manager/create_wrok_request_bloc/create_work_request_bloc.dart';
 import 'package:lailaty/feature/fleet/presentation/state_manager/get_all_fleets/get_all_fleets_bloc.dart';
 import 'package:lailaty/feature/fleet/presentation/widgets/fleet_to_join_widget/search_container.dart';
 import '../widgets/fleet_to_join_widget/custom_dropdown.dart';
@@ -22,13 +24,17 @@ class FleetToJoinPage extends StatefulWidget {
 }
 
 class _FleetToJoinPageState extends State<FleetToJoinPage> {
+  late final NetworkInfo networkInfo;
+
   String? _selectedFleetName;
   String _searchText = '';
-
-  void _onFleetSelected(String name) {
+  int selectedId = 0;
+  void _onFleetSelected(String name, int officeId) {
     setState(() {
       _selectedFleetName = name;
       _searchText = '';
+      selectedId = officeId;
+      print(selectedId);
     });
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -38,10 +44,12 @@ class _FleetToJoinPageState extends State<FleetToJoinPage> {
     );
   }
 
-  void _onDropdownSelected(String name) {
+  void _onDropdownSelected(String name, int officeId) {
     setState(() {
       _selectedFleetName = name;
       _searchText = '';
+      selectedId = officeId;
+      print(selectedId);
     });
   }
 
@@ -58,70 +66,124 @@ class _FleetToJoinPageState extends State<FleetToJoinPage> {
         BlocProvider(
             create: (_) => GetAllFleetsBloc(sl())..add(RequestAllFleets())),
         BlocProvider(create: (_) => GetSearchedFleetBloc(sl())),
+        BlocProvider(
+            create: (_) =>
+                CreateWorkRequestBloc(createWorkRequestUsecase: sl()))
       ],
-      child: Scaffold(
-        backgroundColor: ColorManager.backGroundColor,
-        appBar: CustomAppbar(ispop: true, title: ''),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: context.screenHeight * 0.02),
-                Text(
-                  StringManager.enterTheNameOfTheFleetYouWantToJoin,
-                  style: StyleManager.semiboldTextStyle20(
-                    color: ColorManager.black,
-                    size: context.screenWidth * 0.05,
-                  ),
-                ),
-                SizedBox(height: context.screenHeight * 0.02),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: EdgeInsets.only(right: context.screenWidth * 0.05),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          " ${(_selectedFleetName != null) ? _selectedFleetName : ""} ",
-                          style: StyleManager.semiboldTextStyle20(
-                            color: ColorManager.black,
-                            size: context.screenWidth * 0.05,
-                          ),
-                        ),
-                        Text(
-                          StringManager.fleetName,
-                          style: StyleManager.semiboldTextStyle20(
-                            color: ColorManager.black,
-                            size: context.screenWidth * 0.05,
-                          ),
-                        ),
-                      ],
+      child: BlocListener<CreateWorkRequestBloc, CreateWorkRequestState>(
+        listener: (context, state) {
+          if (state is CreateWorkRequestSuccess) {
+            Navigator.pushNamed(context, AppKeys.deciderPageKey);
+          } else if (state is CreateWorkRequestFailure) {
+            showDialog(
+              context: context,
+              builder: (_) => ProblemDialog(message: state.errorMessage),
+            );
+          }
+        },
+        child: Scaffold(
+          backgroundColor: ColorManager.backGroundColor,
+          appBar: CustomAppbar(ispop: false, title: ''),
+          body: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: context.screenHeight * 0.02),
+                  Text(
+                    StringManager.enterTheNameOfTheFleetYouWantToJoin,
+                    style: StyleManager.semiboldTextStyle20(
+                      color: ColorManager.black,
+                      size: context.screenWidth * 0.05,
                     ),
                   ),
-                ),
-                SearchContainer(
-                  onSearchSuccess: _onFleetSelected,
-                  searchText: _searchText,
-                  onTextChange: _updateSearchText,
-                ),
-                CustomDropdown(
-                  selectedFleetName: _selectedFleetName,
-                  onSelect: _onDropdownSelected,
-                ),
-                SizedBox(height: context.screenHeight * 0.4),
-                MyButton(
-                  title: StringManager.next,
-                  onpress: () {
-                    context.push(AppKeys.personalInformationPageKey);
-                  },
-                  colors: ColorManager.grey1,
-                  width: context.screenWidth * 0.7,
-                  height: context.screenHeight * 0.05,
-                  radius: 5,
-                  styleOfTExt: StyleManager.semiboldTextStyle20(),
-                ),
-              ],
+                  SizedBox(height: context.screenHeight * 0.02),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding:
+                          EdgeInsets.only(right: context.screenWidth * 0.05),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            " ${(_selectedFleetName != null) ? _selectedFleetName : ""} ",
+                            style: StyleManager.semiboldTextStyle20(
+                              color: ColorManager.black,
+                              size: context.screenWidth * 0.05,
+                            ),
+                          ),
+                          Text(
+                            StringManager.fleetName,
+                            style: StyleManager.semiboldTextStyle20(
+                              color: ColorManager.black,
+                              size: context.screenWidth * 0.05,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SearchContainer(
+                    onSearchSuccess: _onFleetSelected,
+                    searchText: _searchText,
+                    onTextChange: _updateSearchText,
+                  ),
+                  CustomDropdown(
+                    selectedFleetName: _selectedFleetName,
+                    onSelect: _onDropdownSelected,
+                  ),
+                  SizedBox(height: context.screenHeight * 0.4),
+                  BlocBuilder<CreateWorkRequestBloc, CreateWorkRequestState>(
+                    builder: (context, state) {
+                      if (state is CreateWorkRequestLoading) {
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color: ColorManager.grey1,
+                          ),
+                        );
+                      }
+                      return MyButton(
+                        title: StringManager.next,
+                        onpress: () async {
+                          final networkInfo = sl<NetworkInfo>();
+                          final isConnected = await networkInfo.isConnected;
+
+                          if (!isConnected) {
+                            // if (!_isDialogShown) {
+                            // _isDialogShown = true;
+                            showDialog(
+                              context: context,
+                              builder: (_) => const ProblemDialog(
+                                message: StringManager.noInternetConnection,
+                              ),
+                            );
+                            //    }
+                            return;
+                          }
+                          if (selectedId == 0) {
+                            showDialog(
+                              context: context,
+                              builder: (_) => const ProblemDialog(
+                                message: StringManager.emptyFleetName,
+                              ),
+                            );
+                            return;
+                          }
+
+                          context
+                              .read<CreateWorkRequestBloc>()
+                              .add(SubmitWorkRequest(selectedId));
+                        },
+                        colors: ColorManager.grey1,
+                        width: context.screenWidth * 0.7,
+                        height: context.screenHeight * 0.05,
+                        radius: 5,
+                        styleOfTExt: StyleManager.semiboldTextStyle20(),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

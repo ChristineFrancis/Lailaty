@@ -4,9 +4,11 @@ import 'package:lailaty/feature/fleet/data/repo/fleet_repo_impl.dart';
 import 'package:lailaty/feature/fleet/domain/repo/fleet_repo.dart';
 import 'package:lailaty/feature/fleet/domain/usecases/create_fleet_company_usecase.dart';
 import 'package:lailaty/feature/fleet/domain/usecases/create_personal_fleet_usecase.dart';
+import 'package:lailaty/feature/fleet/domain/usecases/create_work_request_usecase.dart';
 import 'package:lailaty/feature/fleet/domain/usecases/get_all_fleets_usecase.dart';
 import 'package:lailaty/feature/fleet/domain/usecases/get_searched_fleet_usecase.dart';
 import 'package:lailaty/feature/fleet/presentation/state_manager/bloc/get_searched_fleet_bloc.dart';
+import 'package:lailaty/feature/fleet/presentation/state_manager/create_wrok_request_bloc/create_work_request_bloc.dart';
 import 'package:lailaty/feature/fleet/presentation/state_manager/fleet_company/fleet_company_bloc.dart';
 import 'package:lailaty/feature/fleet/presentation/state_manager/get_all_fleets/get_all_fleets_bloc.dart';
 import 'package:lailaty/feature/fleet/presentation/state_manager/personal_fleet/personal_fleet_bloc.dart';
@@ -14,7 +16,11 @@ import 'package:lailaty/feature/fleet/presentation/state_manager/personal_fleet/
 Future<void> initFleetFeature() async {
   // -----------------------Data Sources-------------------------
   sl.registerLazySingleton<RemoteFleetDatasource>(
-    () => RemoteFleetDatasourceImpl(client: sl()),
+    () => RemoteFleetDatasourceImpl(
+      //client: sl(),
+      apiClient: sl(),
+      // storage: sl(),
+    ),
   );
 
   // ----------------------Repository----------------------------
@@ -40,6 +46,9 @@ Future<void> initFleetFeature() async {
   sl.registerLazySingleton(
     () => GetSearchedFleetUsecase(repo: sl()),
   );
+
+  sl.registerLazySingleton(() => CreateWorkRequestUsecase(repo: sl()));
+
   // -----------------------Bloc------------------------------
   sl.registerFactory(
     () => FleetCompanyBloc(fleetCompanyUsecase: sl()),
@@ -54,5 +63,9 @@ Future<void> initFleetFeature() async {
 
   sl.registerFactory(
     () => GetSearchedFleetBloc(sl()),
+  );
+
+  sl.registerFactory(
+    () => CreateWorkRequestBloc(createWorkRequestUsecase: sl()),
   );
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/config/presentation/widget/Titles.dart';
+import '../../../../../core/presentation/widget/Titles.dart';
 import '../../../../../core/resources/color_manager.dart';
 import '../../../../../core/resources/style_maneger.dart';
 

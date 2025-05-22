@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:lailaty/feature/fleet/presentation/widgets/captain_fleet_profile_widget/car_profile.dart';
 
-import 'package:lailaty/core/config/presentation/widget/Titles.dart';
-import 'package:lailaty/core/config/presentation/widget/custom_appbar.dart';
-import 'package:lailaty/core/config/presentation/widget/imageProduct.dart';
+import 'package:lailaty/core/presentation/widget/Titles.dart';
+import 'package:lailaty/core/presentation/widget/custom_appbar.dart';
+import 'package:lailaty/core/presentation/widget/imageProduct.dart';
 import 'package:lailaty/core/resources/color_manager.dart';
 import 'package:lailaty/core/resources/style_maneger.dart';
 import 'package:lailaty/core/utils/build_context_extensions.dart';
